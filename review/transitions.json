@@ -1,12 +1,18 @@
 [
  {
   "n": 1,
-  "title": "",
-  "content": [],
-  "layout": "part",
+  "title": "We live in the future we once imagined.",
+  "content": [
+   "bttf_phone",
+   "bttf_poster"
+  ],
+  "layout": "L-b",
   "moving": [],
   "n_moving": 0,
-  "appear": [],
+  "appear": [
+   "bttf_phone",
+   "bttf_poster"
+  ],
   "vanish": [],
   "grows": false,
   "fragments": 0,
@@ -15,10 +21,26 @@
  {
   "n": 2,
   "title": "",
+  "content": [],
+  "layout": "part",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
+   "bttf_phone",
+   "bttf_poster"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 3,
+  "title": "Your most memorable technology?",
   "content": [
    "technology pictures"
   ],
-  "layout": "L-g",
+  "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
@@ -30,7 +52,7 @@
   "transition": "cut"
  },
  {
-  "n": 3,
+  "n": 4,
   "title": "Light bulb",
   "content": [
    "technology pictures",
@@ -50,7 +72,7 @@
   "transition": "magic move"
  },
  {
-  "n": 4,
+  "n": 5,
   "title": "Light bulb changed human world",
   "content": [
    "Edison photo"
@@ -69,7 +91,7 @@
   "transition": "magic move"
  },
  {
-  "n": 5,
+  "n": 6,
   "title": "",
   "content": [
    "technology pictures",
@@ -91,7 +113,7 @@
   "transition": "magic move"
  },
  {
-  "n": 6,
+  "n": 7,
   "title": "",
   "content": [
    "Douglas Adams portrait"
@@ -106,21 +128,6 @@
    "technology pictures",
    "Edison photo"
   ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 7,
-  "title": "",
-  "content": [
-   "Douglas Adams portrait"
-  ],
-  "layout": "L-q",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
@@ -142,6 +149,21 @@
  },
  {
   "n": 9,
+  "title": "",
+  "content": [
+   "Douglas Adams portrait"
+  ],
+  "layout": "L-q",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 10,
   "title": "My age",
   "content": [
    "age labels",
@@ -162,7 +184,7 @@
   "transition": "cut"
  },
  {
-  "n": 10,
+  "n": 11,
   "title": "My age",
   "content": [
    "age labels",
@@ -183,37 +205,12 @@
   "transition": "cut"
  },
  {
-  "n": 11,
-  "title": "My age",
-  "content": [
-   "age labels",
-   "era labels and notes",
-   "phone pictures",
-   "timeline"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "n_moving": 4,
-  "appear": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
   "n": 12,
   "title": "My age",
   "content": [
    "age labels",
    "era labels and notes",
    "phone pictures",
-   "technology pictures",
    "timeline"
   ],
   "layout": "L-b",
@@ -221,15 +218,15 @@
    "era labels and notes",
    "phone pictures"
   ],
-  "n_moving": 4,
+  "n_moving": 0,
   "appear": [
    "era labels and notes",
-   "technology pictures"
+   "phone pictures"
   ],
   "vanish": [],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 13,
@@ -244,9 +241,34 @@
   "layout": "L-b",
   "moving": [
    "era labels and notes",
+   "phone pictures"
+  ],
+  "n_moving": 0,
+  "appear": [
+   "era labels and notes",
    "technology pictures"
   ],
-  "n_moving": 4,
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 14,
+  "title": "My age",
+  "content": [
+   "age labels",
+   "era labels and notes",
+   "phone pictures",
+   "technology pictures",
+   "timeline"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "era labels and notes",
+   "technology pictures"
+  ],
+  "n_moving": 0,
   "appear": [
    "era labels and notes",
    "phone pictures"
@@ -254,10 +276,10 @@
   "vanish": [],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
-  "n": 14,
+  "n": 15,
   "title": "",
   "content": [
    "phone pictures",
@@ -270,7 +292,7 @@
    "technology pictures",
    "timeline"
   ],
-  "n_moving": 5,
+  "n_moving": 0,
   "appear": [
    "phone pictures",
    "timeline"
@@ -282,10 +304,10 @@
   ],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
-  "n": 15,
+  "n": 16,
   "title": "Bohr’s model (1913)",
   "content": [
    "atomic-model pictures",
@@ -306,7 +328,7 @@
   "transition": "cut"
  },
  {
-  "n": 16,
+  "n": 17,
   "title": "How do we quantify disruptiveness?",
   "content": [
    "atomic-model pictures",
@@ -325,7 +347,7 @@
   "transition": "magic move"
  },
  {
-  "n": 17,
+  "n": 18,
   "title": "Based on citation networks",
   "content": [
    "citation diagram",
@@ -347,7 +369,7 @@
   "transition": "cut"
  },
  {
-  "n": 18,
+  "n": 19,
   "title": "j",
   "content": [
    "citation diagram",
@@ -370,7 +392,7 @@
   "transition": "magic move"
  },
  {
-  "n": 19,
+  "n": 20,
   "title": "j",
   "content": [
    "citation diagram",
@@ -394,7 +416,7 @@
   "transition": "magic move"
  },
  {
-  "n": 20,
+  "n": 21,
   "title": "j",
   "content": [
    "formula",
@@ -418,7 +440,7 @@
   "transition": "magic move"
  },
  {
-  "n": 21,
+  "n": 22,
   "title": "Team size",
   "content": [
    "the three papers"
@@ -439,7 +461,7 @@
   "transition": "cut"
  },
  {
-  "n": 22,
+  "n": 23,
   "title": "Team size",
   "content": [
    "the three papers"
@@ -454,7 +476,7 @@
   "transition": "cut"
  },
  {
-  "n": 23,
+  "n": 24,
   "title": "",
   "content": [
    "Higgs photo"
@@ -470,24 +492,6 @@
   ],
   "grows": false,
   "fragments": 2,
-  "transition": "cut"
- },
- {
-  "n": 24,
-  "title": "Englert, F., & Brout, R. (1964)",
-  "content": [
-   "annotations",
-   "Higgs photo"
-  ],
-  "layout": "L-c left",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "annotations"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
   "transition": "cut"
  },
  {
@@ -510,6 +514,24 @@
  },
  {
   "n": 26,
+  "title": "Englert, F., & Brout, R. (1964)",
+  "content": [
+   "annotations",
+   "Higgs photo"
+  ],
+  "layout": "L-c left",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "annotations"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 27,
   "title": "What’s happening?",
   "content": [
    "Higgs photo"
@@ -528,7 +550,7 @@
   "transition": "magic move"
  },
  {
-  "n": 27,
+  "n": 28,
   "title": "What’s happening?",
   "content": [
    "era labels and notes",
@@ -554,7 +576,7 @@
   "transition": "magic move"
  },
  {
-  "n": 28,
+  "n": 29,
   "title": "What’s happening?",
   "content": [
    "era labels and notes",
@@ -581,7 +603,7 @@
   "transition": "magic move"
  },
  {
-  "n": 29,
+  "n": 30,
   "title": "What’s happening?",
   "content": [
    "era labels and notes",
@@ -610,7 +632,7 @@
   "transition": "magic move"
  },
  {
-  "n": 30,
+  "n": 31,
   "title": "Citations are “rounded” into classes.",
   "content": [
    "plot axes and curves",
@@ -637,7 +659,7 @@
   "transition": "cut"
  },
  {
-  "n": 31,
+  "n": 32,
   "title": "Citations are “rounded” into classes.",
   "content": [
    "era labels and notes",
@@ -660,7 +682,7 @@
   "transition": "magic move"
  },
  {
-  "n": 32,
+  "n": 33,
   "title": "Citations are “rounded” into classes.",
   "content": [
    "era labels and notes",
@@ -687,7 +709,7 @@
   "transition": "magic move"
  },
  {
-  "n": 33,
+  "n": 34,
   "title": "word2vec",
   "content": [
    "neural network drawing"
@@ -709,7 +731,7 @@
   "transition": "cut"
  },
  {
-  "n": 34,
+  "n": 35,
   "title": "word2vec (Mikolov et al. 2013)",
   "content": [
    "fox example",
@@ -729,7 +751,7 @@
   "transition": "magic move"
  },
  {
-  "n": 35,
+  "n": 36,
   "title": "word2vec (Mikolov et al. 2013)",
   "content": [
    "fox example",
@@ -748,7 +770,7 @@
   "transition": "cut"
  },
  {
-  "n": 36,
+  "n": 37,
   "title": "word2vec (Mikolov et al. 2013)",
   "content": [
    "fox example",
@@ -765,7 +787,7 @@
   "transition": "cut"
  },
  {
-  "n": 37,
+  "n": 38,
   "title": "Learn by metonymy but captures metaphor.",
   "content": [
    "analogy equations"
@@ -786,7 +808,7 @@
   "transition": "cut"
  },
  {
-  "n": 38,
+  "n": 39,
   "title": "How word2vec works",
   "content": [
    "sentence and word labels",
@@ -807,7 +829,7 @@
   "transition": "cut"
  },
  {
-  "n": 39,
+  "n": 40,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "neural network drawing",
@@ -823,24 +845,6 @@
    "sentence and word labels"
   ],
   "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 40,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "sentence and word labels"
-  ],
-  "vanish": [],
-  "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
@@ -872,6 +876,24 @@
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
+  "appear": [
+   "sentence and word labels"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 43,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
   "appear": [],
   "vanish": [
    "sentence and word labels"
@@ -881,7 +903,7 @@
   "transition": "cut"
  },
  {
-  "n": 43,
+  "n": 44,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -900,7 +922,7 @@
   "transition": "cut"
  },
  {
-  "n": 44,
+  "n": 45,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "query and key vectors",
@@ -919,7 +941,7 @@
   "transition": "cut"
  },
  {
-  "n": 45,
+  "n": 46,
   "title": "A word has two vectors",
   "content": [
    "query and key vectors",
@@ -944,7 +966,7 @@
   "transition": "magic move"
  },
  {
-  "n": 46,
+  "n": 47,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -971,7 +993,7 @@
   "transition": "magic move"
  },
  {
-  "n": 47,
+  "n": 48,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -993,7 +1015,7 @@
   "transition": "magic move"
  },
  {
-  "n": 48,
+  "n": 49,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1015,7 +1037,7 @@
   "transition": "magic move"
  },
  {
-  "n": 49,
+  "n": 50,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1036,7 +1058,7 @@
   "transition": "cut"
  },
  {
-  "n": 50,
+  "n": 51,
   "title": "query",
   "content": [
    "r1k",
@@ -1080,7 +1102,7 @@
   "transition": "cut"
  },
  {
-  "n": 51,
+  "n": 52,
   "title": "query",
   "content": [
    "lg1",
@@ -1104,7 +1126,7 @@
   "transition": "cut"
  },
  {
-  "n": 52,
+  "n": 53,
   "title": "",
   "content": [
    "random-walk tree"
@@ -1144,7 +1166,7 @@
   "transition": "cut"
  },
  {
-  "n": 53,
+  "n": 54,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1163,7 +1185,7 @@
   "transition": "cut"
  },
  {
-  "n": 54,
+  "n": 55,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1182,7 +1204,7 @@
   "transition": "magic move"
  },
  {
-  "n": 55,
+  "n": 56,
   "title": "Random walks",
   "content": [
    "window and labels",
@@ -1205,7 +1227,7 @@
   "transition": "magic move"
  },
  {
-  "n": 56,
+  "n": 57,
   "title": "Random walks",
   "content": [
    "window and labels",
@@ -1228,7 +1250,7 @@
   "transition": "magic move"
  },
  {
-  "n": 57,
+  "n": 58,
   "title": "Random walks",
   "content": [
    "window and labels",
@@ -1249,7 +1271,7 @@
   "transition": "magic move"
  },
  {
-  "n": 58,
+  "n": 59,
   "title": "Random walks",
   "content": [
    "window and labels",
@@ -1269,7 +1291,7 @@
   "transition": "cut"
  },
  {
-  "n": 59,
+  "n": 60,
   "title": "Random walks",
   "content": [
    "window and labels",
@@ -1292,7 +1314,7 @@
   "transition": "magic move"
  },
  {
-  "n": 60,
+  "n": 61,
   "title": "(query, key)",
   "content": [
    "list heading and notes",
@@ -1318,7 +1340,7 @@
   "transition": "magic move"
  },
  {
-  "n": 61,
+  "n": 62,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1342,7 +1364,7 @@
   "transition": "magic move"
  },
  {
-  "n": 62,
+  "n": 63,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1372,7 +1394,7 @@
   "transition": "magic move"
  },
  {
-  "n": 63,
+  "n": 64,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1395,7 +1417,7 @@
   "transition": "cut"
  },
  {
-  "n": 64,
+  "n": 65,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -1420,7 +1442,7 @@
   "transition": "magic move"
  },
  {
-  "n": 65,
+  "n": 66,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -1449,7 +1471,7 @@
   "transition": "magic move"
  },
  {
-  "n": 66,
+  "n": 67,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -1498,7 +1520,7 @@
   "transition": "magic move"
  },
  {
-  "n": 67,
+  "n": 68,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -1545,7 +1567,7 @@
   "transition": "cut"
  },
  {
-  "n": 68,
+  "n": 69,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -1571,7 +1593,7 @@
   "transition": "cut"
  },
  {
-  "n": 69,
+  "n": 70,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -1624,7 +1646,7 @@
   "transition": "cut"
  },
  {
-  "n": 70,
+  "n": 71,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -1672,7 +1694,7 @@
   "transition": "cut"
  },
  {
-  "n": 71,
+  "n": 72,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -1692,7 +1714,7 @@
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 73,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -1714,7 +1736,7 @@
   "transition": "cut"
  },
  {
-  "n": 73,
+  "n": 74,
   "title": "D-index",
   "content": [
    "hd",
@@ -1743,7 +1765,7 @@
   "transition": "magic move"
  },
  {
-  "n": 74,
+  "n": 75,
   "title": "D-index",
   "content": [
    "b1",
@@ -1765,7 +1787,7 @@
   "transition": "cut"
  },
  {
-  "n": 75,
+  "n": 76,
   "title": "D-index",
   "content": [
    "b1",
@@ -1787,7 +1809,7 @@
   "transition": "cut"
  },
  {
-  "n": 76,
+  "n": 77,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -1824,7 +1846,7 @@
   "transition": "cut"
  },
  {
-  "n": 77,
+  "n": 78,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -1846,7 +1868,7 @@
   "transition": "cut"
  },
  {
-  "n": 78,
+  "n": 79,
   "title": "",
   "content": [
    "sm1",
@@ -1865,7 +1887,7 @@
   "transition": "cut"
  },
  {
-  "n": 79,
+  "n": 80,
   "title": "Science Advances",
   "content": [
    "contact and paper"

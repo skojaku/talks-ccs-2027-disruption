@@ -72,6 +72,8 @@ def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="ce
         RAISED.append((name, size))
         size = FLOOR
     h = h or size / S * 1.5
+    if weight in (700, "700", "bold") and color in (HOT, COOL) and "ul-" not in html:
+        html = f'<span class="ul-{"hot" if color == HOT else "cool"}">{html}</span>'      # a coloured value is underlined
     st = f"font-size:{size}px;"
     if color:
         st += f"color:{color};"
@@ -90,13 +92,18 @@ def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="ce
                f"justify-content:{just};text-align:{align};{st}{style}")
 
 
+def _gr(fill):
+    """Coloured and grey fills get the pencil grain; white paper does not."""
+    return "" if str(fill).lower() in ("#fff", "#ffffff", "white", "none") else "gr "
+
+
 def disc(name, cx, cy, d, fill="#fff", ring=INK, rw=2.5, dashed=False, opacity=1.0, inner="", cls=""):
     """A round box of diameter d (O units)."""
     border = f"{rw}px {'dashed' if dashed else 'solid'} {ring}" if ring else "none"
     st = f"border-radius:50%;background:{fill};border:{border};box-sizing:border-box;"
     if opacity != 1:
         st += f"opacity:{opacity};"
-    return at(name, cx, cy, d, d, inner, "dc " + cls, st)
+    return at(name, cx, cy, d, d, inner, "dc " + _gr(fill) + cls, st)
 
 
 def sq(name, cx, cy, s, fill=PALE, ring=None, rw=2, opacity=1.0, cls=""):
@@ -104,7 +111,7 @@ def sq(name, cx, cy, s, fill=PALE, ring=None, rw=2, opacity=1.0, cls=""):
     st = f"background:{fill};border:{border};box-sizing:border-box;"
     if opacity != 1:
         st += f"opacity:{opacity};"
-    return at(name, cx, cy, s, s, "", "sq " + cls, st)
+    return at(name, cx, cy, s, s, "", "sq " + _gr(fill) + cls, st)
 
 
 def dia(name, cx, cy, s, fill=DEEP, opacity=1.0, cls=""):
@@ -112,7 +119,7 @@ def dia(name, cx, cy, s, fill=DEEP, opacity=1.0, cls=""):
     st = f"background:{fill};transform:rotate(45deg);"
     if opacity != 1:
         st += f"opacity:{opacity};"
-    return at(name, cx, cy, s, s, "", "dm " + cls, st)
+    return at(name, cx, cy, s, s, "", "dm " + _gr(fill) + cls, st)
 
 
 def line(name, x1, y1, x2, y2, color=INK, w=3.0, head=True, dashed=False, hs=None, opacity=1.0, cls=""):
@@ -263,3 +270,8 @@ GRAYC = "#4d4d4d"        # a dark grey: "cites only the references" / the second
 def fade(objs, o=0.3):
     """The past stays, faded (HOUSE_STYLE 9.3): give every object in the list the opacity o."""
     return [x.replace('style="', f'style="opacity:{o};', 1) for x in objs]
+
+
+PENCIL = ('<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="mm-pencil" x="-10%" y="-10%" '
+          'width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" seed="7" result="n"/>'
+          '<feDisplacementMap in="SourceGraphic" in2="n" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter></svg>')

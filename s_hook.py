@@ -18,6 +18,14 @@ def tl_two(xl, xm, xr, y, th, rd, rw):
 
 
 def build(add):
+    # ---- 0  we live in the future we once imagined (two stills of Back to the Future Part II) -------------------------------
+    add(PENCIL + h2("We live in the future we once imagined.")
+        + stage(img("bttf_poster", "assets/bttf2_poster.jpg", 620, 640, 560, None, "ph"),
+                img("bttf_phone", "assets/bttf2_phone.jpg", 1330, 640, 670, None, "ph"))
+        + '\n\n<div class="ref">Back to the Future Part II (Universal Pictures, 1989): theatrical poster and a still.</div>',
+        cls="L-b", header="",
+        notes="Opening: the 1989 film imagined 2015. Smart glasses, video calls and flat screens are now ordinary.")
+
     # ---- 2  the paper this talk is about (part opener: title, authors, faces) -------------------------------------
     add("""## Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness
 
@@ -43,13 +51,13 @@ def build(add):
         o.append(img("printer", "assets/printer.jpg", *pos["printer"], cls="ph"))
         return o
 
-    P3 = dict(phone=(772, 347, 245, 470), chat=(1550, 474, 600, 337), globe=(363, 827, 473, 473),
+    P3 = dict(phone=(772, 470, 245, 470), chat=(1550, 540, 600, 337), globe=(363, 827, 473, 473),
               printer=(1170, 862, 534, 356))
     P4 = dict(phone=(440, 305, 245, 470), chat=(989, 357, 597, 336), globe=(301, 826, 472, 472),
               printer=(899, 825, 532, 355))
     edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, 498, "ph")
 
-    add(stage(*collage(P3)), cls="L-g", header="")
+    add(h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>' + stage(*collage(P3)), cls="L-b", header="")
     add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 44, weight=700)), cls="L-g")
     LB = "Light bulb changed human world"
 

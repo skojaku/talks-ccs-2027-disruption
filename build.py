@@ -76,6 +76,11 @@ def describe(names):
     return out
 
 
+# Choices made on the "遷移の指定" page (slide numbers as they were before the opening slide was added: +1 now).
+CUT = {n + 1 for n in (11, 12, 13, 14, 58)}      # hard cuts: nothing glides or fades
+MORPH = {n + 1 for n in (64,)}                    # magic move stays
+
+
 def modules():
     mods = [s_hook]
     for name in ("s_dindex", "s_w2v", "s_walk", "s_end"):
@@ -120,7 +125,10 @@ def main():
             head.append(f'<!-- header: "{header}" -->')
         if s["bg"]:
             head.append(f"<!-- _backgroundColor: {s['bg']} -->")
-        if moving and s["trans"] is not False:
+        if i in CUT:
+            moving = set()
+            s["shared"] = 0
+        if (moving or i in MORPH) and s["trans"] is not False:
             head.append("<!-- _transition: fade 1.1s -->")
         body = s["body"]
         notes = f"\n\n<!--\n{s['notes']}\n-->" if s["notes"] else ""

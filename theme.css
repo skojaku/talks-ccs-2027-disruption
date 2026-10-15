@@ -1098,42 +1098,37 @@ section .sub2 { display: block; font-size: 26px; font-weight: 400; margin-top: 6
 
 
 /* =====================================================================================
-   The m06 look (adv-net-sci slides/m06, theme network-science): Libre Baskerville body, black ink,
-   titles left-aligned in bold with a rule under them, round blue bullets, red key terms, blue accent,
-   Caveat for handwriting. Placed last so that it wins over the house layout rules above.
+   Look of the deck: Libre Baskerville, black ink, red key terms, blue accent, round blue bullets and
+   Caveat handwriting (the lecturer's m06 palette). The LAYOUT stays the house one (HOUSE_STYLE section 8):
+   centred bold titles with no rule, F / B / G / C / A layouts as in layouts.md.
    ===================================================================================== */
-section {
-  color: #000000;
-  font-family: 'Libre Baskerville', Georgia, serif;
-}
-section h2 {
-  font-family: 'Libre Baskerville', Georgia, serif;
-  font-size: 40px;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  text-align: left;
-  color: #000000;
-  text-wrap: auto;
-  border-bottom: 2px solid #dddddd;
-  padding-bottom: 14px;
-  margin-bottom: 10px;
-}
-section.L-f h2, section.part h2, section.lead h1 { border-bottom: 0; padding-bottom: 0; }
-section.L-f h2 { text-align: center; }
-section.part h2 { text-align: center; font-weight: 700; }
+section { color: #000000; font-family: 'Libre Baskerville', Georgia, serif; }
+section h2 { font-family: 'Libre Baskerville', Georgia, serif; color: #000000; }
 section .hot { color: #B14434; }
 section .cool { color: #3959A6; }
 section h3 { color: #3959A6; }
 section .muted { color: #6b6b6b; }
-section .sub, section .take { text-align: left; }
-section.L-c .cols > div:not(.fig) ul, section.L-c .cols > div:not(.fig) { text-align: left; }
-section.L-q blockquote, section.L-q .who { font-family: 'Libre Baskerville', Georgia, serif; }
+section.L-q blockquote, section.L-q .who, section .ref, section .take.dark { font-family: 'Libre Baskerville', Georgia, serif; }
 section .hand, section figcaption { font-family: 'Caveat', cursive; font-size: 26px; color: #6b6b6b; }
-section .ref { font-family: 'Libre Baskerville', Georgia, serif; }
-/* the breadcrumb is just a small muted label above the title */
-section > header { padding-left: 80px; top: 14px; font-size: 20px; color: #6b6b6b; }
-section > header::before, section > header::after { display: none; }
-section:has(> header) { padding-top: 56px; }
-section .take.dark { font-family: 'Libre Baskerville', Georgia, serif; }
 /* Caveat is small for its size: the handwriting is set 1.35 times larger than the size the slide asks for */
 section .tx.aside > span { font-size: 1.35em; line-height: 1; }
+
+/* What matters is underlined with the lecturer's brush (HOUSE_STYLE section 4): key terms, the coloured word of a title
+   and the value of a winner. */
+section strong, section .hot, section .cool, section .ul-hot, section .ul-cool {
+  background: url('figures/brush-hot.png') left bottom / 100% 0.28em no-repeat;
+  padding-bottom: 0.1em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+section strong.cool, section .cool, section .ul-cool { background-image: url('figures/brush-cool.png'); }
+
+/* Nodes as in the skill: a pencil outline drawn twice, slightly off each other, and a grainy fill when coloured
+   (figlib.grain: +-7.5 % mottling of every coloured or grey pixel; white paper is left alone). */
+section .o.dc, section .o.sq, section .o.dm { filter: url(#mm-pencil); }
+section .o.dc::before, section .o.sq::before {
+  content: ""; position: absolute; inset: -2.5px; border: 1.2px solid rgba(0, 0, 0, 0.38); border-radius: inherit;
+  transform: translate(1.2px, 0.8px) rotate(0.8deg); pointer-events: none;
+}
+section .o.gr {
+  background-image: url('figures/grain.png') !important; background-blend-mode: multiply !important; background-size: 128px 128px !important;
+}
