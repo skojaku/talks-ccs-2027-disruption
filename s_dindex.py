@@ -208,10 +208,11 @@ def build(add):
         'disruptive discoveries</p>', cls="L-g")
 
     # ---- 27-29  Englert, Brout and Higgs ----------------------------------------------------------------------------------------
-    def higgs_c(stage_html):
+    def higgs_c(stage_html, frag=False):
         mm._names.append("hphoto")
-        return ('<div class="cols">\n<div>\n\n- Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n'
-                '- Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>\n'
+        m = "*" if frag else "-"        # `*` reveals the list one item per click; the annotated steps show it whole
+        return ('<div class="cols">\n<div>\n\n' + f'{m} Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n'
+                f'{m} Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>\n'
                 '<div class="fig photo" style="view-transition-name:hphoto">\n\n![](assets/higgs.jpg)\n\n</div>\n</div>\n\n'
                 + stage_html)
 
@@ -226,7 +227,7 @@ def build(add):
         text("an2v", "D = − 0.27<br>Bottom 0.1 %", (X1 - 170) / S, (Y1 + 105) / S, 40, color=COOL, weight=700, w=520, h=130),
         text("an2e", "🫠", (X1 + 10) / S, (Y1 + 85) / S, 58, w=200),
         overlay_svg("an2ar", [curved_arrow(X1 - 100, Y1 + 8, X1 - 125, Y1 - 85, -0.18, HOT, 6, 24)])]
-    add(higgs_c(stage()), cls="L-c left")
+    add(higgs_c(stage(), True), cls="L-c left")
     add(higgs_c(stage(*ann1())), cls="L-c left")
     add(higgs_c(stage(*ann1(), *ann2())), cls="L-c left")
 

@@ -53,18 +53,14 @@ def build(add):
     add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 44, weight=700)), cls="L-g")
     LB = "Light bulb changed human world"
 
-    # the light bulb build uses the house layout C (list left, photo right); the photo morphs from the collage
+    # the light bulb slide: house layout C, the three bullets are `*` fragments (one click each, on this one slide);
+    # the photo morphs from the collage
     B = ["4–6 more hours a day", "The 24-hour economy", "Evening entertainment culture"]
-
-    def bulb(k):
-        # all three items take their room from the first step, so the list does not move as it fills
-        items = "<ul>" + "".join(f'<li{"" if i < k else " style=\"visibility:hidden\""}>{t}</li>' for i, t in enumerate(B)) + "</ul>\n"
-        mm._names.append("edison")
-        return (h2(LB, "lbt") + '\n\n<p class="sub">more than you’d think</p>\n\n<div class="cols">\n<div>\n\n' + items
-                + '\n</div>\n<div class="fig photo" style="view-transition-name:edison">\n\n![](assets/edison.jpg)\n\n</div>\n</div>')
-
-    for k in (0, 1, 2, 3):
-        add(bulb(k), cls="L-c left")
+    mm._names.append("edison")
+    add(h2(LB, "lbt") + '\n\n<p class="sub">more than you’d think</p>\n\n<div class="cols">\n<div>\n\n'
+        + "".join(f"* {t}\n" for t in B)
+        + '\n</div>\n<div class="fig photo" style="view-transition-name:edison">\n\n![](assets/edison.jpg)\n\n</div>\n</div>',
+        cls="L-c left")
     # the other technologies come back
     add(stage(*collage(P4), edison()), cls="L-g")
 

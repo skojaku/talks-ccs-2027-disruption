@@ -99,16 +99,18 @@ def build(add):
 
     # ---- 80-81  summary (left to me: "Summary" as F, then three claims, each with the picture that showed it) -------------
     add(h2("Summary"), cls="L-f", header="")
-    def claim(n, y, md):
-        return f'<div class="o blist" style="left:340px;top:{y}px;width:880px">\n\n{md}\n\n</div>'
+    def claim(n, y, head, sub):
+        # one `*` item per claim: it appears on its own click, with its evidence line under it
+        return (f'<div class="o blist" style="left:340px;top:{y}px;width:880px">\n\n'
+                f'* <span class="claim">{head}</span><span class="sub2">{sub}</span>\n\n</div>')
 
     add(stage(
         img("sm1", "assets/higgs.jpg", 290, 270, 360, None, "ph"),
-        claim("k1", 140, '- The D-index <span class="hot">fails</span> on milestone works\n  - Higgs (1964): D = −0.27, Bottom 0.1 %'),
+        claim("k1", 150, 'The D-index <span class="hot">fails</span> on milestone works', 'Higgs (1964): D = −0.27, Bottom 0.1 %'),
         *scatter_thumb(290, 600, 0.2),
-        claim("k2", 300, '- EDM preserves <span class="hot">continuity</span>\n  - A large query-key gap marks a discontinuity'),
+        claim("k2", 310, 'EDM preserves <span class="hot">continuity</span>', 'A large query-key gap marks a discontinuity'),
         img("sm3", "assets/odds_ratio.png", 290, 905, 360, None, "ph"),
-        claim("k3", 460, '- EDM matches <span class="hot">human judgment</span>\n  - Odds ratio 1.23, against 1.03 for the D-index')),
+        claim("k3", 470, 'EDM matches <span class="hot">human judgment</span>', 'Odds ratio 1.23, against 1.03 for the D-index')),
         cls="L-g")
 
     # ---- 81  contact -------------------------------------------------------------------------------------------------------------

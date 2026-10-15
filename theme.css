@@ -1101,3 +1101,7 @@ section .o.pic.faded img { opacity: 0.5; }
 .bespoke-marp-active section .o.ln.grow { animation: mm-grow .55s ease-out; }
 .bespoke-marp-active section .o.ov.grow .shaft { stroke-dasharray: 1; animation: mm-draw .6s ease-out; }
 .bespoke-marp-active section .o.ov.grow .ahead { animation: mm-pop .12s linear .48s backwards; }
+
+/* a claim with its evidence line, as one list item (Summary) */
+section .claim { font-weight: 700; }
+section .sub2 { display: block; font-size: 26px; font-weight: 400; margin-top: 6px; }
