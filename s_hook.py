@@ -48,14 +48,14 @@ def build(add):
     # ---- 3-6  the technology collage (one picture per cut) and the light bulb ------------------------------------------------------
     def collage(pos, only=None):
         o = []
-        for key, src, cls in (("globe", "assets/browser.png", "ph"), ("phone", "assets/phone.png", ""),
-                              ("printer", "assets/printer.jpg", "ph"), ("chat", "assets/chatgpt.png", "ph")):
+        for key, src, cls in (("globe", "assets/browser.png", ""), ("phone", "assets/ic_phone.png", ""),
+                              ("printer", "assets/ic_printer.png", ""), ("chat", "assets/ic_chat.png", "")):
             if only is None or key in only:
                 o.append(img(key, src, *pos[key], cls=cls))
         return o
 
     P3 = dict(globe=(520, 450, 620, 468), phone=(1480, 450, 230, 441), printer=(520, 900, 540, 360), chat=(1480, 900, 640, 360))
-    P4 = dict(globe=(300, 826, 500, 378), phone=(740, 360, 245, 470), chat=(1010, 357, 597, 336), printer=(899, 825, 532, 355))
+    P4 = dict(globe=(300, 826, 500, 378), phone=(380, 350, 235, 452), chat=(1040, 350, 600, 338), printer=(899, 825, 532, 355))
     edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, 498, "ph")
     TECH = h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>'
     order = ("globe", "phone", "printer", "chat")
