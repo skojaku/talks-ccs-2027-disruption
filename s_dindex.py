@@ -352,11 +352,11 @@ def build(add):
               *htree(OX, OY, 1.0, (CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
-    nA, HA, EA = hnet(540, 600, 0.95, pre="sa")
-    nB, HB, EB = hnet(1460, 600, 0.95, red=False, ghost=True, pre="sb")
+    nA, HA, EA = hnet(540, 700, 0.95, pre="sa")
+    nB, HB, EB = hnet(1460, 700, 0.95, red=False, ghost=True, pre="sb")
     add(h2("Why is the D-index so sensitive?") + stage(
-        text("sca", "with the citation", 540, 230, 40, "", MUTED, w=800),
-        text("scb", "one citation cut", 1460, 230, 40, "", MUTED, w=800),
-        *nA, *nB,
-        text("sva", "D = − 0.27", 540, 900, 52, "", COOL, weight=700, w=800),
-        text("svb", "D = 0.28", 1460, 900, 52, "", HOT, weight=700, w=800)), cls="L-b")
+        text("sca", "with the citation", 540, 215, 40, "", MUTED, w=800),
+        text("scb", "one citation cut", 1460, 215, 40, "", MUTED, w=800),
+        text("sva", "D = − 0.27", 540, 330, 52, "", COOL, weight=700, w=800),
+        text("svb", "D = 0.28", 1460, 330, 52, "", HOT, weight=700, w=800),
+        *nA, *nB,), cls="L-b")

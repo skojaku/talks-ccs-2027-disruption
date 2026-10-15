@@ -38,41 +38,31 @@ OUTER = [  # (dx, dy) from the focal paper in the diagram's own units, the node 
 def build(add):
     pos = D.node_pos("mix", CX, CY, K)
     N = lambda nid: pos[nid]
-    roles = lambda: [
-        text("rr", "cites the focal paper<br>and its references", 400, 330, 38, "", HOT, weight=700, w=700, h=170),
-        overlay_svg("rra", [arrow_px(560 * S, 400 * S, N("j")[0] * S - 38, N("j")[1] * S - 8, HOT, 4, 16)]),
-        text("rb", "cites the focal<br>paper only", 1700, 330, 38, "", COOL, weight=700, w=700, h=170),
-        overlay_svg("rba", [arrow_px(1560 * S, 395 * S, N("i")[0] * S + 38, N("i")[1] * S - 8, COOL, 4, 16)]),
-        text("rg", "cites the references<br>only", 470, 780, 38, "", GRAYC, weight=700, w=700, h=170),
-        overlay_svg("rga", [arrow_px(640 * S, 740 * S, N("k")[0] * S - 36, N("k")[1] * S + 14, GRAYC, 4, 16)])]
+    # the roles, written beside a square of each kind: plain words, no underline, no arrows
+    def roles(mute=False):
+        col = (lambda c: MUTED) if mute else (lambda c: c)
+        sty = 'style="background:none;padding:0"'
+        return [
+            text("rr", "build on prior + focal", N("j")[0] - 40, N("j")[1] - 42, 38, "", col(HOT), w=700, align="right", style="font-weight:700;"),
+            text("rb", "build on focal", N("i")[0] + 50, N("i")[1] - 42, 38, "", col(COOL), w=500, align="left", style="font-weight:700;"),
+            text("rg", "build on prior", N("k")[0] - 34, N("k")[1] + 6, 38, "", col(GRAYC), w=500, align="right", style="font-weight:700;")]
     graph = lambda fills=None, ecol=None: D.diagram("mix", "mix", CX, CY, K, labels=False, fills=fills, ecol=ecol)
 
     # 1  what the D-index does, in plain words: one graph, the colour roles written on it
-    add(h2("D-index sorts the citing papers") + '\n\n<p class="sub">Do they cite the focal paper, the work before it, or both?</p>'
+    add(h2("D-index sorts the citing papers") + '\n\n<p class="sub">Does a paper build on the focal paper, the work before it, or both?</p>'
         + stage(*graph(), *roles()), cls="L-b")
 
     # 2  ... but papers do not sort so cleanly: some belong to two groups at once
     mixed = {"p2": GRAD, "a": GRAD, "k": GRAD_G}
     emix = {"p2": PURPLE, "a": PURPLE, "k": "#7A4A40"}
     add(h2("But papers do not sort so cleanly") + stage(
-        *graph(mixed, emix), *roles(),
-        text("as1", "Some belong to<br>two groups at once.", 1600, 760, 44, "aside", w=800, h=190),
-        overlay_svg("as1ar", [curved_arrow(1450 * S, 740 * S, N("p2")[0] * S + 40, N("p2")[1] * S + 18, 0.25, MUTED, 3, 16)])), cls="L-b")
+        *graph(mixed, emix), *roles(mute=True),
+        text("as1", "Some belong to<br>two groups at once.", 1620, 880, 44, "aside", w=800, h=190),
+        overlay_svg("as1ar", [curved_arrow(1590 * S, 800 * S, N("p2")[0] * S + 44, N("p2")[1] * S + 36, -0.2, MUTED, 3, 16)])), cls="L-b")
 
     # 3  stop sorting: the colours change smoothly from one paper to the next, in the same place
     fills, t = smooth(pos)
     add(h2("Stop sorting. Let the colours mix.") + stage(*graph(fills, fills)), cls="L-b")
-
-    # 4  ... and the mixture spreads outwards, still smooth
-    o = []
-    for n, (dx, dy, host) in enumerate(OUTER):
-        x, y = CX + K * dx, CY + K * dy
-        tt = min(1.0, max(0.0, t(x)))
-        col = blend(tt)
-        x1, y1, x2, y2 = trim(*pos[host], x, y, 32, 28)
-        o.append(line(f"mix_o{n}e", x1, y1, x2, y2, col, 3, False))
-        o.append(sq(f"mix_o{n}", x, y, 46, col))
-    add(h2("The mixture spreads") + stage(*graph(fills, fills), *o), cls="L-b")
 
     # 5  the thesis, in words only
     add(h2('We preserve <span class="hot">continuity</span> by abandoning class rounding.'), cls="L-f", header="")
