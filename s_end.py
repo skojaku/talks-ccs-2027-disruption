@@ -30,11 +30,10 @@ def build(add):
         overlay_svg("e_ar", [curved_arrow(465 * S, 770 * S, 715 * S, 818 * S, 0.3, HOT, 6, 24),
                              curved_arrow(1430 * S, 880 * S, 1235 * S, 836 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
 
-    # ---- 71  the test -----------------------------------------------------------------------------------------------------
-    add(h2("Does this identify the disruptive work better than the D-index? 🤔") + stage(
-        text("tq", "Tested with APS data", 1000, 560, 44, "", INK, weight=700, w=1500),
-        img("aps1", "assets/aps_news.png", 535, 800, 860, None, "ph"),
-        img("aps2", "assets/prl.png", 1484, 865, 812, 440, "ph top cover")), cls="L-b")
+    # ---- 71  the test ------------------------------------------------------------------------------------------------
+    add(h2("Does EDM beat the D-index? 🤔") + '\n\n<p class="sub">Tested with APS data</p>' + stage(
+        img("aps1", "assets/aps_news.png", 535, 640, 860, None, "ph"),
+        img("aps2", "assets/prl.png", 1484, 700, 812, 440, "ph top cover")), cls="L-a")
 
     # ---- 72  the null model -----------------------------------------------------------------------------------------------
     NODE = "#8E97C4"
@@ -64,11 +63,11 @@ def build(add):
         text("tl2", "Time", 1178, 770, 28, "", LAV, weight=700, w=300, style="transform:rotate(-90deg);")), cls="L-b")
 
     # ---- 73-75  the D-index: milestone papers sit at the bottom -------------------------------------------------------
-    T1 = h2("The D-index values for<br>only milestone works in APS.")
+    T1 = h2("D-index of milestone works (APS)")
     plot = lambda: img("histD", "assets/hist_dindex.png", 1020, 690, 1215)
     a1 = lambda: [text("a1", "Milestone papers with<br>the bottom-level<br>D-index value.", 270, 975, 32, "aside", w=700, h=230),
                   overlay_svg("a1ar", [curved_arrow(520 * S, 940 * S, 655 * S, 925 * S, -0.15, MUTED, 2.6, 15)])]
-    a2 = lambda: [text("a2", "Shuffling edges<br>produces more<br>works with a high<br>D-index 🙈", 1135, 690, 32, "aside", w=700, h=300),
+    a2 = lambda: [text("a2", "Shuffling creates<br>more high<br>D-index works 🙈", 1135, 690, 32, "aside", w=700, h=300),
                   overlay_svg("a2ar", [curved_arrow(1345 * S, 612 * S, 1490 * S, 578 * S, -0.2, MUTED, 2.6, 15)])]
     add(T1 + stage(plot()), cls="L-b")
     add(T1 + stage(plot(), *a1()), cls="L-b")
@@ -92,7 +91,7 @@ def build(add):
     # ---- 79  the result ------------------------------------------------------------------------------------------------------
     lab = lambda n, t, x, y, x2, y2: [text(n, t, x, y, 30, "", MUTED, w=700, style="font-style:italic;"),
                                        overlay_svg(n + "a", [curved_arrow(x2 * S - 120, y2 * S + 2, x2 * S, y2 * S, 0.05, MUTED, 2.6, 14)])]
-    add(h2("Our EDM better aligns with human judgment than the D-index.") + stage(
+    add(h2("EDM aligns better with human judgment") + stage(
         img("odds", "assets/odds_ratio.png", 1275, 650, 1240, None, "ph"),
         *lab("o1", "Control<br>variable", 180, 440, 655, 388), *lab("o2", "EDM<br>(proposed)", 290, 650, 672, 625),
         *lab("o3", "D-index", 320, 840, 682, 840),

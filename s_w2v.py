@@ -67,11 +67,11 @@ def build(add):
     add(T + stage(*fox()), cls="L-b")
     add(T + stage(*fox([
         text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 715, 38, weight=700, w=1200),
-        text("m2", "Words appearing together are placed close in<br>the vector space.", 1045, 842, 30, w=1500, h=160)])),
+        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 842, 30, w=1500, h=160)])),
         cls="L-b")
     add(T + stage(*fox([
         text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 715, 38, weight=700, w=1200),
-        text("m2", "Words appearing together are placed close in<br>the vector space.", 1045, 842, 30, w=1500, h=160)]))
+        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 842, 30, w=1500, h=160)]))
         + '\n\n<p class="take">Surprisingly effective. <span class="hot">Paradigm shift</span> in NLP</p>', cls="L-b")
 
     # ---- 40  analogies --------------------------------------------------------------------------------------------
@@ -124,7 +124,7 @@ def build(add):
 
     # ---- 49  a word has two vectors --------------------------------------------------------------------------------
     kV2 = [br([(270, 195), (372, 148)], COOL, 10), br([(268, 310), (365, 182)], COOL, 10)]
-    add(h2('Keep in mind:<br>A word has <em>two</em> types of vectors.') + stage(
+    add(h2('A word has <span class="hot">two</span> vectors') + stage(
         NET(MUTED, 0.55), overlay_svg("qv", qV), overlay_svg("kv2", kV2),
         text("lf", "“favors”", 655, 610, 40, "", HOT, w=560),
         text("lf2", "“favors”", 1285, 610, 40, "", COOL, w=640, align="left"),

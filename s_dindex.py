@@ -207,18 +207,17 @@ def build(add):
         'disruptive discoveries</p>', cls="L-g")
 
     # ---- 27-29  Englert, Brout and Higgs ----------------------------------------------------------------------------------------
-    bl = ('<div class="o blist" style="left:60px;top:150px;width:560px">\n\n'
-          "* Discovery\n  * In 1964, Englert and Higgs independently predicted the Higgs Boson at the same time.\n"
-          "* Recognition\n  * They are awarded in The Nobel Prize in Physics 2013.\n\n</div>")
+    bl = ('<div class="o blist" style="left:50px;top:200px;width:560px">\n\n'
+          "- Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n"
+          "- Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>")
     ph = lambda: img("hphoto", "assets/higgs.jpg", 1420, 532, 780, None, "ph")
     ann1 = lambda: [
         text("an1", "Englert, F.,<br>&amp; Brout, R. (1964)", 1088, 108, 32, w=620, h=130),
-        text("an1v", f"D = 0.15<br>Top 2.8 %", 1520, 115, 44, color=HOT, weight=700, w=420, h=130),
-        text("an1e", "😎", 1745, 110, 58, w=200),
+        text("an1v", f"D = 0.15<br>Top 2.8 %", 1640, 115, 44, color=HOT, weight=700, w=420, h=130),
         overlay_svg("an1ar", [curved_arrow(718, 118, 766, 192, 0.18, HOT, 7, 26)])]
     ann2 = lambda: [
-        text("an2", "Higgs, P.W. (1964)", 1437, 897, 32, w=800),
-        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1510, 1003, 44, color=COOL, weight=700, w=520, h=130),
+        text("an2", "Higgs, P.W. (1964)", 1437, 885, 32, w=800),
+        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1560, 1020, 44, color=COOL, weight=700, w=520, h=130),
         text("an2e", "🫠", 1815, 950, 58, w=200),
         overlay_svg("an2ar", [curved_arrow(1068, 538, 1038, 448, -0.18, HOT, 7, 26)])]
     add(stage(ph(), bl), cls="L-b")
@@ -246,7 +245,7 @@ def build(add):
                     text("hd2", "D = 0.28<br>Top 1.3 %", 262, 880, 54, "aside", HOT, w=640, h=190), *T1), cls="L-b")
 
     # ---- 34-35  many citations are rounded into another class ----------------------------------------------------------------------
-    ttl = h2('Many citations are “<em class="hot">rounded</em>” into a different class.')
+    ttl = h2('Citations are “<em class="hot">rounded</em>” into classes.')
     pair = lambda: [
         *tree("u", 475, 465, 0.78, "higgs", (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ_BEFORE),
         *tree("ht", 1545, 431, 0.78, "higgs", (CITE_TOP, CITE_REF, CITE_REF), SQ_AFTER),

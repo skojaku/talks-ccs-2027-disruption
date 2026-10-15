@@ -28,20 +28,21 @@ def build(add):
 <img class="qr" src="assets/qr.png" alt="QR code to skojaku.github.io">""", cls="lead", header="",
         notes="The QR code opens the speaker's home page (skojaku dot github dot io).")
 
-    # ---- 2  the paper (the part opener) -------------------------------------------------------------
-    add(h2("Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness")
-        + stage(
-            img("f_munjung", "assets/face_munjung.png", 207, 640, 250, 250, "round"),
-            img("f_sadamori", "assets/face_sadamori.jpg", 474, 640, 214, 250, "cover"),
-            img("f_ahn", "assets/face_ahn.jpg", 739, 640, 206, 250, "cover"),
-            text("n_munjung", "Munjung Kim", 207, 800, 20, "ser", INK, w=330),
-            text("n_sadamori", "Sadamori Kojaku", 474, 800, 20, "ser", INK, w=330),
-            text("n_ahn", "Yong-Yeol Ahn", 739, 800, 20, "ser", INK, w=330),
-            img("sciadv", "assets/sciadv.png", 1478, 662, 973, cls="ph"),
-            img("l_uva", "assets/logo_uva.png", 659, 970, 300),
-            img("l_bing", "assets/logo_binghamton.png", 1176, 1005, 420),
-            img("l_afosr", "assets/logo_afosr.png", 1562, 1003, 150)),
-        cls="L-b paperopen", header="")
+    # ---- 2  the paper this talk is about (part opener: title, authors, faces) -------------------------------------
+    add("""## Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness
+
+<p>Munjung Kim, Sadamori Kojaku, Yong-Yeol Ahn. Science Advances.</p>
+
+<div class="faces">
+<figure><img src="assets/face_munjung.png" style="border-radius:50%"><figcaption>Munjung Kim</figcaption></figure>
+<figure><img src="assets/face_sadamori.jpg"><figcaption>Sadamori Kojaku</figcaption></figure>
+<figure><img src="assets/face_ahn.jpg"><figcaption>Yong-Yeol Ahn</figcaption></figure>
+</div>
+
+<div class="faces" style="gap:40px;align-items:center">
+<img src="assets/logo_uva.png" style="height:70px"><img src="assets/logo_binghamton.png" style="height:70px"><img src="assets/logo_afosr.png" style="height:70px">
+</div>""", cls="part", header="",
+        notes="The paper behind this talk. Ask the room how they would measure that a paper is disruptive.")
 
     # ---- 3-5  the technology collage and the light bulb -----------------------------------------------
     def collage(pos):
@@ -56,19 +57,19 @@ def build(add):
               printer=(1170, 862, 534, 356))
     P4 = dict(phone=(440, 305, 245, 470), chat=(989, 357, 597, 336), globe=(301, 826, 472, 472),
               printer=(899, 825, 532, 355))
+    asd = lambda: text("lbaside", "more than you’d think", 1000, 160, 34, "aside", w=900)
     edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, 498, "ph")
 
     add(stage(*collage(P3)), cls="L-g", header="")
     add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 44, weight=700)), cls="L-g")
-    LB = "Light bulb changed human world more than you’d think"
-    add(h2(LB, "lbt") + stage(edison()), cls="L-b")
+    LB = "Light bulb changed human world"
+    add(h2(LB, "lbt") + stage(edison(), asd()), cls="L-b")
 
-    blist = lambda items: (f'<div class="o blist" style="left:80px;top:300px;width:790px">\n\n'
-                           + "\n".join(f"* {t}" for t in items) + "\n\n</div>")
-    B = ["Added 4–6 productive hours to each day", "Enabled the 24-hour economy",
-         "Created evening entertainment culture (e.g., theaters, restaurants, social clubs)"]
+    blist = lambda items: (f'<div class="o blist" style="left:80px;top:320px;width:790px">\n\n'
+                           + "\n".join(f"- {t}" for t in items) + "\n\n</div>")
+    B = ["4–6 more productive hours a day", "The 24-hour economy", "Evening entertainment culture"]
     for k in (1, 2, 3):
-        add(h2(LB, "lbt") + stage(edison(), blist(B[:k])), cls="L-b")
+        add(h2(LB, "lbt") + stage(edison(), asd(), blist(B[:k])), cls="L-b")
     # the other technologies come back
     add(stage(*collage(P4), edison()), cls="L-g")
 
@@ -110,20 +111,21 @@ def build(add):
         cols = [
             ("Pagers", 280, 325, ("pager", "assets/pager.png", 292, 632, 390), ("This was normal", 268, 985),
              (268, 915, 268, 795, 0)),
-            ("Wireless phone", 830, 325, ("nokia", "assets/nokia3310.png", 806, 640, 420), ("Innovative 🤯!", 790, 985),
+            ("Wireless phone", 830, 325, ("nokia", "assets/nokia3310.png", 806, 640, 420), ("Innovative 🤯", 790, 985),
              (860, 935, 895, 745, 0.25)),
-            ("Smart phone", 1250, 325, ("phone", "assets/phone.png", 1246, 592, 206, 395), ("super cool 🤩!", 1210, 995),
+            ("Smart phone", 1250, 325, ("phone", "assets/phone.png", 1246, 592, 206, 395), ("super cool!", 1210, 995),
              (1237, 948, 1237, 850, 0)),
             ("Smart glass", 1735, 318, ("glasses", "assets/glasses.jpg", 1720, 590, 360, 344),
              ("Goes against<br>natural order", 1700, 985), (1727, 905, 1700, 790, 0)),
         ]
         for i in range(k):
             lab, lx, ly, im, (atxt, ax, ay), (x1, y1, x2, y2, bend) = cols[i]
-            o.append(text(f"era{i}", lab, lx, ly, 28, "", MUTED, w=520, style="font-style:italic;"))
+            fade = "opacity:.3;" if i < k - 1 else ""        # the past stays, faded
+            o.append(text(f"era{i}", lab, lx, ly, 28, "", MUTED, w=520, style="font-style:italic;" + fade))
             nm, src, cx, cy, w, *hh = im
-            o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "glasses" else ""))
-            o.append(text(f"as{i}", atxt, ax, ay, 34, "aside", w=700, h=160 if "<br>" in atxt else 110))
-            o.append(overlay_svg(f"ar{i}", [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, MUTED, 2.4, 14)]))
+            o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "glasses" else "", fade))
+            o.append(text(f"as{i}", atxt, ax, ay, 34, "aside", w=700, h=160 if "<br>" in atxt else 110, style=fade))
+            o.append(overlay_svg(f"ar{i}", [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, MUTED, 2.4, 14)], style=fade))
         return o
 
     for k in (0, 1, 2, 3, 4):
@@ -156,7 +158,7 @@ def build(add):
                       ("Schrödinger’s model", "(1926)", 1328, 790)])), cls="L-g")
 
     # ---- 20  how can we quantify the disruptiveness ----------------------------------------------------
-    add(h2('How can we <span class="hot">quantify</span> the disruptiveness of scientific works?') + stage(
+    add(h2('How do we <span class="hot">quantify</span> disruptiveness?') + stage(
         *tl_two(328, 908, 1713, 543, 4.5, 34, 4),
         img("bohr", "assets/bohr.png", 405, 738, 223),
         img("vegard", "assets/vegard.png", 687, 743, 212),

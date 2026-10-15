@@ -25,13 +25,23 @@ theme: house
 paginate: true
 math: katex
 html: true
-transition: fade 0.4s
 ---
 """
 
 
 def add(body, cls="L-g", header=None, notes=None, bg=None, trans=None):
     SLIDES.append(dict(body=body, cls=cls, header=header, notes=notes, bg=bg, trans=trans, names=mm.take_names()))
+
+
+TAG = re.compile(r'<(\w+)[^>]*?style="([^"]*?view-transition-name:(\w+);?[^"]*)"')
+
+
+def geometry(body):
+    """name -> its inline style without the name: what decides whether the box moves, resizes or recolours."""
+    out = {}
+    for _, st, name in TAG.findall(body):
+        out[name] = re.sub(r"view-transition-name:\w+;?", "", st)
+    return out
 
 
 def modules():
@@ -48,15 +58,19 @@ def main():
     out = [None]
     header = None
     prev = set()
+    prev_geo = {}
     report = []
     for i, s in enumerate(SLIDES, 1):
         names = s["names"]
         dup = {n for n in names if names.count(n) > 1}
         assert not dup, f"slide {i}: view-transition-name used twice: {sorted(dup)}"
+        geo = geometry(s["body"])
         shared = prev & set(names)
-        s["shared"] = len(shared)
-        report.append((i, len(names), len(shared)))
+        moving = {n for n in shared if geo.get(n) != prev_geo.get(n)}
+        s["shared"] = len(moving)
+        report.append((i, len(names), len(moving)))
         prev = set(names)
+        prev_geo = geo
         head = []
         if s["cls"]:
             head.append(f"<!-- _class: {s['cls']} -->")
@@ -65,7 +79,7 @@ def main():
             head.append(f'<!-- header: "{header}" -->')
         if s["bg"]:
             head.append(f"<!-- _backgroundColor: {s['bg']} -->")
-        if shared:
+        if moving and s["trans"] is not False:
             head.append("<!-- _transition: fade 1.1s -->")
         body = s["body"]
         notes = f"\n\n<!--\n{s['notes']}\n-->" if s["notes"] else ""
