@@ -20,6 +20,8 @@ S = 0.64                      # O units -> slide px
 INK, MUTED, PALE, FAINT = "#30323D", "#8C847F", "#D9D3CF", "#EFEBE8"
 HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#D9631E", "#1E96DC", "#C08A1F", "#3F8A88", "#9B9922", "#2F6FB4"
 
+FLOOR = 30                     # the type floor of the house style (px on the slide)
+RAISED: list = []
 _names: list[str] = []
 _asp: dict[str, float] = {}
 
@@ -66,6 +68,9 @@ def img(name, src, cx, cy, w, h=None, cls="", style=""):
 def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="center", weight=None,
          style="", family=None):
     """Text centred on (cx, cy) (O units); `size` is the font size in slide px."""
+    if size < FLOOR and "foot" not in cls:
+        RAISED.append((name, size))
+        size = FLOOR
     h = h or size / S * 1.5
     st = f"font-size:{size}px;"
     if color:
@@ -241,5 +246,10 @@ def tri(name, cx, cy, w, h, color):
             f'border-bottom:{H:.2f}px solid {color};{_reg(name)}"></div>')
 
 
-LAV = "#8E97C4"          # the faint blue-grey of the tree arrows and the citing arrows in the Higgs network
+LAV = MUTED              # arrows and context edges are muted (HOUSE_STYLE section 3)
 GRAYC = "#5E5A57"        # a dark grey: "cites only the references" / the second diamond
+
+
+def fade(objs, o=0.3):
+    """The past stays, faded (HOUSE_STYLE 9.3): give every object in the list the opacity o."""
+    return [x.replace('style="', f'style="opacity:{o};', 1) for x in objs]

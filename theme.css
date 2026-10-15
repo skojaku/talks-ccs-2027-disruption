@@ -1025,11 +1025,19 @@ section.L-a .cols .fig, section.L-b .cols .fig, section.L-g .cols .fig, section.
    and recolours every box that carries the same name on two consecutive slides.
    ===================================================================================== */
 
-/* the browser animates the named boxes for at least .8s, longer when the slide asks for it */
+/* Only objects that move are animated. Everything else cuts at once: no cross-fade of the page,
+   nothing fades in or out, and the new picture of a moving object is shown from the first frame
+   while its box travels to the new place and size (MAGIC_MOVE.md). */
 ::view-transition-group(*) {
   animation-duration: max(.8s, var(--marp-bespoke-transition-animation-duration));
   animation-timing-function: ease-in-out;
 }
+::view-transition-old(*), ::view-transition-new(*) {
+  animation: none !important;
+  mix-blend-mode: normal !important;
+}
+::view-transition-old(*) { opacity: 0 !important; }
+::view-transition-new(*) { opacity: 1 !important; }
 
 section .stage { position: absolute; left: 0; top: 0; width: 1280px; height: 720px; }
 section .o { position: absolute; box-sizing: border-box; }
@@ -1054,7 +1062,7 @@ section .o.aside, section .tx.aside {
   font-family: 'Excalifont', 'Virgil 3 YOFF', 'Caveat', cursive; color: #8C847F; font-weight: 400;
 }
 section .mi { font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; }
-section .o.blist { font-size: 36px; line-height: 1.38; }
+section .o.blist { font-size: 34px; line-height: 1.38; }
 section .o.blist ul { margin: 0; gap: 20px; }
 section .o.blist li ul { font-size: 30px; }
 /* a vector arrow above a word: "man", as in the analogy slides */
@@ -1070,12 +1078,12 @@ section.paperopen h2 { font-size: 40px; max-width: 1120px; }
 /* decision-tree boxes: "cite" followed by a small diamond / square icon */
 section .o.tb {
   display: flex; align-items: center; justify-content: center; gap: 0.28em; white-space: nowrap;
-  background: #F6F7FC; border: 2px solid #2F6FB4; line-height: 1;
+  background: #FFFFFF; border: 2px solid #2F6FB4; line-height: 1;
 }
 section .ic { display: inline-block; width: 0.62em; height: 0.62em; background: #C9C3BE; vertical-align: middle; }
 section .ic.dm { background: #2F6FB4; transform: rotate(45deg) scale(0.9); margin: 0 0.1em; }
 section .ic.eg { background: #5E5A57; transform: rotate(45deg) scale(0.9); margin: 0 0.1em; }
-section .ic.fa { background: #F6F7FC; border: 2px solid #2F6FB4; }
+section .ic.fa { background: #FFFFFF; border: 2px solid #2F6FB4; }
 section .amp { color: #D9631E; font-weight: 700; margin: 0 0.1em; }
 section .o.tri { width: 0; height: 0; }
 

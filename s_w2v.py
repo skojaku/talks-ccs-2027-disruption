@@ -85,7 +85,7 @@ def build(add):
 
     # ---- 41-48  how word2vec works ---------------------------------------------------------------------------------
     foot = text("foot", "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-                1000, 1085, 22, "", MUTED, w=2000)
+                1000, 1085, 22, "foot", MUTED, w=2000)
     NET = lambda color=INK, op=1.0: net("net", 1026, 730, 1.0, color, op)
     ttl = h2("How word2vec works")
     sent = lambda: [text("sent", '“Chance <span class="hot">favors</span> only the _____ mind.”', 980, 265, 48, w=1900),
@@ -139,9 +139,8 @@ def build(add):
 
     def left():
         return [net("net", 312, 705, 0.74),
-                text("ls", '“… <span class="hot">favors</span> only the <span class="cool" style="text-decoration:underline">'
-                           'prepared</span>”', 300, 462, 22, w=900),
-                overlay_svg("ls_ar", [curved_arrow(72, 288, 270, 283, -0.4, HOT, 2.6, 13)]),
+                text("ls", '“… <span class="hot">favors</span> only<br>the <span class="cool" style="text-decoration:underline">'
+                           'prepared</span>”', 300, 470, 30, w=640, h=150),
                 img("ap1", "assets/apoha_stone.png", 1299, 125, 193),
                 img("ap2", "assets/apoha_carved.png", 1523, 125, 173),
                 img("ap3", "assets/apoha_horse.png", 1787, 125, 208),

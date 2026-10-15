@@ -85,6 +85,8 @@ def main():
         notes = f"\n\n<!--\n{s['notes']}\n-->" if s["notes"] else ""
         out.append("\n".join(head) + "\n\n" + body + notes)
     (ROOT / "ccs-2027.md").write_text(FRONT + "\n" + "\n\n---\n\n".join(out[1:]) + "\n")
+    if mm.RAISED:
+        print("raised to the 30px floor:", sorted(set(mm.RAISED)))
     print(f"{len(SLIDES)} slides; morph pairs (slide, objects, shared with previous):")
     print("  " + "  ".join(f"{i}:{n}/{sh}" for i, n, sh in report))
     if "--html" in sys.argv:

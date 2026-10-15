@@ -36,7 +36,7 @@ def build(add):
         img("aps2", "assets/prl.png", 1484, 700, 812, 440, "ph top cover")), cls="L-a")
 
     # ---- 72  the null model -----------------------------------------------------------------------------------------------
-    NODE = "#8E97C4"
+    NODE = "#A9A5A2"
     ARW = "#4A4A52"
     L = {"t": [(498, 660), (641, 660), (804, 660)], "m": [(463, 806), (716, 806)], "b": [(544, 925), (663, 925)]}
     R = {"t": [(1392, 645), (1536, 646), (1699, 646)], "m": [(1357, 792), (1610, 792)], "b": [(1438, 912), (1558, 912)]}
@@ -119,4 +119,4 @@ def build(add):
         img("bf", "assets/butterfly.png", 738, 520, 80),
         text("c2", "@skojaku.bsky.social", 800, 525, 32, "", INK, w=1400, align="left"),
         text("c3", '<u>skojaku@binghamton.edu</u>', 455, 690, 32, "", INK, w=1700, align="left"),
-        img("qr2", "assets/qr.png", 1679, 536, 392)), cls="L-g", header="", bg="#F9F5DA")
+        img("qr2", "assets/qr.png", 1679, 536, 392)), cls="L-g", header="")

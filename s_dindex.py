@@ -2,7 +2,7 @@
 from mm import *  # noqa: F401,F403
 import mm
 
-CLS = {"hot": HOT, "teal": TEAL, "gray": GRAYC}
+CLS = {"hot": HOT, "teal": COOL, "gray": GRAYC}
 
 
 def edge(name, p, q, ps, qs, color, w=2.2, hs=None, dashed=False):
@@ -73,7 +73,7 @@ TREE = {
         labels=[("yes", -138, 64), ("no", 145, 80), ("yes", -243, 200), ("no", -26, 204), ("yes", 252, 212)],
         buckets=[(-230, 337), (-28, 342), (194, 327)], bsz=(125, 150), fs=46),
 }
-TINT = [("#FBE3D3", HOT), ("#D9ECEA", TEAL), ("#E6E2DE", GRAYC)]
+TINT = [("#FBE3D3", HOT), ("#DDEFFA", COOL), ("#E6E2DE", GRAYC)]
 
 
 def bucket(name, cx, cy, w, h, tint):
@@ -82,7 +82,7 @@ def bucket(name, cx, cy, w, h, tint):
     return svg(name, cx - w / 2, cy - h / 2, w, h, body)
 
 
-def tree(pre, ox, oy, k, mode, boxes, squares, captions=False):
+def tree(pre, ox, oy, k, mode, boxes, squares, captions=False, labels=True):
     """boxes = (top, left, right) inner html; squares = list of (name, bucket index, dx, dy, fill, ring) in local units."""
     g = TREE[mode]
     P = lambda x, y: (ox + k * x, oy + k * y)
@@ -95,9 +95,9 @@ def tree(pre, ox, oy, k, mode, boxes, squares, captions=False):
     for i, (x1, y1, x2, y2) in enumerate(g["arrows"], 1):
         a, b = P(x1, y1), P(x2, y2)
         out.append(line(f"{pre}_a{i}", a[0], a[1], b[0], b[1], LAV, max(1.6, 2.4 * k), True, False, 8 + 4 * k))
-    for i, (t, x, y) in enumerate(g["labels"], 1):
+    for i, (t, x, y) in enumerate(g["labels"] if labels else [], 1):
         cx, cy = P(x, y)
-        out.append(text(f"{pre}_l{i}", t, cx, cy, 26 * k, "", LAV, w=140))
+        out.append(text(f"{pre}_l{i}", t, cx, cy, 30 * k, "", LAV, w=140))
     bw, bh = g["bsz"]
     for i, (bx, by) in enumerate(g["buckets"]):
         cx, cy = P(bx, by)
@@ -110,7 +110,7 @@ def tree(pre, ox, oy, k, mode, boxes, squares, captions=False):
         for i, (t, (dx, dy)) in enumerate(zip(["citing focal<br>& its refs", "citing<br>the focal", "citing its<br>refs but<br>focal"],
                                               [(-451, 587), (-54, 577), (284, 597)])):
             cx, cy = P(dx, dy)
-            out.append(text(f"{pre}_c{i}", t, cx, cy, 24 * k, "", TINT[i][1], w=380, h=170))
+            out.append(text(f"{pre}_c{i}", t, cx, cy, 30 * k, "", TINT[i][1], w=380, h=170))
     return out
 
 
@@ -123,7 +123,7 @@ CITE_BOTH = f'cite {ICS}<span class="amp">&amp;</span>{ICE}'
 
 SQ_CONCEPT = [("s0", 0, 5, -50, HOT, None), ("s1", 0, -5, 23, HOT, None), ("s2", 1, -3, -35, TEAL, None),
               ("s3", 1, 20, 40, TEAL, None), ("s4", 2, 0, 3, GRAYC, None)]
-SQF = "#F6F7FC"
+SQF = "#FFFFFF"
 SQ_BEFORE = [("a", 0, 14, -53, SQF, DEEP), ("b", 0, -28, 0, SQF, DEEP), ("c", 0, 7, 45, SQF, DEEP),
              ("d", 1, 0, -23, SQF, DEEP), ("e", 2, 3, -17, SQF, DEEP)]
 SQ_AFTER = [("a", 1, -30, -55, SQF, DEEP), ("b", 1, 0, 25, SQF, DEEP), ("c", 1, 30, 45, SQF, DEEP),
@@ -179,16 +179,16 @@ def build(add):
         cls="L-g", header=HD)
 
     # ---- 24  ... and counted ---------------------------------------------------------------------------------------------
-    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#3F8A88}{n_i}-\\textcolor{#D9631E}{n_j}}"
-          "{\\textcolor{#3F8A88}{n_i}+\\textcolor{#D9631E}{n_j}+\\textcolor{#5E5A57}{n_k}}$$")
+    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#1E96DC}{n_i}-\\textcolor{#D9631E}{n_j}}"
+          "{\\textcolor{#1E96DC}{n_i}+\\textcolor{#D9631E}{n_j}+\\textcolor{#5E5A57}{n_k}}$$")
     add(stage(
-        *diagram("mix", "mix", 328, 590, 0.84, labels=True),
-        *tree("t", 837, 401, 0.72, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT),
+        *fade(diagram("mix", "mix", 270, 600, 0.6, labels=True)),
+        *fade(tree("t", 740, 420, 0.6, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, labels=False)),
         box("fcard", 1150, 387, 835, 408, "", "", f"background:#F7F4F1;"),
         mathbox("fml", 1150, 400, 835, 300, fm, 54),
-        line("fu1", 1432, 672, 1512, 672, TEAL, 3, False), line("fu2", 1652, 672, 1732, 672, HOT, 3, False),
+        line("fu1", 1432, 672, 1512, 672, COOL, 3, False), line("fu2", 1652, 672, 1732, 672, HOT, 3, False),
         line("fu3", 1860, 672, 1940, 672, GRAYC, 3, False),
-        sq("fk1", 1472, 722, 40, TEAL), sq("fk2", 1692, 722, 40, HOT), sq("fk3", 1900, 722, 40, GRAYC),
+        sq("fk1", 1472, 722, 40, COOL), sq("fk2", 1692, 722, 40, HOT), sq("fk3", 1900, 722, 40, GRAYC),
         text("counts", "counts", 1560, 845, 34, "aside", w=400),
         overlay_svg("counts_ar", [curved_arrow(1640 * S, 820 * S, 1695 * S, 775 * S, -0.3, MUTED, 2.4, 14)])),
         cls="L-g", header=HD)
@@ -247,11 +247,11 @@ def build(add):
     # ---- 34-35  many citations are rounded into another class ----------------------------------------------------------------------
     ttl = h2('Citations are “<em class="hot">rounded</em>” into classes.')
     pair = lambda: [
-        *tree("u", 475, 465, 0.78, "higgs", (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ_BEFORE),
-        *tree("ht", 1545, 431, 0.78, "higgs", (CITE_TOP, CITE_REF, CITE_REF), SQ_AFTER),
-        text("rm", "Removal of a<br>single citation.", 1050, 520, 28, "", MUTED, weight=700, w=500, h=150),
-        overlay_svg("rm_ar", [f'<path d="M528,392 L772,392" stroke="{LAV}" stroke-width="5" stroke-linecap="round"/>'
-                              f'<path d="M752,376 L774,392 L752,408" fill="none" stroke="{LAV}" stroke-width="4" '
+        *tree("u", 400, 380, 1.0, "higgs", (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ_BEFORE),
+        *tree("ht", 1560, 380, 1.0, "higgs", (CITE_TOP, CITE_REF, CITE_REF), SQ_AFTER),
+        text("rm", "Removal of a<br>single citation.", 1010, 520, 30, "", MUTED, weight=700, w=500, h=150),
+        overlay_svg("rm_ar", [f'<path d="M525,400 L770,400" stroke="{LAV}" stroke-width="5" stroke-linecap="round"/>'
+                              f'<path d="M752,384 L772,400 L752,416" fill="none" stroke="{LAV}" stroke-width="4" '
                               f'stroke-linecap="round" stroke-linejoin="round"/>'])]
     add(ttl + stage(*pair()), cls="L-b")
     add(ttl + stage(*pair()) + '\n\n<p class="take">We preserve <span class="hot">continuity</span> by abandoning class rounding.</p>',

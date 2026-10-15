@@ -53,13 +53,14 @@ def build(add):
     add(stage(*collage(P3)), cls="L-g", header="")
     add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 44, weight=700)), cls="L-g")
     LB = "Light bulb changed human world"
-    add(h2(LB, "lbt") + stage(edison(), asd()), cls="L-b")
+    bigbulb = lambda: img("edison", "assets/edison.jpg", 1560, 690, 760, None, "ph")
+    add(h2(LB, "lbt") + stage(bigbulb(), asd()), cls="L-b")
 
-    blist = lambda items: (f'<div class="o blist" style="left:80px;top:320px;width:790px">\n\n'
+    blist = lambda items: (f'<div class="o blist" style="left:60px;top:330px;width:640px">\n\n'
                            + "\n".join(f"- {t}" for t in items) + "\n\n</div>")
-    B = ["4–6 more productive hours a day", "The 24-hour economy", "Evening entertainment culture"]
+    B = ["4–6 more hours a day", "The 24-hour economy", "Evening entertainment culture"]
     for k in (1, 2, 3):
-        add(h2(LB, "lbt") + stage(edison(), asd(), blist(B[:k])), cls="L-b")
+        add(h2(LB, "lbt") + stage(bigbulb(), asd(), blist(B[:k])), cls="L-b")
     # the other technologies come back
     add(stage(*collage(P4), edison()), cls="L-g")
 
@@ -133,25 +134,22 @@ def build(add):
         img("phone", "assets/phone.png", 1888, 562, 200, 383)), cls="L-g")
 
     # ---- 19  the same line, atomic models ----------------------------------------------------------------
-    def caps(prefix, items, size=24):
-        o = []
-        for i, (a, b, cx, cy) in enumerate(items):
-            o.append(text(f"{prefix}{i}", f"{a}<br>{b}", cx, cy, size, w=520, h=160))
-        return o
+    def caps(prefix, items, size=30):
+        return [text(f"{prefix}{i}", f"{a}<br>{b}", cx, cy, size, w=520, h=160) for i, (a, b, cx, cy) in enumerate(items)]
 
     add(stage(
         *tl_two(112, 862, 1895, 213, 6, 46, 5),
-        img("bohr", "assets/bohr.png", 215, 480, 280),
-        img("vegard", "assets/vegard.png", 573, 466, 270),
-        img("schrod", "assets/schrodinger.png", 1330, 497, 382, None, "ph"),
-        *caps("cap", [("Bohr’s model", "(1913)", 205, 770), ("Vegard’s model", "(1918)", 620, 770),
-                      ("Schrödinger’s model", "(1926)", 1328, 790)])), cls="L-g")
+        img("bohr", "assets/bohr.png", 270, 560, 430),
+        img("vegard", "assets/vegard.png", 760, 545, 400),
+        img("schrod", "assets/schrodinger.png", 1440, 575, 560, None, "ph"),
+        *caps("cap", [("Bohr’s model", "(1913)", 270, 905), ("Vegard’s model", "(1918)", 760, 905),
+                      ("Schrödinger’s model", "(1926)", 1440, 940)])), cls="L-g")
 
     # ---- 20  how can we quantify the disruptiveness ----------------------------------------------------
     add(h2('How do we <span class="hot">quantify</span> disruptiveness?') + stage(
         *tl_two(328, 908, 1713, 543, 4.5, 34, 4),
-        img("bohr", "assets/bohr.png", 405, 738, 223),
-        img("vegard", "assets/vegard.png", 687, 743, 212),
-        img("schrod", "assets/schrodinger.png", 1432, 770, 297, None, "ph"),
-        *caps("cap", [("Bohr’s model", "(1913)", 330, 960), ("Vegard’s model", "(1918)", 675, 962),
-                      ("Schrödinger’s model", "(1926)", 1427, 985)], 22)), cls="L-b")
+        img("bohr", "assets/bohr.png", 360, 750, 330),
+        img("vegard", "assets/vegard.png", 800, 745, 310),
+        img("schrod", "assets/schrodinger.png", 1440, 765, 430, None, "ph"),
+        *caps("cap", [("Bohr’s model", "(1913)", 360, 965), ("Vegard’s model", "(1918)", 800, 965),
+                      ("Schrödinger’s model", "(1926)", 1440, 990)])), cls="L-b")
