@@ -57,8 +57,10 @@ def build(add):
     emix = {"p2": PURPLE, "a": PURPLE, "k": "#7A4A40"}
     add(h2("But papers do not sort so cleanly") + stage(
         *graph(mixed, emix), *roles(mute=True),
-        text("as1", "Some belong to<br>two groups at once.", 1620, 880, 44, "aside", w=800, h=190),
-        overlay_svg("as1ar", [curved_arrow(1590 * S, 800 * S, N("p2")[0] * S + 44, N("p2")[1] * S + 36, -0.2, MUTED, 3, 16)])), cls="L-b")
+        text("as1", "Some belong to<br>two groups at once.", 385, 810, 44, "aside", w=760, h=190,
+             style="background:linear-gradient(90deg,#B14434,#3959A6);-webkit-background-clip:text;background-clip:text;"
+                   "color:transparent;"),
+        overlay_svg("as1ar", [curved_arrow(520 * S, 715 * S, N("k")[0] * S - 12, N("k")[1] * S + 40, 0.25, MUTED, 3, 16)])), cls="L-b")
 
     # 3  stop sorting: the colours change smoothly from one paper to the next, in the same place
     fills, t = smooth(pos)

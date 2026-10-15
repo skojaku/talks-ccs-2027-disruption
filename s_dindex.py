@@ -210,7 +210,7 @@ CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
 def htree(ox, oy, k, boxes, squares, prefix="t"):
     t = tree(prefix, ox, oy, k, "higgs", boxes, squares)
     for i, (bx, by) in enumerate(TREE["higgs"]["buckets"]):
-        t.append(text(f"{prefix}_c{i}", CAP[i], ox + k * bx, oy + k * (by + 135), 36, "", TINT[i][1], w=380, h=140))
+        t.append(text(f"{prefix}_c{i}", CAP[i], ox + k * (bx + (-24, 0, 20)[i]), oy + k * (by + 172), 36, "", TINT[i][1], w=380, h=140))
     return t
 
 

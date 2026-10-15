@@ -1729,23 +1729,6 @@
  },
  {
   "n": 68,
-  "title": "Now, let’s look at one paper closely.",
-  "content": [],
-  "layout": "L-f",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [
-   "list heading and notes",
-   "training pairs",
-   "window and labels"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 69,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1753,20 +1736,23 @@
    "training pairs"
   ],
   "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "list heading and notes",
+  "moving": [
    "training pairs"
   ],
-  "vanish": [],
-  "grows": false,
+  "n_moving": 4,
+  "appear": [
+   "era labels and notes",
+   "list heading and notes"
+  ],
+  "vanish": [
+   "window and labels"
+  ],
+  "grows": true,
   "fragments": 0,
-  "transition": "cut"
+  "transition": "magic move"
  },
  {
-  "n": 70,
+  "n": 69,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1796,7 +1782,7 @@
   "transition": "magic move"
  },
  {
-  "n": 71,
+  "n": 70,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1819,7 +1805,7 @@
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 71,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -1844,7 +1830,7 @@
   "transition": "magic move"
  },
  {
-  "n": 73,
+  "n": 72,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -1873,7 +1859,7 @@
   "transition": "magic move"
  },
  {
-  "n": 74,
+  "n": 73,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -1922,7 +1908,7 @@
   "transition": "magic move"
  },
  {
-  "n": 75,
+  "n": 74,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -1969,7 +1955,7 @@
   "transition": "cut"
  },
  {
-  "n": 76,
+  "n": 75,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -1995,7 +1981,7 @@
   "transition": "cut"
  },
  {
-  "n": 77,
+  "n": 76,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -2048,7 +2034,7 @@
   "transition": "cut"
  },
  {
-  "n": 78,
+  "n": 77,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -2096,7 +2082,7 @@
   "transition": "cut"
  },
  {
-  "n": 79,
+  "n": 78,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2116,7 +2102,7 @@
   "transition": "cut"
  },
  {
-  "n": 80,
+  "n": 79,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2138,7 +2124,7 @@
   "transition": "cut"
  },
  {
-  "n": 81,
+  "n": 80,
   "title": "D-index",
   "content": [
    "hd",
@@ -2167,7 +2153,7 @@
   "transition": "magic move"
  },
  {
-  "n": 82,
+  "n": 81,
   "title": "D-index",
   "content": [
    "b1",
@@ -2189,7 +2175,7 @@
   "transition": "cut"
  },
  {
-  "n": 83,
+  "n": 82,
   "title": "D-index",
   "content": [
    "b1",
@@ -2211,7 +2197,7 @@
   "transition": "cut"
  },
  {
-  "n": 84,
+  "n": 83,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -2248,7 +2234,7 @@
   "transition": "cut"
  },
  {
-  "n": 85,
+  "n": 84,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -2270,7 +2256,7 @@
   "transition": "cut"
  },
  {
-  "n": 86,
+  "n": 85,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2291,7 +2277,7 @@
   "transition": "cut"
  },
  {
-  "n": 87,
+  "n": 86,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2313,7 +2299,7 @@
   "transition": "cut"
  },
  {
-  "n": 88,
+  "n": 87,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2336,7 +2322,7 @@
   "transition": "cut"
  },
  {
-  "n": 89,
+  "n": 88,
   "title": "Science Advances",
   "content": [
    "contact and paper"
