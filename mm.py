@@ -81,7 +81,7 @@ def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="ce
         x = cx - w
     else:
         x = cx - w / 2
-    return box(name, x, cy - h / 2, w, h, html, "tx " + cls,
+    return box(name, x, cy - h / 2, w, h, f"<span>{html}</span>", "tx " + cls,
                f"justify-content:{just};text-align:{align};{st}{style}")
 
 
