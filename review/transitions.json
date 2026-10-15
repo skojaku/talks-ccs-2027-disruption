@@ -982,16 +982,16 @@
  },
  {
   "n": 40,
-  "title": "A continuous measure does not jump",
-  "content": [
-   "era labels and notes",
+  "title": "We preserve continuity by abandoning class rounding.",
+  "content": [],
+  "layout": "L-f",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
    "plot axes and curves",
-   "hb_E",
-   "hb_H",
-   "hb_ghost"
-  ],
-  "layout": "L-b",
-  "moving": [
+   "cl",
+   "cr",
    "hb_E",
    "hb_H",
    "hb_ghost",
@@ -1015,19 +1015,14 @@
    "hb_t3E",
    "hb_t3H",
    "hb_x",
-   "pr_d",
-   "pr_g",
-   "pr_v"
-  ],
-  "n_moving": 26,
-  "appear": [
-   "era labels and notes"
-  ],
-  "vanish": [
-   "cl",
-   "cr",
    "jmp",
    "jt",
+   "pl_d",
+   "pl_g",
+   "pl_v",
+   "pr_d",
+   "pr_g",
+   "pr_v",
    "tk0",
    "tk1",
    "tk2",
@@ -1035,9 +1030,9 @@
    "tkl1",
    "tkl2"
   ],
-  "grows": true,
+  "grows": false,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 41,
@@ -1093,39 +1088,7 @@
    "r2s8",
    "r2s9"
   ],
-  "vanish": [
-   "era labels and notes",
-   "plot axes and curves",
-   "hb_E",
-   "hb_H",
-   "hb_ghost",
-   "hb_r0",
-   "hb_r0q",
-   "hb_r1",
-   "hb_r1q",
-   "hb_r2",
-   "hb_r2q",
-   "hb_r3",
-   "hb_s0",
-   "hb_s1",
-   "hb_s2",
-   "hb_s3",
-   "hb_t0E",
-   "hb_t0H",
-   "hb_t1E",
-   "hb_t1H",
-   "hb_t2E",
-   "hb_t2H",
-   "hb_t3E",
-   "hb_t3H",
-   "hb_x",
-   "pl_d",
-   "pl_g",
-   "pl_v",
-   "pr_d",
-   "pr_g",
-   "pr_v"
-  ],
+  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
@@ -1157,110 +1120,89 @@
  },
  {
   "n": 43,
-  "title": "Zoom out: find the bottleneck",
+  "title": "D-index sees only close neighbours",
   "content": [
-   "bn",
-   "bn_ar",
-   "earlier",
-   "flow",
-   "hg0_0_0"
+   "focal",
+   "l1",
+   "l2",
+   "nn0",
+   "nn2"
   ],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "bn",
-   "bn_ar",
-   "earlier",
-   "flow",
-   "hg0_0_0",
-   "hg0_0_1",
-   "hg0_0_2",
-   "hg0_1_0",
-   "hg0_1_1",
-   "hg0_1_2",
-   "hg0_1_3",
-   "hg0_2_0",
-   "hg0_2_1",
-   "hg0_2_2",
-   "hg0_2_3",
-   "hg0_3_0",
-   "hg0_3_1",
-   "hg0_3_2",
-   "hg0_3_3",
-   "hg0_3_4",
-   "hg0_4_1",
-   "hg0_4_2",
-   "hg0_4_3",
-   "hg0_4_4",
-   "hg0_4_5",
-   "hg0_5_1",
-   "hg0_5_2",
-   "hg0_5_3",
-   "hg0_5_4",
-   "hg0_5_5",
-   "hg0_6_0",
-   "hg0_6_2",
-   "hg0_6_3",
-   "hg0_6_4",
-   "hg0_6_5",
-   "hg0_7_3",
-   "hg0_7_4",
-   "hg0_7_5",
-   "hg1_0_0",
-   "hg1_1_0",
-   "hg1_1_1",
-   "hg1_2_0",
-   "hg1_2_1",
-   "hg1_3_1",
-   "hg1_3_2",
-   "hg1_4_1",
-   "hg1_4_2",
-   "hg1_5_2",
-   "hg2_0_0",
-   "hg3_0_0",
-   "hg4_0_0",
-   "hg4_0_1",
-   "hg4_0_2",
-   "hg4_1_1",
-   "hg4_1_2",
-   "hg4_1_3",
-   "hg4_1_4",
-   "hg4_2_3",
-   "hg4_2_4",
-   "hg4_2_5",
-   "hg_focal",
-   "hg_s0_0",
-   "hg_s0_1",
-   "hg_s0_2",
-   "hg_s0_3",
-   "hg_s0_4",
-   "hg_s0_5",
-   "hg_s0_6",
-   "hg_s0_7",
-   "hg_s1_0",
-   "hg_s1_1",
-   "hg_s1_2",
-   "hg_s1_3",
-   "hg_s1_4",
-   "hg_s1_5",
-   "hg_s2_0",
-   "hg_s2_1",
-   "hg_s2_2",
-   "hg_s4_0",
-   "hg_s4_1",
-   "hg_s4_2",
-   "hg_s5_0",
-   "hg_s5_1",
-   "hg_s5_2",
-   "hg_s5_3",
-   "hg_s5_4",
-   "hg_s5_5",
-   "later",
-   "waist"
+   "range"
   ],
   "vanish": [
-   "era labels and notes",
+   "era labels and notes"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 44,
+  "title": "Look wider",
+  "content": [
+   "focal",
+   "l1",
+   "l2",
+   "nn0",
+   "nn2"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "l1",
+   "l2",
+   "r2e0",
+   "r2e1",
+   "r2e10",
+   "r2e11",
+   "r2e2",
+   "r2e3",
+   "r2e4",
+   "r2e5",
+   "r2e6",
+   "r2e7",
+   "r2e8",
+   "r2e9",
+   "r2s0",
+   "r2s1",
+   "r2s10",
+   "r2s11",
+   "r2s2",
+   "r2s3",
+   "r2s4",
+   "r2s5",
+   "r2s6",
+   "r2s7",
+   "r2s8",
+   "r2s9",
+   "range"
+  ],
+  "n_moving": 27,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 45,
+  "title": "Simulate the flow of knowledge with random walks",
+  "content": [
+   "rwtitle",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "rwtitle",
+   "random-walk tree"
+  ],
+  "vanish": [
    "focal",
    "l1",
    "l2",
@@ -1303,123 +1245,15 @@
    "r2s6",
    "r2s7",
    "r2s8",
-   "r2s9"
+   "r2s9",
+   "range"
   ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 44,
-  "title": "Sample the flow with random walks",
-  "content": [
-   "rwtitle",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "rwtitle",
-   "random-walk tree"
-  ],
-  "vanish": [
-   "bn",
-   "bn_ar",
-   "earlier",
-   "flow",
-   "hg0_0_0",
-   "hg0_0_1",
-   "hg0_0_2",
-   "hg0_1_0",
-   "hg0_1_1",
-   "hg0_1_2",
-   "hg0_1_3",
-   "hg0_2_0",
-   "hg0_2_1",
-   "hg0_2_2",
-   "hg0_2_3",
-   "hg0_3_0",
-   "hg0_3_1",
-   "hg0_3_2",
-   "hg0_3_3",
-   "hg0_3_4",
-   "hg0_4_1",
-   "hg0_4_2",
-   "hg0_4_3",
-   "hg0_4_4",
-   "hg0_4_5",
-   "hg0_5_1",
-   "hg0_5_2",
-   "hg0_5_3",
-   "hg0_5_4",
-   "hg0_5_5",
-   "hg0_6_0",
-   "hg0_6_2",
-   "hg0_6_3",
-   "hg0_6_4",
-   "hg0_6_5",
-   "hg0_7_3",
-   "hg0_7_4",
-   "hg0_7_5",
-   "hg1_0_0",
-   "hg1_1_0",
-   "hg1_1_1",
-   "hg1_2_0",
-   "hg1_2_1",
-   "hg1_3_1",
-   "hg1_3_2",
-   "hg1_4_1",
-   "hg1_4_2",
-   "hg1_5_2",
-   "hg2_0_0",
-   "hg3_0_0",
-   "hg4_0_0",
-   "hg4_0_1",
-   "hg4_0_2",
-   "hg4_1_1",
-   "hg4_1_2",
-   "hg4_1_3",
-   "hg4_1_4",
-   "hg4_2_3",
-   "hg4_2_4",
-   "hg4_2_5",
-   "hg_focal",
-   "hg_s0_0",
-   "hg_s0_1",
-   "hg_s0_2",
-   "hg_s0_3",
-   "hg_s0_4",
-   "hg_s0_5",
-   "hg_s0_6",
-   "hg_s0_7",
-   "hg_s1_0",
-   "hg_s1_1",
-   "hg_s1_2",
-   "hg_s1_3",
-   "hg_s1_4",
-   "hg_s1_5",
-   "hg_s2_0",
-   "hg_s2_1",
-   "hg_s2_2",
-   "hg_s4_0",
-   "hg_s4_1",
-   "hg_s4_2",
-   "hg_s5_0",
-   "hg_s5_1",
-   "hg_s5_2",
-   "hg_s5_3",
-   "hg_s5_4",
-   "hg_s5_5",
-   "later",
-   "waist"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 45,
+  "n": 46,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1440,7 +1274,7 @@
   "transition": "cut"
  },
  {
-  "n": 46,
+  "n": 47,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1459,13 +1293,14 @@
   "transition": "magic move"
  },
  {
-  "n": 47,
+  "n": 48,
   "title": "Random walks",
   "content": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs",
-   "random-walk tree",
-   "sequence discs"
+   "random-walk tree"
   ],
   "layout": "L-g",
   "moving": [
@@ -1473,6 +1308,8 @@
   ],
   "n_moving": 1,
   "appear": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs"
   ],
@@ -1482,20 +1319,23 @@
   "transition": "magic move"
  },
  {
-  "n": 48,
+  "n": 49,
   "title": "Random walks",
   "content": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs",
-   "random-walk tree",
-   "sequence discs"
+   "random-walk tree"
   ],
   "layout": "L-g",
   "moving": [
+   "arcl1",
+   "arcl2",
    "training pairs",
    "window and labels"
   ],
-  "n_moving": 6,
+  "n_moving": 7,
   "appear": [
    "training pairs"
   ],
@@ -1505,20 +1345,23 @@
   "transition": "magic move"
  },
  {
-  "n": 49,
+  "n": 50,
   "title": "Random walks",
   "content": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs",
-   "random-walk tree",
-   "sequence discs"
+   "random-walk tree"
   ],
   "layout": "L-g",
   "moving": [
+   "arcl1",
+   "arcl2",
    "training pairs",
    "window and labels"
   ],
-  "n_moving": 5,
+  "n_moving": 6,
   "appear": [],
   "vanish": [],
   "grows": false,
@@ -1526,13 +1369,14 @@
   "transition": "magic move"
  },
  {
-  "n": 50,
+  "n": 51,
   "title": "Random walks",
   "content": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs",
-   "random-walk tree",
-   "sequence discs"
+   "random-walk tree"
   ],
   "layout": "L-g",
   "moving": [],
@@ -1546,20 +1390,23 @@
   "transition": "cut"
  },
  {
-  "n": 51,
+  "n": 52,
   "title": "Random walks",
   "content": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "training pairs",
-   "random-walk tree",
-   "sequence discs"
+   "random-walk tree"
   ],
   "layout": "L-g",
   "moving": [
+   "arcl1",
+   "arcl2",
    "training pairs",
    "window and labels"
   ],
-  "n_moving": 5,
+  "n_moving": 6,
   "appear": [
    "training pairs"
   ],
@@ -1569,8 +1416,8 @@
   "transition": "magic move"
  },
  {
-  "n": 52,
-  "title": "(query, key)",
+  "n": 53,
+  "title": "(ancestor, descendant)",
   "content": [
    "list heading and notes",
    "training pairs",
@@ -1586,35 +1433,13 @@
    "list heading and notes"
   ],
   "vanish": [
+   "arcl1",
+   "arcl2",
    "window and labels",
    "random-walk tree",
    "sequence discs"
   ],
   "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 53,
-  "title": "(query, key)",
-  "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs"
-  ],
-  "n_moving": 4,
-  "appear": [
-   "era labels and notes",
-   "list heading and notes"
-  ],
-  "vanish": [
-   "window and labels"
-  ],
-  "grows": true,
   "fragments": 0,
   "transition": "magic move"
  },
@@ -1653,9 +1478,9 @@
    "sy"
   ],
   "vanish": [
-   "era labels and notes",
    "list heading and notes",
-   "training pairs"
+   "training pairs",
+   "window and labels"
   ],
   "grows": false,
   "fragments": 0,
@@ -1663,6 +1488,404 @@
  },
  {
   "n": 55,
+  "title": "How word2vec works",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "vanish": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2",
+   "id3",
+   "id4",
+   "id5",
+   "inet",
+   "inl",
+   "ins",
+   "ip0",
+   "ip1",
+   "ip2",
+   "ip3",
+   "itx",
+   "pl",
+   "sx",
+   "sy"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 56,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "neural network drawing",
+   "sentence and word labels"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "sentence and word labels"
+  ],
+  "vanish": [
+   "sentence and word labels"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 57,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "sentence and word labels"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 58,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "sentence and word labels"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 59,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
+   "sentence and word labels"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 60,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing",
+   "query and key vectors"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "query and key vectors"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 61,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "query and key vectors",
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "query and key vectors"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 62,
+  "title": "A word has two vectors",
+  "content": [
+   "query and key vectors",
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "n_moving": 2,
+  "appear": [
+   "query and key vectors",
+   "sentence and word labels"
+  ],
+  "vanish": [
+   "query and key vectors"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 63,
+  "title": "Trained by negation.",
+  "content": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels",
+   "neural network drawing"
+  ],
+  "layout": "L-b left",
+  "moving": [
+   "neural network drawing"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels"
+  ],
+  "vanish": [
+   "query and key vectors",
+   "sentence and word labels"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 64,
+  "title": "Trained by negation.",
+  "content": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels",
+   "neural network drawing"
+  ],
+  "layout": "L-b left",
+  "moving": [
+   "embedding dots"
+  ],
+  "n_moving": 2,
+  "appear": [
+   "dot labels"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 65,
+  "title": "Trained by negation.",
+  "content": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels",
+   "neural network drawing"
+  ],
+  "layout": "L-b left",
+  "moving": [
+   "embedding dots"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "dot labels"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 66,
+  "title": "Trained by negation.",
+  "content": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels",
+   "movement arrows",
+   "neural network drawing"
+  ],
+  "layout": "L-b left",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "movement arrows"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 67,
+  "title": "query",
+  "content": [
+   "r1k",
+   "r1kd",
+   "r1q",
+   "r1qd",
+   "r1x"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "r1k",
+   "r1kd",
+   "r1q",
+   "r1qd",
+   "r1x",
+   "r1y",
+   "r2k",
+   "r2kd",
+   "r2q",
+   "r2qd",
+   "r2x",
+   "r2y",
+   "th1",
+   "th2",
+   "th3",
+   "th4",
+   "tr1",
+   "tr2"
+  ],
+  "vanish": [
+   "plot axes and curves",
+   "embedding dots",
+   "dot labels",
+   "movement arrows",
+   "neural network drawing"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 68,
+  "title": "query",
+  "content": [
+   "lg1",
+   "lg2",
+   "lg3",
+   "lg4",
+   "r1k"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "lg1",
+   "lg2",
+   "lg3",
+   "lg4"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 69,
+  "title": "word2vec turns pairs into coordinates",
+  "content": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2",
+   "id3",
+   "id4",
+   "id5",
+   "inet",
+   "inl",
+   "ins",
+   "ip0",
+   "ip1",
+   "ip2",
+   "ip3",
+   "itx",
+   "pl",
+   "sx",
+   "sy"
+  ],
+  "vanish": [
+   "lg1",
+   "lg2",
+   "lg3",
+   "lg4",
+   "r1k",
+   "r1kd",
+   "r1q",
+   "r1qd",
+   "r1x",
+   "r1y",
+   "r2k",
+   "r2kd",
+   "r2q",
+   "r2qd",
+   "r2x",
+   "r2y",
+   "th1",
+   "th2",
+   "th3",
+   "th4",
+   "tr1",
+   "tr2"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 70,
   "title": "Simple linear algebra measures relations",
   "content": [
    "la_k",
@@ -1710,19 +1933,13 @@
   "transition": "cut"
  },
  {
-  "n": 56,
-  "title": "How word2vec works",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-b",
+  "n": 71,
+  "title": "Now, let’s look at one paper closely.",
+  "content": [],
+  "layout": "L-f",
   "moving": [],
   "n_moving": 0,
-  "appear": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
+  "appear": [],
   "vanish": [
    "la_k",
    "la_kl",
@@ -1738,37 +1955,20 @@
   "transition": "cut"
  },
  {
-  "n": 57,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "n": 72,
+  "title": "(query, key)",
   "content": [
-   "neural network drawing",
-   "sentence and word labels"
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
   ],
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "sentence and word labels"
-  ],
-  "vanish": [
-   "sentence and word labels"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 58,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "sentence and word labels"
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
   ],
   "vanish": [],
   "grows": false,
@@ -1776,266 +1976,7 @@
   "transition": "cut"
  },
  {
-  "n": 59,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "sentence and word labels"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 60,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [
-   "sentence and word labels"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 61,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing",
-   "query and key vectors"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "query and key vectors"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 62,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "query and key vectors",
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "query and key vectors"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 63,
-  "title": "A word has two vectors",
-  "content": [
-   "query and key vectors",
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "n_moving": 2,
-  "appear": [
-   "query and key vectors",
-   "sentence and word labels"
-  ],
-  "vanish": [
-   "query and key vectors"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 64,
-  "title": "Trained by negation.",
-  "content": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels",
-   "neural network drawing"
-  ],
-  "layout": "L-b left",
-  "moving": [
-   "neural network drawing"
-  ],
-  "n_moving": 1,
-  "appear": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels"
-  ],
-  "vanish": [
-   "query and key vectors",
-   "sentence and word labels"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 65,
-  "title": "Trained by negation.",
-  "content": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels",
-   "neural network drawing"
-  ],
-  "layout": "L-b left",
-  "moving": [
-   "embedding dots"
-  ],
-  "n_moving": 2,
-  "appear": [
-   "dot labels"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 66,
-  "title": "Trained by negation.",
-  "content": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels",
-   "neural network drawing"
-  ],
-  "layout": "L-b left",
-  "moving": [
-   "embedding dots"
-  ],
-  "n_moving": 1,
-  "appear": [
-   "dot labels"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 67,
-  "title": "Trained by negation.",
-  "content": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels",
-   "movement arrows",
-   "neural network drawing"
-  ],
-  "layout": "L-b left",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "movement arrows"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 68,
-  "title": "query",
-  "content": [
-   "r1k",
-   "r1kd",
-   "r1q",
-   "r1qd",
-   "r1x"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "r1k",
-   "r1kd",
-   "r1q",
-   "r1qd",
-   "r1x",
-   "r1y",
-   "r2k",
-   "r2kd",
-   "r2q",
-   "r2qd",
-   "r2x",
-   "r2y",
-   "th1",
-   "th2",
-   "th3",
-   "th4",
-   "tr1",
-   "tr2"
-  ],
-  "vanish": [
-   "plot axes and curves",
-   "embedding dots",
-   "dot labels",
-   "movement arrows",
-   "neural network drawing"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 69,
-  "title": "query",
-  "content": [
-   "lg1",
-   "lg2",
-   "lg3",
-   "lg4",
-   "r1k"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "lg1",
-   "lg2",
-   "lg3",
-   "lg4"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 70,
+  "n": 73,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -2045,45 +1986,27 @@
    "training pairs"
   ],
   "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
+  "moving": [
    "era labels and notes",
    "list heading and notes",
-   "plot axes and curves",
-   "embedding scatter",
    "training pairs"
   ],
-  "vanish": [
-   "lg1",
-   "lg2",
-   "lg3",
-   "lg4",
-   "r1k",
-   "r1kd",
-   "r1q",
-   "r1qd",
-   "r1x",
-   "r1y",
-   "r2k",
-   "r2kd",
-   "r2q",
-   "r2qd",
-   "r2x",
-   "r2y",
-   "th1",
-   "th2",
-   "th3",
-   "th4",
-   "tr1",
-   "tr2"
+  "n_moving": 6,
+  "appear": [
+   "plot axes and curves",
+   "embedding scatter"
   ],
-  "grows": false,
+  "vanish": [
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
+  ],
+  "grows": true,
   "fragments": 0,
-  "transition": "cut"
+  "transition": "magic move"
  },
  {
-  "n": 71,
+  "n": 74,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -2106,7 +2029,7 @@
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 75,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -2131,7 +2054,7 @@
   "transition": "magic move"
  },
  {
-  "n": 73,
+  "n": 76,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -2160,7 +2083,7 @@
   "transition": "magic move"
  },
  {
-  "n": 74,
+  "n": 77,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -2209,7 +2132,7 @@
   "transition": "magic move"
  },
  {
-  "n": 75,
+  "n": 78,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -2256,7 +2179,7 @@
   "transition": "cut"
  },
  {
-  "n": 76,
+  "n": 79,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -2282,7 +2205,7 @@
   "transition": "cut"
  },
  {
-  "n": 77,
+  "n": 80,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -2335,7 +2258,7 @@
   "transition": "cut"
  },
  {
-  "n": 78,
+  "n": 81,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -2383,7 +2306,7 @@
   "transition": "cut"
  },
  {
-  "n": 79,
+  "n": 82,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2403,7 +2326,7 @@
   "transition": "cut"
  },
  {
-  "n": 80,
+  "n": 83,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2425,7 +2348,7 @@
   "transition": "cut"
  },
  {
-  "n": 81,
+  "n": 84,
   "title": "D-index",
   "content": [
    "hd",
@@ -2454,7 +2377,7 @@
   "transition": "magic move"
  },
  {
-  "n": 82,
+  "n": 85,
   "title": "D-index",
   "content": [
    "b1",
@@ -2476,7 +2399,7 @@
   "transition": "cut"
  },
  {
-  "n": 83,
+  "n": 86,
   "title": "D-index",
   "content": [
    "b1",
@@ -2498,7 +2421,7 @@
   "transition": "cut"
  },
  {
-  "n": 84,
+  "n": 87,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -2535,7 +2458,7 @@
   "transition": "cut"
  },
  {
-  "n": 85,
+  "n": 88,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -2557,7 +2480,7 @@
   "transition": "cut"
  },
  {
-  "n": 86,
+  "n": 89,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2578,7 +2501,7 @@
   "transition": "cut"
  },
  {
-  "n": 87,
+  "n": 90,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2600,7 +2523,7 @@
   "transition": "cut"
  },
  {
-  "n": 88,
+  "n": 91,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2623,7 +2546,7 @@
   "transition": "cut"
  },
  {
-  "n": 89,
+  "n": 92,
   "title": "Science Advances",
   "content": [
    "contact and paper"

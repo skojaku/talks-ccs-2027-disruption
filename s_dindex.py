@@ -373,11 +373,5 @@ def build(add):
                    *lollipop("pr", RY, RX, HOT, "0.28"), *nR,
                    text("cr", "one citation removed", RX, RY + 250, 36, "", MUTED, w=900), *jump), cls="L-b")
 
-    # the same two networks under a continuous measure (a sketch, no numbers)
-    RY2 = yD(-0.31)
-    nR2, HR2, ER2 = hnet(RX, RY2, 0.72, red=False, ghost=True, pre="hb")
-    add(TT.replace("One citation, a different D-index", "A continuous measure does not jump") + stage(
-        *dot_axis(ticks=False, title="EDM (sketch)"), *lollipop("pl", LY, LX, COOL, ""), *nL,
-        *lollipop("pr", RY2, RX, HOT, ""), *nR2,
-        text("as1", "tiny change,<br>tiny effect", 1100, 330, 44, "aside", w=900, h=170))
-        + '\n\n<p class="take">We preserve <span class="hot">continuity</span> by abandoning class rounding.</p>', cls="L-b")
+    # the way out, in words only: a continuous measure (the lecturer cut the sketch: too much on one side, too much at once)
+    add(h2('We preserve <span class="hot">continuity</span> by abandoning class rounding.'), cls="L-f", header="")

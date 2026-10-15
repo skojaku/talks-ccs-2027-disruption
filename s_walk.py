@@ -1,4 +1,4 @@
-"""Slides 55-71: random walks, the training pairs, and the embedding space where query and key move."""
+"""Random walks, the training pairs (ancestor, descendant), and, after word2vec, the embedding space where query and key move."""
 from mm import *  # noqa: F401,F403
 import mm
 
@@ -45,21 +45,32 @@ BIG_Y = [250 + 105 * i for i in range(8)]
 WIN_C = [SEQ_X[w] for w in range(4)]
 
 
+ARC_L = ("parent → child", 450)                  # the label of each arc and its width (O units), set at the type floor
+ARC_LL = ("grandparent → grandchild", 790)
+
+
+def clamp(cx, w, lo=40, hi=1960):
+    """Keep a label of width w centred near cx but inside the slide."""
+    return min(max(cx, lo + w / 2), hi - w / 2)
+
+
 def walk_state(w, cur_pairs=True, list_upto=None):
-    """Slides with the window at position w: the sequence, the window, the arcs, the pairs so far."""
+    """Slides with the window at position w: the sequence, the window, the arcs (parent -> child above the row,
+    grandparent -> grandchild below it), the pairs so far."""
     o = []
     for k, x in enumerate(SEQ_X):
         o.append(disc(f"s{k}", x, 295, 80, SEQ[k], RING, 3.5))
     left, right = SEQ_X[w] - 78, SEQ_X[w + 2] + 66
     o.append(box("win", left, 242, right - left, 110, "", "", f"border:4px solid {HOT};"))
-    c0 = SEQ_X[w]
-    o.append(overlay_svg("arcs", [curved_arrow(c0 * S, 238 * S, (SEQ_X[w + 1] - 22) * S, 212 * S, -0.6, INK, 4, 18),
-                                   curved_arrow(c0 * S, 238 * S, (SEQ_X[w + 2] - 8) * S, 236 * S, -0.62, INK, 4, 18)]))
+    c0, c1, c2 = SEQ_X[w], SEQ_X[w + 1], SEQ_X[w + 2]
+    o.append(overlay_svg("arcs", [curved_arrow(c0 * S, 238 * S, (c1 - 22) * S, 212 * S, -0.6, INK, 4, 18),
+                                   curved_arrow(c0 * S, 358 * S, (c2 - 8) * S, 360 * S, 0.45, INK, 4, 18)]))
+    o.append(text("arcl1", ARC_L[0], clamp((c0 + c1) / 2, ARC_L[1]), 122, 36, "", INK, w=ARC_L[1]))
+    o.append(text("arcl2", ARC_LL[0], clamp((c0 + c2) / 2, ARC_LL[1]), 492, 36, "", INK, w=ARC_LL[1]))
     cx = (left + right) / 2 + 30
-    o.append(text("winl", "window", (left + right) / 2, 408, 30, "", INK, w=500))
-    o.append(text("qk", "(query, key)", cx, 543 + 3 * w, 30, "", INK, w=700))
+    o.append(text("qk", "(ancestor, descendant)", clamp(cx, 640), 625 + 3 * w, 36, "", INK, w=640))
     if w == 0:
-        o.append(text("tdlab", "Training data", cx, 880, 30, "", "#9a9a9a", weight=700, w=700))
+        o.append(text("tdlab", "Training data", cx, 975, 30, "", "#9a9a9a", weight=700, w=700))
     else:
         o.append(text("tdlab", "Training data", 800, 740, 30, "", "#9a9a9a", weight=700, w=700,
                       style="transform:rotate(-90deg);"))
@@ -69,13 +80,14 @@ def walk_state(w, cur_pairs=True, list_upto=None):
             o.append(pair(f"pr{L}", L, 921, SMALL_Y[L], 62))
     if cur_pairs:
         for r, L in enumerate((6 - 2 * w, 7 - 2 * w)):
-            y = (653 + 16 * w) if r == 0 else (772 + 21 * w)
+            y = (735 + 16 * w) if r == 0 else (854 + 21 * w)
             o.append(pair(f"pr{L}", L, cx, y, 75))
     return o
 
 
-def big_list(focus=None):
-    o = [text("lh", "(query, key)", 1037, 135, 34, "", INK, w=700)]
+def big_list(focus=None, head="(ancestor, descendant)"):
+    """All the pairs. Before word2vec they are (ancestor, descendant); after it, the same pairs are (query, key)."""
+    o = [text("lh", head, 1037, 135, 34, "", INK, w=800)]
     if not focus:
         o.append(text("tdlab", "Training data", 815, 580, 30, "", "#9a9a9a", weight=700, w=700, style="transform:rotate(-90deg);"))
     for L in range(8):
@@ -136,7 +148,7 @@ def build_a(add):
 
     rwt = lambda dx=0, col=INK: text("rw", "Random<br>walks", 215 + dx, 230, 52, "", col, w=520, h=200, style="transform:rotate(-34deg);")
     onwalk = lambda dx=0: [disc(f"s{k}", TREE_POS[WALK[k]][0] + dx, TREE_POS[WALK[k]][1], 80, SEQ[k], RING, 3.5) for k in range(6)]
-    add(stage(*walk_tree(DX), text("rwtitle", "Sample the flow<br>with random walks", 40, 480, 44, "", INK, weight=700, w=900, h=240, align="left")), cls="L-g", header="")
+    add(stage(*walk_tree(DX), text("rwtitle", "Simulate the flow<br>of knowledge<br>with random walks", 40, 480, 44, "", INK, weight=700, w=900, h=330, align="left")), cls="L-g", header="")
     add(stage(*walk_tree(DX), brush(DX), rwt(DX), *onwalk(DX)), cls="L-g")
 
     # ---- 57-61  the window slides along the walk and collects training pairs --------------------------------------------
@@ -153,16 +165,18 @@ def build_a(add):
     # ---- 62  all the pairs --------------------------------------------------------------------------------------------------
     add(stage(*big_list()), cls="L-g")
 
-    # ---- 63  focus on one paper ---------------------------------------------------------------------------------------------
+
+
+def focus(add):
+    # ---- after word2vec: the same pairs, now (query, key); focus on one paper (morphs into the embedding space) --------------
     FOC = {0, 1, 3, 4}
-    add(stage(*big_list(FOC),
+    add(stage(*big_list(FOC, "(query, key)"),
               text("as1", "Let’s focus on<br>this paper.", 470, 540, 38, "aside", w=720, h=170,
                    style="transform:rotate(-14deg);"),
               overlay_svg("as1ar", [curved_arrow(420, 290, 590, 195, 0.3, MUTED, 3, 16)]),
               text("as2", "irrelevant to the<br>focal paper", 1560, 800, 38, "aside", w=720, h=170,
                    style="transform:rotate(-8deg);"),
               overlay_svg("as2ar", [curved_arrow(885, 575, 748, 622, -0.3, MUTED, 3, 16)])), cls="L-g")
-
 
 
 def build_b(add):
@@ -230,4 +244,5 @@ def build_b(add):
 
 def build(add):
     build_a(add)
+    focus(add)
     build_b(add)
