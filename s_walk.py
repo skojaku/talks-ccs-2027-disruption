@@ -13,16 +13,17 @@ SEQ_X = [1030, 1201, 1372, 1543, 1715, 1887]
 PAIRS = [(HOT, DEEP), (HOT, COOL), (OLIVE, COOL), (OLIVE, HOT), (TEAL, HOT), (TEAL, OLIVE), (GR, OLIVE), (GR, TEAL)]
 
 
-def walk_tree(brush=False, seq=None):
+def walk_tree(dx=0):
     """The tree of walks (left of the slide). `seq` = list of names for discs lying on the walk's nodes."""
     o = []
+    TP = [(x + dx, y) for x, y in TREE_POS]
     E = [(0, 1), (1, 2), (1, 3), (2, 4), (2, 5), (4, 6), (4, 8), (5, 8), (5, 7)]
     for i, (a, b) in enumerate(E):
-        o.append(edge_(f"w_e{i}", TREE_POS[a], TREE_POS[b], 40, 44, "#4A4A52", 3.2))
-    o.append(edge_("w_e9", TREE_POS[8], TREE_POS[9], 40, 44, "#9A9692", 3.2))
+        o.append(edge_(f"w_e{i}", TP[a], TP[b], 40, 44, "#4A4A52", 3.2))
+    o.append(edge_("w_e9", TP[8], TP[9], 40, 44, "#9A9692", 3.2))
     for i, (src, dst) in enumerate([(6, (60, 945)), (6, (240, 945)), (8, (325, 950)), (8, (512, 945)), (7, (648, 955))]):
-        o.append(edge_(f"w_d{i}", TREE_POS[src], dst, 40, 0, "#9A9692", 3, dashed=True))
-    for i, (p, c) in enumerate(zip(TREE_POS, TREE_COL)):
+        o.append(edge_(f"w_d{i}", TP[src], (dst[0] + dx, dst[1]), 40, 0, "#9A9692", 3, dashed=True))
+    for i, (p, c) in enumerate(zip(TP, TREE_COL)):
         o.append(disc(f"w_n{i}", *p, 78, c, RING, 3.5))
     return o
 
@@ -40,7 +41,7 @@ def pair(name, i, cx, cy, d, op=1.0):
 
 
 SMALL_Y = {7: 987, 6: 912, 5: 838, 4: 758, 3: 688, 2: 610}
-BIG_Y = [232, 337, 442, 557, 658, 774, 881, 992]
+BIG_Y = [250 + 105 * i for i in range(8)]
 WIN_C = [SEQ_X[w] for w in range(4)]
 
 
@@ -74,11 +75,11 @@ def walk_state(w, cur_pairs=True, list_upto=None):
 
 
 def big_list(focus=None):
-    o = [text("lh", "(query, key)", 1037, 132, 30, "", INK, w=700)]
+    o = [text("lh", "(query, key)", 1037, 135, 34, "", INK, w=700)]
     if not focus:
         o.append(text("tdlab", "Training data", 815, 580, 30, "", "#9A9692", weight=700, w=700, style="transform:rotate(-90deg);"))
     for L in range(8):
-        o.append(pair(f"pr{L}", L, 1038, BIG_Y[L], 82, 0.3 if focus and L not in focus else 1.0))
+        o.append(pair(f"pr{L}", L, 1038, BIG_Y[L], 96, 0.3 if focus and L not in focus else 1.0))
     return o
 
 
@@ -125,26 +126,24 @@ def aro(name, p, q, color, dashed=False, w=5):
 
 def build(add):
     # ---- 55-56  the tree of random walks ----------------------------------------------------------------------------------
-    add(stage(*walk_tree()), cls="L-g", header="")
+    DX = 630                                             # the tree sits mid-slide until the sequence needs the room
     pts = [(470, 55), (465, 150), (380, 260), (285, 330), (300, 440), (420, 540), (430, 640), (350, 760), (310, 850), (345, 965)]
-    brush = overlay_svg("wbrush", [brush_path([(x * S, y * S) for x, y in pts], GOLD, 14, 0.95)
-                                    + f'<path d="M{262 * S:.1f},{925 * S:.1f} L{345 * S:.1f},{972 * S:.1f} L{358 * S:.1f},{880 * S:.1f}" fill="none" '
-                                      f'stroke="{GOLD}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>'])
-    onwalk = lambda: [disc(f"s{k}", *TREE_POS[WALK[k]], 80, SEQ[k], RING, 3.5) for k in range(6)]
-    add(stage(*walk_tree(), brush, text("rw", "Random<br>walks", 215, 230, 44, "", INK, w=520, h=200,
-                                         style="transform:rotate(-34deg);"), *onwalk()), cls="L-g")
+
+    def brush(dx=0):
+        return overlay_svg("wbrush", [brush_path([((x + dx) * S, y * S) for x, y in pts], GOLD, 14, 0.95)
+                                      + f'<path class="ahead" d="M{(262 + dx) * S:.1f},{925 * S:.1f} L{(345 + dx) * S:.1f},{972 * S:.1f} L{(358 + dx) * S:.1f},{880 * S:.1f}" fill="none" '
+                                        f'stroke="{GOLD}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>'])
+
+    rwt = lambda dx=0, col=INK: text("rw", "Random<br>walks", 215 + dx, 230, 52, "", col, w=520, h=200, style="transform:rotate(-34deg);")
+    onwalk = lambda dx=0: [disc(f"s{k}", TREE_POS[WALK[k]][0] + dx, TREE_POS[WALK[k]][1], 80, SEQ[k], RING, 3.5) for k in range(6)]
+    add(stage(*walk_tree(DX)), cls="L-g", header="")
+    add(stage(*walk_tree(DX), brush(DX), rwt(DX), *onwalk(DX)), cls="L-g")
 
     # ---- 57-61  the window slides along the walk and collects training pairs --------------------------------------------
-    def with_tree(rest):
-        return stage(*walk_tree(), brush, text("rw", "Random<br>walks", 215, 230, 44, "", MUTED, w=520, h=200,
-                                               style="transform:rotate(-34deg);"), *rest)
-
     # the tree is drawn muted once the sequence leaves it
     seq0 = [disc(f"s{k}", SEQ_X[k], 295, 80, SEQ[k], RING, 3.5) for k in range(6)]
-    add(stage(*walk_tree(), brush, text("rw", "Random<br>walks", 215, 230, 44, "", INK, w=520, h=200,
-                                         style="transform:rotate(-34deg);"), *seq0), cls="L-g")
-    TREE_ONLY = lambda: [*walk_tree(), brush, text("rw", "Random<br>walks", 215, 230, 44, "", MUTED, w=520, h=200,
-                                                   style="transform:rotate(-34deg);")]
+    add(stage(*walk_tree(), brush(), rwt(), *seq0), cls="L-g")
+    TREE_ONLY = lambda: [*walk_tree(), brush(), rwt(0, MUTED)]
     add(stage(*TREE_ONLY(), *walk_state(0)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(1)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(2, cur_pairs=False)), cls="L-g")
@@ -157,12 +156,12 @@ def build(add):
     # ---- 63  focus on one paper ---------------------------------------------------------------------------------------------
     FOC = {0, 1, 3, 4}
     add(stage(*big_list(FOC),
-              text("as1", "Let’s focus on<br>this paper.", 630, 480, 34, "aside", w=720, h=170,
-                   style="transform:rotate(-24deg);"),
-              overlay_svg("as1ar", [curved_arrow(640 * S, 400 * S, 895 * S, 240 * S, 0.35, MUTED, 2.6, 14)]),
-              text("as2", "irrelevant to the<br>focal paper", 1480, 850, 34, "aside", w=720, h=170,
+              text("as1", "Let’s focus on<br>this paper.", 470, 540, 38, "aside", w=720, h=170,
                    style="transform:rotate(-14deg);"),
-              overlay_svg("as2ar", [curved_arrow(1210 * S, 1000 * S, 1170 * S, 975 * S, 0.4, MUTED, 2.6, 14)])), cls="L-g")
+              overlay_svg("as1ar", [curved_arrow(420, 290, 590, 195, 0.3, MUTED, 3, 16)]),
+              text("as2", "irrelevant to the<br>focal paper", 1560, 800, 38, "aside", w=720, h=170,
+                   style="transform:rotate(-8deg);"),
+              overlay_svg("as2ar", [curved_arrow(885, 575, 748, 622, -0.3, MUTED, 3, 16)])), cls="L-g")
 
     # ---- 64-65  the embedding space ----------------------------------------------------------------------------------------
     def small_list():

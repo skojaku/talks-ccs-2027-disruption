@@ -49,57 +49,51 @@ def NP(cx, cy, s):
 
 def build(add):
     # ---- 36  word2vec ----------------------------------------------------------------------------------------------
-    add(h2("word2vec") + stage(net("net", 1045, 607, 1.0)), cls="L-b", header="")
+    add(h2("word2vec") + stage(net("net", 1000, 640, 1.5)), cls="L-b", header="")
 
     # ---- 37-39  fox -> a vector ------------------------------------------------------------------------------------
     def fox(extra=()):
-        return [net("net", 1046, 440, 0.735),
-                text("fx", "“fox”", 545, 440, 52, weight=700, w=420),
-                overlay_svg("fx_ar", [f'<path d="M442,276 L536,276" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>'
-                                      f'<path d="M520,266 L538,276 L520,286" fill="none" stroke="{INK}" stroke-width="3" '
-                                      f'stroke-linecap="round" stroke-linejoin="round"/>'
-                                      f'<path d="M790,280 L880,280" stroke="{COOL}" stroke-width="3" stroke-linecap="round"/>'
-                                      f'<path d="M864,270 L882,280 L864,290" fill="none" stroke="{COOL}" stroke-width="3" '
-                                      f'stroke-linecap="round" stroke-linejoin="round"/>']),
-                text("fxv", "[1.2,0.3,−1]", 1680, 440, 44, "", COOL, weight=700, w=640), *extra]
+        return [net("net", 1046, 440, 0.95),
+                text("fx", "“fox”", 560, 460, 56, weight=700, w=420),
+                overlay_svg("fx_ar", [arrow_px(440, 295, 520, 295, INK, 3), arrow_px(812, 295, 892, 295, COOL, 3)]),
+                text("fxv", "[1.2,0.3,−1]", 1690, 460, 48, "", COOL, weight=700, w=640), *extra]
 
     T = h2("word2vec (Mikolov et al. 2013)")
     add(T + stage(*fox()), cls="L-b")
     add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 715, 38, weight=700, w=1200),
-        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 842, 30, w=1500, h=160)])),
+        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 800, 40, weight=700, w=1200),
+        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 925, 32, w=1500, h=160)])),
         cls="L-b")
     add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 715, 38, weight=700, w=1200),
-        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 842, 30, w=1500, h=160)]))
+        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 800, 40, weight=700, w=1200),
+        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 925, 32, w=1500, h=160)]))
         + '\n\n<p class="take">Surprisingly effective. <span class="hot">Paradigm shift</span> in NLP</p>', cls="L-b")
 
     # ---- 40  analogies --------------------------------------------------------------------------------------------
     V = lambda w: f'<span class="vec">{w}</span>'
     eq = lambda a, b, c, d: f"{V(a)} − {V(b)} + {V(c)} = {V(d)}"
     add(h2('Learn by metonymy but captures <span class="hot">metaphor</span>.') + stage(
-        text("an_a", eq("“man”", "“king”", "“woman”", "“queen”"), 1050, 500, 38, w=1700),
-        text("an_b", eq("“Madrid”", "“Spain”", "“Japan”", "“Tokyo”"), 1050, 700, 38, w=1700),
-        text("an_c", eq("“Taylor_Swift”", "“USA”", "“Japan”", "“Namie_Amuro”"), 1050, 1000, 32, "", MUTED, w=1900),
-        text("an_t", "Tested 10y&gt; ago by myself", 1060, 855, 32, "aside", w=1300)), cls="L-b")
+        text("an_a", eq("“man”", "“king”", "“woman”", "“queen”"), 1000, 450, 50, w=1900),
+        text("an_b", eq("“Madrid”", "“Spain”", "“Japan”", "“Tokyo”"), 1000, 670, 50, w=1900),
+        text("an_c", eq("“Taylor_Swift”", "“USA”", "“Japan”", "“Namie_Amuro”"), 1000, 965, 36, "", MUTED, w=1950),
+        text("an_t", "Tested 10y&gt; ago by myself", 1000, 845, 40, "aside", w=1300)), cls="L-b")
 
     # ---- 41-48  how word2vec works ---------------------------------------------------------------------------------
     foot = text("foot", "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
                 1000, 1085, 22, "foot", MUTED, w=2000)
-    NET = lambda color=INK, op=1.0: net("net", 1026, 730, 1.0, color, op)
+    NET = lambda color=INK, op=1.0: net("net", 1026, 730, 1.15, color, op)
     ttl = h2("How word2vec works")
     sent = lambda: [text("sent", '“Chance <span class="hot">favors</span> only the _____ mind.”', 980, 265, 48, w=1900),
                     overlay_svg("sent_ar", [curved_arrow(440, 128, 870, 124, -0.22, HOT, 4, 20)])]
-    lab_f = lambda: text("lf", "“favors”", 655, 610, 40, "", HOT, w=560)
-    lab_p = lambda: text("lp", "“prepared”", 1440, 802, 40, "", COOL, w=640, align="left")
-    lab_p = lambda: text("lp", "“prepared”", 1285, 802, 40, "", COOL, w=640, align="left")
+    lab_f = lambda: text("lf", "“favors”", 590, 586, 40, "", HOT, w=560)
+    lab_p = lambda: text("lp", "“prepared”", 1318, 819, 40, "", COOL, w=640, align="left")
     add(ttl + stage(NET(), foot), cls="L-b", header="")
     add(stage(NET(), foot, *sent()), cls="L-g")
     add(stage(NET(), foot, *sent(), lab_f()), cls="L-g")
     add(stage(NET(), foot, *sent(), lab_f(), lab_p()), cls="L-g")
     add(stage(NET(), foot, lab_f(), lab_p()), cls="L-g")
 
-    P = NP(1026, 730, 1.0)
+    P = NP(1026, 730, 1.15)
 
     def br(pts, color, w=10):
         return brush_path([P(*p) for p in pts], color, w)
@@ -126,51 +120,48 @@ def build(add):
     kV2 = [br([(270, 195), (372, 148)], COOL, 10), br([(268, 310), (365, 182)], COOL, 10)]
     add(h2('A word has <span class="hot">two</span> vectors') + stage(
         NET(MUTED, 0.55), overlay_svg("qv", qV), overlay_svg("kv2", kV2),
-        text("lf", "“favors”", 655, 610, 40, "", HOT, w=560),
-        text("lf2", "“favors”", 1285, 610, 40, "", COOL, w=640, align="left"),
-        text("lp", "“prepared”", 1285, 802, 40, "", COOL, w=640, align="left", style="opacity:.3;"),
-        text("bq", "Query", 245, 625, 80, "", HOT, weight=700, w=640),
-        text("bk", "Key", 1785, 625, 80, "", COOL, weight=700, w=640)), cls="L-b")
+        text("lf", "“favors”", 590, 586, 40, "", HOT, w=560),
+        text("lf2", "“favors”", 1318, 586, 40, "", COOL, w=640, align="left"),
+        text("lp", "“prepared”", 1318, 819, 40, "", COOL, w=640, align="left", style="opacity:.3;"),
+        text("bq", "Query", 215, 625, 64, "", HOT, weight=700, w=640),
+        text("bk", "Key", 1790, 625, 64, "", COOL, weight=700, w=640)), cls="L-b")
 
     # ---- 50-55  trained by negation ----------------------------------------------------------------------------------
     TT = h2("Trained by negation.")
-    DOTS = {"g0": (1141, 349), "g1": (1265, 371), "g2": (1167, 500), "g3": (1167, 659), "g4": (1360, 684), "g5": (920, 833)}
-    KEY, QRY, WAT = (1046, 371), (992, 677), (1376, 470)
+    T = lambda x, y: (1180 + (x - 1180) * 1.18, 520 + (y - 560) * 1.18)       # the cloud fills the room the pictures left
+    DOTS = {k: T(*v) for k, v in {"g0": (1141, 349), "g1": (1265, 371), "g2": (1167, 500), "g3": (1167, 659),
+                                   "g4": (1360, 684), "g5": (920, 833)}.items()}
+    KEY, QRY, WAT = T(1046, 371), T(992, 677), T(1376, 470)
 
     def left():
         return [net("net", 312, 705, 0.74),
                 text("ls", '“… <span class="hot">favors</span> only<br>the <span class="cool" style="text-decoration:underline">'
-                           'prepared</span>”', 300, 470, 30, w=640, h=150),
-                img("ap1", "assets/apoha_stone.png", 1299, 125, 193),
-                img("ap2", "assets/apoha_carved.png", 1523, 125, 173),
-                img("ap3", "assets/apoha_horse.png", 1787, 125, 208),
+                           'prepared</span>”', 300, 425, 30, w=640, h=150),
                 line("ax_y", 643, 1033, 643, 770, INK, 3.4, True, False, 16),
                 line("ax_x", 641, 1033, 848, 1033, INK, 3.4, True, False, 16)]
 
     def dots(key=False, qry=False, water=False):
         o = []
         for nm, (x, y) in DOTS.items():
-            o.append(disc(f"d_{nm}", x, y, 50, FAINT, "#E2DEDA", 3))
-        o.append(disc("d_key", *KEY, 50, COOL if key else FAINT, INK if key else "#E2DEDA", 3.5 if key else 3))
-        o.append(disc("d_qry", *QRY, 50, HOT if qry else FAINT, INK if qry else "#E2DEDA", 3.5 if qry else 3))
-        o.append(disc("d_wat", *WAT, 50, "#A9A5A2" if water else FAINT, INK if water else "#E2DEDA", 3.5 if water else 3))
+            o.append(disc(f"d_{nm}", x, y, 60, FAINT, "#E2DEDA", 3))
+        o.append(disc("d_key", *KEY, 60, COOL if key else FAINT, INK if key else "#E2DEDA", 3.5 if key else 3))
+        o.append(disc("d_qry", *QRY, 60, HOT if qry else FAINT, INK if qry else "#E2DEDA", 3.5 if qry else 3))
+        o.append(disc("d_wat", *WAT, 60, "#A9A5A2" if water else FAINT, INK if water else "#E2DEDA", 3.5 if water else 3))
         return o
 
-    kl = lambda: [text("kl1", "prepared<br>(key)", 842, 290, 30, "", COOL, w=420, h=130),
-                  text("ql1", "favor<br>(query)", 1072, 775, 30, "", HOT, w=420, h=130)]
-    wl = lambda: [text("wl1", "water<br>(random key)", 1435, 575, 30, "", MUTED, w=520, h=130),
-                  text("wl2", "a randomly<br>sampled word", 1600, 820, 30, "", INK, w=520, h=130, align="left"),
-                  overlay_svg("wl_ar", [f'<path d="M1066,476 L1000,408" stroke="{INK}" stroke-width="3" stroke-linecap="round"/>'
-                                        f'<path d="M1003,426 L998,406 L1018,411" fill="none" stroke="{INK}" stroke-width="3" '
-                                        f'stroke-linecap="round" stroke-linejoin="round"/>']),
-                  mathbox("rj", 1540, 900, 400, 160, "$$r(j)$$", 46)]
+    kl = lambda: [text("kl1", "prepared<br>(key)", *T(842, 290), 30, "", COOL, w=420, h=130),
+                  text("ql1", "favor<br>(query)", *T(1072, 775), 30, "", HOT, w=420, h=130)]
+    wl = lambda: [text("wl1", "water<br>(random key)", *T(1435, 575), 30, "", MUTED, w=520, h=130),
+                  text("wl2", "a randomly<br>sampled word", 1700, T(1600, 820)[1], 30, "", INK, w=520, h=130),
+                  overlay_svg("wl_ar", [arrow_px(*[v * S for v in (*T(1666, 744), *T(1562, 637))], INK, 3, 18)]),
+                  mathbox("rj", *T(1540, 900), 400, 160, "$$r(j)$$", 46)]
     add(TT.replace("<h2", '<h2') + stage(*left(), *dots()), cls="L-b left")
     add(TT + stage(*left(), *dots(True, True), *kl()), cls="L-b left")
     add(TT + stage(*left(), *dots(True, True, True), *kl(), *wl()), cls="L-b left")
-    mv = [line("mv1", *trim(*KEY, 1027, 478, 30, 0), COOL, 5, True, False, 22),
-          line("mv2", *trim(*QRY, 1007, 567, 30, 0), HOT, 5, True, False, 22),
-          line("mv3", *trim(*QRY, 904, 733, 30, 0), HOT, 5, True, False, 22),
-          line("mv4", *trim(*WAT, 1468, 395, 30, 0), "#8C847F", 5, True, False, 22)]
+    mv = [line("mv1", *trim(*KEY, *T(1027, 478), 34, 0), COOL, 5, True, False, 22),
+          line("mv2", *trim(*QRY, *T(1007, 567), 34, 0), HOT, 5, True, False, 22),
+          line("mv3", *trim(*QRY, *T(904, 733), 34, 0), HOT, 5, True, False, 22),
+          line("mv4", *trim(*WAT, *T(1468, 395), 34, 0), "#8C847F", 5, True, False, 22)]
     add(TT + stage(*left(), *dots(True, True, True), *kl(), *wl(), *mv), cls="L-b left")
 
     # ---- 54-55  the training table ----------------------------------------------------------------------------------

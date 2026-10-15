@@ -4,9 +4,9 @@ import mm
 
 
 def tl_plain():
-    """Slides 16-20: one hand-drawn line with a ring at each end."""
-    return [line("tl", 100, 213, 1895, 218, INK, 3.2, head=False),
-            disc("tl_l", 102, 213, 24, "#fff", INK, 3.2), disc("tl_r", 1895, 218, 24, "#fff", INK, 3.2)]
+    """Slides 12-16: one hand-drawn line with a ring at each end."""
+    return [line("tl", 100, 330, 1895, 335, INK, 3.2, head=False),
+            disc("tl_l", 102, 330, 24, "#fff", INK, 3.2), disc("tl_r", 1895, 335, 24, "#fff", INK, 3.2)]
 
 
 def tl_two(xl, xm, xr, y, th, rd, rw):
@@ -100,23 +100,23 @@ def build(add):
 
     def my_age(k):
         o = tl_plain()
-        for i, (x, y, t) in enumerate([(277, 155, "6y old"), (785, 163, "12y old"), (1220, 158, "19y old"),
-                                       (1715, 163, "36y old")]):
-            o.append(text(f"age{i}", t, x, y, 26, "", MUTED, w=420, weight=700, style="font-style:italic;"))
+        for i, (x, y, t) in enumerate([(277, 262, "6y old"), (785, 270, "12y old"), (1220, 265, "19y old"),
+                                       (1715, 270, "36y old")]):
+            o.append(text(f"age{i}", t, x, y, 32, "", MUTED, w=420, weight=700, style="font-style:italic;"))
         cols = [
-            ("Pagers", 280, 325, ("pager", "assets/pager.png", 292, 632, 390), ("This was normal", 268, 985),
-             (268, 915, 268, 795, 0)),
-            ("Wireless phone", 830, 325, ("nokia", "assets/nokia3310.png", 806, 640, 420), ("Innovative 🤯", 790, 985),
-             (860, 935, 895, 745, 0.25)),
-            ("Smart phone", 1250, 325, ("phone", "assets/phone.png", 1246, 592, 206, 395), ("super cool!", 1210, 995),
-             (1237, 948, 1237, 850, 0)),
-            ("Smart glass", 1735, 318, ("glasses", "assets/glasses.jpg", 1720, 590, 360, 344),
-             ("Goes against<br>natural order", 1700, 985), (1727, 905, 1700, 790, 0)),
+            ("Pagers", 280, 480, ("pager", "assets/pager.png", 292, 740, 460), ("This was normal", 268, 1015),
+             (268, 975, 268, 918, 0)),
+            ("Wireless phone", 830, 480, ("nokia", "assets/nokia3310.png", 800, 740, 500), ("Innovative 🤯", 790, 1015),
+             (840, 975, 870, 895, 0.25)),
+            ("Smart phone", 1250, 480, ("phone", "assets/phone.png", 1246, 735, 198, 380), ("super cool!", 1210, 1015),
+             (1237, 985, 1237, 937, 0)),
+            ("Smart glass", 1735, 480, ("glasses", "assets/glasses.jpg", 1720, 735, 380, 363),
+             ("Goes against<br>natural order", 1700, 1000), (1727, 960, 1710, 925, 0)),
         ]
         for i in range(k):
             lab, lx, ly, im, (atxt, ax, ay), (x1, y1, x2, y2, bend) = cols[i]
             fade = "opacity:.3;" if i < k - 1 else ""        # the past stays, faded
-            o.append(text(f"era{i}", lab, lx, ly, 28, "", MUTED, w=520, style="font-style:italic;" + fade))
+            o.append(text(f"era{i}", lab, lx, ly, 32, "", MUTED, w=520, style="font-style:italic;" + fade))
             nm, src, cx, cy, w, *hh = im
             o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "glasses" else "", fade))
             o.append(text(f"as{i}", atxt, ax, ay, 34, "aside", w=700, h=160 if "<br>" in atxt else 110, style=fade))
@@ -127,27 +127,27 @@ def build(add):
         add(age_title + stage(*my_age(k)), cls="L-b")
 
     # ---- 18  the phones: before and after the turn -----------------------------------------------------
-    flip = img("flip", "assets/flip.png", 683, 585, 420, None, "", "transform:rotate(46deg);")
+    flip = img("flip", "assets/flip.png", 690, 700, 470, None, "", "transform:rotate(46deg);")
     add(stage(
-        *tl_two(112, 862, 1895, 213, 6, 46, 5),
-        img("nokia", "assets/nokia3310.png", 200, 622, 330),
-        img("nokia_teal", "assets/nokia_teal.png", 470, 625, 202, 340),
+        *tl_two(112, 862, 1895, 330, 6, 46, 5),
+        img("nokia", "assets/nokia3310.png", 205, 730, 390),
+        img("nokia_teal", "assets/nokia_teal.png", 470, 725, 230, 388),
         flip,
-        img("iphone", "assets/iphone.png", 1177, 560, 307, 540),
-        img("docomo", "assets/docomo3.png", 1557, 566, 365),
-        img("phone", "assets/phone.png", 1888, 562, 200, 383)), cls="L-g")
+        img("iphone", "assets/iphone.png", 1177, 700, 350, 616),
+        img("docomo", "assets/docomo3.png", 1545, 705, 420),
+        img("phone", "assets/phone.png", 1865, 700, 225, 430)), cls="L-g")
 
     # ---- 19  the same line, atomic models ----------------------------------------------------------------
     def caps(prefix, items, size=30):
         return [text(f"{prefix}{i}", f"{a}<br>{b}", cx, cy, size, w=520, h=160) for i, (a, b, cx, cy) in enumerate(items)]
 
     add(stage(
-        *tl_two(112, 862, 1895, 213, 6, 46, 5),
-        img("bohr", "assets/bohr.png", 270, 560, 430),
-        img("vegard", "assets/vegard.png", 760, 545, 400),
-        img("schrod", "assets/schrodinger.png", 1440, 575, 560, None, "ph"),
-        *caps("cap", [("Bohr’s model", "(1913)", 270, 905), ("Vegard’s model", "(1918)", 760, 905),
-                      ("Schrödinger’s model", "(1926)", 1440, 940)])), cls="L-g")
+        *tl_two(112, 862, 1895, 330, 6, 46, 5),
+        img("bohr", "assets/bohr.png", 270, 660, 460),
+        img("vegard", "assets/vegard.png", 780, 650, 430),
+        img("schrod", "assets/schrodinger.png", 1440, 670, 600, None, "ph"),
+        *caps("cap", [("Bohr’s model", "(1913)", 270, 960), ("Vegard’s model", "(1918)", 780, 960),
+                      ("Schrödinger’s model", "(1926)", 1440, 990)])), cls="L-g")
 
     # ---- 20  how can we quantify the disruptiveness ----------------------------------------------------
     add(h2('How do we <span class="hot">quantify</span> disruptiveness?') + stage(

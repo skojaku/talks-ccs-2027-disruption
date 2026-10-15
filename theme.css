@@ -1092,3 +1092,12 @@ section .pd { display: block; border-radius: 50%; border: 3px solid #5E5A57; box
 section .tx sub { font-size: 0.62em; }
 section .o.pic.top img { object-position: top; }
 section .o.pic.faded img { opacity: 0.5; }
+
+/* An arrow that is new on a build step grows from its base to its tip (build.py adds `grow`).
+   The classes only act in the presentation (Marp marks the current slide); exports show the finished arrow. */
+@keyframes mm-grow { from { width: 0; } }
+@keyframes mm-draw { from { stroke-dashoffset: 1; } }
+@keyframes mm-pop { from { opacity: 0; } }
+.bespoke-marp-active section .o.ln.grow { animation: mm-grow .55s ease-out; }
+.bespoke-marp-active section .o.ov.grow .shaft { stroke-dasharray: 1; animation: mm-draw .6s ease-out; }
+.bespoke-marp-active section .o.ov.grow .ahead { animation: mm-pop .12s linear .48s backwards; }

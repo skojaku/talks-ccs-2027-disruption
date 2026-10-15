@@ -158,9 +158,9 @@ def build(add):
 
     # ---- 21  based on citation networks ------------------------------------------------------------------------
     add(h2("Based on citation networks") + stage(
-        *diagram("dev", "dev", 753, 619, 1), *diagram("dis", "dis", 1346, 635, 1),
-        text("tdev", "developing", 745, 353, 30, "", MUTED, w=600), text("tdis", "disruptive", 1345, 363, 30, "", MUTED, w=600),
-        text("dv1", "D=−1", 747, 913, 40, weight=700, w=400), text("dv2", "D=1", 1320, 925, 40, weight=700, w=400)),
+        *diagram("dev", "dev", 600, 640, 1.4), *diagram("dis", "dis", 1400, 650, 1.4),
+        text("tdev", "developing", 600, 305, 36, "", MUTED, w=600), text("tdis", "disruptive", 1400, 315, 36, "", MUTED, w=600),
+        text("dv1", "D=−1", 600, 1030, 48, weight=700, w=400), text("dv2", "D=1", 1400, 1030, 48, weight=700, w=400)),
         cls="L-b", header=HD)
 
     # ---- 22  the two ends of a scale, and a mixed case between them ----------------------------------------------
@@ -234,31 +234,125 @@ def build(add):
     add(h2('<span class="muted">What’s happening?</span>') + stage(img("hphoto", "assets/higgs.jpg", 1029, 710, 977, None, "ph")),
         cls="L-b")
 
-    # ---- 31-33  the Higgs paper cites the Englert-Brout paper ---------------------------------------------------------------------
+    # ---- 31-33  why the D-index fails: one citation moves four papers into another class ----------------------------------------
     thumb = lambda: img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph")
-    hlab = lambda: [text("hl1", "Higgs, P.W.<br>(1964)", 248, 380, 30, weight=700, w=420, h=130),
-                    text("hl2", "Englert, F.,<br>&amp; Brout, R.<br>(1964)", 1020, 610, 30, color=GRAYC, w=420, h=200)]
-    dlab = lambda cls="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", 262, 535, 34, "aside " + cls, w=520, h=150)
-    T0 = lambda: tree("ht", 1598, 438, 1.0, "higgs", (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ_BEFORE)
     h2t = h2('<span class="muted">What’s happening?</span>')
-    add(h2t + stage(thumb(), *higgs_net(True), *hlab(), dlab(), *T0()), cls="L-b")
-    add(h2t + stage(thumb(), *higgs_net(False), *hlab(), dlab(), *T0()), cls="L-b")
-    T1 = tree("ht", 1598, 438, 1.0, "higgs", (CITE_TOP, CITE_REF, CITE_REF), SQ_AFTER)
-    add(h2t + stage(thumb(), *higgs_net(False), *hlab(), dlab("past"),
-                    overlay_svg("dd_ar", [f'<path d="M158,423 L158,478" stroke="{HOT}" stroke-width="4" stroke-linecap="round"/>'
-                                          f'<path d="M144,466 L158,482 L172,466" fill="none" stroke="{HOT}" stroke-width="4" '
-                                          f'stroke-linecap="round" stroke-linejoin="round"/>']),
-                    text("hd2", "D = 0.28<br>Top 1.3 %", 262, 880, 54, "aside", HOT, w=640, h=190), *T1), cls="L-b")
+    BASE_TOPS = [(462, 330), (603, 328), (745, 326), (904, 326)]
+    BASE_H, BASE_E = (534, 588), (822, 590)
+    BASE_REFS = [(506, 860), (660, 797), (850, 863)]
 
-    # ---- 34-35  many citations are rounded into another class ----------------------------------------------------------------------
-    ttl = h2('Citations are “<em class="hot">rounded</em>” into classes.')
-    pair = lambda: [
-        *tree("u", 400, 380, 1.0, "higgs", (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ_BEFORE),
-        *tree("ht", 1560, 380, 1.0, "higgs", (CITE_TOP, CITE_REF, CITE_REF), SQ_AFTER),
-        text("rm", "Removal of a<br>single citation.", 1010, 520, 30, "", MUTED, weight=700, w=500, h=150),
-        overlay_svg("rm_ar", [f'<path d="M525,400 L770,400" stroke="{LAV}" stroke-width="5" stroke-linecap="round"/>'
-                              f'<path d="M752,384 L772,400 L752,416" fill="none" stroke="{LAV}" stroke-width="4" '
-                              f'stroke-linecap="round" stroke-linejoin="round"/>'])]
-    add(ttl + stage(*pair()), cls="L-b")
-    add(ttl + stage(*pair()) + '\n\n<p class="take">We preserve <span class="hot">continuity</span> by abandoning class rounding.</p>',
+    def hnet(cx, cy, k, red=True):
+        """The Higgs / Englert-Brout citation network, drawn at scale k around (cx, cy)."""
+        Pt = lambda p: (cx + (p[0] - 680) * k, cy + (p[1] - 590) * k)
+        tops = [Pt(p) for p in BASE_TOPS]
+        H_, E_ = Pt(BASE_H), Pt(BASE_E)
+        refs = [Pt(p) for p in BASE_REFS]
+        w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 75 * k, 68 * k
+        o = []
+        for i, t in enumerate(tops):
+            o.append(edge(f"hn_t{i}H", t, H_, sqs * .55, ds * .8, MUTED, w, hs))
+            o.append(edge(f"hn_t{i}E", t, E_, sqs * .55, ds * .8, MUTED, w, hs))
+        for i, (src, dst) in enumerate([(H_, refs[0]), (H_, refs[1]), (E_, refs[1]), (E_, refs[2])]):
+            o.append(edge(f"hn_r{i}", src, dst, ds * .8, sqs * .55, MUTED, w, hs))
+        for i, t in enumerate(tops):
+            o.append(sq(f"hn_s{i}", *t, sqs, "#FFFFFF", DEEP, 2))
+        for i, r in enumerate(refs):
+            o.append(sq(f"hn_r{i}q", *r, sqs * .96, FAINT))
+        o.append(dia("hn_H", *H_, ds, DEEP))
+        o.append(dia("hn_E", *E_, ds, GRAYC))
+        if red:
+            x1, y1, x2, y2 = trim(*H_, *E_, ds * .85, ds * .85)
+            o.append(line("hn_red", x1, y1, x2, y2, HOT, 7 * k ** .5, True, False, 22 * k ** .5))
+        return o, H_, E_
+
+    def labels(H_, E_, k):
+        return [text("hl1", "Higgs<br>(1964)", H_[0] - 55 * k - 90, H_[1], 34, "", INK, weight=700, w=180, h=130, align="center"),
+                text("hl2", "Englert &amp; Brout<br>(1964)", E_[0] + 60 * k, E_[1], 34, "", GRAYC, weight=700, w=480, h=130, align="left")]
+
+    # 31  the citation: Higgs cites Englert & Brout
+    net_a, Ha, Ea = hnet(760, 625, 1.35)
+    add(h2t + stage(thumb(), *net_a, *labels(Ha, Ea, 1.35),
+                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 40, "", COOL, weight=700, w=640, h=140, align="right"),
+                    text("as1", "Higgs cites<br>Englert &amp; Brout.", 1490, 840, 38, "aside", w=700, h=170),
+                    overlay_svg("as1ar", [curved_arrow(1250 * S, 810 * S, (Ha[0] + Ea[0]) / 2 * S + 40, (Ha[1] + Ea[1]) / 2 * S + 26, -0.25, MUTED, 3, 16)])),
         cls="L-b")
+
+    # 32  every paper that cites Higgs also cites Englert & Brout: all four fall into the same class
+    net_b, Hb, Eb = hnet(470, 650, 0.85)
+    OX, OY = 1450, 300
+    SQ4 = lambda b, pos: [(f"s{i}", b, dx, dy, "#FFFFFF", DEEP) for i, (dx, dy) in enumerate(pos)]
+    POS_HOT = [(-27, -42), (27, -36), (-25, 14), (26, 22)]
+    POS_COOL = [(-27, -46), (27, -40), (-25, 10), (26, 18)]
+    CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
+
+    def htree(boxes, squares):
+        t = tree("t", OX, OY, 1.0, "higgs", boxes, squares)
+        for i, (bx, by) in enumerate(TREE["higgs"]["buckets"]):
+            t.append(text(f"t_c{i}", CAP[i], OX + bx, OY + by + 135, 30, "", TINT[i][1], w=380, h=140))
+        return t
+
+    add(h2t + stage(thumb(), *net_b, *labels(Hb, Eb, 0.85),
+                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 470, 990, 40, "", COOL, weight=700, w=640, h=140),
+                    text("as1", "All four papers<br>cite both.", 470, 245, 38, "aside", w=720, h=170),
+                    *htree((CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(0, POS_HOT))), cls="L-b")
+
+    # 33  remove that one citation: the four papers jump to another class
+    net_c, Hc, Ec = hnet(470, 650, 0.85, red=False)
+    add(h2t + stage(thumb(), *net_c, *labels(Hc, Ec, 0.85),
+                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 245, 990, 36, "", COOL, weight=700, w=640, h=140, style="opacity:.3;"),
+                    overlay_svg("dd_ar", [arrow_px(300, 636, 352, 636, HOT, 4, 14)]),
+                    text("hd2", "D = 0.28<br>Top 1.3 %", 800, 990, 48, "", HOT, weight=700, w=640, h=160),
+                    text("as1", "One citation removed.<br>All four papers switch class.", 470, 245, 38, "aside", w=1000, h=170),
+                    overlay_svg("as1ar", [curved_arrow(300, 215, 300, 392, 0.12, MUTED, 3, 16)]),
+                    *htree((CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-b")
+
+    # ---- 34-36  the same story, as a picture of the idea: a continuous quantity cut into classes ------------------------------
+    import math as _m
+    ttl = h2('Citations are “<em class="hot">rounded</em>” into classes.')
+    AX0, AY0, AY1, AX1 = 380, 800, 290, 1820
+    HI, LO = 380, 690                                              # the two classes of the D-index, high D and low D
+    XB, XA = 1090, 1000                                            # Higgs before / after one citation is removed
+    sig = lambda x: HI + (LO - HI) / (1 + _m.exp(-(x - 1050) / 170))
+
+    def axes():
+        return [line("ax_y", AX0, AY0, AX0, AY1, INK, 3.4, True, False, 16),
+                line("ax_x", AX0 - 2, AY0, AX1, AY0, INK, 3.4, True, False, 16),
+                text("ay1", "disruptive", AX0 + 40, 330, 32, "", MUTED, w=500, align="left"),
+                text("ay2", "developing", AX0 + 40, 745, 32, "", MUTED, w=500, align="left"),
+                text("ax1", "Overlap with the focal’s references", 1100, 835, 32, "", MUTED, w=1300)]
+
+    def curve(name, pts, color, w=8, op=1.0):
+        x0, y0 = min(p[0] for p in pts), min(p[1] for p in pts)
+        x1, y1 = max(p[0] for p in pts), max(p[1] for p in pts)
+        pad = 10
+        d = "M" + " L".join(f"{x - x0 + pad:.1f},{y - y0 + pad:.1f}" for x, y in pts)
+        body = (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{w / S:.1f}" stroke-linecap="round" '
+                f'stroke-linejoin="round"/>')
+        return svg(name, x0 - pad, y0 - pad, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad, body, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad, "",
+                   f"opacity:{op};" if op != 1 else "")
+
+    step_pts = [(AX0 + 40, HI), (1030, HI), (1036, HI + 20)] + [(1036 + 6 * i / 10 + (1050 - 1036) * 0, HI + 20 + (LO - HI - 40) * i / 10) for i in range(1, 10)] + [(1042, LO - 20), (1048, LO), (1790, LO)]
+    smooth_pts = [(x, sig(x)) for x in range(AX0 + 40, 1791, 20)]
+
+    # 34  the D-index puts a paper in one of two classes: Higgs sits just past the step
+    dot = lambda x, y, name="hd_dot", fill=DEEP: dia(name, x, y, 62, fill)
+    add(ttl + stage(*axes(), curve("step", step_pts, HOT),
+                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500),
+                    dot(XB, LO), text("hd_lab", "Higgs<br>D = − 0.27", XB + 70, LO - 95, 34, "", COOL, weight=700, w=700, h=140, align="left")),
+        cls="L-b")
+    # 35  one citation removed: the paper crosses the step and jumps to the other class
+    add(ttl + stage(*axes(), curve("step", step_pts, HOT),
+                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500),
+                    dot(XA, HI), text("hd_lab", "Higgs<br>D = 0.28", XA + 70, HI - 5, 34, "", HOT, weight=700, w=700, h=140, align="left"),
+                    text("as1", "one citation<br>removed", 1480, 560, 38, "aside", w=700, h=150),
+                    overlay_svg("as1ar", [curved_arrow(1330 * S, 560 * S, 1070 * S, 540 * S, 0.15, MUTED, 3, 16)])),
+        cls="L-b")
+    # 36  without rounding, the same small change makes a small difference
+    ghost = disc("hd_ghost", XB, sig(XB), 62, "#FFFFFF", MUTED, 3, dashed=True)
+    add(ttl + stage(*axes(), curve("step", step_pts, HOT, 8, 0.3),
+                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500, style="opacity:.3;"),
+                    curve("smooth", smooth_pts, COOL), text("lbl_e", "EDM", 1600, 620, 40, "", COOL, weight=700, w=500),
+                    ghost, dot(XA, sig(XA)),
+                    text("as1", "tiny change,<br>tiny effect", 1480, 480, 38, "aside", w=700, h=150),
+                    overlay_svg("as1ar", [curved_arrow(1330 * S, 480 * S, 1080 * S, 520 * S, 0.15, MUTED, 3, 16)]))
+        + '\n\n<p class="take">We preserve <span class="hot">continuity</span> by abandoning class rounding.</p>', cls="L-b")

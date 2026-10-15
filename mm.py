@@ -204,21 +204,31 @@ def brush_path(pts, color, w, opacity=0.95):
         for i in range(1, len(pts) - 1):
             d += f" Q{pts[i][0]:.1f},{pts[i][1]:.1f} {mids[i][0]:.1f},{mids[i][1]:.1f}"
         d += f" L{pts[-1][0]:.1f},{pts[-1][1]:.1f}"
-    return (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{w}" stroke-linecap="round" '
+    return (f'<path class="shaft" pathLength="1" d="{d}" fill="none" stroke="{color}" stroke-width="{w}" stroke-linecap="round" '
             f'stroke-linejoin="round" opacity="{opacity}"/>')
 
 
 def curved_arrow(x1, y1, x2, y2, bend=0.25, color=MUTED, w=2.2, head=12):
-    """A thin curved arrow (slide px) for asides."""
+    """A thin curved arrow (slide px) for asides; the shaft draws from its base, then the head pops."""
     dx, dy = x2 - x1, y2 - y1
-    L = math.hypot(dx, dy) or 1
     cx, cy = (x1 + x2) / 2 - dy * bend, (y1 + y2) / 2 + dx * bend
     ang = math.atan2(y2 - cy, x2 - cx)
     h1 = (x2 - head * math.cos(ang - 0.45), y2 - head * math.sin(ang - 0.45))
     h2 = (x2 - head * math.cos(ang + 0.45), y2 - head * math.sin(ang + 0.45))
-    return (f'<path d="M{x1:.1f},{y1:.1f} Q{cx:.1f},{cy:.1f} {x2:.1f},{y2:.1f}" fill="none" stroke="{color}" '
+    return (f'<path class="shaft" pathLength="1" d="M{x1:.1f},{y1:.1f} Q{cx:.1f},{cy:.1f} {x2:.1f},{y2:.1f}" fill="none" '
+            f'stroke="{color}" stroke-width="{w}" stroke-linecap="round"/>'
+            f'<path class="ahead" d="M{h1[0]:.1f},{h1[1]:.1f} L{x2:.1f},{y2:.1f} L{h2[0]:.1f},{h2[1]:.1f}" fill="none" '
+            f'stroke="{color}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>')
+
+
+def arrow_px(x1, y1, x2, y2, color=INK, w=3.0, head=16):
+    """A straight arrow in slide px: the shaft draws from (x1, y1), then the open head appears at (x2, y2)."""
+    ang = math.atan2(y2 - y1, x2 - x1)
+    h1 = (x2 - head * math.cos(ang - 0.45), y2 - head * math.sin(ang - 0.45))
+    h2 = (x2 - head * math.cos(ang + 0.45), y2 - head * math.sin(ang + 0.45))
+    return (f'<path class="shaft" pathLength="1" d="M{x1:.1f},{y1:.1f} L{x2:.1f},{y2:.1f}" fill="none" stroke="{color}" '
             f'stroke-width="{w}" stroke-linecap="round"/>'
-            f'<path d="M{h1[0]:.1f},{h1[1]:.1f} L{x2:.1f},{y2:.1f} L{h2[0]:.1f},{h2[1]:.1f}" fill="none" '
+            f'<path class="ahead" d="M{h1[0]:.1f},{h1[1]:.1f} L{x2:.1f},{y2:.1f} L{h2[0]:.1f},{h2[1]:.1f}" fill="none" '
             f'stroke="{color}" stroke-width="{w}" stroke-linecap="round" stroke-linejoin="round"/>')
 
 

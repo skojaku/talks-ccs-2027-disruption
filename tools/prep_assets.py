@@ -127,10 +127,6 @@ save(load(914), "aps_news.png")
 save(load(915), "prl.png")
 
 # ---- the Apoha illustrations (without the labels) ----------------------------------------------
-ap = over_white(load(576))
-save(crop(ap, 0.035, 0.27, 0.31, 0.755), "apoha_stone.png")
-save(crop(ap, 0.397, 0.318, 0.565, 0.665), "apoha_carved.png")
-save(crop(ap, 0.72, 0.28, 0.97, 0.70), "apoha_horse.png")
 
 # ---- the last slide -----------------------------------------------------------------------------
 save(load(1050), "butterfly.png")

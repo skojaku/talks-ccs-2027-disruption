@@ -66,11 +66,16 @@ def main():
         assert not dup, f"slide {i}: view-transition-name used twice: {sorted(dup)}"
         geo = geometry(s["body"])
         shared = prev & set(names)
+        prev_names = prev
         moving = {n for n in shared if geo.get(n) != prev_geo.get(n)}
         s["shared"] = len(moving)
         report.append((i, len(names), len(moving)))
         prev = set(names)
         prev_geo = geo
+        if shared:                                   # a build step: arrows that are new on it grow from their base
+            def mark(m):
+                return m.group(0) if m.group(3) in prev_names else m.group(1) + " grow" + m.group(2)
+            s["body"] = re.sub(r'(<div class="o (?:ln|ov)[^"]*?)(" style="[^"]*?view-transition-name:(\w+))', mark, s["body"])
         head = []
         if s["cls"]:
             head.append(f"<!-- _class: {s['cls']} -->")
