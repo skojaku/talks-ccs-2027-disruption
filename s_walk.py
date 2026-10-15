@@ -2,8 +2,8 @@
 from mm import *  # noqa: F401,F403
 import mm
 
-GR = "#A9A5A2"          # the grey of an unnamed walk node
-RING = "#5E5A57"
+GR = "#A6A6A6"          # the grey of an unnamed walk node
+RING = "#4d4d4d"
 SEQ = [GR, TEAL, OLIVE, HOT, COOL, DEEP]
 TREE_POS = [(517, 48), (520, 182), (372, 400), (667, 400), (252, 576), (520, 550), (157, 737), (644, 721),
             (396, 808), (447, 994)]
@@ -19,10 +19,10 @@ def walk_tree(dx=0):
     TP = [(x + dx, y) for x, y in TREE_POS]
     E = [(0, 1), (1, 2), (1, 3), (2, 4), (2, 5), (4, 6), (4, 8), (5, 8), (5, 7)]
     for i, (a, b) in enumerate(E):
-        o.append(edge_(f"w_e{i}", TP[a], TP[b], 40, 44, "#4A4A52", 3.2))
-    o.append(edge_("w_e9", TP[8], TP[9], 40, 44, "#9A9692", 3.2))
+        o.append(edge_(f"w_e{i}", TP[a], TP[b], 40, 44, "#333333", 3.2))
+    o.append(edge_("w_e9", TP[8], TP[9], 40, 44, "#9a9a9a", 3.2))
     for i, (src, dst) in enumerate([(6, (60, 945)), (6, (240, 945)), (8, (325, 950)), (8, (512, 945)), (7, (648, 955))]):
-        o.append(edge_(f"w_d{i}", TP[src], (dst[0] + dx, dst[1]), 40, 0, "#9A9692", 3, dashed=True))
+        o.append(edge_(f"w_d{i}", TP[src], (dst[0] + dx, dst[1]), 40, 0, "#9a9a9a", 3, dashed=True))
     for i, (p, c) in enumerate(zip(TP, TREE_COL)):
         o.append(disc(f"w_n{i}", *p, 78, c, RING, 3.5))
     return o
@@ -59,9 +59,9 @@ def walk_state(w, cur_pairs=True, list_upto=None):
     o.append(text("winl", "window", (left + right) / 2, 408, 30, "", INK, w=500))
     o.append(text("qk", "(query, key)", cx, 543 + 3 * w, 30, "", INK, w=700))
     if w == 0:
-        o.append(text("tdlab", "Training data", cx, 880, 30, "", "#9A9692", weight=700, w=700))
+        o.append(text("tdlab", "Training data", cx, 880, 30, "", "#9a9a9a", weight=700, w=700))
     else:
-        o.append(text("tdlab", "Training data", 800, 740, 30, "", "#9A9692", weight=700, w=700,
+        o.append(text("tdlab", "Training data", 800, 740, 30, "", "#9a9a9a", weight=700, w=700,
                       style="transform:rotate(-90deg);"))
     upto = w if list_upto is None else list_upto
     for wi in range(upto):
@@ -77,14 +77,14 @@ def walk_state(w, cur_pairs=True, list_upto=None):
 def big_list(focus=None):
     o = [text("lh", "(query, key)", 1037, 135, 34, "", INK, w=700)]
     if not focus:
-        o.append(text("tdlab", "Training data", 815, 580, 30, "", "#9A9692", weight=700, w=700, style="transform:rotate(-90deg);"))
+        o.append(text("tdlab", "Training data", 815, 580, 30, "", "#9a9a9a", weight=700, w=700, style="transform:rotate(-90deg);"))
     for L in range(8):
         o.append(pair(f"pr{L}", L, 1038, BIG_Y[L], 96, 0.3 if focus and L not in focus else 1.0))
     return o
 
 
 # ---- the embedding space ---------------------------------------------------------------------------------------------
-GRAYP = "#E2DEDA"
+GRAYP = "#E0E0E0"
 STATES = {
     "small": dict(ax=((675, 565), (675, 832), (880, 832)), d=50,
                   gray=[(977, 293), (1625, 340), (1692, 445), (1530, 460), (1411, 567), (1536, 687)],
@@ -107,7 +107,7 @@ def scatter(state, key_visible=False, faded=False):
     o = []
     if st["ax"]:
         (x0, y0), (x1, y1), (x2, y2) = st["ax"]
-        o += [line("ax_y", x1, y1, x0, y0, "#B9B2AD", 3.4, True, False, 16), line("ax_x", x1 - 2, y1, x2, y2, "#B9B2AD", 3.4, True, False, 16)]
+        o += [line("ax_y", x1, y1, x0, y0, "#B3B3B3", 3.4, True, False, 16), line("ax_x", x1 - 2, y1, x2, y2, "#B3B3B3", 3.4, True, False, 16)]
     for i, p in enumerate(st["gray"]):
         o.append(disc(f"sg{i}", *p, d, FAINT, GRAYP, 3))
     fo = 0.55 if state in ("split", "nm") else 1.0

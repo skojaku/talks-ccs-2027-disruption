@@ -17,8 +17,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent
 S = 0.64                      # O units -> slide px
 
-INK, MUTED, PALE, FAINT = "#30323D", "#8C847F", "#D9D3CF", "#EFEBE8"
-HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#D9631E", "#1E96DC", "#C08A1F", "#3F8A88", "#9B9922", "#2F6FB4"
+INK, MUTED, PALE, FAINT = "#000000", "#6b6b6b", "#D9D9D9", "#EEEEEE"
+HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#B14434", "#3959A6", "#DAB167", "#8FA3D6", "#DAB167", "#22336b"
 
 FLOOR = 30                     # the type floor of the house style (px on the slide)
 RAISED: list = []
@@ -257,7 +257,7 @@ def tri(name, cx, cy, w, h, color):
 
 
 LAV = MUTED              # arrows and context edges are muted (HOUSE_STYLE section 3)
-GRAYC = "#5E5A57"        # a dark grey: "cites only the references" / the second diamond
+GRAYC = "#4d4d4d"        # a dark grey: "cites only the references" / the second diamond
 
 
 def fade(objs, o=0.3):

@@ -61,12 +61,12 @@ def build(add):
     T = h2("word2vec (Mikolov et al. 2013)")
     add(T + stage(*fox()), cls="L-b")
     add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 800, 40, weight=700, w=1200),
-        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 925, 32, w=1500, h=160)])),
+        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 770, 40, weight=700, w=1200),
+        text("m2", "Words that appear together sit close in the vector space.", 1045, 860, 32, w=1800, h=80)])),
         cls="L-b")
     add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 800, 40, weight=700, w=1200),
-        text("m2", "Words that appear together sit<br>close in the vector space.", 1045, 925, 32, w=1500, h=160)]))
+        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 770, 40, weight=700, w=1200),
+        text("m2", "Words that appear together sit close in the vector space.", 1045, 860, 32, w=1800, h=80)]))
         + '\n\n<p class="take">Surprisingly effective. <span class="hot">Paradigm shift</span> in NLP</p>', cls="L-b")
 
     # ---- 40  analogies --------------------------------------------------------------------------------------------
@@ -143,10 +143,10 @@ def build(add):
     def dots(key=False, qry=False, water=False):
         o = []
         for nm, (x, y) in DOTS.items():
-            o.append(disc(f"d_{nm}", x, y, 60, FAINT, "#E2DEDA", 3))
-        o.append(disc("d_key", *KEY, 60, COOL if key else FAINT, INK if key else "#E2DEDA", 3.5 if key else 3))
-        o.append(disc("d_qry", *QRY, 60, HOT if qry else FAINT, INK if qry else "#E2DEDA", 3.5 if qry else 3))
-        o.append(disc("d_wat", *WAT, 60, "#A9A5A2" if water else FAINT, INK if water else "#E2DEDA", 3.5 if water else 3))
+            o.append(disc(f"d_{nm}", x, y, 60, FAINT, "#E0E0E0", 3))
+        o.append(disc("d_key", *KEY, 60, COOL if key else FAINT, INK if key else "#E0E0E0", 3.5 if key else 3))
+        o.append(disc("d_qry", *QRY, 60, HOT if qry else FAINT, INK if qry else "#E0E0E0", 3.5 if qry else 3))
+        o.append(disc("d_wat", *WAT, 60, "#A6A6A6" if water else FAINT, INK if water else "#E0E0E0", 3.5 if water else 3))
         return o
 
     kl = lambda: [text("kl1", "prepared<br>(key)", *T(842, 290), 30, "", COOL, w=420, h=130),
@@ -161,7 +161,7 @@ def build(add):
     mv = [line("mv1", *trim(*KEY, *T(1027, 478), 34, 0), COOL, 5, True, False, 22),
           line("mv2", *trim(*QRY, *T(1007, 567), 34, 0), HOT, 5, True, False, 22),
           line("mv3", *trim(*QRY, *T(904, 733), 34, 0), HOT, 5, True, False, 22),
-          line("mv4", *trim(*WAT, *T(1468, 395), 34, 0), "#8C847F", 5, True, False, 22)]
+          line("mv4", *trim(*WAT, *T(1468, 395), 34, 0), "#6b6b6b", 5, True, False, 22)]
     add(TT + stage(*left(), *dots(True, True, True), *kl(), *wl(), *mv), cls="L-b left")
 
     # ---- 54-55  the training table ----------------------------------------------------------------------------------
@@ -175,7 +175,7 @@ def build(add):
              mathbox("r1x", 900, 215, 520, 160, "$q_{\\text{favor}}^\\top k_{\\text{prepare}}$", 40),
              text("r1y", "Yes (y=1)", 1645, 305, 40, "", INK, w=520),
              text("r2q", "favor", 308, 458, 40, "", HOT, w=420), text("r2k", "water", 667, 455, 40, "", MUTED, w=420),
-             disc("r2qd", 308, 533, 50, HOT, INK, 3.5), disc("r2kd", 667, 530, 50, "#A9A5A2", INK, 3.5),
+             disc("r2qd", 308, 533, 50, HOT, INK, 3.5), disc("r2kd", 667, 530, 50, "#A6A6A6", INK, 3.5),
              mathbox("r2x", 900, 420, 520, 160, "$q_{\\text{favor}}^\\top k_{\\text{water}}$", 40),
              text("r2y", "No (y=0)", 1640, 503, 40, "", INK, w=520)]
         return o

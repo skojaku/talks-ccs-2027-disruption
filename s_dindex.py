@@ -27,7 +27,7 @@ DG = {
             [("j", "F", "hot"), ("j", "r0", "hot"), ("a", "F", "teal"), ("i", "F", "teal"), ("p2", "F", "hot"),
              ("p2", "r2", "hot"), ("k", "r0", "gray"), ("g2", "r2", "gray")]),
 }
-MIXLAB = {"j": (-150, -264, HOT), "i": (84, -260, TEAL), "k": (-286, -129, GRAYC)}
+MIXLAB = {"j": (-150, -264, HOT), "i": (84, -260, COOL), "k": (-286, -129, GRAYC)}
 
 
 def diagram(pre, kind, cx, cy, k, labels=False, fade=1.0):
@@ -74,11 +74,11 @@ TREE = {
         labels=[("yes", -138, 64), ("no", 145, 80), ("yes", -243, 200), ("no", -26, 204), ("yes", 252, 212)],
         buckets=[(-230, 337), (-28, 342), (194, 327)], bsz=(125, 150), fs=46),
 }
-TINT = [("#FBE3D3", HOT), ("#DDEFFA", COOL), ("#E6E2DE", GRAYC)]
+TINT = [("#F3DDD8", HOT), ("#DDE3F2", COOL), ("#E6E6E6", GRAYC)]
 
 
 def bucket(name, cx, cy, w, h, tint):
-    body = (f'<path d="M6,8 L{w - 6},2 L{w - 14},{h - 6} L16,{h} Z" fill="{tint}" stroke="#6F6A66" '
+    body = (f'<path d="M6,8 L{w - 6},2 L{w - 14},{h - 6} L16,{h} Z" fill="{tint}" stroke="#666666" '
             f'stroke-width="3" stroke-linejoin="round"/>')
     return svg(name, cx - w / 2, cy - h / 2, w, h, body)
 
@@ -180,8 +180,8 @@ def build(add):
         cls="L-g", header=HD)
 
     # ---- 24  ... and counted ---------------------------------------------------------------------------------------------
-    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#1E96DC}{n_i}-\\textcolor{#D9631E}{n_j}}"
-          "{\\textcolor{#1E96DC}{n_i}+\\textcolor{#D9631E}{n_j}+\\textcolor{#5E5A57}{n_k}}$$")
+    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#3959A6}{n_i}-\\textcolor{#B14434}{n_j}}"
+          "{\\textcolor{#3959A6}{n_i}+\\textcolor{#B14434}{n_j}+\\textcolor{#4d4d4d}{n_k}}$$")
     add(stage(
         *fade(diagram("mix", "mix", 270, 600, 0.6, labels=True)),
         *fade(tree("t", 740, 420, 0.6, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, labels=False)),
@@ -294,7 +294,7 @@ def build(add):
 
     add(h2t + stage(thumb(), *net_b, *labels(Hb, Eb, 0.85),
                     text("hd1", "D = − 0.27<br>Bottom 0.1 %", 470, 990, 40, "", COOL, weight=700, w=640, h=140),
-                    text("as1", "All four papers<br>cite both.", 470, 245, 38, "aside", w=720, h=170),
+                    text("as1", "All four papers<br>cite both.", 470, 215, 38, "aside", w=720, h=170),
                     *htree((CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(0, POS_HOT))), cls="L-b")
 
     # 33  remove that one citation: the four papers jump to another class
@@ -303,8 +303,8 @@ def build(add):
                     text("hd1", "D = − 0.27<br>Bottom 0.1 %", 245, 990, 36, "", COOL, weight=700, w=640, h=140, style="opacity:.3;"),
                     overlay_svg("dd_ar", [arrow_px(300, 636, 352, 636, HOT, 4, 14)]),
                     text("hd2", "D = 0.28<br>Top 1.3 %", 800, 990, 48, "", HOT, weight=700, w=640, h=160),
-                    text("as1", "One citation removed.<br>All four papers switch class.", 470, 245, 38, "aside", w=1000, h=170),
-                    overlay_svg("as1ar", [curved_arrow(300, 215, 300, 392, 0.12, MUTED, 3, 16)]),
+                    text("as1", "One citation removed.<br>All four papers switch class.", 470, 215, 38, "aside", w=1000, h=170),
+                    overlay_svg("as1ar", [curved_arrow(300, 190, 300, 392, 0.12, MUTED, 3, 16)]),
                     *htree((CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-b")
 
     # ---- 34-36  the same story, as a picture of the idea: a continuous quantity cut into classes ------------------------------
