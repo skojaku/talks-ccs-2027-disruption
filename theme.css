@@ -1062,9 +1062,8 @@ section .o.aside, section .tx.aside {
   font-family: 'Excalifont', 'Virgil 3 YOFF', 'Caveat', cursive; color: #8C847F; font-weight: 400;
 }
 section .mi { font-family: 'Libre Baskerville', Georgia, serif; font-style: italic; }
-section .o.blist { font-size: 34px; line-height: 1.38; }
-section .o.blist ul { margin: 0; gap: 20px; }
-section .o.blist li ul { font-size: 30px; }
+section .o.blist ul { margin: 0; }
+section.left .sub { text-align: left; margin-left: 0; }
 /* a vector arrow above a word: "man", as in the analogy slides */
 section .vec { position: relative; display: inline-block; }
 section .vec::before { content: ""; position: absolute; left: 0; right: 4px; top: -0.12em; height: 2px; background: currentColor; }

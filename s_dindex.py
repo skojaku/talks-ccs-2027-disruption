@@ -2,6 +2,7 @@
 from mm import *  # noqa: F401,F403
 import mm
 
+PHOTO = (663, 173, 1199, 533)
 CLS = {"hot": HOT, "teal": COOL, "gray": GRAYC}
 
 
@@ -207,22 +208,27 @@ def build(add):
         'disruptive discoveries</p>', cls="L-g")
 
     # ---- 27-29  Englert, Brout and Higgs ----------------------------------------------------------------------------------------
-    bl = ('<div class="o blist" style="left:50px;top:200px;width:560px">\n\n'
-          "- Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n"
-          "- Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>")
-    ph = lambda: img("hphoto", "assets/higgs.jpg", 1420, 532, 780, None, "ph")
+    def higgs_c(stage_html):
+        mm._names.append("hphoto")
+        return ('<div class="cols">\n<div>\n\n- Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n'
+                '- Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>\n'
+                '<div class="fig photo" style="view-transition-name:hphoto">\n\n![](assets/higgs.jpg)\n\n</div>\n</div>\n\n'
+                + stage_html)
+
+    # the photo is laid out by the C layout; PHOTO is its box on the slide (px), measured from the render
+    X0, Y0, X1, Y1 = PHOTO
     ann1 = lambda: [
-        text("an1", "Englert, F.,<br>&amp; Brout, R. (1964)", 1088, 108, 32, w=620, h=130),
-        text("an1v", f"D = 0.15<br>Top 2.8 %", 1640, 115, 44, color=HOT, weight=700, w=420, h=130),
-        overlay_svg("an1ar", [curved_arrow(718, 118, 766, 192, 0.18, HOT, 7, 26)])]
+        text("an1", "Englert, F.,<br>&amp; Brout, R. (1964)", (X0 + 70) / S, (Y0 - 70) / S, 30, w=620, h=130),
+        text("an1v", "D = 0.15<br>Top 2.8 %", (X1 - 70) / S, (Y0 - 62) / S, 40, color=HOT, weight=700, w=420, h=130),
+        overlay_svg("an1ar", [curved_arrow(X0 + 20, Y0 - 25, X0 + 78, Y0 + 55, 0.18, HOT, 6, 24)])]
     ann2 = lambda: [
-        text("an2", "Higgs, P.W. (1964)", 1437, 885, 32, w=800),
-        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1560, 1020, 44, color=COOL, weight=700, w=520, h=130),
-        text("an2e", "🫠", 1815, 950, 58, w=200),
-        overlay_svg("an2ar", [curved_arrow(1068, 538, 1038, 448, -0.18, HOT, 7, 26)])]
-    add(stage(ph(), bl), cls="L-b")
-    add(stage(ph(), bl, *ann1()), cls="L-b")
-    add(stage(ph(), bl, *ann1(), *ann2()), cls="L-b")
+        text("an2", "Higgs, P.W. (1964)", (X1 - 150) / S, (Y1 + 38) / S, 30, w=800),
+        text("an2v", "D = − 0.27<br>Bottom 0.1 %", (X1 - 170) / S, (Y1 + 105) / S, 40, color=COOL, weight=700, w=520, h=130),
+        text("an2e", "🫠", (X1 + 10) / S, (Y1 + 85) / S, 58, w=200),
+        overlay_svg("an2ar", [curved_arrow(X1 - 100, Y1 + 8, X1 - 125, Y1 - 85, -0.18, HOT, 6, 24)])]
+    add(higgs_c(stage()), cls="L-c left")
+    add(higgs_c(stage(*ann1())), cls="L-c left")
+    add(higgs_c(stage(*ann1(), *ann2())), cls="L-c left")
 
     # ---- 30  what's happening? ----------------------------------------------------------------------------------------------------
     add(h2('<span class="muted">What’s happening?</span>') + stage(img("hphoto", "assets/higgs.jpg", 1029, 710, 977, None, "ph")),

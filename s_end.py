@@ -99,17 +99,16 @@ def build(add):
 
     # ---- 80-81  summary (left to me: "Summary" as F, then three claims, each with the picture that showed it) -------------
     add(h2("Summary"), cls="L-f", header="")
-    chev = lambda n, y: text(n, "&gt;", 560, y, 30, "", COOL, weight=700, w=80, align="left")
-    claim = lambda n, y, c, sub: [chev(n + "c", y - 18),
-                                  text(n, c, 625, y - 18, 30, "", INK, weight=700, w=1300, align="left"),
-                                  text(n + "s", sub, 625, y + 50, 24, "", INK, w=1300, align="left")]
+    def claim(n, y, md):
+        return f'<div class="o blist" style="left:340px;top:{y}px;width:880px">\n\n{md}\n\n</div>'
+
     add(stage(
         img("sm1", "assets/higgs.jpg", 290, 270, 360, None, "ph"),
-        *claim("k1", 270, 'The D-index <span class="hot">fails</span> on milestone works', "Higgs (1964): D = −0.27, Bottom 0.1 %"),
+        claim("k1", 140, '- The D-index <span class="hot">fails</span> on milestone works\n  - Higgs (1964): D = −0.27, Bottom 0.1 %'),
         *scatter_thumb(290, 600, 0.2),
-        *claim("k2", 600, 'EDM preserves <span class="hot">continuity</span>', "A large query-key gap marks a discontinuity"),
+        claim("k2", 300, '- EDM preserves <span class="hot">continuity</span>\n  - A large query-key gap marks a discontinuity'),
         img("sm3", "assets/odds_ratio.png", 290, 905, 360, None, "ph"),
-        *claim("k3", 905, 'EDM matches <span class="hot">human judgment</span>', "Odds ratio 1.23, against 1.03 for the D-index")),
+        claim("k3", 460, '- EDM matches <span class="hot">human judgment</span>\n  - Odds ratio 1.23, against 1.03 for the D-index')),
         cls="L-g")
 
     # ---- 81  contact -------------------------------------------------------------------------------------------------------------
