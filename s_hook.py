@@ -18,16 +18,6 @@ def tl_two(xl, xm, xr, y, th, rd, rw):
 
 
 def build(add):
-    # ---- 1  title ---------------------------------------------------------------------------------
-    add("""# Turning Spatial Intuition into Modeling with Neural Embeddings
-
-<p class="sub">CompleNet 2026 @ Zaragoza, Spain<br>May 4–8 2026<br>Sadamori Kojaku</p>
-
-<div class="logos"><img src="assets/logo_binghamton.png" alt=""><img src="assets/logo_afosr.png" alt=""></div>
-
-<img class="qr" src="assets/qr.png" alt="QR code to skojaku.github.io">""", cls="lead", header="",
-        notes="The QR code opens the speaker's home page (skojaku dot github dot io).")
-
     # ---- 2  the paper this talk is about (part opener: title, authors, faces) -------------------------------------
     add("""## Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness
 
