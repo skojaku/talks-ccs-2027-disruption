@@ -925,14 +925,22 @@
   "title": "D-index sorts the citing papers",
   "content": [
    "citation diagram",
-   "decision tree"
+   "rb",
+   "rba",
+   "rg",
+   "rga"
   ],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
    "citation diagram",
-   "decision tree"
+   "rb",
+   "rba",
+   "rg",
+   "rga",
+   "rr",
+   "rra"
   ],
   "vanish": [
    "sa_E",
@@ -993,20 +1001,22 @@
   "title": "But papers do not sort so cleanly",
   "content": [
    "era labels and notes",
+   "list heading and notes",
    "citation diagram",
-   "decision tree"
+   "rb",
+   "rba"
   ],
   "layout": "L-b",
   "moving": [
-   "citation diagram",
-   "decision tree"
+   "citation diagram"
   ],
-  "n_moving": 9,
+  "n_moving": 7,
   "appear": [
-   "era labels and notes"
+   "era labels and notes",
+   "list heading and notes"
   ],
   "vanish": [],
-  "grows": false,
+  "grows": true,
   "fragments": 0,
   "transition": "magic move"
  },
@@ -1014,7 +1024,6 @@
   "n": 41,
   "title": "Stop sorting. Let the colours mix.",
   "content": [
-   "glow",
    "citation diagram"
   ],
   "layout": "L-b",
@@ -1022,13 +1031,16 @@
    "citation diagram"
   ],
   "n_moving": 21,
-  "appear": [
-   "glow"
-  ],
+  "appear": [],
   "vanish": [
    "era labels and notes",
-   "citation diagram",
-   "decision tree"
+   "list heading and notes",
+   "rb",
+   "rba",
+   "rg",
+   "rga",
+   "rr",
+   "rra"
   ],
   "grows": false,
   "fragments": 0,
@@ -1038,21 +1050,18 @@
   "n": 42,
   "title": "The mixture spreads",
   "content": [
-   "glow",
    "citation diagram"
   ],
   "layout": "L-b",
-  "moving": [
-   "glow"
-  ],
-  "n_moving": 1,
+  "moving": [],
+  "n_moving": 0,
   "appear": [
    "citation diagram"
   ],
   "vanish": [],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 43,
@@ -1063,7 +1072,6 @@
   "n_moving": 0,
   "appear": [],
   "vanish": [
-   "glow",
    "citation diagram"
   ],
   "grows": false,

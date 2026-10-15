@@ -59,12 +59,12 @@ def diagram(pre, kind, cx, cy, k, labels=False, fade=1.0, fills=None, ecol=None)
         out.append(edge(f"{pre}_e{ei}", pos[a], pos[b], half + 2, fh if b == "F" else half + 4, col, w, hs))
     nr = len(edges)
     for i in range(3):
-        out.append(edge(f"{pre}_e{nr + i}", pos["F"], pos[f"r{i}"], fh, half + 4, INK, w * 0.8, hs))
+        out.append(edge(f"{pre}_e{nr + i}", pos["F"], pos[f"r{i}"], fh, half + 4, (ecol or {}).get("F", INK), w * 0.8, hs))
     for nid, x, y, c in nodes:
         out.append(sq(f"{pre}_{nid}", *pos[nid], ssz * k, (fills or {}).get(nid, CLS[c])))
     for i in range(3):
-        out.append(sq(f"{pre}_r{i}", *pos[f"r{i}"], ssz * k, PALE))
-    out.append(dia(f"{pre}_F", cx, cy, fside * k, DEEP))
+        out.append(sq(f"{pre}_r{i}", *pos[f"r{i}"], ssz * k, (fills or {}).get(f"r{i}", PALE)))
+    out.append(dia(f"{pre}_F", cx, cy, fside * k, (fills or {}).get("F", DEEP)))
     if labels:
         for nm, (x, y, col) in MIXLAB.items():
             out.append(text(f"{pre}_l{nm}", nm, cx + k * x, cy + k * y, 56 * k, "mi", col, w=120))
@@ -352,11 +352,11 @@ def build(add):
               *htree(OX, OY, 1.0, (CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
-    nA, HA, EA = hnet(540, 700, 0.95, pre="sa")
-    nB, HB, EB = hnet(1460, 700, 0.95, red=False, ghost=True, pre="sb")
+    nA, HA, EA = hnet(540, 600, 0.95, pre="sa")
+    nB, HB, EB = hnet(1460, 600, 0.95, red=False, ghost=True, pre="sb")
     add(h2("Why is the D-index so sensitive?") + stage(
-        text("sca", "with the citation", 540, 330, 40, "", MUTED, w=800),
-        text("scb", "one citation cut", 1460, 330, 40, "", MUTED, w=800),
+        text("sca", "with the citation", 540, 230, 40, "", MUTED, w=800),
+        text("scb", "one citation cut", 1460, 230, 40, "", MUTED, w=800),
         *nA, *nB,
-        text("sva", "D = − 0.27", 540, 1040, 52, "", COOL, weight=700, w=800),
-        text("svb", "D = 0.28", 1460, 1040, 52, "", HOT, weight=700, w=800)), cls="L-b")
+        text("sva", "D = − 0.27", 540, 900, 52, "", COOL, weight=700, w=800),
+        text("svb", "D = 0.28", 1460, 900, 52, "", HOT, weight=700, w=800)), cls="L-b")

@@ -26,13 +26,13 @@ def build(add):
     # ---- 70  the measure ----------------------------------------------------------------------------------------------
     A = lambda x1, y1, x2, y2, bend: overlay_svg(None, [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, HOT, 6, 24)])
     add(h2("Embedding Disruptiveness Measure (EDM)") + stage(
-        mathbox("edm", 300, 330, 1440, 220, "$$\\Delta_i := 1-\\cos(q_i,k_i)$$", 60),
-        text("edmn", "Dissimilarity of the descendants<br>and ascendants of node i.", 1545, 598, 32, "aside", w=900, h=170),
-        img("hphoto", "assets/higgs.jpg", 935, 872, 620, None, "ph"),
-        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 890, 44, "", HOT, w=620, h=170),
-        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 960, 44, "", HOT, w=620, h=170),
-        overlay_svg("e_ar", [curved_arrow(465 * S, 770 * S, 715 * S, 818 * S, 0.3, HOT, 6, 24),
-                             curved_arrow(1430 * S, 880 * S, 1235 * S, 836 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
+        mathbox("edm", 300, 240, 1440, 220, "$$\\Delta_i := 1-\\cos(q_i,k_i)$$", 60),
+        text("edmn", "Dissimilarity of the descendants<br>and ascendants of node i.", 1545, 508, 32, "aside", w=900, h=170),
+        img("hphoto", "assets/higgs.jpg", 935, 782, 620, None, "ph"),
+        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", HOT, w=620, h=170),
+        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", HOT, w=620, h=170),
+        overlay_svg("e_ar", [curved_arrow(465 * S, 680 * S, 715 * S, 728 * S, 0.3, HOT, 6, 24),
+                             curved_arrow(1430 * S, 790 * S, 1235 * S, 746 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
 
     # ---- 71  the test ------------------------------------------------------------------------------------------------
     add(h2("Does EDM beat the D-index? 🤔") + '\n\n<p class="sub">Tested with APS data</p>' + stage(

@@ -191,7 +191,7 @@ def build_b(add):
             o.append(pair(f"pr{L}", L, 466, y, 82))
         o.append(text("as1", "Let’s focus on<br>this paper.", 175, 625, 34, "aside", w=720, h=170,
                       style="transform:rotate(-38deg);"))
-        o.append(overlay_svg("as1ar", [curved_arrow(80 * S, 530 * S, 335 * S, 375 * S, 0.5, MUTED, 2.6, 14)]))
+        o.append(overlay_svg("as1ar", [curved_arrow(133, 345, 223, 262, -0.1, MUTED, 3, 16)]))
         return o
 
     fp = lambda: text("fp", "focal<br>paper", 1283, 305, 44, "", HOT, w=560, h=200)
