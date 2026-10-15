@@ -297,7 +297,7 @@ section ul, section ol {
 }
 section ul:last-child, section ol:last-child { margin-bottom: 0; }
 section li { line-height: 1.42; }
-section ul > li::marker { content: "> "; color: #1E96DC; font-weight: 700; }
+section ul > li::marker { content: "\2022  "; color: #30323D; font-weight: 700; }   /* round bullets, not the skill's ">" chevrons (the lecturer, 2026-10-15) */
 section ol > li::marker { color: #1E96DC; }
 section li:has(> ul) { font-weight: 700; }
 section li ul { margin: 8px 0 0; gap: 6px; font-size: 26px; font-weight: 400; }
