@@ -113,11 +113,16 @@ def build(add):
         claim("k3", 470, 'EDM matches <span class="hot">human judgment</span>', 'Odds ratio 1.23, against 1.03 for the D-index')),
         cls="L-g")
 
-    # ---- 81  contact -------------------------------------------------------------------------------------------------------------
+    # ---- 81  the paper (screenshot and QR code) and where to find me ---------------------------------------------------
     add(stage(
-        img("av", "assets/avatar.jpg", 532, 528, 193),
-        text("c1", 'Web: <u>skojaku.github.io</u>', 700, 358, 32, "", INK, w=1400, align="left"),
-        img("bf", "assets/butterfly.png", 738, 520, 80),
-        text("c2", "@skojaku.bsky.social", 800, 525, 32, "", INK, w=1400, align="left"),
-        text("c3", '<u>skojaku@binghamton.edu</u>', 455, 690, 32, "", INK, w=1700, align="left"),
-        img("qr2", "assets/qr.png", 1679, 536, 392)), cls="L-g", header="")
+        img("paperimg", "assets/sciadv.png", 640, 395, 1000, None, "ph"),
+        text("papercap", "<em>Science Advances</em> 12, eadx3420 (2026)", 640, 715, 32, w=1500),
+        text("paperlead", "Read the paper", 1500, 160, 44, weight=700, w=700),
+        img("qrpaper", "assets/qr_paper.png", 1500, 410, 400),
+        text("qrcap", "doi.org/10.1126/sciadv.adx3420", 1500, 650, 30, "", MUTED, w=800),
+        img("av", "assets/avatar.jpg", 215, 925, 150),
+        text("c1", 'Web: <u>skojaku.github.io</u>', 340, 850, 32, "", INK, w=1300, align="left"),
+        img("bf", "assets/butterfly.png", 372, 925, 56),
+        text("c2", "@skojaku.bsky.social", 430, 925, 32, "", INK, w=1300, align="left"),
+        text("c3", '<u>skojaku@binghamton.edu</u>', 340, 1000, 32, "", INK, w=1400, align="left"),
+        img("qr2", "assets/qr.png", 1480, 925, 200)), cls="L-g", header="")
