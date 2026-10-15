@@ -1078,3 +1078,10 @@ section .ic.eg { background: #5E5A57; transform: rotate(45deg) scale(0.9); margi
 section .ic.fa { background: #F6F7FC; border: 2px solid #2F6FB4; }
 section .amp { color: #D9631E; font-weight: 700; margin: 0 0.1em; }
 section .o.tri { width: 0; height: 0; }
+
+/* a (query, key) training pair: two discs */
+section .o.pair { display: flex; align-items: center; justify-content: center; }
+section .pd { display: block; border-radius: 50%; border: 3px solid #5E5A57; box-sizing: border-box; flex: none; }
+section .tx sub { font-size: 0.62em; }
+section .o.pic.top img { object-position: top; }
+section .o.pic.faded img { opacity: 0.5; }

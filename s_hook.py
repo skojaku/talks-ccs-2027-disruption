@@ -26,7 +26,7 @@ def build(add):
 <div class="logos"><img src="assets/logo_binghamton.png" alt=""><img src="assets/logo_afosr.png" alt=""></div>
 
 <img class="qr" src="assets/qr.png" alt="QR code to skojaku.github.io">""", cls="lead", header="",
-        notes="The QR code points to https://skojaku.github.io/")
+        notes="The QR code opens the speaker's home page (skojaku dot github dot io).")
 
     # ---- 2  the paper (the part opener) -------------------------------------------------------------
     add(h2("Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness")

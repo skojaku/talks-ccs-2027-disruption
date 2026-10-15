@@ -190,8 +190,15 @@ def pencil_arrow(x1, y1, x2, y2, key, color=INK, w=2.0, head=11):
 
 
 def brush_path(pts, color, w, opacity=0.95):
-    """A thick round-capped stroke through slide-px points (a hand brush)."""
-    d = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    """A thick round-capped stroke through slide-px points (a hand brush), smoothed through the midpoints."""
+    if len(pts) < 3:
+        d = "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    else:
+        mids = [((pts[i][0] + pts[i + 1][0]) / 2, (pts[i][1] + pts[i + 1][1]) / 2) for i in range(len(pts) - 1)]
+        d = f"M{pts[0][0]:.1f},{pts[0][1]:.1f} L{mids[0][0]:.1f},{mids[0][1]:.1f}"
+        for i in range(1, len(pts) - 1):
+            d += f" Q{pts[i][0]:.1f},{pts[i][1]:.1f} {mids[i][0]:.1f},{mids[i][1]:.1f}"
+        d += f" L{pts[-1][0]:.1f},{pts[-1][1]:.1f}"
     return (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{w}" stroke-linecap="round" '
             f'stroke-linejoin="round" opacity="{opacity}"/>')
 

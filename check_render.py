@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.expanduser("~/.claude/skills/slide"))
 from gatelib.check_render import run
 
 run(
-    deck="deck.md",  # your deck's filename
+    deck="ccs-2027.md",  # your deck's filename
 
     # Only set this if the deck draws circular node-link diagrams (network
     # or graph figures) and you want their disc size checked (26-52px band).
