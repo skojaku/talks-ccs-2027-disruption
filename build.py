@@ -81,9 +81,9 @@ MORPH = set()
 
 
 def modules():
-    import s_hook, s_dindex, s_idea, s_walk, s_w2v, s_end
-    return [s_hook.build, s_dindex.build, s_idea.build_a, s_walk.build_a, s_idea.build_b, s_w2v.build, s_idea.build_c,
-            s_walk.focus, s_walk.build_b, s_end.build]
+    import s_hook, s_dindex, s_mix, s_idea, s_walk, s_w2v, s_end
+    return [s_hook.build, s_dindex.build, s_mix.build, s_walk.build_a1, s_idea.compressor, s_w2v.build, s_idea.compressor,
+            s_walk.build_a2, s_idea.onepaper, s_walk.focus, s_walk.build_b, s_end.build]
 
 
 def main():

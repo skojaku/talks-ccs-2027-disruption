@@ -378,7 +378,6 @@
   "n_moving": 4,
   "appear": [
    "era labels and notes",
-   "phone pictures",
    "visor"
   ],
   "vanish": [],
@@ -584,17 +583,15 @@
    "psum"
   ],
   "layout": "L-g",
-  "moving": [
-   "the three papers"
-  ],
-  "n_moving": 1,
+  "moving": [],
+  "n_moving": 0,
   "appear": [
    "the three papers"
   ],
   "vanish": [],
   "grows": false,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 27,
@@ -604,17 +601,15 @@
    "psum"
   ],
   "layout": "L-g",
-  "moving": [
-   "the three papers"
-  ],
-  "n_moving": 1,
+  "moving": [],
+  "n_moving": 0,
   "appear": [
    "the three papers"
   ],
   "vanish": [],
   "grows": false,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 28,
@@ -729,7 +724,7 @@
  },
  {
   "n": 33,
-  "title": "What’s happening?",
+  "title": "Higgs (1964)",
   "content": [
    "era labels and notes",
    "list heading and notes",
@@ -737,7 +732,7 @@
    "Higgs citation network",
    "Higgs photo"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
    "Higgs photo"
   ],
@@ -755,14 +750,14 @@
  },
  {
   "n": 34,
-  "title": "What’s happening?",
+  "title": "✂️",
   "content": [
    "era labels and notes",
    "network labels",
    "Higgs citation network",
    "Higgs photo"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
    "era labels and notes"
   ],
@@ -780,7 +775,7 @@
  },
  {
   "n": 35,
-  "title": "What’s happening?",
+  "title": "Higgs (1964)",
   "content": [
    "era labels and notes",
    "network labels",
@@ -788,31 +783,33 @@
    "Higgs photo",
    "decision tree"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
    "era labels and notes",
    "network labels",
    "Higgs citation network"
   ],
-  "n_moving": 27,
+  "n_moving": 26,
   "appear": [
    "decision tree"
   ],
-  "vanish": [],
+  "vanish": [
+   "Higgs citation network"
+  ],
   "grows": true,
   "fragments": 0,
   "transition": "magic move"
  },
  {
   "n": 36,
-  "title": "What’s happening?",
+  "title": "Higgs (1964)",
   "content": [
    "era labels and notes",
    "network labels",
    "Higgs photo",
    "decision tree"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
    "decision tree"
   ],
@@ -827,14 +824,14 @@
  },
  {
   "n": 37,
-  "title": "What’s happening?",
+  "title": "Higgs (1964)",
   "content": [
    "dd_ar",
    "network labels",
    "Higgs photo",
    "decision tree"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
    "network labels"
   ],
@@ -852,51 +849,66 @@
  },
  {
   "n": 38,
-  "title": "One citation, a different D-index",
+  "title": "Why is the D-index so sensitive?",
   "content": [
-   "plot axes and curves",
-   "cl",
-   "ha_E",
-   "ha_H",
-   "ha_r0"
+   "sa_E",
+   "sa_H",
+   "sa_r0",
+   "sa_r0q",
+   "sa_r1"
   ],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "plot axes and curves",
-   "cl",
-   "ha_E",
-   "ha_H",
-   "ha_r0",
-   "ha_r0q",
-   "ha_r1",
-   "ha_r1q",
-   "ha_r2",
-   "ha_r2q",
-   "ha_r3",
-   "ha_red",
-   "ha_s0",
-   "ha_s1",
-   "ha_s2",
-   "ha_s3",
-   "ha_t0E",
-   "ha_t0H",
-   "ha_t1E",
-   "ha_t1H",
-   "ha_t2E",
-   "ha_t2H",
-   "ha_t3E",
-   "ha_t3H",
-   "pl_d",
-   "pl_g",
-   "pl_v",
-   "tk0",
-   "tk1",
-   "tk2",
-   "tkl0",
-   "tkl1",
-   "tkl2"
+   "sa_E",
+   "sa_H",
+   "sa_r0",
+   "sa_r0q",
+   "sa_r1",
+   "sa_r1q",
+   "sa_r2",
+   "sa_r2q",
+   "sa_r3",
+   "sa_red",
+   "sa_s0",
+   "sa_s1",
+   "sa_s2",
+   "sa_s3",
+   "sa_t0E",
+   "sa_t0H",
+   "sa_t1E",
+   "sa_t1H",
+   "sa_t2E",
+   "sa_t2H",
+   "sa_t3E",
+   "sa_t3H",
+   "sb_E",
+   "sb_H",
+   "sb_ghost",
+   "sb_r0",
+   "sb_r0q",
+   "sb_r1",
+   "sb_r1q",
+   "sb_r2",
+   "sb_r2q",
+   "sb_r3",
+   "sb_s0",
+   "sb_s1",
+   "sb_s2",
+   "sb_s3",
+   "sb_t0E",
+   "sb_t0H",
+   "sb_t1E",
+   "sb_t1H",
+   "sb_t2E",
+   "sb_t2H",
+   "sb_t3E",
+   "sb_t3H",
+   "sca",
+   "scb",
+   "sva",
+   "svb"
   ],
   "vanish": [
    "dd_ar",
@@ -910,78 +922,140 @@
  },
  {
   "n": 39,
-  "title": "One citation, a different D-index",
+  "title": "D-index sorts the citing papers",
   "content": [
-   "plot axes and curves",
-   "cl",
-   "cr",
-   "hb_E",
-   "hb_H"
+   "citation diagram",
+   "decision tree"
   ],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "cr",
-   "hb_E",
-   "hb_H",
-   "hb_ghost",
-   "hb_r0",
-   "hb_r0q",
-   "hb_r1",
-   "hb_r1q",
-   "hb_r2",
-   "hb_r2q",
-   "hb_r3",
-   "hb_s0",
-   "hb_s1",
-   "hb_s2",
-   "hb_s3",
-   "hb_t0E",
-   "hb_t0H",
-   "hb_t1E",
-   "hb_t1H",
-   "hb_t2E",
-   "hb_t2H",
-   "hb_t3E",
-   "hb_t3H",
-   "hb_x",
-   "jmp",
-   "jt",
-   "pr_d",
-   "pr_g",
-   "pr_v"
+   "citation diagram",
+   "decision tree"
   ],
   "vanish": [
-   "ha_E",
-   "ha_H",
-   "ha_r0",
-   "ha_r0q",
-   "ha_r1",
-   "ha_r1q",
-   "ha_r2",
-   "ha_r2q",
-   "ha_r3",
-   "ha_red",
-   "ha_s0",
-   "ha_s1",
-   "ha_s2",
-   "ha_s3",
-   "ha_t0E",
-   "ha_t0H",
-   "ha_t1E",
-   "ha_t1H",
-   "ha_t2E",
-   "ha_t2H",
-   "ha_t3E",
-   "ha_t3H"
+   "sa_E",
+   "sa_H",
+   "sa_r0",
+   "sa_r0q",
+   "sa_r1",
+   "sa_r1q",
+   "sa_r2",
+   "sa_r2q",
+   "sa_r3",
+   "sa_red",
+   "sa_s0",
+   "sa_s1",
+   "sa_s2",
+   "sa_s3",
+   "sa_t0E",
+   "sa_t0H",
+   "sa_t1E",
+   "sa_t1H",
+   "sa_t2E",
+   "sa_t2H",
+   "sa_t3E",
+   "sa_t3H",
+   "sb_E",
+   "sb_H",
+   "sb_ghost",
+   "sb_r0",
+   "sb_r0q",
+   "sb_r1",
+   "sb_r1q",
+   "sb_r2",
+   "sb_r2q",
+   "sb_r3",
+   "sb_s0",
+   "sb_s1",
+   "sb_s2",
+   "sb_s3",
+   "sb_t0E",
+   "sb_t0H",
+   "sb_t1E",
+   "sb_t1H",
+   "sb_t2E",
+   "sb_t2H",
+   "sb_t3E",
+   "sb_t3H",
+   "sca",
+   "scb",
+   "sva",
+   "svb"
   ],
-  "grows": true,
+  "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
   "n": 40,
+  "title": "But papers do not sort so cleanly",
+  "content": [
+   "era labels and notes",
+   "citation diagram",
+   "decision tree"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "citation diagram",
+   "decision tree"
+  ],
+  "n_moving": 9,
+  "appear": [
+   "era labels and notes"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 41,
+  "title": "Stop sorting. Let the colours mix.",
+  "content": [
+   "glow",
+   "citation diagram"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "citation diagram"
+  ],
+  "n_moving": 21,
+  "appear": [
+   "glow"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "citation diagram",
+   "decision tree"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 42,
+  "title": "The mixture spreads",
+  "content": [
+   "glow",
+   "citation diagram"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "glow"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "citation diagram"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 43,
   "title": "We preserve continuity by abandoning class rounding.",
   "content": [],
   "layout": "L-f",
@@ -989,153 +1063,8 @@
   "n_moving": 0,
   "appear": [],
   "vanish": [
-   "plot axes and curves",
-   "cl",
-   "cr",
-   "hb_E",
-   "hb_H",
-   "hb_ghost",
-   "hb_r0",
-   "hb_r0q",
-   "hb_r1",
-   "hb_r1q",
-   "hb_r2",
-   "hb_r2q",
-   "hb_r3",
-   "hb_s0",
-   "hb_s1",
-   "hb_s2",
-   "hb_s3",
-   "hb_t0E",
-   "hb_t0H",
-   "hb_t1E",
-   "hb_t1H",
-   "hb_t2E",
-   "hb_t2H",
-   "hb_t3E",
-   "hb_t3H",
-   "hb_x",
-   "jmp",
-   "jt",
-   "pl_d",
-   "pl_g",
-   "pl_v",
-   "pr_d",
-   "pr_g",
-   "pr_v",
-   "tk0",
-   "tk1",
-   "tk2",
-   "tkl0",
-   "tkl1",
-   "tkl2"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 41,
-  "title": "D-index sees only close neighbours",
-  "content": [
-   "focal",
-   "l1",
-   "l2",
-   "r1e0",
-   "r1e1"
-  ],
-  "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "focal",
-   "l1",
-   "l2",
-   "r1e0",
-   "r1e1",
-   "r1e2",
-   "r1e3",
-   "r1e4",
-   "r1e5",
-   "r1s0",
-   "r1s1",
-   "r1s2",
-   "r1s3",
-   "r1s4",
-   "r1s5",
-   "r2e0",
-   "r2e1",
-   "r2e10",
-   "r2e11",
-   "r2e2",
-   "r2e3",
-   "r2e4",
-   "r2e5",
-   "r2e6",
-   "r2e7",
-   "r2e8",
-   "r2e9",
-   "r2s0",
-   "r2s1",
-   "r2s10",
-   "r2s11",
-   "r2s2",
-   "r2s3",
-   "r2s4",
-   "r2s5",
-   "r2s6",
-   "r2s7",
-   "r2s8",
-   "r2s9"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 42,
-  "title": "D-index sees only close neighbours",
-  "content": [
-   "era labels and notes",
-   "focal",
-   "l1",
-   "l2",
-   "nn0"
-  ],
-  "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "nn0",
-   "nn2",
-   "nn3",
-   "nn5"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 43,
-  "title": "D-index sees only close neighbours",
-  "content": [
-   "focal",
-   "l1",
-   "l2",
-   "nn0",
-   "nn2"
-  ],
-  "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "range"
-  ],
-  "vanish": [
-   "era labels and notes"
+   "glow",
+   "citation diagram"
   ],
   "grows": false,
   "fragments": 0,
@@ -1143,53 +1072,6 @@
  },
  {
   "n": 44,
-  "title": "Look wider",
-  "content": [
-   "focal",
-   "l1",
-   "l2",
-   "nn0",
-   "nn2"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "l1",
-   "l2",
-   "r2e0",
-   "r2e1",
-   "r2e10",
-   "r2e11",
-   "r2e2",
-   "r2e3",
-   "r2e4",
-   "r2e5",
-   "r2e6",
-   "r2e7",
-   "r2e8",
-   "r2e9",
-   "r2s0",
-   "r2s1",
-   "r2s10",
-   "r2s11",
-   "r2s2",
-   "r2s3",
-   "r2s4",
-   "r2s5",
-   "r2s6",
-   "r2s7",
-   "r2s8",
-   "r2s9",
-   "range"
-  ],
-  "n_moving": 27,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 45,
   "title": "Simulate the flow of knowledge with random walks",
   "content": [
    "rwtitle",
@@ -1202,58 +1084,13 @@
    "rwtitle",
    "random-walk tree"
   ],
-  "vanish": [
-   "focal",
-   "l1",
-   "l2",
-   "nn0",
-   "nn2",
-   "nn3",
-   "nn5",
-   "r1e0",
-   "r1e1",
-   "r1e2",
-   "r1e3",
-   "r1e4",
-   "r1e5",
-   "r1s0",
-   "r1s1",
-   "r1s2",
-   "r1s3",
-   "r1s4",
-   "r1s5",
-   "r2e0",
-   "r2e1",
-   "r2e10",
-   "r2e11",
-   "r2e2",
-   "r2e3",
-   "r2e4",
-   "r2e5",
-   "r2e6",
-   "r2e7",
-   "r2e8",
-   "r2e9",
-   "r2s0",
-   "r2s1",
-   "r2s10",
-   "r2s11",
-   "r2s2",
-   "r2s3",
-   "r2s4",
-   "r2s5",
-   "r2s6",
-   "r2s7",
-   "r2s8",
-   "r2s9",
-   "range"
-  ],
+  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 46,
+  "n": 45,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1274,7 +1111,7 @@
   "transition": "cut"
  },
  {
-  "n": 47,
+  "n": 46,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1293,158 +1130,7 @@
   "transition": "magic move"
  },
  {
-  "n": 48,
-  "title": "Random walks",
-  "content": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "random-walk tree"
-  ],
-  "n_moving": 1,
-  "appear": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 49,
-  "title": "Random walks",
-  "content": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "arcl1",
-   "arcl2",
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 7,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 50,
-  "title": "Random walks",
-  "content": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "arcl1",
-   "arcl2",
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 6,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 51,
-  "title": "Random walks",
-  "content": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 52,
-  "title": "Random walks",
-  "content": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "training pairs",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "arcl1",
-   "arcl2",
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 6,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 53,
-  "title": "(ancestor, descendant)",
-  "content": [
-   "list heading and notes",
-   "training pairs",
-   "window and labels"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 9,
-  "appear": [
-   "list heading and notes"
-  ],
-  "vanish": [
-   "arcl1",
-   "arcl2",
-   "window and labels",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 54,
+  "n": 47,
   "title": "word2vec turns pairs into coordinates",
   "content": [
    "ia1",
@@ -1478,16 +1164,15 @@
    "sy"
   ],
   "vanish": [
-   "list heading and notes",
-   "training pairs",
-   "window and labels"
+   "random-walk tree",
+   "sequence discs"
   ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 55,
+  "n": 48,
   "title": "How word2vec works",
   "content": [
    "sentence and word labels",
@@ -1526,7 +1211,7 @@
   "transition": "cut"
  },
  {
-  "n": 56,
+  "n": 49,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "neural network drawing",
@@ -1546,7 +1231,7 @@
   "transition": "cut"
  },
  {
-  "n": 57,
+  "n": 50,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -1564,7 +1249,7 @@
   "transition": "cut"
  },
  {
-  "n": 58,
+  "n": 51,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -1582,7 +1267,7 @@
   "transition": "cut"
  },
  {
-  "n": 59,
+  "n": 52,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -1600,7 +1285,7 @@
   "transition": "cut"
  },
  {
-  "n": 60,
+  "n": 53,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -1619,7 +1304,7 @@
   "transition": "cut"
  },
  {
-  "n": 61,
+  "n": 54,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "query and key vectors",
@@ -1638,7 +1323,7 @@
   "transition": "cut"
  },
  {
-  "n": 62,
+  "n": 55,
   "title": "A word has two vectors",
   "content": [
    "query and key vectors",
@@ -1663,7 +1348,7 @@
   "transition": "magic move"
  },
  {
-  "n": 63,
+  "n": 56,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1690,7 +1375,7 @@
   "transition": "magic move"
  },
  {
-  "n": 64,
+  "n": 57,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1712,7 +1397,7 @@
   "transition": "magic move"
  },
  {
-  "n": 65,
+  "n": 58,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1734,7 +1419,7 @@
   "transition": "magic move"
  },
  {
-  "n": 66,
+  "n": 59,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1755,7 +1440,7 @@
   "transition": "cut"
  },
  {
-  "n": 67,
+  "n": 60,
   "title": "query",
   "content": [
    "r1k",
@@ -1799,7 +1484,7 @@
   "transition": "cut"
  },
  {
-  "n": 68,
+  "n": 61,
   "title": "query",
   "content": [
    "lg1",
@@ -1823,7 +1508,7 @@
   "transition": "cut"
  },
  {
-  "n": 69,
+  "n": 62,
   "title": "word2vec turns pairs into coordinates",
   "content": [
    "ia1",
@@ -1885,27 +1570,25 @@
   "transition": "cut"
  },
  {
-  "n": 70,
-  "title": "Simple linear algebra measures relations",
+  "n": 63,
+  "title": "Random walks",
   "content": [
-   "la_k",
-   "la_kl",
-   "la_m",
-   "la_q",
-   "la_ql"
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "la_k",
-   "la_kl",
-   "la_m",
-   "la_q",
-   "la_ql",
-   "la_t",
-   "la_x",
-   "la_y"
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
   ],
   "vanish": [
    "ia1",
@@ -1933,7 +1616,132 @@
   "transition": "cut"
  },
  {
-  "n": 71,
+  "n": 64,
+  "title": "Random walks",
+  "content": [
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "arcl1",
+   "arcl2",
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 7,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 65,
+  "title": "Random walks",
+  "content": [
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "arcl1",
+   "arcl2",
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 6,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 66,
+  "title": "Random walks",
+  "content": [
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 67,
+  "title": "Random walks",
+  "content": [
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "training pairs",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "arcl1",
+   "arcl2",
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 6,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 68,
+  "title": "(ancestor, descendant)",
+  "content": [
+   "list heading and notes",
+   "training pairs",
+   "window and labels"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 9,
+  "appear": [
+   "list heading and notes"
+  ],
+  "vanish": [
+   "arcl1",
+   "arcl2",
+   "window and labels",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 69,
   "title": "Now, let’s look at one paper closely.",
   "content": [],
   "layout": "L-f",
@@ -1941,21 +1749,16 @@
   "n_moving": 0,
   "appear": [],
   "vanish": [
-   "la_k",
-   "la_kl",
-   "la_m",
-   "la_q",
-   "la_ql",
-   "la_t",
-   "la_x",
-   "la_y"
+   "list heading and notes",
+   "training pairs",
+   "window and labels"
   ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 70,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1976,7 +1779,7 @@
   "transition": "cut"
  },
  {
-  "n": 73,
+  "n": 71,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -2006,7 +1809,7 @@
   "transition": "magic move"
  },
  {
-  "n": 74,
+  "n": 72,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -2029,7 +1832,7 @@
   "transition": "cut"
  },
  {
-  "n": 75,
+  "n": 73,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -2054,7 +1857,7 @@
   "transition": "magic move"
  },
  {
-  "n": 76,
+  "n": 74,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -2083,7 +1886,7 @@
   "transition": "magic move"
  },
  {
-  "n": 77,
+  "n": 75,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -2132,7 +1935,7 @@
   "transition": "magic move"
  },
  {
-  "n": 78,
+  "n": 76,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -2179,7 +1982,7 @@
   "transition": "cut"
  },
  {
-  "n": 79,
+  "n": 77,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -2205,7 +2008,7 @@
   "transition": "cut"
  },
  {
-  "n": 80,
+  "n": 78,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -2258,7 +2061,7 @@
   "transition": "cut"
  },
  {
-  "n": 81,
+  "n": 79,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -2306,7 +2109,7 @@
   "transition": "cut"
  },
  {
-  "n": 82,
+  "n": 80,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2326,7 +2129,7 @@
   "transition": "cut"
  },
  {
-  "n": 83,
+  "n": 81,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2348,7 +2151,7 @@
   "transition": "cut"
  },
  {
-  "n": 84,
+  "n": 82,
   "title": "D-index",
   "content": [
    "hd",
@@ -2377,7 +2180,7 @@
   "transition": "magic move"
  },
  {
-  "n": 85,
+  "n": 83,
   "title": "D-index",
   "content": [
    "b1",
@@ -2399,7 +2202,7 @@
   "transition": "cut"
  },
  {
-  "n": 86,
+  "n": 84,
   "title": "D-index",
   "content": [
    "b1",
@@ -2421,7 +2224,7 @@
   "transition": "cut"
  },
  {
-  "n": 87,
+  "n": 85,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -2458,7 +2261,7 @@
   "transition": "cut"
  },
  {
-  "n": 88,
+  "n": 86,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -2480,7 +2283,7 @@
   "transition": "cut"
  },
  {
-  "n": 89,
+  "n": 87,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2501,7 +2304,7 @@
   "transition": "cut"
  },
  {
-  "n": 90,
+  "n": 88,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2523,7 +2326,7 @@
   "transition": "cut"
  },
  {
-  "n": 91,
+  "n": 89,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2546,7 +2349,7 @@
   "transition": "cut"
  },
  {
-  "n": 92,
+  "n": 90,
   "title": "Science Advances",
   "content": [
    "contact and paper"

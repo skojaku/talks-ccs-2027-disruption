@@ -63,10 +63,10 @@ def walk_state(w, cur_pairs=True, list_upto=None):
     left, right = SEQ_X[w] - 78, SEQ_X[w + 2] + 66
     o.append(box("win", left, 242, right - left, 110, "", "", f"border:4px solid {HOT};"))
     c0, c1, c2 = SEQ_X[w], SEQ_X[w + 1], SEQ_X[w + 2]
-    o.append(overlay_svg("arcs", [curved_arrow(c0 * S, 238 * S, (c1 - 22) * S, 212 * S, -0.6, INK, 4, 18),
-                                   curved_arrow(c0 * S, 358 * S, (c2 - 8) * S, 360 * S, 0.45, INK, 4, 18)]))
-    o.append(text("arcl1", ARC_L[0], clamp((c0 + c1) / 2, ARC_L[1]), 122, 36, "", INK, w=ARC_L[1]))
-    o.append(text("arcl2", ARC_LL[0], clamp((c0 + c2) / 2, ARC_LL[1]), 492, 36, "", INK, w=ARC_LL[1]))
+    o.append(overlay_svg("arcs", [curved_arrow(c0 * S, 238 * S, (c1 - 22) * S, 212 * S, -0.6, MUTED, 4, 18),
+                                   curved_arrow(c0 * S, 358 * S, (c2 - 8) * S, 360 * S, 0.45, MUTED, 4, 18)]))
+    o.append(text("arcl1", ARC_L[0], clamp((c0 + c1) / 2, ARC_L[1]), 122, 36, "", MUTED, w=ARC_L[1]))
+    o.append(text("arcl2", ARC_LL[0], clamp((c0 + c2) / 2, ARC_LL[1]), 492, 36, "", MUTED, w=ARC_LL[1]))
     cx = (left + right) / 2 + 30
     o.append(text("qk", "(ancestor, descendant)", clamp(cx, 640), 625 + 3 * w, 36, "", INK, w=640))
     if w == 0:
@@ -136,35 +136,38 @@ def aro(name, p, q, color, dashed=False, w=5):
     return line(name, p[0], p[1], q[0], q[1], color, w, True, dashed, 22 if w >= 5 else 15)
 
 
-def build_a(add):
-    # ---- 55-56  the tree of random walks ----------------------------------------------------------------------------------
-    DX = 630                                             # the tree sits mid-slide until the sequence needs the room
-    pts = [(470, 55), (465, 150), (380, 260), (285, 330), (300, 440), (420, 540), (430, 640), (350, 760), (310, 850), (345, 965)]
+DX = 630                                             # the tree sits mid-slide until the sequence needs the room
+PTS = [(470, 55), (465, 150), (380, 260), (285, 330), (300, 440), (420, 540), (430, 640), (350, 760), (310, 850), (345, 965)]
 
-    def brush(dx=0):
-        return overlay_svg("wbrush", [brush_path([((x + dx) * S, y * S) for x, y in pts], GOLD, 14, 0.95)
-                                      + f'<path class="ahead" d="M{(262 + dx) * S:.1f},{925 * S:.1f} L{(345 + dx) * S:.1f},{972 * S:.1f} L{(358 + dx) * S:.1f},{880 * S:.1f}" fill="none" '
-                                        f'stroke="{GOLD}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>'])
 
-    rwt = lambda dx=0, col=INK: text("rw", "Random<br>walks", 215 + dx, 230, 52, "", col, w=520, h=200, style="transform:rotate(-34deg);")
-    onwalk = lambda dx=0: [disc(f"s{k}", TREE_POS[WALK[k]][0] + dx, TREE_POS[WALK[k]][1], 80, SEQ[k], RING, 3.5) for k in range(6)]
+def brush(dx=0):
+    return overlay_svg("wbrush", [brush_path([((x + dx) * S, y * S) for x, y in PTS], GOLD, 14, 0.95)
+                                  + f'<path class="ahead" d="M{(262 + dx) * S:.1f},{925 * S:.1f} L{(345 + dx) * S:.1f},{972 * S:.1f} L{(358 + dx) * S:.1f},{880 * S:.1f}" fill="none" '
+                                    f'stroke="{GOLD}" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>'])
+
+
+rwt = lambda dx=0, col=INK: text("rw", "Random<br>walks", 215 + dx, 230, 52, "", col, w=520, h=200, style="transform:rotate(-34deg);")
+onwalk = lambda dx=0: [disc(f"s{k}", TREE_POS[WALK[k]][0] + dx, TREE_POS[WALK[k]][1], 80, SEQ[k], RING, 3.5) for k in range(6)]
+
+
+def build_a1(add):
+    # ---- the tree of random walks, the walk, and the sequence it gives ------------------------------------------------------------
     add(stage(*walk_tree(DX), text("rwtitle", "Simulate the flow<br>of knowledge<br>with random walks", 40, 480, 44, "", INK, weight=700, w=900, h=330, align="left")), cls="L-g", header="")
     add(stage(*walk_tree(DX), brush(DX), rwt(DX), *onwalk(DX)), cls="L-g")
-
-    # ---- 57-61  the window slides along the walk and collects training pairs --------------------------------------------
-    # the tree is drawn muted once the sequence leaves it
     seq0 = [disc(f"s{k}", SEQ_X[k], 295, 80, SEQ[k], RING, 3.5) for k in range(6)]
     add(stage(*walk_tree(), brush(), rwt(), *seq0), cls="L-g")
+
+
+def build_a2(add):
+    # ---- the window slides along the sequence and collects pairs (the tree is muted once the sequence has left it) ----------------
     TREE_ONLY = lambda: [*walk_tree(), brush(), rwt(0, MUTED)]
     add(stage(*TREE_ONLY(), *walk_state(0)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(1)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(2, cur_pairs=False)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(2)), cls="L-g")
     add(stage(*TREE_ONLY(), *walk_state(3)), cls="L-g")
-
-    # ---- 62  all the pairs --------------------------------------------------------------------------------------------------
+    # ---- all the pairs -----------------------------------------------------------------------------------------------------------
     add(stage(*big_list()), cls="L-g")
-
 
 
 def focus(add):
@@ -243,6 +246,7 @@ def build_b(add):
 
 
 def build(add):
-    build_a(add)
+    build_a1(add)
+    build_a2(add)
     focus(add)
     build_b(add)

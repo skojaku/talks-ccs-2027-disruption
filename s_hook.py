@@ -117,21 +117,19 @@ def build(add):
              (840, 975, 870, 895, 0.25)),
             ("Smart phone", 1250, 480, ("phone", "assets/phone.png", 1246, 735, 198, 380), ("super cool!", 1210, 1015),
              (1237, 985, 1237, 937, 0)),
-            ("Smart glass", 1735, 480, ("glasses", "assets/glasses.jpg", 1560, 725, 290, 277),
-             ("Goes against<br>natural order", 1735, 1000), None),
+            ("Smart glass", 1735, 480, ("visor", "assets/bttf2_phone.jpg", 1735, 725, 330, None),
+             ("Goes against<br>natural order", 1735, 1035), None),
         ]
         for i in range(k):
             lab, lx, ly, im, (atxt, ax, ay), arrow = cols[i]
             fade = "opacity:.3;" if i < k - 1 else ""        # the past stays, faded
             o.append(text(f"era{i}", lab, lx, ly, 32, "", MUTED, w=520, style="font-style:italic;" + fade))
             nm, src, cx, cy, w, *hh = im
-            o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "glasses" else "", fade))
+            o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "visor" else "", fade))
             o.append(text(f"as{i}", atxt, ax, ay, 34, "aside", w=700, h=160 if "<br>" in atxt else 110, style=fade))
             if arrow:
                 x1, y1, x2, y2, bend = arrow
                 o.append(overlay_svg(f"ar{i}", [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, MUTED, 2.4, 14)], style=fade))
-            else:
-                o.append(img("visor", "assets/bttf2_phone.jpg", 1860, 735, 245, None, "ph"))      # the still from the opening, back again
         return o
 
     for k in (0, 1, 2, 3, 4):

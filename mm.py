@@ -94,7 +94,7 @@ def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="ce
 
 def _gr(fill):
     """Coloured and grey fills get the pencil grain; white paper does not."""
-    return "" if str(fill).lower() in ("#fff", "#ffffff", "white", "none") else "gr "
+    return "" if (str(fill).lower() in ("#fff", "#ffffff", "white", "none") or "gradient" in str(fill)) else "gr "
 
 
 def disc(name, cx, cy, d, fill="#fff", ring=INK, rw=2.5, dashed=False, opacity=1.0, inner="", cls=""):
