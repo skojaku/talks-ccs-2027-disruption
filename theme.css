@@ -1066,3 +1066,15 @@ section .vec::after {
 }
 /* slide 2: the paper this talk is about */
 section.paperopen h2 { font-size: 40px; max-width: 1120px; }
+
+/* decision-tree boxes: "cite" followed by a small diamond / square icon */
+section .o.tb {
+  display: flex; align-items: center; justify-content: center; gap: 0.28em; white-space: nowrap;
+  background: #F6F7FC; border: 2px solid #2F6FB4; line-height: 1;
+}
+section .ic { display: inline-block; width: 0.62em; height: 0.62em; background: #C9C3BE; vertical-align: middle; }
+section .ic.dm { background: #2F6FB4; transform: rotate(45deg) scale(0.9); margin: 0 0.1em; }
+section .ic.eg { background: #5E5A57; transform: rotate(45deg) scale(0.9); margin: 0 0.1em; }
+section .ic.fa { background: #F6F7FC; border: 2px solid #2F6FB4; }
+section .amp { color: #D9631E; font-weight: 700; margin: 0 0.1em; }
+section .o.tri { width: 0; height: 0; }

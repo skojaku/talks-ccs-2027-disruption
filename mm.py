@@ -224,3 +224,15 @@ def stage(*objs):
 
 def h2(html, name=None, style=""):
     return f'<h2 style="{_reg(name)}{style}">{html}</h2>'
+
+
+def tri(name, cx, cy, w, h, color):
+    """An upward triangle (the fulcrum of the seesaw), centred on (cx, cy)."""
+    W, H = w * S, h * S
+    return (f'<div class="o tri" style="left:{cx * S - W / 2:.2f}px;top:{cy * S - H / 2:.2f}px;width:0;height:0;'
+            f'border-left:{W / 2:.2f}px solid transparent;border-right:{W / 2:.2f}px solid transparent;'
+            f'border-bottom:{H:.2f}px solid {color};{_reg(name)}"></div>')
+
+
+LAV = "#8E97C4"          # the faint blue-grey of the tree arrows and the citing arrows in the Higgs network
+GRAYC = "#5E5A57"        # a dark grey: "cites only the references" / the second diamond
