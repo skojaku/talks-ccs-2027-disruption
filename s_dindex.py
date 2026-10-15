@@ -1,4 +1,4 @@
-"""Slides 21-35: the disruption index, its failure on the Higgs paper, and what rounding does."""
+"""Slides 18-34: the disruption index, its failure on the Higgs paper, and why a one-citation change flips it."""
 from mm import *  # noqa: F401,F403
 import mm
 
@@ -108,7 +108,7 @@ def tree(pre, ox, oy, k, mode, boxes, squares, captions=False, labels=True):
         cx, cy = P(bx + dx, by + dy)
         out.append(sq(f"{pre}_{nm}", cx, cy, (50 if mode == "concept" else 40) * k, fill, ring, 2))
     if captions:
-        for i, (t, (dx, dy)) in enumerate(zip(["citing focal<br>& its refs", "citing<br>the focal", "citing its<br>refs but<br>focal"],
+        for i, (t, (dx, dy)) in enumerate(zip(["citing focal<br>& its refs", "citing<br>the focal", "citing its<br>refs only"],
                                               [(-451, 587), (-54, 577), (284, 597)])):
             cx, cy = P(dx, dy)
             out.append(text(f"{pre}_c{i}", t, cx, cy, 30 * k, "", TINT[i][1], w=380, h=170))
@@ -153,207 +153,231 @@ def higgs_net(red=True):
     return o
 
 
+BASE_TOPS = [(462, 330), (603, 328), (745, 326), (904, 326)]
+BASE_H, BASE_E = (534, 588), (822, 590)
+BASE_REFS = [(506, 860), (660, 797), (850, 863)]
+
+
+def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None):
+    """The Higgs / Englert-Brout citation network, drawn at scale k around (cx, cy)."""
+    Pt = lambda p: (cx + (p[0] - 680) * k, cy + (p[1] - 590) * k)
+    tops = [Pt(p) for p in BASE_TOPS]
+    H_, E_ = Pt(BASE_H), Pt(BASE_E)
+    refs = [Pt(p) for p in BASE_REFS]
+    w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 75 * k, 68 * k
+    o = []
+    for i, t in enumerate(tops):
+        o.append(edge(f"{pre}_t{i}H", t, H_, sqs * .55, ds * .8, MUTED, w, hs))
+        o.append(edge(f"{pre}_t{i}E", t, E_, sqs * .55, ds * .8, MUTED, w, hs))
+    for i, (src, dst) in enumerate([(H_, refs[0]), (H_, refs[1]), (E_, refs[1]), (E_, refs[2])]):
+        o.append(edge(f"{pre}_r{i}", src, dst, ds * .8, sqs * .55, MUTED, w, hs))
+    for i, t in enumerate(tops):
+        o.append(sq(f"{pre}_s{i}", *t, sqs, "#FFFFFF", DEEP, 2))
+    for i, r in enumerate(refs):
+        o.append(sq(f"{pre}_r{i}q", *r, sqs * .96, FAINT))
+    o.append(dia(f"{pre}_H", *H_, ds, DEEP))
+    o.append(dia(f"{pre}_E", *E_, ds, GRAYC))
+    x1, y1, x2, y2 = trim(*H_, *E_, ds * .85, ds * .85)
+    if red:
+        o.append(line(f"{pre}_red", x1, y1, x2, y2, HOT, 7 * k ** .5, True, False, 22 * k ** .5))
+    if ghost:
+        o.append(line(f"{pre}_ghost", x1, y1, x2, y2, MUTED, 5 * k ** .5, True, True, 18 * k ** .5))
+        o.append(text(f"{pre}_x", "×", (x1 + x2) / 2, y1 - 52 * k, 80 * k ** .5, "", HOT, weight=700, w=200))
+    return o, H_, E_
+
+
+def hlabels(H_, E_, k, pre="hl"):
+    return [text(f"{pre}1", "Higgs<br>(1964)", H_[0] - 55 * k - 95, H_[1], 36, "", INK, weight=700, w=190, h=130, align="center"),
+            text(f"{pre}2", "Englert &amp; Brout<br>(1964)", E_[0] + 60 * k, E_[1], 36, "", GRAYC, weight=700, w=500, h=130, align="left")]
+
+
+CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
+
+
+def htree(ox, oy, k, boxes, squares, prefix="t"):
+    t = tree(prefix, ox, oy, k, "higgs", boxes, squares)
+    for i, (bx, by) in enumerate(TREE["higgs"]["buckets"]):
+        t.append(text(f"{prefix}_c{i}", CAP[i], ox + k * bx, oy + k * (by + 135), 36, "", TINT[i][1], w=380, h=140))
+    return t
+
+
+SQ4 = lambda b, pos: [(f"s{i}", b, dx, dy, "#FFFFFF", DEEP) for i, (dx, dy) in enumerate(pos)]
+POS_HOT = [(-27, -42), (27, -36), (-25, 14), (26, 22)]
+POS_COOL = [(-27, -46), (27, -40), (-25, 10), (26, 18)]
+
+
 def build(add):
-    HD = "Disruption index (Funk and Owen-Smith 2017)"
+    # ---- 18  based on citation networks (the source in grey) ----------------------------------------------------------------------
+    add(h2('Based on citation networks <span class="gpar">(Funk &amp; Owen-Smith 2017)</span>') + stage(
+        *diagram("dev", "dev", 600, 600, 1.4), *diagram("dis", "dis", 1400, 610, 1.4),
+        text("tdev", "developing", 600, 262, 40, "", MUTED, w=600), text("tdis", "disruptive", 1400, 272, 40, "", MUTED, w=600),
+        text("dv1", "D=−1", 600, 1000, 52, weight=700, w=400), text("dv2", "D=1", 1400, 1000, 52, weight=700, w=400)),
+        cls="L-b")
 
-    # ---- 21  based on citation networks ------------------------------------------------------------------------
-    add(h2("Based on citation networks") + stage(
-        *diagram("dev", "dev", 600, 640, 1.4), *diagram("dis", "dis", 1400, 650, 1.4),
-        text("tdev", "developing", 600, 305, 36, "", MUTED, w=600), text("tdis", "disruptive", 1400, 315, 36, "", MUTED, w=600),
-        text("dv1", "D=−1", 600, 1030, 48, weight=700, w=400), text("dv2", "D=1", 1400, 1030, 48, weight=700, w=400)),
-        cls="L-b", header=HD)
-
-    # ---- 22  the two ends of a scale, and a mixed case between them ----------------------------------------------
+    # ---- 19  the two ends of a scale, and a mixed case between them ------------------------------------------------------------------
     add(stage(
         *diagram("dev", "dev", 275, 465, 0.74), *diagram("dis", "dis", 1778, 470, 0.74),
         *diagram("mix", "mix", 1078, 881, 0.77, labels=True),
-        text("tdev", "developing", 295, 218, 30, "", MUTED, w=600), text("tdis", "disruptive", 1782, 213, 30, "", MUTED, w=600),
-        text("dv1", "D=−1", 245, 700, 40, weight=700, w=400), text("dv2", "D=1", 1782, 695, 40, weight=700, w=400),
+        text("tdev", "developing", 295, 218, 36, "", MUTED, w=600), text("tdis", "disruptive", 1782, 213, 36, "", MUTED, w=600),
+        text("dv1", "D=−1", 245, 700, 44, weight=700, w=400), text("dv2", "D=1", 1782, 695, 44, weight=700, w=400),
         line("see_l", 1020, 481, 470, 481, LAV, 5, True, False, 22),
         line("see_r", 1020, 483, 1585, 483, LAV, 5, True, False, 22),
-        tri("fulcrum", 1057, 523, 64, 70, DEEP)), cls="L-g", header=HD)
+        tri("fulcrum", 1057, 523, 64, 70, DEEP)), cls="L-g")
 
-    # ---- 23  the mixed case is read by a decision tree ----------------------------------------------------------------
+    # ---- 20  the mixed case is read by a decision tree -------------------------------------------------------------------------------
     add(stage(
         *diagram("mix", "mix", 472, 594, 1.0, labels=True),
         *tree("t", 1466, 243, 1.0, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, captions=True)),
-        cls="L-g", header=HD)
+        cls="L-g")
 
-    # ---- 24  ... and counted ---------------------------------------------------------------------------------------------
+    # ---- 21  ... and counted: the figure stays at full strength, small, on the left; the formula comes next to it ----------------
     fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#3959A6}{n_i}-\\textcolor{#B14434}{n_j}}"
           "{\\textcolor{#3959A6}{n_i}+\\textcolor{#B14434}{n_j}+\\textcolor{#4d4d4d}{n_k}}$$")
+    CX = 1110
     add(stage(
-        *fade(diagram("mix", "mix", 270, 600, 0.6, labels=True)),
-        *fade(tree("t", 740, 420, 0.6, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, labels=False)),
-        box("fcard", 1150, 387, 835, 408, "", "", f"background:#F7F4F1;"),
-        mathbox("fml", 1150, 400, 835, 300, fm, 54),
-        line("fu1", 1432, 672, 1512, 672, COOL, 3, False), line("fu2", 1652, 672, 1732, 672, HOT, 3, False),
-        line("fu3", 1860, 672, 1940, 672, GRAYC, 3, False),
-        sq("fk1", 1472, 722, 40, COOL), sq("fk2", 1692, 722, 40, HOT), sq("fk3", 1900, 722, 40, GRAYC),
-        text("counts", "counts", 1560, 845, 34, "aside", w=400),
-        overlay_svg("counts_ar", [curved_arrow(1640 * S, 820 * S, 1695 * S, 775 * S, -0.3, MUTED, 2.4, 14)])),
-        cls="L-g", header=HD)
+        *diagram("mix", "mix", 250, 660, 0.75, labels=True),
+        *tree("t", 800, 450, 0.75, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, labels=False),
+        box("fcard", CX, 330, 850, 570, "", "", "background:#F7F4F1;"),
+        mathbox("fml", CX, 350, 850, 300, fm, 56),
+        line("fu1", CX + 262, 672, CX + 342, 672, COOL, 3, False), line("fu2", CX + 482, 672, CX + 562, 672, HOT, 3, False),
+        line("fu3", CX + 690, 672, CX + 770, 672, GRAYC, 3, False),
+        sq("fk1", CX + 302, 730, 40, COOL), sq("fk2", CX + 522, 730, 40, HOT), sq("fk3", CX + 730, 730, 40, GRAYC),
+        text("fx1", "focal<br>only", CX + 302, 845, 36, "", MUTED, w=230, h=130),
+        text("fx2", "focal<br>+ refs", CX + 522, 845, 36, "", MUTED, w=230, h=130),
+        text("fx3", "refs<br>only", CX + 730, 845, 36, "", MUTED, w=230, h=130)),
+        cls="L-g")
 
-    # ---- 25  trends found with the D-index ----------------------------------------------------------------------------------
-    pap = lambda: [img("p_team", "assets/paper_team.png", 372, 372, 540, None, "ph"),
-                   img("p_trend", "assets/paper_trend.png", 987, 372, 540, None, "ph"),
-                   img("p_remote", "assets/paper_remote.png", 1604, 372, 540, 540 / mm.aspect("assets/paper_remote.png"), "ph"),
-                   text("c_team", "Team size", 372, 760, 30, w=700),
-                   text("c_trend", "Temporal Trend", 987, 760, 30, w=700),
-                   text("c_remote", "Modes of Communication", 1604, 760, 30, w=800)]
+    # ---- 22-24  trends found with the D-index: one paper per cut, the earlier ones greyed behind --------------------------------------
+    PAP = [("p_team", "assets/paper_team_c.png", "Team size", "Large teams develop, small teams disrupt"),
+           ("p_trend", "assets/paper_trend_c.png", "Temporal trend", "Papers are becoming less disruptive over time"),
+           ("p_remote", "assets/paper_remote_c.png", "Modes of communication", "Remote collaboration: fewer breakthrough ideas")]
+    WP, XS, YP = 1240, (640, 1000, 1360), 540
+    GREY = "opacity:.38;filter:grayscale(1);"
     refl = ('<div class="ref">Wu, Wang &amp; Evans (2019) <em>Nature</em> 566. Park, Leahy &amp; Funk (2023) <em>Nature</em> 613. '
             'Lin, Frey &amp; Wu (2023) <em>Nature</em> 623.</div>')
-    add(stage(*pap()) + refl, cls="L-g", header="")
-    add(stage(*pap()) + refl + '\n\n<p class="take dark" style="padding-right:150px">BUT, the D-index <span class="hot">fails</span> for some well-known '
-        'disruptive discoveries</p>', cls="L-g")
 
-    # ---- 27-29  Englert, Brout and Higgs ----------------------------------------------------------------------------------------
-    def higgs_c(stage_html, frag=False):
-        mm._names.append("hphoto")
-        m = "*" if frag else "-"        # `*` reveals the list one item per click; the annotated steps show it whole
-        return ('<div class="cols">\n<div>\n\n' + f'{m} Discovery\n  - 1964: Englert, Brout and Higgs predict the boson\n'
-                f'{m} Recognition\n  - 2013: Nobel Prize in Physics\n\n</div>\n'
-                '<div class="fig photo" style="view-transition-name:hphoto">\n\n![](assets/higgs.jpg)\n\n</div>\n</div>\n\n'
-                + stage_html)
+    def papers(upto, ys=YP, w=WP, summary=True, front_grey=False):
+        o = []
+        for i in range(upto):
+            nm, src, cap, summ = PAP[i]
+            h = w / mm.aspect(src)
+            st = GREY if (i < upto - 1 or front_grey) else ""
+            o.append(img(nm, src, XS[i], ys, w, h, "ph", st))
+        if summary and upto:
+            o.append(text("psum", PAP[upto - 1][3], 1000, 1040, 44, "", "#8a8a8a", w=1900))
+        return o
 
-    # the photo is laid out by the C layout; PHOTO is its box on the slide (px), measured from the render
-    X0, Y0, X1, Y1 = PHOTO
+    for k in (1, 2, 3):
+        add(stage(*papers(k)) + refl, cls="L-g")
+
+    # ---- 25  ... but the D-index fails ------------------------------------------------------------------------------------------------------
+    add(h2('But the D-index <span class="hot">fails</span>', style="font-size:68px;") + '\n\n<p class="sub big">for some well-known disruptive discoveries</p>'
+        + stage(*[x for i in range(3) for x in [img(PAP[i][0], PAP[i][1], XS[i] + (i - 1) * 40, 760, 900, 900 / mm.aspect(PAP[i][1]), "ph", GREY)]]) + refl,
+        cls="L-b")
+
+    # ---- 26-28  Englert, Brout and Higgs: the photograph in the middle, the story around it -------------------------------------
+    PX, PY, PW = 1000, 570, 900                 # photo centre and width (O units); its box in px: x 400..880, y 213..553
+    px0, px1 = (PX - PW / 2) * S, (PX + PW / 2) * S
+    ph_h = PW / mm.aspect("assets/higgs.jpg")
+    py0, py1 = (PY - ph_h / 2) * S, (PY + ph_h / 2) * S
+    base = lambda: [
+        img("hphoto", "assets/higgs.jpg", PX, PY, PW, None, "ph"),
+        text("disc1", "Discovery", 1000, 100, 46, weight=700, w=1500),
+        text("disc2", "1964: Englert, Brout and Higgs predict the boson", 1000, 190, 38, w=1900),
+        text("rec1", "Recognition", 1000, 940, 46, weight=700, w=1500),
+        text("rec2", "2013: Nobel Prize in Physics", 1000, 1030, 38, w=1500)]
     ann1 = lambda: [
-        text("an1", "Englert, F.,<br>&amp; Brout, R. (1964)", (X0 + 70) / S, (Y0 - 70) / S, 30, w=620, h=130),
-        text("an1v", "D = 0.15<br>Top 2.8 %", (X1 - 70) / S, (Y0 - 62) / S, 40, color=HOT, weight=700, w=420, h=130),
-        overlay_svg("an1ar", [curved_arrow(X0 + 20, Y0 - 25, X0 + 78, Y0 + 55, 0.18, HOT, 6, 24)])]
+        text("an1", "Englert, F.,<br>&amp; Brout, R.<br>(1964)", 270, 480, 36, w=520, h=180),
+        text("an1v", "D = 0.15<br>Top 2.8 %", 270, 700, 46, color=HOT, weight=700, w=520, h=150),
+        overlay_svg("an1ar", [arrow_px(px0 - 150, 345, px0 + 60, 360, HOT, 5, 20)])]
     ann2 = lambda: [
-        text("an2", "Higgs, P.W. (1964)", (X1 - 150) / S, (Y1 + 38) / S, 30, w=800),
-        text("an2v", "D = − 0.27<br>Bottom 0.1 %", (X1 - 170) / S, (Y1 + 105) / S, 40, color=COOL, weight=700, w=520, h=130),
-        text("an2e", "🫠", (X1 + 10) / S, (Y1 + 85) / S, 58, w=200),
-        overlay_svg("an2ar", [curved_arrow(X1 - 100, Y1 + 8, X1 - 125, Y1 - 85, -0.18, HOT, 6, 24)])]
-    add(higgs_c(stage(), True), cls="L-c left")
-    add(higgs_c(stage(*ann1())), cls="L-c left")
-    add(higgs_c(stage(*ann1(), *ann2())), cls="L-c left")
+        text("an2", "Higgs, P.W.<br>(1964)", 1735, 480, 36, w=520, h=150),
+        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1735, 700, 46, color=COOL, weight=700, w=560, h=150),
+        text("an2e", "🫠", 1735, 860, 64, w=200),
+        overlay_svg("an2ar", [arrow_px(px1 + 150, 345, px1 - 70, 380, COOL, 5, 20)])]
+    add(stage(*base()), cls="L-g")
+    add(stage(*base(), *ann1()), cls="L-g")
+    add(stage(*base(), *ann1(), *ann2()), cls="L-g")
 
-    # ---- 30  what's happening? ----------------------------------------------------------------------------------------------------
+    # ---- 29  what's happening? ----------------------------------------------------------------------------------------------------------
     add(h2('<span class="muted">What’s happening?</span>') + stage(img("hphoto", "assets/higgs.jpg", 1029, 710, 977, None, "ph")),
         cls="L-b")
 
-    # ---- 31-33  why the D-index fails: one citation moves four papers into another class ----------------------------------------
+    # ---- 30-34  why the D-index fails, one change at a time ----------------------------------------------------------------------------
     thumb = lambda: img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph")
     h2t = h2('<span class="muted">What’s happening?</span>')
-    BASE_TOPS = [(462, 330), (603, 328), (745, 326), (904, 326)]
-    BASE_H, BASE_E = (534, 588), (822, 590)
-    BASE_REFS = [(506, 860), (660, 797), (850, 863)]
+    Dlab = lambda cls="", st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 44, "", COOL, weight=700, w=640, h=140, align="right", style=st)
 
-    def hnet(cx, cy, k, red=True):
-        """The Higgs / Englert-Brout citation network, drawn at scale k around (cx, cy)."""
-        Pt = lambda p: (cx + (p[0] - 680) * k, cy + (p[1] - 590) * k)
-        tops = [Pt(p) for p in BASE_TOPS]
-        H_, E_ = Pt(BASE_H), Pt(BASE_E)
-        refs = [Pt(p) for p in BASE_REFS]
-        w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 75 * k, 68 * k
-        o = []
-        for i, t in enumerate(tops):
-            o.append(edge(f"hn_t{i}H", t, H_, sqs * .55, ds * .8, MUTED, w, hs))
-            o.append(edge(f"hn_t{i}E", t, E_, sqs * .55, ds * .8, MUTED, w, hs))
-        for i, (src, dst) in enumerate([(H_, refs[0]), (H_, refs[1]), (E_, refs[1]), (E_, refs[2])]):
-            o.append(edge(f"hn_r{i}", src, dst, ds * .8, sqs * .55, MUTED, w, hs))
-        for i, t in enumerate(tops):
-            o.append(sq(f"hn_s{i}", *t, sqs, "#FFFFFF", DEEP, 2))
-        for i, r in enumerate(refs):
-            o.append(sq(f"hn_r{i}q", *r, sqs * .96, FAINT))
-        o.append(dia("hn_H", *H_, ds, DEEP))
-        o.append(dia("hn_E", *E_, ds, GRAYC))
-        if red:
-            x1, y1, x2, y2 = trim(*H_, *E_, ds * .85, ds * .85)
-            o.append(line("hn_red", x1, y1, x2, y2, HOT, 7 * k ** .5, True, False, 22 * k ** .5))
-        return o, H_, E_
-
-    def labels(H_, E_, k):
-        return [text("hl1", "Higgs<br>(1964)", H_[0] - 55 * k - 90, H_[1], 34, "", INK, weight=700, w=180, h=130, align="center"),
-                text("hl2", "Englert &amp; Brout<br>(1964)", E_[0] + 60 * k, E_[1], 34, "", GRAYC, weight=700, w=480, h=130, align="left")]
-
-    # 31  the citation: Higgs cites Englert & Brout
+    # 30  Higgs cites Englert & Brout
     net_a, Ha, Ea = hnet(760, 625, 1.35)
-    add(h2t + stage(thumb(), *net_a, *labels(Ha, Ea, 1.35),
-                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 40, "", COOL, weight=700, w=640, h=140, align="right"),
-                    text("as1", "Higgs cites<br>Englert &amp; Brout.", 1490, 840, 38, "aside", w=700, h=170),
+    add(h2t + stage(thumb(), *net_a, *hlabels(Ha, Ea, 1.35), Dlab(),
+                    text("as1", "Higgs cites<br>Englert &amp; Brout.", 1490, 840, 40, "aside", w=700, h=170),
                     overlay_svg("as1ar", [curved_arrow(1250 * S, 810 * S, (Ha[0] + Ea[0]) / 2 * S + 40, (Ha[1] + Ea[1]) / 2 * S + 26, -0.25, MUTED, 3, 16)])),
         cls="L-b")
 
-    # 32  every paper that cites Higgs also cites Englert & Brout: all four fall into the same class
-    net_b, Hb, Eb = hnet(470, 650, 0.85)
+    # 31  step 1: only that citation is removed
+    net_b, Hb, Eb = hnet(760, 625, 1.35, red=False, ghost=True)
+    add(h2t + stage(thumb(), *net_b, *hlabels(Hb, Eb, 1.35), Dlab(),
+                    text("as1", "Remove this one citation.", 1490, 840, 40, "aside", w=900, h=170)),
+        cls="L-b")
+
+    # 32  step 2: the network moves aside and the decision tree appears, with the four papers that cite both
+    net_c, Hc, Ec = hnet(470, 650, 0.85, red=False, ghost=True)
     OX, OY = 1450, 300
-    SQ4 = lambda b, pos: [(f"s{i}", b, dx, dy, "#FFFFFF", DEEP) for i, (dx, dy) in enumerate(pos)]
-    POS_HOT = [(-27, -42), (27, -36), (-25, 14), (26, 22)]
-    POS_COOL = [(-27, -46), (27, -40), (-25, 10), (26, 18)]
-    CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
+    add(h2t + stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85), Dlab(st="opacity:0;"),
+                    text("as1", "These four papers<br>cite both.", 470, 215, 40, "aside", w=900, h=170),
+                    *htree(OX, OY, 1.0, (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(0, POS_HOT))), cls="L-b")
 
-    def htree(boxes, squares):
-        t = tree("t", OX, OY, 1.0, "higgs", boxes, squares)
-        for i, (bx, by) in enumerate(TREE["higgs"]["buckets"]):
-            t.append(text(f"t_c{i}", CAP[i], OX + bx, OY + by + 135, 30, "", TINT[i][1], w=380, h=140))
-        return t
+    # 33  step 3: only the four papers move to another box
+    add(h2t + stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85), Dlab(st="opacity:0;"),
+                    text("as1", "Without the citation,<br>they move.", 470, 215, 40, "aside", w=900, h=170),
+                    *htree(OX, OY, 1.0, (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(1, POS_COOL))), cls="L-b")
 
-    add(h2t + stage(thumb(), *net_b, *labels(Hb, Eb, 0.85),
-                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 470, 990, 40, "", COOL, weight=700, w=640, h=140),
-                    text("as1", "All four papers<br>cite both.", 470, 215, 38, "aside", w=720, h=170),
-                    *htree((CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(0, POS_HOT))), cls="L-b")
+    # 34  step 4: the result
+    add(h2t + stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85),
+                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 245, 990, 40, "", COOL, weight=700, w=640, h=140, style="opacity:.3;"),
+                    overlay_svg("dd_ar", [arrow_px(310, 636, 365, 636, HOT, 5, 16)]),
+                    text("hd2", "D = 0.28<br>Top 1.3 %", 800, 990, 52, "", HOT, weight=700, w=640, h=160),
+                    *htree(OX, OY, 1.0, (CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-b")
 
-    # 33  remove that one citation: the four papers jump to another class
-    net_c, Hc, Ec = hnet(470, 650, 0.85, red=False)
-    add(h2t + stage(thumb(), *net_c, *labels(Hc, Ec, 0.85),
-                    text("hd1", "D = − 0.27<br>Bottom 0.1 %", 245, 990, 36, "", COOL, weight=700, w=640, h=140, style="opacity:.3;"),
-                    overlay_svg("dd_ar", [arrow_px(300, 636, 352, 636, HOT, 4, 14)]),
-                    text("hd2", "D = 0.28<br>Top 1.3 %", 800, 990, 48, "", HOT, weight=700, w=640, h=160),
-                    text("as1", "One citation removed.<br>All four papers switch class.", 470, 215, 38, "aside", w=1000, h=170),
-                    overlay_svg("as1ar", [curved_arrow(300, 190, 300, 392, 0.12, MUTED, 3, 16)]),
-                    *htree((CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-b")
+    # ---- 35-37  the same two networks, placed at the height of their D-index ---------------------------------------------------------------
+    TT = h2("One citation, a different D-index")
+    AX = 330
+    yD = lambda D: 560 - D * 520                       # D in [-0.5, 0.5] on this axis
+    LY, RY = yD(-0.27), yD(0.28)
+    LX, RX = 960, 1560
 
-    # ---- 34-36  the same story, as a picture of the idea: a continuous quantity cut into classes ------------------------------
-    import math as _m
-    ttl = h2('Citations are “<em class="hot">rounded</em>” into classes.')
-    AX0, AY0, AY1, AX1 = 380, 800, 290, 1820
-    HI, LO = 380, 690                                              # the two classes of the D-index, high D and low D
-    XB, XA = 1090, 1000                                            # Higgs before / after one citation is removed
-    sig = lambda x: HI + (LO - HI) / (1 + _m.exp(-(x - 1050) / 170))
+    def dot_axis(ticks=True, title="D-index", with_left=True, right_val=None, ry=None, dy_right=None):
+        o = [line("ax_y", AX, 900, AX, 250, INK, 3.4, True, False, 16),
+             text("ax_t", title, AX, 190, 44, "", INK, weight=700, w=700)]
+        if ticks:
+            for i, (v, lab) in enumerate(((-0.5, "−0.5"), (0, "0"), (0.5, "0.5"))):
+                o.append(line(f"tk{i}", AX - 14, yD(v), AX + 14, yD(v), INK, 3, False))
+                o.append(text(f"tkl{i}", lab, AX - 90, yD(v), 36, "", MUTED, w=160, align="right"))
+        return o
 
-    def axes():
-        return [line("ax_y", AX0, AY0, AX0, AY1, INK, 3.4, True, False, 16),
-                line("ax_x", AX0 - 2, AY0, AX1, AY0, INK, 3.4, True, False, 16),
-                text("ay1", "disruptive", AX0 + 40, 330, 32, "", MUTED, w=500, align="left"),
-                text("ay2", "developing", AX0 + 40, 745, 32, "", MUTED, w=500, align="left"),
-                text("ax1", "Overlap with the focal’s references", 1100, 835, 32, "", MUTED, w=1300)]
+    def lollipop(name, y, x_net, color, label, val_x=None):
+        return [line(f"{name}_g", AX + 24, y, x_net - 330, y, color, 3, False, True),
+                disc(f"{name}_d", AX, y, 42, color, INK, 3.5),
+                text(f"{name}_v", label, AX + 130, y - 56, 44, "", color, weight=700, w=420)]
 
-    def curve(name, pts, color, w=8, op=1.0):
-        x0, y0 = min(p[0] for p in pts), min(p[1] for p in pts)
-        x1, y1 = max(p[0] for p in pts), max(p[1] for p in pts)
-        pad = 10
-        d = "M" + " L".join(f"{x - x0 + pad:.1f},{y - y0 + pad:.1f}" for x, y in pts)
-        body = (f'<path d="{d}" fill="none" stroke="{color}" stroke-width="{w / S:.1f}" stroke-linecap="round" '
-                f'stroke-linejoin="round"/>')
-        return svg(name, x0 - pad, y0 - pad, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad, body, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad, "",
-                   f"opacity:{op};" if op != 1 else "")
+    nL, HL, EL = hnet(LX, LY, 0.72, pre="ha")
+    add(TT + stage(*dot_axis(), *lollipop("pl", LY, LX, COOL, "−0.27"), *nL,
+                   text("cl", "Higgs cites Englert &amp; Brout", LX, LY + 215, 36, "", MUTED, w=900)), cls="L-b")
 
-    step_pts = [(AX0 + 40, HI), (1030, HI), (1036, HI + 20)] + [(1036 + 6 * i / 10 + (1050 - 1036) * 0, HI + 20 + (LO - HI - 40) * i / 10) for i in range(1, 10)] + [(1042, LO - 20), (1048, LO), (1790, LO)]
-    smooth_pts = [(x, sig(x)) for x in range(AX0 + 40, 1791, 20)]
+    nR, HR, ER = hnet(RX, RY, 0.72, red=False, ghost=True, pre="hb")
+    jump = [overlay_svg("jmp", [arrow_px(AX * S + 70, LY * S - 30, AX * S + 70, RY * S + 40, HOT, 5, 18)]),
+            text("jt", "0.55", AX + 330, (LY + RY) / 2, 52, "", HOT, weight=700, w=300)]
+    add(TT + stage(*dot_axis(), *lollipop("pl", LY, LX, COOL, "−0.27"), *nL,
+                   text("cl", "Higgs cites Englert &amp; Brout", LX, LY + 215, 36, "", MUTED, w=900),
+                   *lollipop("pr", RY, RX, HOT, "0.28"), *nR,
+                   text("cr", "one citation removed", RX, RY + 250, 36, "", MUTED, w=900), *jump), cls="L-b")
 
-    # 34  the D-index puts a paper in one of two classes: Higgs sits just past the step
-    dot = lambda x, y, name="hd_dot", fill=DEEP: dia(name, x, y, 62, fill)
-    add(ttl + stage(*axes(), curve("step", step_pts, HOT),
-                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500),
-                    dot(XB, LO), text("hd_lab", "Higgs<br>D = − 0.27", XB + 70, LO - 95, 34, "", COOL, weight=700, w=700, h=140, align="left")),
-        cls="L-b")
-    # 35  one citation removed: the paper crosses the step and jumps to the other class
-    add(ttl + stage(*axes(), curve("step", step_pts, HOT),
-                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500),
-                    dot(XA, HI), text("hd_lab", "Higgs<br>D = 0.28", XA + 70, HI - 5, 34, "", HOT, weight=700, w=700, h=140, align="left"),
-                    text("as1", "one citation<br>removed", 1480, 560, 38, "aside", w=700, h=150),
-                    overlay_svg("as1ar", [curved_arrow(1330 * S, 560 * S, 1070 * S, 540 * S, 0.15, MUTED, 3, 16)])),
-        cls="L-b")
-    # 36  without rounding, the same small change makes a small difference
-    ghost = disc("hd_ghost", XB, sig(XB), 62, "#FFFFFF", MUTED, 3, dashed=True)
-    add(ttl + stage(*axes(), curve("step", step_pts, HOT, 8, 0.3),
-                    text("lbl_d", "D-index", 650, 445, 36, "", HOT, weight=700, w=500, style="opacity:.3;"),
-                    curve("smooth", smooth_pts, COOL), text("lbl_e", "EDM", 1600, 620, 40, "", COOL, weight=700, w=500),
-                    ghost, dot(XA, sig(XA)),
-                    text("as1", "tiny change,<br>tiny effect", 1480, 480, 38, "aside", w=700, h=150),
-                    overlay_svg("as1ar", [curved_arrow(1330 * S, 480 * S, 1080 * S, 520 * S, 0.15, MUTED, 3, 16)]))
+    # the same two networks under a continuous measure (a sketch, no numbers)
+    RY2 = yD(-0.31)
+    nR2, HR2, ER2 = hnet(RX, RY2, 0.72, red=False, ghost=True, pre="hb")
+    add(TT.replace("One citation, a different D-index", "A continuous measure does not jump") + stage(
+        *dot_axis(ticks=False, title="EDM (sketch)"), *lollipop("pl", LY, LX, COOL, ""), *nL,
+        *lollipop("pr", RY2, RX, HOT, ""), *nR2,
+        text("as1", "tiny change,<br>tiny effect", 1100, 330, 44, "aside", w=900, h=170))
         + '\n\n<p class="take">We preserve <span class="hot">continuity</span> by abandoning class rounding.</p>', cls="L-b")

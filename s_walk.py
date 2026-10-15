@@ -124,7 +124,7 @@ def aro(name, p, q, color, dashed=False, w=5):
     return line(name, p[0], p[1], q[0], q[1], color, w, True, dashed, 22 if w >= 5 else 15)
 
 
-def build(add):
+def build_a(add):
     # ---- 55-56  the tree of random walks ----------------------------------------------------------------------------------
     DX = 630                                             # the tree sits mid-slide until the sequence needs the room
     pts = [(470, 55), (465, 150), (380, 260), (285, 330), (300, 440), (420, 540), (430, 640), (350, 760), (310, 850), (345, 965)]
@@ -136,7 +136,7 @@ def build(add):
 
     rwt = lambda dx=0, col=INK: text("rw", "Random<br>walks", 215 + dx, 230, 52, "", col, w=520, h=200, style="transform:rotate(-34deg);")
     onwalk = lambda dx=0: [disc(f"s{k}", TREE_POS[WALK[k]][0] + dx, TREE_POS[WALK[k]][1], 80, SEQ[k], RING, 3.5) for k in range(6)]
-    add(stage(*walk_tree(DX)), cls="L-g", header="")
+    add(stage(*walk_tree(DX), text("rwtitle", "Sample the flow<br>with random walks", 40, 480, 44, "", INK, weight=700, w=900, h=240, align="left")), cls="L-g", header="")
     add(stage(*walk_tree(DX), brush(DX), rwt(DX), *onwalk(DX)), cls="L-g")
 
     # ---- 57-61  the window slides along the walk and collects training pairs --------------------------------------------
@@ -163,6 +163,10 @@ def build(add):
                    style="transform:rotate(-8deg);"),
               overlay_svg("as2ar", [curved_arrow(885, 575, 748, 622, -0.3, MUTED, 3, 16)])), cls="L-g")
 
+
+
+def build_b(add):
+    FOC = None
     # ---- 64-65  the embedding space ----------------------------------------------------------------------------------------
     def small_list():
         o = [text("lh", "(query, key)", 466, 248, 28, "", INK, w=700)]
@@ -222,3 +226,8 @@ def build(add):
               aro("ma7", (1330, 474), (1380, 480), COOL, True, 4), aro("ma8", (1730, 372), (1680, 390), DEEP, True, 4),
               text("mkl", "k<sub>i</sub>", 1565, 355, 40, "mi", INK, w=200), text("mql", "q<sub>i</sub>", 1455, 520, 40, "mi", INK, w=200)]
     add(stage(*scatter("nm", key_visible=True), *nm_extra, *mixed), cls="L-g")
+
+
+def build(add):
+    build_a(add)
+    build_b(add)

@@ -14,7 +14,6 @@ import sys
 from pathlib import Path
 
 import mm
-import s_hook
 
 ROOT = Path(__file__).resolve().parent
 SLIDES = []
@@ -78,20 +77,17 @@ def describe(names):
 
 # Choices made on the "遷移の指定" page (slide numbers as they were before the opening slide was added: +1 now).
 CUT = {n + 1 for n in (11, 12, 13, 14, 58)}      # hard cuts: nothing glides or fades
-MORPH = {n + 1 for n in (64,)}                    # magic move stays
+MORPH = set()
 
 
 def modules():
-    mods = [s_hook]
-    for name in ("s_dindex", "s_w2v", "s_walk", "s_end"):
-        if (ROOT / f"{name}.py").exists():
-            mods.append(__import__(name))
-    return mods
+    import s_hook, s_dindex, s_idea, s_walk, s_w2v, s_end
+    return [s_hook.build, s_dindex.build, s_idea.build, s_walk.build_a, s_w2v.build, s_walk.build_b, s_end.build]
 
 
 def main():
     for m in modules():
-        m.build(add)
+        m(add)
     out = [None]
     header = None
     prev = set()
@@ -120,9 +116,7 @@ def main():
         head = []
         if s["cls"]:
             head.append(f"<!-- _class: {s['cls']} -->")
-        if s["header"] is not None and s["header"] != header:
-            header = s["header"]
-            head.append(f'<!-- header: "{header}" -->')
+        # (no breadcrumb header: the lecturer removed it from every slide)
         if s["bg"]:
             head.append(f"<!-- _backgroundColor: {s['bg']} -->")
         if i in CUT:

@@ -1132,3 +1132,27 @@ section .o.dc::before, section .o.sq::before {
 section .o.gr {
   background-image: url('figures/grain.png') !important; background-blend-mode: multiply !important; background-size: 128px 128px !important;
 }
+
+/* ---- review round of 2026-10-15 ---- */
+/* bullets must be readable from the back row */
+section.L-c .cols > div:not(.fig) ul { font-size: 44px; line-height: 1.3; }
+section.L-c .cols > div:not(.fig) li ul { font-size: 36px; }
+section ul { font-size: 40px; }
+/* quotations: colour only, no underline */
+section.L-q .hot { background: none; padding-bottom: 0; }
+/* part opener: bigger faces, logos at the bottom left */
+section.part .faces.big img { height: 205px; }
+section.part .faces.big { gap: 30px; margin-top: 24px; }
+section.part .faces figcaption { font-size: 24px; }
+section .logos2 { position: absolute; left: 44px; bottom: 34px; display: flex; gap: 26px; align-items: center; }
+section .logos2 img { height: 54px; width: auto; }
+
+section .gpar { color: #8a8a8a; font-weight: 400; font-size: 0.66em; }
+section .sub.big { font-size: 46px; margin-top: 2px; }
+section .sub { margin: 0 auto 4px; }
+
+section.part .faces.big img { height: 250px; }
+section.L-c .cols { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
+section.L-c .cols > div:not(.fig) ul { font-size: 42px; }
+section.L-q blockquote { font-size: 44px; }
+section.L-q .who { font-size: 28px; }

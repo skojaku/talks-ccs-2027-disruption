@@ -1,6 +1,50 @@
 [
  {
   "n": 1,
+  "title": "j",
+  "content": [
+   "eye_F",
+   "eye_a",
+   "eye_e0",
+   "eye_e1",
+   "eye_e10"
+  ],
+  "layout": "part",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "eye_F",
+   "eye_a",
+   "eye_e0",
+   "eye_e1",
+   "eye_e10",
+   "eye_e2",
+   "eye_e3",
+   "eye_e4",
+   "eye_e5",
+   "eye_e6",
+   "eye_e7",
+   "eye_e8",
+   "eye_e9",
+   "eye_g2",
+   "eye_i",
+   "eye_j",
+   "eye_k",
+   "eye_li",
+   "eye_lj",
+   "eye_lk",
+   "eye_p2",
+   "eye_r0",
+   "eye_r1",
+   "eye_r2"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 2,
   "title": "We live in the future we once imagined.",
   "content": [
    "bttf_phone",
@@ -13,22 +57,31 @@
    "bttf_phone",
    "bttf_poster"
   ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 2,
-  "title": "",
-  "content": [],
-  "layout": "part",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
   "vanish": [
-   "bttf_phone",
-   "bttf_poster"
+   "eye_F",
+   "eye_a",
+   "eye_e0",
+   "eye_e1",
+   "eye_e10",
+   "eye_e2",
+   "eye_e3",
+   "eye_e4",
+   "eye_e5",
+   "eye_e6",
+   "eye_e7",
+   "eye_e8",
+   "eye_e9",
+   "eye_g2",
+   "eye_i",
+   "eye_j",
+   "eye_k",
+   "eye_li",
+   "eye_lj",
+   "eye_lk",
+   "eye_p2",
+   "eye_r0",
+   "eye_r1",
+   "eye_r2"
   ],
   "grows": false,
   "fragments": 0,
@@ -46,13 +99,67 @@
   "appear": [
    "technology pictures"
   ],
-  "vanish": [],
+  "vanish": [
+   "bttf_phone",
+   "bttf_poster"
+  ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
   "n": 4,
+  "title": "Your most memorable technology?",
+  "content": [
+   "technology pictures"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "technology pictures"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 5,
+  "title": "Your most memorable technology?",
+  "content": [
+   "technology pictures"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "technology pictures"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 6,
+  "title": "Your most memorable technology?",
+  "content": [
+   "technology pictures"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "technology pictures"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 7,
   "title": "Light bulb",
   "content": [
    "technology pictures",
@@ -72,7 +179,7 @@
   "transition": "magic move"
  },
  {
-  "n": 5,
+  "n": 8,
   "title": "Light bulb changed human world",
   "content": [
    "Edison photo"
@@ -91,7 +198,7 @@
   "transition": "magic move"
  },
  {
-  "n": 6,
+  "n": 9,
   "title": "",
   "content": [
    "technology pictures",
@@ -113,7 +220,7 @@
   "transition": "magic move"
  },
  {
-  "n": 7,
+  "n": 10,
   "title": "",
   "content": [
    "Douglas Adams portrait"
@@ -133,7 +240,7 @@
   "transition": "cut"
  },
  {
-  "n": 8,
+  "n": 11,
   "title": "",
   "content": [
    "Douglas Adams portrait"
@@ -148,7 +255,7 @@
   "transition": "cut"
  },
  {
-  "n": 9,
+  "n": 12,
   "title": "",
   "content": [
    "Douglas Adams portrait"
@@ -163,7 +270,7 @@
   "transition": "cut"
  },
  {
-  "n": 10,
+  "n": 13,
   "title": "My age",
   "content": [
    "age labels",
@@ -184,7 +291,7 @@
   "transition": "cut"
  },
  {
-  "n": 11,
+  "n": 14,
   "title": "My age",
   "content": [
    "age labels",
@@ -194,80 +301,6 @@
   ],
   "layout": "L-b",
   "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 12,
-  "title": "My age",
-  "content": [
-   "age labels",
-   "era labels and notes",
-   "phone pictures",
-   "timeline"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 13,
-  "title": "My age",
-  "content": [
-   "age labels",
-   "era labels and notes",
-   "phone pictures",
-   "technology pictures",
-   "timeline"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "phone pictures"
-  ],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "technology pictures"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 14,
-  "title": "My age",
-  "content": [
-   "age labels",
-   "era labels and notes",
-   "phone pictures",
-   "technology pictures",
-   "timeline"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "technology pictures"
-  ],
   "n_moving": 0,
   "appear": [
    "era labels and notes",
@@ -280,6 +313,81 @@
  },
  {
   "n": 15,
+  "title": "My age",
+  "content": [
+   "age labels",
+   "era labels and notes",
+   "phone pictures",
+   "timeline"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "era labels and notes",
+   "phone pictures"
+  ],
+  "n_moving": 0,
+  "appear": [
+   "era labels and notes",
+   "phone pictures"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 16,
+  "title": "My age",
+  "content": [
+   "age labels",
+   "era labels and notes",
+   "phone pictures",
+   "technology pictures",
+   "timeline"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "era labels and notes",
+   "phone pictures"
+  ],
+  "n_moving": 4,
+  "appear": [
+   "era labels and notes",
+   "technology pictures"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 17,
+  "title": "My age",
+  "content": [
+   "age labels",
+   "era labels and notes",
+   "phone pictures",
+   "technology pictures",
+   "timeline"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "era labels and notes",
+   "technology pictures"
+  ],
+  "n_moving": 4,
+  "appear": [
+   "era labels and notes",
+   "phone pictures",
+   "visor"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 18,
   "title": "",
   "content": [
    "phone pictures",
@@ -292,7 +400,7 @@
    "technology pictures",
    "timeline"
   ],
-  "n_moving": 0,
+  "n_moving": 5,
   "appear": [
    "phone pictures",
    "timeline"
@@ -300,14 +408,15 @@
   "vanish": [
    "age labels",
    "era labels and notes",
-   "phone pictures"
+   "phone pictures",
+   "visor"
   ],
   "grows": true,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 16,
+  "n": 19,
   "title": "Bohr’s model (1913)",
   "content": [
    "atomic-model pictures",
@@ -328,27 +437,24 @@
   "transition": "cut"
  },
  {
-  "n": 17,
+  "n": 20,
   "title": "How do we quantify disruptiveness?",
   "content": [
    "atomic-model pictures",
    "timeline"
   ],
   "layout": "L-b",
-  "moving": [
-   "atomic-model pictures",
-   "timeline"
-  ],
-  "n_moving": 10,
+  "moving": [],
+  "n_moving": 0,
   "appear": [],
   "vanish": [],
   "grows": false,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
-  "n": 18,
-  "title": "Based on citation networks",
+  "n": 21,
+  "title": "Based on citation networks (Funk & Owen-Smith 2017)",
   "content": [
    "citation diagram",
    "diagram labels"
@@ -369,7 +475,7 @@
   "transition": "cut"
  },
  {
-  "n": 19,
+  "n": 22,
   "title": "j",
   "content": [
    "citation diagram",
@@ -392,7 +498,7 @@
   "transition": "magic move"
  },
  {
-  "n": 20,
+  "n": 23,
   "title": "j",
   "content": [
    "citation diagram",
@@ -416,12 +522,14 @@
   "transition": "magic move"
  },
  {
-  "n": 21,
+  "n": 24,
   "title": "j",
   "content": [
    "formula",
-   "citation diagram",
-   "decision tree"
+   "fx1",
+   "fx2",
+   "fx3",
+   "citation diagram"
   ],
   "layout": "L-g",
   "moving": [
@@ -430,7 +538,10 @@
   ],
   "n_moving": 40,
   "appear": [
-   "formula"
+   "formula",
+   "fx1",
+   "fx2",
+   "fx3"
   ],
   "vanish": [
    "decision tree"
@@ -440,19 +551,24 @@
   "transition": "magic move"
  },
  {
-  "n": 22,
-  "title": "Team size",
+  "n": 25,
+  "title": "Large teams develop, small teams disrupt",
   "content": [
-   "the three papers"
+   "the three papers",
+   "psum"
   ],
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "the three papers"
+   "the three papers",
+   "psum"
   ],
   "vanish": [
    "formula",
+   "fx1",
+   "fx2",
+   "fx3",
    "citation diagram",
    "decision tree"
   ],
@@ -461,220 +577,176 @@
   "transition": "cut"
  },
  {
-  "n": 23,
-  "title": "Team size",
+  "n": 26,
+  "title": "Papers are becoming less disruptive over time",
   "content": [
-   "the three papers"
+   "the three papers",
+   "psum"
   ],
   "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 24,
-  "title": "",
-  "content": [
-   "Higgs photo"
-  ],
-  "layout": "L-c left",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "Higgs photo"
-  ],
-  "vanish": [
+  "moving": [
    "the three papers"
   ],
+  "n_moving": 1,
+  "appear": [
+   "the three papers"
+  ],
+  "vanish": [],
   "grows": false,
-  "fragments": 2,
-  "transition": "cut"
- },
- {
-  "n": 25,
-  "title": "Englert, F., & Brout, R. (1964)",
-  "content": [
-   "annotations",
-   "Higgs photo"
-  ],
-  "layout": "L-c left",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "annotations"
-  ],
-  "vanish": [],
-  "grows": true,
   "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 26,
-  "title": "Englert, F., & Brout, R. (1964)",
-  "content": [
-   "annotations",
-   "Higgs photo"
-  ],
-  "layout": "L-c left",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "annotations"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
+  "transition": "magic move"
  },
  {
   "n": 27,
-  "title": "What’s happening?",
+  "title": "Remote collaboration: fewer breakthrough ideas",
   "content": [
-   "Higgs photo"
+   "the three papers",
+   "psum"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [
-   "Higgs photo"
+   "the three papers"
   ],
   "n_moving": 1,
-  "appear": [],
-  "vanish": [
-   "annotations"
+  "appear": [
+   "the three papers"
   ],
+  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "magic move"
  },
  {
   "n": 28,
-  "title": "What’s happening?",
+  "title": "But the D-index fails",
   "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "network labels",
-   "Higgs citation network",
-   "Higgs photo"
+   "the three papers"
   ],
   "layout": "L-b",
   "moving": [
-   "Higgs photo"
+   "the three papers"
   ],
-  "n_moving": 1,
-  "appear": [
-   "era labels and notes",
-   "list heading and notes",
-   "network labels",
-   "Higgs citation network"
+  "n_moving": 3,
+  "appear": [],
+  "vanish": [
+   "psum"
   ],
-  "vanish": [],
-  "grows": true,
+  "grows": false,
   "fragments": 0,
   "transition": "magic move"
  },
  {
   "n": 29,
-  "title": "What’s happening?",
+  "title": "Discovery",
   "content": [
-   "era labels and notes",
-   "network labels",
-   "Higgs citation network",
+   "disc1",
+   "disc2",
    "Higgs photo",
-   "decision tree"
+   "rec1",
+   "rec2"
   ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "network labels",
-   "Higgs citation network"
-  ],
-  "n_moving": 26,
-  "appear": [
-   "decision tree"
-  ],
-  "vanish": [
-   "list heading and notes"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 30,
-  "title": "What’s happening?",
-  "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "dd_ar",
-   "network labels",
-   "Higgs citation network"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "network labels",
-   "decision tree"
-  ],
-  "n_moving": 6,
-  "appear": [
-   "list heading and notes",
-   "dd_ar",
-   "network labels"
-  ],
-  "vanish": [
-   "Higgs citation network"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 31,
-  "title": "Citations are “rounded” into classes.",
-  "content": [
-   "plot axes and curves",
-   "annotations"
-  ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "plot axes and curves",
-   "annotations"
+   "disc1",
+   "disc2",
+   "Higgs photo",
+   "rec1",
+   "rec2"
   ],
   "vanish": [
-   "era labels and notes",
-   "list heading and notes",
-   "dd_ar",
-   "network labels",
-   "Higgs citation network",
-   "Higgs photo",
-   "decision tree"
+   "the three papers"
   ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 32,
-  "title": "Citations are “rounded” into classes.",
+  "n": 30,
+  "title": "Discovery",
   "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "plot axes and curves",
+   "annotations",
+   "disc1",
+   "disc2",
+   "Higgs photo",
+   "rec1"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
    "annotations"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 31,
+  "title": "Discovery",
+  "content": [
+   "annotations",
+   "disc1",
+   "disc2",
+   "Higgs photo",
+   "rec1"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "annotations"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 32,
+  "title": "What’s happening?",
+  "content": [
+   "Higgs photo"
   ],
   "layout": "L-b",
   "moving": [
-   "annotations"
+   "Higgs photo"
   ],
-  "n_moving": 2,
+  "n_moving": 1,
+  "appear": [],
+  "vanish": [
+   "annotations",
+   "disc1",
+   "disc2",
+   "rec1",
+   "rec2"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 33,
+  "title": "What’s happening?",
+  "content": [
+   "era labels and notes",
+   "list heading and notes",
+   "network labels",
+   "Higgs citation network",
+   "Higgs photo"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "Higgs photo"
+  ],
+  "n_moving": 1,
   "appear": [
    "era labels and notes",
-   "list heading and notes"
+   "list heading and notes",
+   "network labels",
+   "Higgs citation network"
   ],
   "vanish": [],
   "grows": true,
@@ -682,68 +754,49 @@
   "transition": "magic move"
  },
  {
-  "n": 33,
-  "title": "Citations are “rounded” into classes.",
+  "n": 34,
+  "title": "What’s happening?",
   "content": [
    "era labels and notes",
-   "list heading and notes",
-   "plot axes and curves",
-   "annotations"
+   "network labels",
+   "Higgs citation network",
+   "Higgs photo"
   ],
   "layout": "L-b",
   "moving": [
-   "era labels and notes",
-   "annotations",
-   "plot axes and curves"
+   "era labels and notes"
   ],
-  "n_moving": 4,
+  "n_moving": 1,
   "appear": [
-   "annotations",
-   "plot axes and curves"
+   "Higgs citation network"
   ],
   "vanish": [
-   "annotations"
+   "list heading and notes",
+   "Higgs citation network"
   ],
-  "grows": false,
+  "grows": true,
   "fragments": 0,
   "transition": "magic move"
  },
  {
-  "n": 34,
-  "title": "word2vec",
-  "content": [
-   "neural network drawing"
-  ],
-  "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "neural network drawing"
-  ],
-  "vanish": [
-   "era labels and notes",
-   "list heading and notes",
-   "plot axes and curves",
-   "annotations"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
   "n": 35,
-  "title": "word2vec (Mikolov et al. 2013)",
+  "title": "What’s happening?",
   "content": [
-   "fox example",
-   "neural network drawing"
+   "era labels and notes",
+   "network labels",
+   "Higgs citation network",
+   "Higgs photo",
+   "decision tree"
   ],
   "layout": "L-b",
   "moving": [
-   "neural network drawing"
+   "era labels and notes",
+   "network labels",
+   "Higgs citation network"
   ],
-  "n_moving": 1,
+  "n_moving": 27,
   "appear": [
-   "fox example"
+   "decision tree"
   ],
   "vanish": [],
   "grows": true,
@@ -752,56 +805,104 @@
  },
  {
   "n": 36,
-  "title": "word2vec (Mikolov et al. 2013)",
+  "title": "What’s happening?",
   "content": [
-   "fox example",
-   "metonymy text",
-   "neural network drawing"
+   "era labels and notes",
+   "network labels",
+   "Higgs photo",
+   "decision tree"
   ],
   "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "metonymy text"
+  "moving": [
+   "decision tree"
   ],
-  "vanish": [],
+  "n_moving": 4,
+  "appear": [],
+  "vanish": [
+   "Higgs citation network"
+  ],
   "grows": false,
   "fragments": 0,
-  "transition": "cut"
+  "transition": "magic move"
  },
  {
   "n": 37,
-  "title": "word2vec (Mikolov et al. 2013)",
+  "title": "What’s happening?",
   "content": [
-   "fox example",
-   "metonymy text",
-   "neural network drawing"
+   "dd_ar",
+   "network labels",
+   "Higgs photo",
+   "decision tree"
   ],
   "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
+  "moving": [
+   "network labels"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "dd_ar",
+   "network labels"
+  ],
+  "vanish": [
+   "era labels and notes"
+  ],
+  "grows": true,
   "fragments": 0,
-  "transition": "cut"
+  "transition": "magic move"
  },
  {
   "n": 38,
-  "title": "Learn by metonymy but captures metaphor.",
+  "title": "One citation, a different D-index",
   "content": [
-   "analogy equations"
+   "plot axes and curves",
+   "cl",
+   "ha_E",
+   "ha_H",
+   "ha_r0"
   ],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "analogy equations"
+   "plot axes and curves",
+   "cl",
+   "ha_E",
+   "ha_H",
+   "ha_r0",
+   "ha_r0q",
+   "ha_r1",
+   "ha_r1q",
+   "ha_r2",
+   "ha_r2q",
+   "ha_r3",
+   "ha_red",
+   "ha_s0",
+   "ha_s1",
+   "ha_s2",
+   "ha_s3",
+   "ha_t0E",
+   "ha_t0H",
+   "ha_t1E",
+   "ha_t1H",
+   "ha_t2E",
+   "ha_t2H",
+   "ha_t3E",
+   "ha_t3H",
+   "pl_d",
+   "pl_g",
+   "pl_v",
+   "tk0",
+   "tk1",
+   "tk2",
+   "tkl0",
+   "tkl1",
+   "tkl2"
   ],
   "vanish": [
-   "fox example",
-   "metonymy text",
-   "neural network drawing"
+   "dd_ar",
+   "network labels",
+   "Higgs photo",
+   "decision tree"
   ],
   "grows": false,
   "fragments": 0,
@@ -809,6 +910,812 @@
  },
  {
   "n": 39,
+  "title": "One citation, a different D-index",
+  "content": [
+   "plot axes and curves",
+   "cl",
+   "cr",
+   "hb_E",
+   "hb_H"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "cr",
+   "hb_E",
+   "hb_H",
+   "hb_ghost",
+   "hb_r0",
+   "hb_r0q",
+   "hb_r1",
+   "hb_r1q",
+   "hb_r2",
+   "hb_r2q",
+   "hb_r3",
+   "hb_s0",
+   "hb_s1",
+   "hb_s2",
+   "hb_s3",
+   "hb_t0E",
+   "hb_t0H",
+   "hb_t1E",
+   "hb_t1H",
+   "hb_t2E",
+   "hb_t2H",
+   "hb_t3E",
+   "hb_t3H",
+   "hb_x",
+   "jmp",
+   "jt",
+   "pr_d",
+   "pr_g",
+   "pr_v"
+  ],
+  "vanish": [
+   "ha_E",
+   "ha_H",
+   "ha_r0",
+   "ha_r0q",
+   "ha_r1",
+   "ha_r1q",
+   "ha_r2",
+   "ha_r2q",
+   "ha_r3",
+   "ha_red",
+   "ha_s0",
+   "ha_s1",
+   "ha_s2",
+   "ha_s3",
+   "ha_t0E",
+   "ha_t0H",
+   "ha_t1E",
+   "ha_t1H",
+   "ha_t2E",
+   "ha_t2H",
+   "ha_t3E",
+   "ha_t3H"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 40,
+  "title": "A continuous measure does not jump",
+  "content": [
+   "era labels and notes",
+   "plot axes and curves",
+   "hb_E",
+   "hb_H",
+   "hb_ghost"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "hb_E",
+   "hb_H",
+   "hb_ghost",
+   "hb_r0",
+   "hb_r0q",
+   "hb_r1",
+   "hb_r1q",
+   "hb_r2",
+   "hb_r2q",
+   "hb_r3",
+   "hb_s0",
+   "hb_s1",
+   "hb_s2",
+   "hb_s3",
+   "hb_t0E",
+   "hb_t0H",
+   "hb_t1E",
+   "hb_t1H",
+   "hb_t2E",
+   "hb_t2H",
+   "hb_t3E",
+   "hb_t3H",
+   "hb_x",
+   "pr_d",
+   "pr_g",
+   "pr_v"
+  ],
+  "n_moving": 26,
+  "appear": [
+   "era labels and notes"
+  ],
+  "vanish": [
+   "cl",
+   "cr",
+   "jmp",
+   "jt",
+   "tk0",
+   "tk1",
+   "tk2",
+   "tkl0",
+   "tkl1",
+   "tkl2"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 41,
+  "title": "D-index sees only close neighbours",
+  "content": [
+   "focal",
+   "l1",
+   "l2",
+   "r1e0",
+   "r1e1"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "focal",
+   "l1",
+   "l2",
+   "r1e0",
+   "r1e1",
+   "r1e2",
+   "r1e3",
+   "r1e4",
+   "r1e5",
+   "r1s0",
+   "r1s1",
+   "r1s2",
+   "r1s3",
+   "r1s4",
+   "r1s5",
+   "r2e0",
+   "r2e1",
+   "r2e10",
+   "r2e11",
+   "r2e2",
+   "r2e3",
+   "r2e4",
+   "r2e5",
+   "r2e6",
+   "r2e7",
+   "r2e8",
+   "r2e9",
+   "r2s0",
+   "r2s1",
+   "r2s10",
+   "r2s11",
+   "r2s2",
+   "r2s3",
+   "r2s4",
+   "r2s5",
+   "r2s6",
+   "r2s7",
+   "r2s8",
+   "r2s9"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "plot axes and curves",
+   "hb_E",
+   "hb_H",
+   "hb_ghost",
+   "hb_r0",
+   "hb_r0q",
+   "hb_r1",
+   "hb_r1q",
+   "hb_r2",
+   "hb_r2q",
+   "hb_r3",
+   "hb_s0",
+   "hb_s1",
+   "hb_s2",
+   "hb_s3",
+   "hb_t0E",
+   "hb_t0H",
+   "hb_t1E",
+   "hb_t1H",
+   "hb_t2E",
+   "hb_t2H",
+   "hb_t3E",
+   "hb_t3H",
+   "hb_x",
+   "pl_d",
+   "pl_g",
+   "pl_v",
+   "pr_d",
+   "pr_g",
+   "pr_v"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 42,
+  "title": "D-index sees only close neighbours",
+  "content": [
+   "era labels and notes",
+   "focal",
+   "l1",
+   "l2",
+   "nn0"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "era labels and notes",
+   "nn0",
+   "nn2",
+   "nn3",
+   "nn5"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 43,
+  "title": "Zoom out: find the bottleneck",
+  "content": [
+   "bn",
+   "bn_ar",
+   "earlier",
+   "flow",
+   "hg0_0_0"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "bn",
+   "bn_ar",
+   "earlier",
+   "flow",
+   "hg0_0_0",
+   "hg0_0_1",
+   "hg0_0_2",
+   "hg0_1_0",
+   "hg0_1_1",
+   "hg0_1_2",
+   "hg0_1_3",
+   "hg0_2_0",
+   "hg0_2_1",
+   "hg0_2_2",
+   "hg0_2_3",
+   "hg0_3_0",
+   "hg0_3_1",
+   "hg0_3_2",
+   "hg0_3_3",
+   "hg0_3_4",
+   "hg0_4_1",
+   "hg0_4_2",
+   "hg0_4_3",
+   "hg0_4_4",
+   "hg0_4_5",
+   "hg0_5_1",
+   "hg0_5_2",
+   "hg0_5_3",
+   "hg0_5_4",
+   "hg0_5_5",
+   "hg0_6_0",
+   "hg0_6_2",
+   "hg0_6_3",
+   "hg0_6_4",
+   "hg0_6_5",
+   "hg0_7_3",
+   "hg0_7_4",
+   "hg0_7_5",
+   "hg1_0_0",
+   "hg1_1_0",
+   "hg1_1_1",
+   "hg1_2_0",
+   "hg1_2_1",
+   "hg1_3_1",
+   "hg1_3_2",
+   "hg1_4_1",
+   "hg1_4_2",
+   "hg1_5_2",
+   "hg2_0_0",
+   "hg3_0_0",
+   "hg4_0_0",
+   "hg4_0_1",
+   "hg4_0_2",
+   "hg4_1_1",
+   "hg4_1_2",
+   "hg4_1_3",
+   "hg4_1_4",
+   "hg4_2_3",
+   "hg4_2_4",
+   "hg4_2_5",
+   "hg_focal",
+   "hg_s0_0",
+   "hg_s0_1",
+   "hg_s0_2",
+   "hg_s0_3",
+   "hg_s0_4",
+   "hg_s0_5",
+   "hg_s0_6",
+   "hg_s0_7",
+   "hg_s1_0",
+   "hg_s1_1",
+   "hg_s1_2",
+   "hg_s1_3",
+   "hg_s1_4",
+   "hg_s1_5",
+   "hg_s2_0",
+   "hg_s2_1",
+   "hg_s2_2",
+   "hg_s4_0",
+   "hg_s4_1",
+   "hg_s4_2",
+   "hg_s5_0",
+   "hg_s5_1",
+   "hg_s5_2",
+   "hg_s5_3",
+   "hg_s5_4",
+   "hg_s5_5",
+   "later",
+   "waist"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "focal",
+   "l1",
+   "l2",
+   "nn0",
+   "nn2",
+   "nn3",
+   "nn5",
+   "r1e0",
+   "r1e1",
+   "r1e2",
+   "r1e3",
+   "r1e4",
+   "r1e5",
+   "r1s0",
+   "r1s1",
+   "r1s2",
+   "r1s3",
+   "r1s4",
+   "r1s5",
+   "r2e0",
+   "r2e1",
+   "r2e10",
+   "r2e11",
+   "r2e2",
+   "r2e3",
+   "r2e4",
+   "r2e5",
+   "r2e6",
+   "r2e7",
+   "r2e8",
+   "r2e9",
+   "r2s0",
+   "r2s1",
+   "r2s10",
+   "r2s11",
+   "r2s2",
+   "r2s3",
+   "r2s4",
+   "r2s5",
+   "r2s6",
+   "r2s7",
+   "r2s8",
+   "r2s9"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 44,
+  "title": "word2vec turns pairs into coordinates",
+  "content": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2",
+   "id3",
+   "id4",
+   "id5",
+   "inet",
+   "inl",
+   "ins",
+   "ip0",
+   "ip1",
+   "ip2",
+   "ip3",
+   "itx",
+   "pl",
+   "sx",
+   "sy"
+  ],
+  "vanish": [
+   "bn",
+   "bn_ar",
+   "earlier",
+   "flow",
+   "hg0_0_0",
+   "hg0_0_1",
+   "hg0_0_2",
+   "hg0_1_0",
+   "hg0_1_1",
+   "hg0_1_2",
+   "hg0_1_3",
+   "hg0_2_0",
+   "hg0_2_1",
+   "hg0_2_2",
+   "hg0_2_3",
+   "hg0_3_0",
+   "hg0_3_1",
+   "hg0_3_2",
+   "hg0_3_3",
+   "hg0_3_4",
+   "hg0_4_1",
+   "hg0_4_2",
+   "hg0_4_3",
+   "hg0_4_4",
+   "hg0_4_5",
+   "hg0_5_1",
+   "hg0_5_2",
+   "hg0_5_3",
+   "hg0_5_4",
+   "hg0_5_5",
+   "hg0_6_0",
+   "hg0_6_2",
+   "hg0_6_3",
+   "hg0_6_4",
+   "hg0_6_5",
+   "hg0_7_3",
+   "hg0_7_4",
+   "hg0_7_5",
+   "hg1_0_0",
+   "hg1_1_0",
+   "hg1_1_1",
+   "hg1_2_0",
+   "hg1_2_1",
+   "hg1_3_1",
+   "hg1_3_2",
+   "hg1_4_1",
+   "hg1_4_2",
+   "hg1_5_2",
+   "hg2_0_0",
+   "hg3_0_0",
+   "hg4_0_0",
+   "hg4_0_1",
+   "hg4_0_2",
+   "hg4_1_1",
+   "hg4_1_2",
+   "hg4_1_3",
+   "hg4_1_4",
+   "hg4_2_3",
+   "hg4_2_4",
+   "hg4_2_5",
+   "hg_focal",
+   "hg_s0_0",
+   "hg_s0_1",
+   "hg_s0_2",
+   "hg_s0_3",
+   "hg_s0_4",
+   "hg_s0_5",
+   "hg_s0_6",
+   "hg_s0_7",
+   "hg_s1_0",
+   "hg_s1_1",
+   "hg_s1_2",
+   "hg_s1_3",
+   "hg_s1_4",
+   "hg_s1_5",
+   "hg_s2_0",
+   "hg_s2_1",
+   "hg_s2_2",
+   "hg_s4_0",
+   "hg_s4_1",
+   "hg_s4_2",
+   "hg_s5_0",
+   "hg_s5_1",
+   "hg_s5_2",
+   "hg_s5_3",
+   "hg_s5_4",
+   "hg_s5_5",
+   "later",
+   "waist"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 45,
+  "title": "Simple linear algebra measures relations",
+  "content": [
+   "la_k",
+   "la_kl",
+   "la_m",
+   "la_q",
+   "la_ql"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "la_k",
+   "la_kl",
+   "la_m",
+   "la_q",
+   "la_ql",
+   "la_t",
+   "la_x",
+   "la_y"
+  ],
+  "vanish": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2",
+   "id3",
+   "id4",
+   "id5",
+   "inet",
+   "inl",
+   "ins",
+   "ip0",
+   "ip1",
+   "ip2",
+   "ip3",
+   "itx",
+   "pl",
+   "sx",
+   "sy"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 46,
+  "title": "Sample the flow with random walks",
+  "content": [
+   "rwtitle",
+   "random-walk tree"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "rwtitle",
+   "random-walk tree"
+  ],
+  "vanish": [
+   "la_k",
+   "la_kl",
+   "la_m",
+   "la_q",
+   "la_ql",
+   "la_t",
+   "la_x",
+   "la_y"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 47,
+  "title": "Random walks",
+  "content": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "vanish": [
+   "rwtitle"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 48,
+  "title": "Random walks",
+  "content": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "n_moving": 32,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 49,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "random-walk tree"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "window and labels",
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 50,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 6,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 51,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 5,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 52,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 53,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 5,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 54,
+  "title": "(query, key)",
+  "content": [
+   "list heading and notes",
+   "training pairs",
+   "window and labels"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 9,
+  "appear": [
+   "list heading and notes"
+  ],
+  "vanish": [
+   "window and labels",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 55,
+  "title": "(query, key)",
+  "content": [
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs"
+  ],
+  "n_moving": 4,
+  "appear": [
+   "era labels and notes",
+   "list heading and notes"
+  ],
+  "vanish": [
+   "window and labels"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 56,
   "title": "How word2vec works",
   "content": [
    "sentence and word labels",
@@ -822,14 +1729,16 @@
    "neural network drawing"
   ],
   "vanish": [
-   "analogy equations"
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
   ],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 40,
+  "n": 57,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "neural network drawing",
@@ -849,7 +1758,7 @@
   "transition": "cut"
  },
  {
-  "n": 41,
+  "n": 58,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -867,7 +1776,7 @@
   "transition": "cut"
  },
  {
-  "n": 42,
+  "n": 59,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -885,7 +1794,7 @@
   "transition": "cut"
  },
  {
-  "n": 43,
+  "n": 60,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -903,7 +1812,7 @@
   "transition": "cut"
  },
  {
-  "n": 44,
+  "n": 61,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -922,7 +1831,7 @@
   "transition": "cut"
  },
  {
-  "n": 45,
+  "n": 62,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "query and key vectors",
@@ -941,7 +1850,7 @@
   "transition": "cut"
  },
  {
-  "n": 46,
+  "n": 63,
   "title": "A word has two vectors",
   "content": [
    "query and key vectors",
@@ -966,7 +1875,7 @@
   "transition": "magic move"
  },
  {
-  "n": 47,
+  "n": 64,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -993,7 +1902,7 @@
   "transition": "magic move"
  },
  {
-  "n": 48,
+  "n": 65,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1015,7 +1924,7 @@
   "transition": "magic move"
  },
  {
-  "n": 49,
+  "n": 66,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1037,7 +1946,7 @@
   "transition": "magic move"
  },
  {
-  "n": 50,
+  "n": 67,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1058,7 +1967,7 @@
   "transition": "cut"
  },
  {
-  "n": 51,
+  "n": 68,
   "title": "query",
   "content": [
    "r1k",
@@ -1102,7 +2011,7 @@
   "transition": "cut"
  },
  {
-  "n": 52,
+  "n": 69,
   "title": "query",
   "content": [
    "lg1",
@@ -1126,16 +2035,24 @@
   "transition": "cut"
  },
  {
-  "n": 53,
-  "title": "",
+  "n": 70,
+  "title": "(query, key)",
   "content": [
-   "random-walk tree"
+   "era labels and notes",
+   "list heading and notes",
+   "plot axes and curves",
+   "embedding scatter",
+   "training pairs"
   ],
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "random-walk tree"
+   "era labels and notes",
+   "list heading and notes",
+   "plot axes and curves",
+   "embedding scatter",
+   "training pairs"
   ],
   "vanish": [
    "lg1",
@@ -1166,235 +2083,7 @@
   "transition": "cut"
  },
  {
-  "n": 54,
-  "title": "Random walks",
-  "content": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 55,
-  "title": "Random walks",
-  "content": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "n_moving": 32,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 56,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "random-walk tree"
-  ],
-  "n_moving": 1,
-  "appear": [
-   "window and labels",
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 57,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 6,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 58,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 5,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 59,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 60,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 5,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 61,
-  "title": "(query, key)",
-  "content": [
-   "list heading and notes",
-   "training pairs",
-   "window and labels"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 9,
-  "appear": [
-   "list heading and notes"
-  ],
-  "vanish": [
-   "window and labels",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 62,
-  "title": "(query, key)",
-  "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs"
-  ],
-  "n_moving": 4,
-  "appear": [
-   "era labels and notes",
-   "list heading and notes"
-  ],
-  "vanish": [
-   "window and labels"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 63,
-  "title": "(query, key)",
-  "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "plot axes and curves",
-   "embedding scatter",
-   "training pairs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
-  ],
-  "n_moving": 6,
-  "appear": [
-   "plot axes and curves",
-   "embedding scatter"
-  ],
-  "vanish": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 64,
+  "n": 71,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1417,7 +2106,7 @@
   "transition": "cut"
  },
  {
-  "n": 65,
+  "n": 72,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -1442,7 +2131,7 @@
   "transition": "magic move"
  },
  {
-  "n": 66,
+  "n": 73,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -1471,7 +2160,7 @@
   "transition": "magic move"
  },
  {
-  "n": 67,
+  "n": 74,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -1520,7 +2209,7 @@
   "transition": "magic move"
  },
  {
-  "n": 68,
+  "n": 75,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -1567,7 +2256,7 @@
   "transition": "cut"
  },
  {
-  "n": 69,
+  "n": 76,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -1593,7 +2282,7 @@
   "transition": "cut"
  },
  {
-  "n": 70,
+  "n": 77,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -1646,7 +2335,7 @@
   "transition": "cut"
  },
  {
-  "n": 71,
+  "n": 78,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -1694,7 +2383,7 @@
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 79,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -1714,7 +2403,7 @@
   "transition": "cut"
  },
  {
-  "n": 73,
+  "n": 80,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -1736,7 +2425,7 @@
   "transition": "cut"
  },
  {
-  "n": 74,
+  "n": 81,
   "title": "D-index",
   "content": [
    "hd",
@@ -1765,7 +2454,7 @@
   "transition": "magic move"
  },
  {
-  "n": 75,
+  "n": 82,
   "title": "D-index",
   "content": [
    "b1",
@@ -1787,7 +2476,7 @@
   "transition": "cut"
  },
  {
-  "n": 76,
+  "n": 83,
   "title": "D-index",
   "content": [
    "b1",
@@ -1809,7 +2498,7 @@
   "transition": "cut"
  },
  {
-  "n": 77,
+  "n": 84,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -1846,7 +2535,7 @@
   "transition": "cut"
  },
  {
-  "n": 78,
+  "n": 85,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -1868,26 +2557,73 @@
   "transition": "cut"
  },
  {
-  "n": 79,
-  "title": "",
+  "n": 86,
+  "title": "The D-index  fails",
   "content": [
-   "sm1",
-   "sm3"
+   "k1",
+   "k1s",
+   "sm1"
   ],
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "sm1",
+   "k1",
+   "k1s",
+   "sm1"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 87,
+  "title": "The D-index  fails",
+  "content": [
+   "k1",
+   "k1s",
+   "k2",
+   "k2s",
+   "sm1"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "k2",
+   "k2s"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 88,
+  "title": "The D-index  fails",
+  "content": [
+   "k1",
+   "k1s",
+   "k2",
+   "k2s",
+   "k3"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "k3",
+   "k3s",
    "sm3"
   ],
   "vanish": [],
   "grows": false,
-  "fragments": 3,
+  "fragments": 0,
   "transition": "cut"
  },
  {
-  "n": 80,
+  "n": 89,
   "title": "Science Advances",
   "content": [
    "contact and paper"
@@ -1899,6 +2635,12 @@
    "contact and paper"
   ],
   "vanish": [
+   "k1",
+   "k1s",
+   "k2",
+   "k2s",
+   "k3",
+   "k3s",
    "sm1",
    "sm3"
   ],

@@ -48,36 +48,6 @@ def NP(cx, cy, s):
 
 
 def build(add):
-    # ---- 36  word2vec ----------------------------------------------------------------------------------------------
-    add(h2("word2vec") + stage(net("net", 1000, 640, 1.5)), cls="L-b", header="")
-
-    # ---- 37-39  fox -> a vector ------------------------------------------------------------------------------------
-    def fox(extra=()):
-        return [net("net", 1046, 440, 0.95),
-                text("fx", "“fox”", 560, 460, 56, weight=700, w=420),
-                overlay_svg("fx_ar", [arrow_px(440, 295, 520, 295, INK, 3), arrow_px(812, 295, 892, 295, COOL, 3)]),
-                text("fxv", "[1.2,0.3,−1]", 1690, 460, 48, "", COOL, weight=700, w=640), *extra]
-
-    T = h2("word2vec (Mikolov et al. 2013)")
-    add(T + stage(*fox()), cls="L-b")
-    add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 770, 40, weight=700, w=1200),
-        text("m2", "Words that appear together sit close in the vector space.", 1045, 860, 32, w=1800, h=80)])),
-        cls="L-b")
-    add(T + stage(*fox([
-        text("m1", 'Learns by <span class="hot">metonymy</span>', 1045, 770, 40, weight=700, w=1200),
-        text("m2", "Words that appear together sit close in the vector space.", 1045, 860, 32, w=1800, h=80)]))
-        + '\n\n<p class="take">Surprisingly effective. <span class="hot">Paradigm shift</span> in NLP</p>', cls="L-b")
-
-    # ---- 40  analogies --------------------------------------------------------------------------------------------
-    V = lambda w: f'<span class="vec">{w}</span>'
-    eq = lambda a, b, c, d: f"{V(a)} − {V(b)} + {V(c)} = {V(d)}"
-    add(h2('Learn by metonymy but captures <span class="hot">metaphor</span>.') + stage(
-        text("an_a", eq("“man”", "“king”", "“woman”", "“queen”"), 1000, 450, 50, w=1900),
-        text("an_b", eq("“Madrid”", "“Spain”", "“Japan”", "“Tokyo”"), 1000, 670, 50, w=1900),
-        text("an_c", eq("“Taylor_Swift”", "“USA”", "“Japan”", "“Namie_Amuro”"), 1000, 965, 36, "", MUTED, w=1950),
-        text("an_t", "Tested 10y&gt; ago by myself", 1000, 845, 40, "aside", w=1300)), cls="L-b")
-
     # ---- 41-48  how word2vec works ---------------------------------------------------------------------------------
     foot = text("foot", "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
                 1000, 1085, 22, "foot", MUTED, w=2000)
@@ -184,8 +154,8 @@ def build(add):
     lg = [text("lg1", "Classify by the<br>logistic regression", 85, 755, 24, "", COOL, w=560, h=160, align="left"),
           text("lg2", "train by the log-<br>likelihood<br>maximization", 85, 950, 24, "", COOL, w=560, h=200, align="left"),
           mathbox("lg3", 660, 665, 1340, 190,
-                  "$\\sigma_\\theta(i,j)=\\dfrac{1}{1+\\exp(-q_i^\\top k_j)}\\;\\;\\theta=\\{q_i,k_i\\}_{i=1}^{N}$", 30),
+                  "$\\sigma_\\theta(i,j)=\\dfrac{1}{1+\\exp(-q_i^\\top k_j)}\\;\\;\\theta=\\{q_i,k_i\\}_{i=1}^{N}$", 34),
           mathbox("lg4", 640, 850, 1360, 190,
                   "$\\max_\\theta\\sum_{(i,j)\\in\\mathcal D}\\left[y_{i,j}\\log\\sigma_\\theta(i,j)+(1-y_{i,j})\\log(1-\\sigma_\\theta(i,j))\\right]$",
-                  22)]
+                  28)]
     add(stage(*table(), *lg), cls="L-g")

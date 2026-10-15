@@ -20,7 +20,7 @@ S = 0.64                      # O units -> slide px
 INK, MUTED, PALE, FAINT = "#000000", "#6b6b6b", "#D9D9D9", "#EEEEEE"
 HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#B14434", "#3959A6", "#DAB167", "#8FA3D6", "#DAB167", "#22336b"
 
-FLOOR = 30                     # the type floor of the house style (px on the slide)
+FLOOR = 36                     # the type floor of the house style (px on the slide)
 RAISED: list = []
 _names: list[str] = []
 _asp: dict[str, float] = {}

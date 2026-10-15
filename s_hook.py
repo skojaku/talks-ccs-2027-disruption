@@ -18,7 +18,26 @@ def tl_two(xl, xm, xr, y, th, rd, rw):
 
 
 def build(add):
-    # ---- 0  we live in the future we once imagined (two stills of Back to the Future Part II) -------------------------------
+    # ---- 1  the paper this talk is about (part opener: title, authors, faces, a small eye-catching citation network) ------------
+    import s_dindex as _d
+    eye = stage(*_d.diagram("eye", "mix", 1860, 905, 0.9, labels=True))
+    add("""## Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness
+
+<p>Munjung Kim, Sadamori Kojaku, Yong-Yeol Ahn. Science Advances.</p>
+
+<div class="faces big">
+<figure><img src="assets/face_munjung.png" style="border-radius:50%"><figcaption>Munjung Kim</figcaption></figure>
+<figure><img src="assets/face_sadamori.jpg"><figcaption>Sadamori Kojaku</figcaption></figure>
+<figure><img src="assets/face_ahn.jpg"><figcaption>Yong-Yeol Ahn</figcaption></figure>
+</div>
+
+<div class="logos2">
+<img src="assets/logo_uva.png"><img src="assets/logo_binghamton.png"><img src="assets/logo_afosr.png">
+</div>
+""" + eye, cls="part", header="",
+        notes="The paper behind this talk. Ask the room how they would measure that a paper is disruptive.")
+
+    # ---- 2  we live in the future we once imagined (two stills of Back to the Future Part II) ---------------------------------
     add(PENCIL + h2("We live in the future we once imagined.")
         + stage(img("bttf_poster", "assets/bttf2_poster.jpg", 620, 640, 560, None, "ph"),
                 img("bttf_phone", "assets/bttf2_phone.jpg", 1330, 640, 670, None, "ph"))
@@ -26,39 +45,23 @@ def build(add):
         cls="L-b", header="",
         notes="Opening: the 1989 film imagined 2015. Smart glasses, video calls and flat screens are now ordinary.")
 
-    # ---- 2  the paper this talk is about (part opener: title, authors, faces) -------------------------------------
-    add("""## Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness
-
-<p>Munjung Kim, Sadamori Kojaku, Yong-Yeol Ahn. Science Advances.</p>
-
-<div class="faces">
-<figure><img src="assets/face_munjung.png" style="border-radius:50%"><figcaption>Munjung Kim</figcaption></figure>
-<figure><img src="assets/face_sadamori.jpg"><figcaption>Sadamori Kojaku</figcaption></figure>
-<figure><img src="assets/face_ahn.jpg"><figcaption>Yong-Yeol Ahn</figcaption></figure>
-</div>
-
-<div class="faces" style="gap:40px;align-items:center">
-<img src="assets/logo_uva.png" style="height:70px"><img src="assets/logo_binghamton.png" style="height:70px"><img src="assets/logo_afosr.png" style="height:70px">
-</div>""", cls="part", header="",
-        notes="The paper behind this talk. Ask the room how they would measure that a paper is disruptive.")
-
-    # ---- 3-5  the technology collage and the light bulb -----------------------------------------------
-    def collage(pos):
+    # ---- 3-6  the technology collage (one picture per cut) and the light bulb ------------------------------------------------------
+    def collage(pos, only=None):
         o = []
-        o.append(img("phone", "assets/phone.png", *pos["phone"]))
-        o.append(img("chat", "assets/chatgpt.png", *pos["chat"], cls="ph"))
-        o.append(img("globe", "assets/globe.png", *pos["globe"], cls="ph"))
-        o.append(img("printer", "assets/printer.jpg", *pos["printer"], cls="ph"))
+        for key, src, cls in (("globe", "assets/browser.png", "ph"), ("phone", "assets/phone.png", ""),
+                              ("printer", "assets/printer.jpg", "ph"), ("chat", "assets/chatgpt.png", "ph")):
+            if only is None or key in only:
+                o.append(img(key, src, *pos[key], cls=cls))
         return o
 
-    P3 = dict(phone=(772, 470, 245, 470), chat=(1550, 540, 600, 337), globe=(363, 827, 473, 473),
-              printer=(1170, 862, 534, 356))
-    P4 = dict(phone=(440, 305, 245, 470), chat=(989, 357, 597, 336), globe=(301, 826, 472, 472),
-              printer=(899, 825, 532, 355))
+    P3 = dict(globe=(520, 450, 620, 468), phone=(1480, 450, 230, 441), printer=(520, 900, 540, 360), chat=(1480, 900, 640, 360))
+    P4 = dict(globe=(300, 826, 500, 378), phone=(740, 360, 245, 470), chat=(1010, 357, 597, 336), printer=(899, 825, 532, 355))
     edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, 498, "ph")
-
-    add(h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>' + stage(*collage(P3)), cls="L-b", header="")
-    add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 44, weight=700)), cls="L-g")
+    TECH = h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>'
+    order = ("globe", "phone", "printer", "chat")
+    for k in range(1, 5):
+        add(TECH + stage(*collage(P3, order[:k])), cls="L-b", header="")
+    add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 48, weight=700)), cls="L-g")
     LB = "Light bulb changed human world"
 
     # the light bulb slide: house layout C, the three bullets are `*` fragments (one click each, on this one slide);
@@ -114,21 +117,25 @@ def build(add):
              (840, 975, 870, 895, 0.25)),
             ("Smart phone", 1250, 480, ("phone", "assets/phone.png", 1246, 735, 198, 380), ("super cool!", 1210, 1015),
              (1237, 985, 1237, 937, 0)),
-            ("Smart glass", 1735, 480, ("glasses", "assets/glasses.jpg", 1720, 735, 380, 363),
-             ("Goes against<br>natural order", 1700, 1000), (1727, 960, 1710, 925, 0)),
+            ("Smart glass", 1735, 480, ("glasses", "assets/glasses.jpg", 1560, 725, 290, 277),
+             ("Goes against<br>natural order", 1735, 1000), None),
         ]
         for i in range(k):
-            lab, lx, ly, im, (atxt, ax, ay), (x1, y1, x2, y2, bend) = cols[i]
+            lab, lx, ly, im, (atxt, ax, ay), arrow = cols[i]
             fade = "opacity:.3;" if i < k - 1 else ""        # the past stays, faded
             o.append(text(f"era{i}", lab, lx, ly, 32, "", MUTED, w=520, style="font-style:italic;" + fade))
             nm, src, cx, cy, w, *hh = im
             o.append(img(nm, src, cx, cy, w, hh[0] if hh else None, "ph" if nm == "glasses" else "", fade))
             o.append(text(f"as{i}", atxt, ax, ay, 34, "aside", w=700, h=160 if "<br>" in atxt else 110, style=fade))
-            o.append(overlay_svg(f"ar{i}", [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, MUTED, 2.4, 14)], style=fade))
+            if arrow:
+                x1, y1, x2, y2, bend = arrow
+                o.append(overlay_svg(f"ar{i}", [curved_arrow(x1 * S, y1 * S, x2 * S, y2 * S, bend, MUTED, 2.4, 14)], style=fade))
+            else:
+                o.append(img("visor", "assets/bttf2_phone.jpg", 1860, 735, 245, None, "ph"))      # the still from the opening, back again
         return o
 
     for k in (0, 1, 2, 3, 4):
-        add(age_title + stage(*my_age(k)), cls="L-b")
+        add(age_title + stage(*my_age(k)), cls="L-b", trans=(False if k >= 2 else None))      # cuts, as chosen on the transition page
 
     # ---- 18  the phones: before and after the turn -----------------------------------------------------
     flip = img("flip", "assets/flip.png", 690, 700, 470, None, "", "transform:rotate(46deg);")
@@ -139,25 +146,20 @@ def build(add):
         flip,
         img("iphone", "assets/iphone.png", 1177, 700, 350, 616),
         img("docomo", "assets/docomo3.png", 1545, 705, 420),
-        img("phone", "assets/phone.png", 1865, 700, 225, 430)), cls="L-g")
+        img("phone", "assets/phone.png", 1865, 700, 225, 430)), cls="L-g", trans=False)
 
     # ---- 19  the same line, atomic models ----------------------------------------------------------------
     def caps(prefix, items, size=30):
         return [text(f"{prefix}{i}", f"{a}<br>{b}", cx, cy, size, w=520, h=160) for i, (a, b, cx, cy) in enumerate(items)]
 
-    add(stage(
+    atoms = lambda: [
         *tl_two(112, 862, 1895, 330, 6, 46, 5),
         img("bohr", "assets/bohr.png", 270, 660, 460),
         img("vegard", "assets/vegard.png", 780, 650, 430),
         img("schrod", "assets/schrodinger.png", 1440, 670, 600, None, "ph"),
         *caps("cap", [("Bohr’s model", "(1913)", 270, 960), ("Vegard’s model", "(1918)", 780, 960),
-                      ("Schrödinger’s model", "(1926)", 1440, 990)])), cls="L-g")
+                      ("Schrödinger’s model", "(1926)", 1440, 990)])]
+    add(stage(*atoms()), cls="L-g")
 
-    # ---- 20  how can we quantify the disruptiveness ----------------------------------------------------
-    add(h2('How do we <span class="hot">quantify</span> disruptiveness?') + stage(
-        *tl_two(328, 908, 1713, 543, 4.5, 34, 4),
-        img("bohr", "assets/bohr.png", 360, 750, 330),
-        img("vegard", "assets/vegard.png", 800, 745, 310),
-        img("schrod", "assets/schrodinger.png", 1440, 765, 430, None, "ph"),
-        *caps("cap", [("Bohr’s model", "(1913)", 360, 965), ("Vegard’s model", "(1918)", 800, 965),
-                      ("Schrödinger’s model", "(1926)", 1440, 990)])), cls="L-b")
+    # ---- 17  how do we quantify the disruptiveness: the same picture, now with its question (a build, nothing moves) -----------------
+    add(h2('How do we <span class="hot">quantify</span> disruptiveness?', style="margin-top:26px;") + stage(*atoms()), cls="L-b")

@@ -4,6 +4,10 @@ import mm
 from s_walk import STATES, GRAYP, RING
 
 
+def stage_free(objs):
+    return objs
+
+
 def scatter_thumb(cx, cy, k):
     """The 'split' scene of the embedding space, unnamed and scaled, for the summary."""
     st = STATES["split"]
@@ -38,8 +42,8 @@ def build(add):
     # ---- 72  the null model -----------------------------------------------------------------------------------------------
     NODE = "#A6A6A6"
     ARW = "#333333"
-    L = {"t": [(498, 660), (641, 660), (804, 660)], "m": [(463, 806), (716, 806)], "b": [(544, 925), (663, 925)]}
-    R = {"t": [(1392, 645), (1536, 646), (1699, 646)], "m": [(1357, 792), (1610, 792)], "b": [(1438, 912), (1558, 912)]}
+    L = {"t": [(498, 570), (641, 570), (804, 570)], "m": [(463, 716), (716, 716)], "b": [(544, 835), (663, 835)]}
+    R = {"t": [(1392, 555), (1536, 556), (1699, 556)], "m": [(1357, 702), (1610, 702)], "b": [(1438, 822), (1558, 822)]}
 
     def netw(pre, D, edges):
         o = []
@@ -56,11 +60,11 @@ def build(add):
     add(h2("Conformal analysis") + '\n\n<p class="sub muted">Preserve degrees and time gap.<br>Shuffle everything else.</p>' + stage(
         *netw("L", L, [(("t", 0), ("m", 0)), (("t", 0), ("b", 1)), (("t", 1), ("m", 1)), (("t", 1), ("b", 0)), (("t", 2), ("m", 1))]),
         *netw("R", R, [(("t", 0), ("b", 0)), (("t", 0), ("m", 1)), (("t", 1), ("m", 0)), (("t", 1), ("b", 1)), (("t", 2), ("m", 1))]),
-        text("n1", "original network", 663, 575, 32, "", MUTED, weight=700, w=900),
-        text("n2", "random network", 1573, 572, 32, "", MUTED, weight=700, w=900),
-        line("tm1", 297, 955, 297, 585, LAV, 6, True, False, 28), line("tm2", 1230, 955, 1230, 585, LAV, 6, True, False, 28),
-        text("tl1", "Time", 245, 770, 28, "", LAV, weight=700, w=300, style="transform:rotate(-90deg);"),
-        text("tl2", "Time", 1178, 770, 28, "", LAV, weight=700, w=300, style="transform:rotate(-90deg);")), cls="L-b")
+        text("n1", "original network", 663, 490, 36, "", MUTED, weight=700, w=900),
+        text("n2", "random network", 1573, 487, 36, "", MUTED, weight=700, w=900),
+        line("tm1", 297, 865, 297, 495, LAV, 6, True, False, 28), line("tm2", 1230, 865, 1230, 495, LAV, 6, True, False, 28),
+        text("tl1", "Time", 245, 680, 36, "", LAV, weight=700, w=300, style="transform:rotate(-90deg);"),
+        text("tl2", "Time", 1178, 680, 36, "", LAV, weight=700, w=300, style="transform:rotate(-90deg);")), cls="L-b")
 
     # ---- 73-75  the D-index: milestone papers sit at the bottom -------------------------------------------------------
     T1 = h2("D-index of milestone works (APS)")
@@ -92,37 +96,39 @@ def build(add):
     lab = lambda n, t, x, y, x2, y2: [text(n, t, x, y, 30, "", MUTED, w=700, style="font-style:italic;"),
                                        overlay_svg(n + "a", [curved_arrow(x2 * S - 120, y2 * S + 2, x2 * S, y2 * S, 0.05, MUTED, 2.6, 14)])]
     add(h2("EDM aligns better with human judgment") + stage(
-        img("odds", "assets/odds_ratio.png", 1275, 650, 1240, None, "ph"),
+        img("odds", "assets/odds_ratio.png", 1275, 650, 1240, None, ""),
         *lab("o1", "Control<br>variable", 180, 440, 655, 388), *lab("o2", "EDM<br>(proposed)", 290, 650, 672, 625),
         *lab("o3", "D-index", 320, 840, 682, 840),
         img("apsc", "assets/aps_news.png", 255, 1050, 440, None)), cls="L-b")
 
-    # ---- 80-81  summary (left to me: "Summary" as F, then three claims, each with the picture that showed it) -------------
+    # ---- 78-81  summary: "Summary", then the three claims, one more at every cut -------------------------------------------------
     add(h2("Summary"), cls="L-f", header="")
-    def claim(n, y, head, sub):
-        # one `*` item per claim: it appears on its own click, with its evidence line under it
-        return (f'<div class="o blist" style="left:340px;top:{y}px;width:880px">\n\n'
-                f'* <span class="claim">{head}</span><span class="sub2">{sub}</span>\n\n</div>')
+    SUMM = [
+        ("k1", 230, lambda: img("sm1", "assets/higgs.jpg", 330, 230, 420, None, "ph"),
+         'The D-index <span class="hot">fails</span> on<br>well-known discoveries', "Higgs (1964): D = −0.27, Bottom 0.1 %"),
+        ("k2", 585, lambda: stage_free(scatter_thumb(330, 585, 0.24)),
+         'EDM keeps <span class="hot">continuity</span>', "A large query-key gap marks a discontinuity"),
+        ("k3", 940, lambda: img("sm3", "assets/odds_ratio.png", 330, 940, 420, None, ""),
+         'EDM matches <span class="hot">human judgment</span>', "Odds ratio 1.23, against 1.03 for the D-index"),
+    ]
+    for n in range(1, 4):
+        objs = []
+        for key, y, pic, head, sub in SUMM[:n]:
+            pics = pic()
+            objs += pics if isinstance(pics, list) else [pics]
+            objs.append(text(key, head, 660, y - 50, 46, "", INK, weight=700, w=1280, h=190, align="left"))
+            objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
+        add(stage(*objs), cls="L-g")
 
+    # ---- 82  the paper (screenshot, one QR code with its DOI) and where to find me ---------------------------------------------------
     add(stage(
-        img("sm1", "assets/higgs.jpg", 290, 270, 360, None, "ph"),
-        claim("k1", 150, 'The D-index <span class="hot">fails</span> on milestone works', 'Higgs (1964): D = −0.27, Bottom 0.1 %'),
-        *scatter_thumb(290, 600, 0.2),
-        claim("k2", 310, 'EDM preserves <span class="hot">continuity</span>', 'A large query-key gap marks a discontinuity'),
-        img("sm3", "assets/odds_ratio.png", 290, 905, 360, None, "ph"),
-        claim("k3", 470, 'EDM matches <span class="hot">human judgment</span>', 'Odds ratio 1.23, against 1.03 for the D-index')),
-        cls="L-g")
-
-    # ---- 81  the paper (screenshot and QR code) and where to find me ---------------------------------------------------
-    add(stage(
-        img("paperimg", "assets/sciadv.png", 640, 395, 1000, None, "ph"),
-        text("papercap", "<em>Science Advances</em> 12, eadx3420 (2026)", 640, 715, 32, w=1500),
-        text("paperlead", "Read the paper", 1500, 160, 44, weight=700, w=700),
-        img("qrpaper", "assets/qr_paper.png", 1500, 410, 400),
-        text("qrcap", "doi.org/10.1126/sciadv.adx3420", 1500, 650, 30, "", MUTED, w=800),
-        img("av", "assets/avatar.jpg", 215, 925, 150),
-        text("c1", 'Web: <u>skojaku.github.io</u>', 340, 850, 32, "", INK, w=1300, align="left"),
-        img("bf", "assets/butterfly.png", 372, 925, 56),
-        text("c2", "@skojaku.bsky.social", 430, 925, 32, "", INK, w=1300, align="left"),
-        text("c3", '<u>skojaku@binghamton.edu</u>', 340, 1000, 32, "", INK, w=1400, align="left"),
-        img("qr2", "assets/qr.png", 1480, 925, 200)), cls="L-g", header="")
+        img("paperimg", "assets/sciadv.png", 560, 395, 1000, None, "ph"),
+        text("papercap", "<em>Science Advances</em> 12, eadx3420 (2026)", 560, 770, 36, w=1500),
+        text("paperlead", "Read the paper", 1560, 170, 52, weight=700, w=800),
+        img("qrpaper", "assets/qr_paper.png", 1560, 520, 460),
+        text("qrcap", "doi.org/10.1126/<br>sciadv.adx3420", 1560, 830, 36, "", MUTED, w=800, h=150),
+        img("av", "assets/avatar.jpg", 160, 925, 150),
+        text("c1", 'Web: <u>skojaku.github.io</u>', 300, 880, 36, "", INK, w=1300, align="left"),
+        img("bf", "assets/butterfly.png", 334, 955, 56),
+        text("c2", "@skojaku.bsky.social", 400, 955, 36, "", INK, w=1300, align="left"),
+        text("c3", '<u>skojaku@binghamton.edu</u>', 300, 1030, 36, "", INK, w=1400, align="left")), cls="L-g", header="")
