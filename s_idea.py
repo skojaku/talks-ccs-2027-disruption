@@ -77,7 +77,7 @@ def hourglass():
     return o
 
 
-def build(add):
+def build_a(add):
     # ---- the D-index sees only close neighbours -----------------------------------------------------------------------------
     T = h2("D-index sees only close neighbours")
     add(T + stage(*ring_graph(1)), cls="L-b")
@@ -86,6 +86,9 @@ def build(add):
     # ---- our idea: zoom out and find the bottleneck of the flow ------------------------------------------------------------------
     add(h2("Zoom out: find the bottleneck") + '\n\n<p class="sub">of how knowledge builds up</p>' + stage(*hourglass()), cls="L-b")
 
+
+
+def build_b(add):
     # ---- word2vec as an information compressor: pairs in, coordinates out ------------------------------------------------------------
     rows = [(0, 360), (1, 540), (4, 720), (6, 900)]
     pts = [(1560, 520, SEQ[0]), (1700, 640, SEQ[1]), (1830, 540, SEQ[2]), (1640, 780, SEQ[3]), (1790, 800, SEQ[4]), (1520, 700, SEQ[5])]

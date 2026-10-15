@@ -1311,37 +1311,17 @@
  },
  {
   "n": 44,
-  "title": "word2vec turns pairs into coordinates",
+  "title": "Sample the flow with random walks",
   "content": [
-   "ia1",
-   "ia2",
-   "id0",
-   "id1",
-   "id2"
+   "rwtitle",
+   "random-walk tree"
   ],
-  "layout": "L-b",
+  "layout": "L-g",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "ia1",
-   "ia2",
-   "id0",
-   "id1",
-   "id2",
-   "id3",
-   "id4",
-   "id5",
-   "inet",
-   "inl",
-   "ins",
-   "ip0",
-   "ip1",
-   "ip2",
-   "ip3",
-   "itx",
-   "pl",
-   "sx",
-   "sy"
+   "rwtitle",
+   "random-walk tree"
   ],
   "vanish": [
    "bn",
@@ -1440,6 +1420,249 @@
  },
  {
   "n": 45,
+  "title": "Random walks",
+  "content": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "vanish": [
+   "rwtitle"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 46,
+  "title": "Random walks",
+  "content": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "n_moving": 32,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 47,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "random-walk tree"
+  ],
+  "n_moving": 1,
+  "appear": [
+   "window and labels",
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 48,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 6,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 49,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 5,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 50,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 51,
+  "title": "Random walks",
+  "content": [
+   "window and labels",
+   "training pairs",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 5,
+  "appear": [
+   "training pairs"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 52,
+  "title": "(query, key)",
+  "content": [
+   "list heading and notes",
+   "training pairs",
+   "window and labels"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs",
+   "window and labels"
+  ],
+  "n_moving": 9,
+  "appear": [
+   "list heading and notes"
+  ],
+  "vanish": [
+   "window and labels",
+   "random-walk tree",
+   "sequence discs"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 53,
+  "title": "(query, key)",
+  "content": [
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
+  ],
+  "layout": "L-g",
+  "moving": [
+   "training pairs"
+  ],
+  "n_moving": 4,
+  "appear": [
+   "era labels and notes",
+   "list heading and notes"
+  ],
+  "vanish": [
+   "window and labels"
+  ],
+  "grows": true,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 54,
+  "title": "word2vec turns pairs into coordinates",
+  "content": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "ia1",
+   "ia2",
+   "id0",
+   "id1",
+   "id2",
+   "id3",
+   "id4",
+   "id5",
+   "inet",
+   "inl",
+   "ins",
+   "ip0",
+   "ip1",
+   "ip2",
+   "ip3",
+   "itx",
+   "pl",
+   "sx",
+   "sy"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "list heading and notes",
+   "training pairs"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 55,
   "title": "Simple linear algebra measures relations",
   "content": [
    "la_k",
@@ -1487,234 +1710,6 @@
   "transition": "cut"
  },
  {
-  "n": 46,
-  "title": "Sample the flow with random walks",
-  "content": [
-   "rwtitle",
-   "random-walk tree"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "rwtitle",
-   "random-walk tree"
-  ],
-  "vanish": [
-   "la_k",
-   "la_kl",
-   "la_m",
-   "la_q",
-   "la_ql",
-   "la_t",
-   "la_x",
-   "la_y"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 47,
-  "title": "Random walks",
-  "content": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "vanish": [
-   "rwtitle"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 48,
-  "title": "Random walks",
-  "content": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "n_moving": 32,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 49,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "random-walk tree"
-  ],
-  "n_moving": 1,
-  "appear": [
-   "window and labels",
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 50,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 6,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 51,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 5,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 52,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 53,
-  "title": "Random walks",
-  "content": [
-   "window and labels",
-   "training pairs",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 5,
-  "appear": [
-   "training pairs"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 54,
-  "title": "(query, key)",
-  "content": [
-   "list heading and notes",
-   "training pairs",
-   "window and labels"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs",
-   "window and labels"
-  ],
-  "n_moving": 9,
-  "appear": [
-   "list heading and notes"
-  ],
-  "vanish": [
-   "window and labels",
-   "random-walk tree",
-   "sequence discs"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 55,
-  "title": "(query, key)",
-  "content": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
-  ],
-  "layout": "L-g",
-  "moving": [
-   "training pairs"
-  ],
-  "n_moving": 4,
-  "appear": [
-   "era labels and notes",
-   "list heading and notes"
-  ],
-  "vanish": [
-   "window and labels"
-  ],
-  "grows": true,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
   "n": 56,
   "title": "How word2vec works",
   "content": [
@@ -1729,9 +1724,14 @@
    "neural network drawing"
   ],
   "vanish": [
-   "era labels and notes",
-   "list heading and notes",
-   "training pairs"
+   "la_k",
+   "la_kl",
+   "la_m",
+   "la_q",
+   "la_ql",
+   "la_t",
+   "la_x",
+   "la_y"
   ],
   "grows": false,
   "fragments": 0,
