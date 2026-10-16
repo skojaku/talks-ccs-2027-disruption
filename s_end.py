@@ -117,8 +117,9 @@ def build(add):
 
     # the J/psi case: two teams, the same day, citing each other
     add(h2("J/ψ meson (1974)") + '\n\n<p class="sub">Richter and Ting cited each other.</p>' + stage(
-        ROW("jr1", "D-index", 560), val("jv1", "− 0.11 · Bottom 1 %", CL, 560, COOL), val("jv2", "− 0.64 · Bottom 0 %", CR, 560, COOL),
-        ROW("jr2", "EDM", 780), val("jv3", "0.99 · Top 5 %", CL, 780, HOT), val("jv4", "0.97 · Top 7 %", CR, 780, HOT)), cls="L-b")
+        img("nobel76", "assets/photo_1976.jpg", 1000, 525, 640, None, "ph"),
+        ROW("jr1", "D-index", 885), val("jv1", "− 0.11 · Bottom 1 %", CL, 885, COOL), val("jv2", "− 0.64 · Bottom 0 %", CR, 885, COOL),
+        ROW("jr2", "EDM", 1005), val("jv3", "0.99 · Top 5 %", CL, 1005, HOT), val("jv4", "0.97 · Top 7 %", CR, 1005, HOT)), cls="L-b")
 
     # many more cases
     add(h2('EDM finds many more <span class="hot">simultaneous discoveries</span>') + stage(
@@ -128,8 +129,9 @@ def build(add):
     # the embedding space: the papers of one discovery sit side by side
     add(h2('Simultaneous discoveries <span class="ul-hot">sit side by side</span>') + stage(
         img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
+        img("nobel76", "assets/photo_1976.jpg", 270, 330, 420, None, "ph"),
         img("hphoto", "assets/higgs.jpg", 270, 905, 420, None, "ph"),
-        text("as1", "Their papers sit<br>very close.", 270, 560, 44, "aside", w=480, h=190),
+        text("as1", "Their papers sit<br>very close.", 270, 615, 44, "aside", w=480, h=190),
         text("fig3c", "Future vectors of 332,518 APS papers", 1160, 1075, 36, "", MUTED, w=1500)),
         cls="L-b")
 
