@@ -2161,7 +2161,7 @@
  },
  {
   "n": 81,
-  "title": "Summary",
+  "title": "What does EDM findthat the D-index misses?",
   "content": [],
   "layout": "L-f",
   "moving": [],
@@ -2183,6 +2183,160 @@
  },
  {
   "n": 82,
+  "title": "Higgs mechanism (1964)",
+  "content": [
+   "hn1",
+   "hn2",
+   "Higgs photo",
+   "hr1",
+   "hr2"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "hn1",
+   "hn2",
+   "Higgs photo",
+   "hr1",
+   "hr2",
+   "hv1",
+   "hv2",
+   "hv3",
+   "hv4"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 83,
+  "title": "J/ψ meson (1974)",
+  "content": [
+   "jr1",
+   "jr2",
+   "jv1",
+   "jv2",
+   "jv3"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "jr1",
+   "jr2",
+   "jv1",
+   "jv2",
+   "jv3",
+   "jv4"
+  ],
+  "vanish": [
+   "hn1",
+   "hn2",
+   "Higgs photo",
+   "hr1",
+   "hr2",
+   "hv1",
+   "hv2",
+   "hv3",
+   "hv4"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 84,
+  "title": "EDM finds many more simultaneous discoveries",
+  "content": [
+   "fig2c",
+   "fig2e"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "fig2c",
+   "fig2e"
+  ],
+  "vanish": [
+   "jr1",
+   "jr2",
+   "jv1",
+   "jv2",
+   "jv3",
+   "jv4"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 85,
+  "title": "Simultaneous discoveries sit side by side",
+  "content": [
+   "era labels and notes",
+   "fig3",
+   "fig3c",
+   "Higgs photo"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "era labels and notes",
+   "fig3",
+   "fig3c",
+   "Higgs photo"
+  ],
+  "vanish": [
+   "fig2c",
+   "fig2e"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 86,
+  "title": "",
+  "content": [
+   "portrait"
+  ],
+  "layout": "L-q",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "portrait"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "fig3",
+   "fig3c",
+   "Higgs photo"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 87,
+  "title": "Summary",
+  "content": [],
+  "layout": "L-f",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
+   "portrait"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 88,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2203,7 +2357,7 @@
   "transition": "cut"
  },
  {
-  "n": 83,
+  "n": 89,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2225,7 +2379,7 @@
   "transition": "cut"
  },
  {
-  "n": 84,
+  "n": 90,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2248,10 +2402,10 @@
   "transition": "cut"
  },
  {
-  "n": 85,
-  "title": "Open problem: simultaneous discovery",
+  "n": 91,
+  "title": "Future work: the same quantification elsewhere",
   "content": [],
-  "layout": "L-f",
+  "layout": "L-c",
   "moving": [],
   "n_moving": 0,
   "appear": [],
@@ -2266,138 +2420,7 @@
    "sm3"
   ],
   "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 86,
-  "title": "Higgs",
-  "content": [
-   "era labels and notes",
-   "network labels",
-   "Higgs citation network",
-   "Higgs photo"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "era labels and notes",
-   "network labels",
-   "Higgs citation network",
-   "Higgs photo"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 87,
-  "title": "Simultaneous discoveries sit side by side",
-  "content": [
-   "era labels and notes",
-   "fig3",
-   "fig3c",
-   "Higgs photo"
-  ],
-  "layout": "L-b",
-  "moving": [
-   "era labels and notes",
-   "Higgs photo"
-  ],
-  "n_moving": 2,
-  "appear": [
-   "fig3",
-   "fig3c"
-  ],
-  "vanish": [
-   "era labels and notes",
-   "network labels",
-   "Higgs citation network"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "magic move"
- },
- {
-  "n": 88,
-  "title": "The environment is ripe",
-  "content": [],
-  "layout": "L-c",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [
-   "era labels and notes",
-   "fig3",
-   "fig3c",
-   "Higgs photo"
-  ],
-  "grows": false,
   "fragments": 3,
-  "transition": "cut"
- },
- {
-  "n": 89,
-  "title": "",
-  "content": [
-   "portrait"
-  ],
-  "layout": "L-q",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "portrait"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 90,
-  "title": "The method applies to any directed network",
-  "content": [],
-  "layout": "L-c",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [
-   "portrait"
-  ],
-  "grows": false,
-  "fragments": 3,
-  "transition": "cut"
- },
- {
-  "n": 91,
-  "title": "Do text embeddings have bottlenecks too?",
-  "content": [],
-  "layout": "L-f",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 92,
-  "title": "CompleNet 2027",
-  "content": [
-   "contact and paper"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "contact and paper"
-  ],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
   "transition": "cut"
  }
 ]

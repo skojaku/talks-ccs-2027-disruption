@@ -1,4 +1,4 @@
-"""Narration for the 92 slides of ccs-2027 (one string per slide, in slide order). Spoken English, about 15 minutes."""
+"""Narration for the 91 slides of ccs-2027 (one string per slide, in slide order). Spoken English, about 15 minutes."""
 N = {
 1: "Hello everyone, I'm Sadamori Kojaku. Today I'll talk about a paper with Munjung Kim and Yong-Yeol Ahn, published in Science Advances. It is about how we measure whether a scientific paper is disruptive, and what happens when the standard measure breaks down. Before I begin, a quick note on what to expect. We will start with a question, how do we measure novelty, then see where a popular measure fails, then see how embeddings fix it, and finish with an open problem.",
 2: "Let me start with a movie. In 1989, Back to the Future Part Two imagined the year 2015. Smart glasses, video calls, flat screens. And today, we really do live in the future we once imagined.",
@@ -80,17 +80,16 @@ N = {
 78: "Many milestone papers have a high EDM value.",
 79: "And randomization reduces the EDM score for most works. So EDM captures something beyond what degrees and time gaps explain. That is what we want from a measure of disruptiveness.",
 80: "Finally, a regression against human judgment. The odds ratio for the EDM percentile is one point two three, and significant. For the D-index it is one point oh three, which is not. EDM aligns better with human judgment. So the measure that keeps continuity is also closer to how experts judge papers.",
-81: "Let me summarize.",
-82: "First, the D-index fails on well-known discoveries. Higgs has a D of minus zero point two seven. That was the starting point.",
-83: "Second, EDM keeps continuity. A large gap between query and key marks a discontinuity.",
-84: "And third, EDM matches human judgment. In the paper we also show results on patents, with the same message.",
-85: "Now I'd like to end with an open problem: simultaneous discovery.",
-86: "Here are Higgs, and Englert and Brout again. There are many other cases like this one. This is a simultaneous discovery, and the two sides shared the Nobel Prize. Think about it for a moment. If two groups independently discover the same thing, and one cites the other, the D-index can punish both. That is a systematic blind spot.",
-87: "When we look at their papers in the embedding space, they sit very close to each other. In our data, we found eighteen thousand candidate pairs. We checked eighty highly cited ones, and sixty-four were real simultaneous discoveries. Simultaneous discoveries sit side by side.",
-88: "And this is not a random accident scattered everywhere. It suggests the environment is ripe. The time was ready for the idea. The D-index tends to overlook these papers, but embeddings make these local bursts visible. Maybe science is not about lone geniuses waiting for lightning to strike. It may be that the environment makes certain ideas ready to be found.",
-89: "Robert Merton argued that independent multiple discoveries are the dominant pattern in science, and that it is the singletons that need a special explanation. Embeddings give us a way to see when and where an idea becomes ripe.",
-90: "The method is not limited to papers. It applies to any directed network. Legal documents, where court decisions cite earlier ones. Patents, which we have partly done. And traffic networks, where we can ask where the bottlenecks are. Anywhere you have items that point to earlier items, you can ask which ones are bridges and which ones are developments.",
-91: "And we are now asking whether text embeddings also have this bottleneck structure. We are looking into it. If you are interested, please get in touch. That would be a different kind of data, but the same question: where are the discontinuities?",
-92: "Finally, an announcement. CompleNet 2027 will be held in Rochester, New York, March ninth to twelfth. I am a program chair, so please join us. You can scan the QR code to read the paper, and reach me through my website, Bluesky, or email. Thank you very much.",
+81: "So which disruptive works does EDM find that the D-index misses? Let's look at the answer.",
+82: "Take the Higgs mechanism again. Englert and Brout have a D-index of zero point one five, in the top two point eight percent. Higgs has minus zero point two seven, in the bottom zero point one percent. With EDM, both papers get a score above one, in the top four or five percent. The same discovery now gets the same verdict.",
+83: "Another case is the J over psi meson. In 1974, two teams, led by Richter and Ting, announced the same particle independently, and the two papers cited each other. Because of those citations, the D-index puts both papers at the bottom, around minus zero point one and minus zero point six. EDM scores them zero point nine nine and zero point nine seven, in the top five and seven percent.",
+84: "This is not only two cases. EDM finds many more simultaneous discoveries, such as asymptotic freedom, the new quark, and reverse transcriptase. In every pair, the D-index is near the developing end and EDM is near the disruptive end.",
+85: "When we look at these papers in the embedding space, they sit very close to each other. In our data, we found eighteen thousand candidate pairs. We checked eighty highly cited ones, and sixty-four were real simultaneous discoveries. Simultaneous discoveries sit side by side.",
+86: "Robert Merton argued that independent multiple discoveries are the dominant pattern in science, and that it is the singletons that need a special explanation. Embeddings give us a way to see when and where an idea becomes ripe.",
+87: "Let me summarize.",
+88: "First, the D-index fails on well-known discoveries. Higgs has a D of minus zero point two seven. That was the starting point.",
+89: "Second, EDM keeps continuity. A large gap between query and key marks a discontinuity.",
+90: "And third, EDM matches human judgment. In the paper we also show results on patents, with the same message.",
+91: "As future work, we would like to quantify the same thing elsewhere: legal documents and patents, mobility networks, and other embeddings such as text. Anywhere items point to earlier items, we can ask where the discontinuities are. Thank you very much.",
 }
-assert sorted(N) == list(range(1, 93))
+assert sorted(N) == list(range(1, 92))

@@ -101,47 +101,37 @@ def build(add):
         *lab("o3", "D-index", 320, 840, 682, 840),
         img("apsc", "assets/aps_news.png", 255, 1050, 440, None)), cls="L-b")
 
-    # ---- 78-81  summary: "Summary", then the three claims, one more at every cut -------------------------------------------------
-    add(h2("Summary"), cls="L-f", header="")
-    SUMM = [
-        ("k1", 230, lambda: img("sm1", "assets/higgs.jpg", 330, 230, 420, None, "ph"),
-         'The D-index <span class="hot">fails</span> on<br>well-known discoveries', "Higgs (1964): D = −0.27, Bottom 0.1 %"),
-        ("k2", 585, lambda: stage_free(scatter_thumb(330, 585, 0.24)),
-         'EDM keeps <span class="hot">continuity</span>', "A large query-key gap marks a discontinuity"),
-        ("k3", 940, lambda: img("sm3", "assets/odds_ratio.png", 330, 940, 420, None, ""),
-         'EDM matches <span class="hot">human judgment</span>', "Odds ratio 1.23, against 1.03 for the D-index"),
-    ]
-    for n in range(1, 4):
-        objs = []
-        for key, y, pic, head, sub in SUMM[:n]:
-            pics = pic()
-            objs += pics if isinstance(pics, list) else [pics]
-            objs.append(text(key, head, 660, y - 50, 46, "", INK, weight=700, w=1280, h=190, align="left"))
-            objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
-        add(stage(*objs), cls="L-g")
+    # ---- simultaneous discoveries (before the summary): the question, the Higgs and J/psi cases, many more, the embedding, Merton ----
+    add(h2('What does <span class="hot">EDM</span> find<br>that the D-index <span class="hot">misses</span>?'), cls="L-f", header="")
 
-    # ---- open problem: simultaneous discovery (Higgs and Englert again, then the embedding, then "the environment is ripe") -------
-    import s_dindex as _d
-    add(h2('Open problem: <span class="hot">simultaneous discovery</span>'), cls="L-f", header="")
+    # the Higgs case: the two papers, their D-index and their EDM
+    CL, CR = 760, 1560
+    ROW = lambda n, lab, y: text(n, lab, 90, y, 38, "", MUTED, w=330, align="left")
+    val = lambda n, t, cx, y, col: text(n, t, cx, y, 40, "", col, weight=700, w=780)
+    add(h2("Higgs mechanism (1964)") + stage(
+        img("hphoto", "assets/higgs.jpg", 1000, 420, 700, None, "ph"),
+        text("hn1", "Englert &amp; Brout", CL, 790, 44, "", GRAYC, weight=700, w=780),
+        text("hn2", "Higgs", CR, 790, 44, "", INK, weight=700, w=780),
+        ROW("hr1", "D-index", 905), val("hv1", "0.15 · Top 2.8 %", CL, 905, HOT), val("hv2", "− 0.27 · Bottom 0.1 %", CR, 905, COOL),
+        ROW("hr2", "EDM", 1020), val("hv3", "1.002 · Top 4.3 %", CL, 1020, HOT), val("hv4", "1.005 · Top 4.1 %", CR, 1020, HOT)), cls="L-b")
 
-    net, Hn, En = _d.hnet(720, 560, 1.0)
-    add(stage(img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph"), *net, *_d.hlabels(Hn, En, 1.0, notes=False),
-              text("as1", "Many other cases like this.", 1500, 780, 40, "aside", w=800, h=120),
-              text("as2", "Simultaneous discovery:<br>they shared the Nobel Prize.", 1500, 940, 40, "aside", w=900, h=170)), cls="L-g")
+    # the J/psi case: two teams, the same day, citing each other
+    add(h2("J/ψ meson (1974)") + '\n\n<p class="sub">Richter and Ting cited each other.</p>' + stage(
+        ROW("jr1", "D-index", 560), val("jv1", "− 0.11 · Bottom 1 %", CL, 560, COOL), val("jv2", "− 0.64 · Bottom 0 %", CR, 560, COOL),
+        ROW("jr2", "EDM", 780), val("jv3", "0.99 · Top 5 %", CL, 780, HOT), val("jv4", "0.97 · Top 7 %", CR, 780, HOT)), cls="L-b")
 
+    # many more cases
+    add(h2('EDM finds many more <span class="hot">simultaneous discoveries</span>') + stage(
+        img("fig2e", "assets/fig2e_simul.png", 1000, 640, 1800, None, ""),
+        text("fig2c", "Percentiles of EDM (Δ) and the D-index for each pair of papers", 1000, 1070, 36, "", MUTED, w=1900)), cls="L-b")
+
+    # the embedding space: the papers of one discovery sit side by side
     add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
         img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
         img("hphoto", "assets/higgs.jpg", 270, 905, 420, None, "ph"),
         text("as1", "Their papers sit<br>very close.", 270, 560, 44, "aside", w=480, h=190),
         text("fig3c", "Future vectors of 332,518 APS papers", 1160, 1075, 36, "", MUTED, w=1500)),
         cls="L-b")
-
-    def bullets(title, items):
-        return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
-
-    add(bullets('The <span class="hot">environment is ripe</span>',
-                ["Simultaneous discoveries sit close together", "The D-index tends to overlook them",
-                 "Not luck: the time was ripe"]), cls="L-c")
 
     mm._names.append("merton")
     add("""<style scoped>section.L-q blockquote { font-size: 38px; }</style>
@@ -161,24 +151,29 @@ def build(add):
 </div>
 </div>""", cls="L-q")
 
-    add(bullets('The method applies to any <span class="hot">directed network</span>',
-                ["Legal documents", "Patents (partly done)", "Traffic networks: where are the bottlenecks?"]), cls="L-c")
+    # ---- 78-81  summary: "Summary", then the three claims, one more at every cut -------------------------------------------------
+    add(h2("Summary"), cls="L-f", header="")
+    SUMM = [
+        ("k1", 230, lambda: img("sm1", "assets/higgs.jpg", 330, 230, 420, None, "ph"),
+         'The D-index <span class="hot">fails</span> on<br>well-known discoveries', "Higgs (1964): D = −0.27, Bottom 0.1 %"),
+        ("k2", 585, lambda: stage_free(scatter_thumb(330, 585, 0.24)),
+         'EDM keeps <span class="hot">continuity</span>', "A large query-key gap marks a discontinuity"),
+        ("k3", 940, lambda: img("sm3", "assets/odds_ratio.png", 330, 940, 420, None, ""),
+         'EDM matches <span class="hot">human judgment</span>', "Odds ratio 1.23, against 1.03 for the D-index"),
+    ]
+    for n in range(1, 4):
+        objs = []
+        for key, y, pic, head, sub in SUMM[:n]:
+            pics = pic()
+            objs += pics if isinstance(pics, list) else [pics]
+            objs.append(text(key, head, 660, y - 50, 46, "", INK, weight=700, w=1280, h=190, align="left"))
+            objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
+        add(stage(*objs), cls="L-g")
 
-    add(h2('Do <span class="hot">text embeddings</span> have bottlenecks too?') + '\n\n<p>We are looking into it now.</p>',
-        cls="L-f", header="")
 
-    # ---- last: CompleNet 2027 announcement (poster on the right half), the paper and where to find me (left half) ----------------
-    add(stage(
-        img("poster", "assets/poster_complenet27.png", 1500, 562, 740, None, "ph"),
-        text("cn1", "CompleNet 2027", 70, 86, 52, weight=700, w=1000, align="left"),
-        text("cn2", "Rochester, NY \u00b7 March 9\u201312, 2027", 70, 188, 36, w=1000, align="left"),
-        text("cn3", "<u>complenet.github.io</u>", 70, 270, 36, w=1000, align="left"),
-        img("qrpaper", "assets/qr_paper.png", 250, 520, 360),
-        text("paperlead", "Read the paper", 470, 440, 40, weight=700, w=640, align="left"),
-        text("papercap", "<em>Science Advances</em>", 470, 520, 36, "", MUTED, w=640, align="left"),
-        text("papercap2", "12, eadx3420 (2026)", 470, 600, 36, "", MUTED, w=640, align="left"),
-        img("av", "assets/avatar.jpg", 125, 905, 160),
-        text("c1", 'Web: <u>skojaku.github.io</u>', 235, 828, 36, "", INK, w=900, align="left"),
-        img("bf", "assets/butterfly.png", 262, 906, 56),
-        text("c2", "@skojaku.bsky.social", 310, 906, 36, "", INK, w=900, align="left"),
-        text("c3", '<u>skojaku@binghamton.edu</u>', 235, 984, 36, "", INK, w=900, align="left")), cls="L-g", header="")
+    # ---- the end: future work, on one slide ------------------------------------------------------------------------------------
+    def bullets(title, items):
+        return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
+
+    add(bullets('Future work: the same <span class="hot">quantification</span> elsewhere',
+                ["Legal documents and patents", "Mobility networks", "Other embeddings, such as text"]), cls="L-c")
