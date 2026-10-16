@@ -150,8 +150,8 @@ def build(add):
         return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
 
     add(bullets('Simultaneous discovery looks <span class="hot">environmental</span>, not random',
-                ["Pairs land in the same neighbourhood", "The D-index tends to overlook them",
-                 "Embeddings make local bursts visible", "A ripe environment, rather than luck?"]), cls="L-c")
+                ["Embeddings place the pairs in one neighbourhood", "The D-index tends to overlook them",
+                 "A ripe environment, rather than luck?"]), cls="L-c")
 
     add(bullets('The method applies to any <span class="hot">directed network</span>',
                 ["Legal documents", "Patents (partly done)", "Traffic networks: where are the bottlenecks?"]), cls="L-c")
