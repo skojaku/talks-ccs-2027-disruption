@@ -167,8 +167,6 @@ def build(add):
     add(h2('Do <span class="hot">text embeddings</span> have bottlenecks too?') + '\n\n<p>We are looking into it now.</p>',
         cls="L-f", header="")
 
-    add(h2('Interested? <span class="hot">Please get in touch.</span>'), cls="L-f", header="")
-
     # ---- last: CompleNet 2027 announcement (poster on the right half), the paper and where to find me (left half) ----------------
     add(stage(
         img("poster", "assets/poster_complenet27.png", 1500, 562, 740, None, "ph"),

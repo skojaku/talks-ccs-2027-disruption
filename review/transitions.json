@@ -2434,19 +2434,6 @@
  },
  {
   "n": 94,
-  "title": "Interested? Please get in touch.",
-  "content": [],
-  "layout": "L-f",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 95,
   "title": "CompleNet 2027",
   "content": [
    "contact and paper"
