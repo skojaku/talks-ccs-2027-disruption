@@ -170,26 +170,28 @@ BASE_H, BASE_E = (534, 588), (822, 590)
 BASE_REFS = [(506, 860), (660, 797), (850, 863)]
 
 
-def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False):
-    """The Higgs / Englert-Brout citation network, drawn at scale k around (cx, cy)."""
+def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, tops_fill="#FFFFFF", tops_ring=DEEP):
+    """The Higgs / Englert-Brout citation network, drawn at scale k around (cx, cy). Higgs is the smaller diamond, Englert & Brout
+    the larger one; the four citing papers take the class colour (red: cite the focal paper and its references)."""
     Pt = lambda p: (cx + (p[0] - 680) * k, cy + (p[1] - 590) * k)
     tops = [Pt(p) for p in BASE_TOPS]
     H_, E_ = Pt(BASE_H), Pt(BASE_E)
     refs = [Pt(p) for p in BASE_REFS]
     w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 75 * k, 68 * k
+    dsH, dsE = ds * 0.85, ds * 1.25
     o = []
     for i, t in enumerate(tops):
-        o.append(edge(f"{pre}_t{i}H", t, H_, sqs * .55, ds * .8, MUTED, w, hs))
-        o.append(edge(f"{pre}_t{i}E", t, E_, sqs * .55, ds * .8, MUTED, w, hs))
-    for i, (src, dst) in enumerate([(H_, refs[0]), (H_, refs[1]), (E_, refs[1]), (E_, refs[2])]):
-        o.append(edge(f"{pre}_r{i}", src, dst, ds * .8, sqs * .55, MUTED, w, hs))
+        o.append(edge(f"{pre}_t{i}H", t, H_, sqs * .55, dsH * .8, MUTED, w, hs))
+        o.append(edge(f"{pre}_t{i}E", t, E_, sqs * .55, dsE * .8, MUTED, w, hs))
+    for i, (src, dst, ds_s) in enumerate([(H_, refs[0], dsH), (H_, refs[1], dsH), (E_, refs[1], dsE), (E_, refs[2], dsE)]):
+        o.append(edge(f"{pre}_r{i}", src, dst, ds_s * .8, sqs * .55, MUTED, w, hs))
     for i, t in enumerate(tops):
-        o.append(sq(f"{pre}_s{i}", *t, sqs, "#FFFFFF", DEEP, 2))
+        o.append(sq(f"{pre}_s{i}", *t, sqs, tops_fill, tops_ring, 2))
     for i, r in enumerate(refs):
         o.append(sq(f"{pre}_r{i}q", *r, sqs * .96, FAINT))
-    o.append(dia(f"{pre}_H", *H_, ds, DEEP))
-    o.append(dia(f"{pre}_E", *E_, ds, GRAYC))
-    x1, y1, x2, y2 = trim(*H_, *E_, ds * .85, ds * .85)
+    o.append(dia(f"{pre}_H", *H_, dsH, DEEP))
+    o.append(dia(f"{pre}_E", *E_, dsE, GRAYC))
+    x1, y1, x2, y2 = trim(*H_, *E_, dsH * .85, dsE * .85)
     if red:
         o.append(line(f"{pre}_red", x1, y1, x2, y2, HOT, 7 * k ** .5, True, False, 22 * k ** .5))
     if ghost:
@@ -201,7 +203,7 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False):
 
 def hlabels(H_, E_, k, pre="hl"):
     return [text(f"{pre}1", "Higgs<br>(1964)", H_[0] - 55 * k - 95, H_[1], 36, "", INK, weight=700, w=190, h=130, align="center"),
-            text(f"{pre}2", "Englert &amp; Brout<br>(1964)", E_[0] + 60 * k, E_[1], 36, "", GRAYC, weight=700, w=500, h=130, align="left")]
+            text(f"{pre}2", "Englert &amp; Brout<br>(1964)", E_[0] + 78 * k, E_[1], 36, "", GRAYC, weight=700, w=500, h=130, align="left")]
 
 
 CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
@@ -320,36 +322,34 @@ def build(add):
     thumb = lambda: img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph")
     Dlab = lambda st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 44, "", COOL, weight=700, w=640, h=140, align="right", style=st)
 
+    # 30-32  the Higgs / Englert & Brout network, centred. The four citing papers carry the class colour, with a grey reminder of what each
+    # colour means; one citation is cut and the four papers change colour (no decision tree, no moving citations).
+    CX0, CY0, K0 = 1000, 500, 1.3
+    legend = lambda: [x for i, (col, cap) in enumerate([(HOT, "cite focal + refs"), (COOL, "cite focal only"), (GRAYC, "cite refs only")])
+                      for x in (sq(f"lg{i}", 140, 215 + i * 95, 62, col), text(f"lgt{i}", cap, 200, 215 + i * 95, 38, "", MUTED, w=640, align="left"))]
+    D_H = lambda cx, st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", cx, 1010, 44, "", COOL, weight=700, w=560, h=170, style=st)
+    D_E = lambda cx: text("ed1", "D = 0.15<br>Top 2.8 %", cx, 1010, 44, "", HOT, weight=700, w=560, h=170)
+
     # 30  Higgs cites Englert & Brout
-    net_a, Ha, Ea = hnet(760, 600, 1.35)
-    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, 1.35), Dlab(),
-              text("as1", "Higgs cites<br>Englert &amp; Brout.", 1490, 840, 40, "aside", w=700, h=170),
-              overlay_svg("as1ar", [curved_arrow(1250 * S, 810 * S, (Ha[0] + Ea[0]) / 2 * S + 40, (Ha[1] + Ea[1]) / 2 * S + 26, -0.25, MUTED, 3, 16)])),
+    net_a, Ha, Ea = hnet(CX0, CY0, K0, tops_fill=HOT, tops_ring=None)
+    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, K0), *legend(), D_H(700), D_E(1330),
+              text("as1", "Higgs cites<br>Englert &amp; Brout.", 1650, 780, 40, "aside", w=700, h=170),
+              overlay_svg("as1ar", [curved_arrow(1480 * S, 745 * S, (Ha[0] + Ea[0]) / 2 * S + 40, (Ha[1] + Ea[1]) / 2 * S + 30, -0.25, MUTED, 3, 16)])),
         cls="L-g")
 
-    # 31  step 1: only that citation is cut, with a pair of scissors
-    net_b, Hb, Eb = hnet(760, 600, 1.35, red=False, ghost=True, scissors=True)
-    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, 1.35), Dlab(),
-              text("as1", "Cut this one citation.", 1490, 840, 40, "aside", w=900, h=170)), cls="L-g")
+    # 31  the scissors cut that one citation (the colours still stand)
+    net_b, Hb, Eb = hnet(CX0, CY0, K0, red=False, ghost=True, scissors=True, tops_fill=HOT, tops_ring=None)
+    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), *legend(), D_H(700), D_E(1330),
+              text("as2", "Cut this one citation.", 1650, 780, 40, "aside", w=900, h=170)), cls="L-g")
 
-    # 32  step 2: the network moves aside and the decision tree appears, with the four papers that cite both
-    net_c, Hc, Ec = hnet(470, 650, 0.85, red=False, ghost=True)
-    OX, OY = 1450, 300
-    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85), Dlab("opacity:0;"),
-              text("as1", "These four papers<br>cite both.", 470, 215, 40, "aside", w=900, h=170),
-              *htree(OX, OY, 1.0, (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(0, POS_HOT))), cls="L-g")
-
-    # 33  step 3: only the four papers move to another box
-    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85), Dlab("opacity:0;"),
-              text("as1", "Without the citation,<br>they move.", 470, 215, 40, "aside", w=900, h=170),
-              *htree(OX, OY, 1.0, (CITE_TOP, CITE_BOTH, CITE_BOTH), SQ4(1, POS_COOL))), cls="L-g")
-
-    # 34  step 4: the result, at the top
-    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, 0.85),
-              text("hd1", "D = − 0.27<br>Bottom 0.1 %", 400, 150, 46, "", COOL, weight=700, w=640, h=150, style="opacity:.3;"),
-              overlay_svg("dd_ar", [arrow_px(450, 96, 560, 96, HOT, 5, 18)]),
-              text("hd2", "D = 0.28<br>Top 1.3 %", 1150, 150, 56, "", HOT, weight=700, w=640, h=170),
-              *htree(OX, OY, 1.0, (CITE_TOP, CITE_REF, CITE_REF), SQ4(1, POS_COOL))), cls="L-g")
+    # 32  the four papers no longer cite a reference of Higgs: red turns blue, and D flips
+    net_c, Hc, Ec = hnet(CX0, CY0, K0, red=False, ghost=True, tops_fill=COOL, tops_ring=None)
+    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0), *legend(),
+              text("hd1b", "D = − 0.27<br>Bottom 0.1 %", 520, 1010, 44, "", COOL, weight=700, w=560, h=170, style="opacity:.3;"),
+              overlay_svg("dd_ar", [arrow_px(505, 646, 568, 646, HOT, 5, 18)]),
+              text("hd2", "D = 0.28<br>Top 1.3 %", 1130, 1010, 52, "", HOT, weight=700, w=560, h=170),
+              D_E(1620),
+              text("as3", "They now cite the<br>focal paper only.", 1650, 780, 40, "aside", w=700, h=170)), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
     nA, HA, EA = hnet(540, 700, 0.95, pre="sa")
