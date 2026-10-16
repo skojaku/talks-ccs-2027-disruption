@@ -726,7 +726,6 @@
   "n": 33,
   "title": "focal + refs",
   "content": [
-   "era labels and notes",
    "network labels",
    "Higgs citation network",
    "Higgs photo"
@@ -737,7 +736,6 @@
   ],
   "n_moving": 1,
   "appear": [
-   "era labels and notes",
    "network labels",
    "Higgs citation network"
   ],
@@ -750,7 +748,6 @@
   "n": 34,
   "title": "focal + refs",
   "content": [
-   "era labels and notes",
    "network labels",
    "Higgs citation network",
    "Higgs photo"
@@ -759,11 +756,9 @@
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "era labels and notes",
    "Higgs citation network"
   ],
   "vanish": [
-   "era labels and notes",
    "Higgs citation network"
   ],
   "grows": true,
@@ -774,29 +769,21 @@
   "n": 35,
   "title": "focal only",
   "content": [
-   "era labels and notes",
-   "dd_ar",
-   "hd1b",
    "network labels",
-   "Higgs citation network"
+   "Higgs citation network",
+   "Higgs photo"
   ],
   "layout": "L-g",
   "moving": [
-   "Higgs citation network"
-  ],
-  "n_moving": 3,
-  "appear": [
-   "era labels and notes",
-   "dd_ar",
-   "hd1b",
-   "network labels"
-  ],
-  "vanish": [
-   "era labels and notes",
    "network labels",
    "Higgs citation network"
   ],
-  "grows": true,
+  "n_moving": 4,
+  "appear": [],
+  "vanish": [
+   "Higgs citation network"
+  ],
+  "grows": false,
   "fragments": 0,
   "transition": "magic move"
  },
@@ -870,9 +857,6 @@
    "svb"
   ],
   "vanish": [
-   "era labels and notes",
-   "dd_ar",
-   "hd1b",
    "network labels",
    "Higgs citation network",
    "Higgs photo"

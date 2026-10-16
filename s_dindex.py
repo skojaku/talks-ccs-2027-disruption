@@ -167,8 +167,8 @@ def higgs_net(red=True):
 
 # the network in its own units (x, y offsets from the centre at scale 1): citing papers on top, the focal paper and its reference
 # in the middle, one more reference of the focal paper at the bottom
-B_J = [(20, -340), (165, -340), (310, -340)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
-B_I = (-250, -340)                                                  # cites the focal paper only (blue)
+B_J = [(40, -310), (185, -250), (330, -320)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
+B_I = (-170, -240)                                                  # cites the focal paper only (blue)
 B_F, B_E, B_X = (-5, 0), (335, 0), (-5, 340)
 B_KS = [(-330, 265), (-190, 200), (180, 200), (320, 265)]    # cite a reference only (grey): two each side of the reference they cite, mirrored, at different heights       # focal paper, its reference, another reference, a paper citing only references (grey)
 
@@ -203,7 +203,7 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
     o.append(disc(f"{pre}_Hring", *H_, dsH * 1.85, "none", DEEP, 3))            # a ring marks the focal paper
     if labels:                                                                  # grey reminders beside each colour
         g = lambda name, t, cxx, cyy, al: text(f"{pre}_{name}", t, cxx, cyy, 38, "", MUTED, w=520, align=al)
-        o.append(g("lnj", "focal only" if cut else "focal + refs", sum(t[0] for t in js) / len(js), js[0][1] - 88, "center"))
+        o.append(g("lnj", "focal only" if cut else "focal + refs", sum(t[0] for t in js) / len(js), min(t[1] for t in js) - 88, "center"))
         o.append(g("lni", "focal only", i0[0] - sqs * 0.5 - 22, i0[1], "right"))
         o.append(g("lnk", "refs only", ks[0][0] - sqs * 0.5 - 22, ks[0][1], "right"))
     x1, y1, x2, y2 = trim(*H_, *E_, dsH * .85, dsE * .85)
@@ -342,25 +342,19 @@ def build(add):
     # 30-32  the Higgs / Englert & Brout network, centred. The four citing papers carry the class colour, with a grey reminder of what each
     # colour means; one citation is cut and the four papers change colour (no decision tree, no moving citations).
     CX0, CY0, K0 = 930, 530, 1.15
-    D_H = lambda cx, st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", cx, 1040, 44, "", COOL, weight=700, w=560, h=150, style=st)
+    D_V = lambda t, col, size=44: text("hd1", t, 1470, 1010, size, "", col, weight=700, w=640, h=150)
 
     # 30  Higgs cites Englert & Brout, so Englert & Brout is a reference of Higgs
     net_a, Ha, Ea = hnet(CX0, CY0, K0, labels=True)
-    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, K0), D_H(760),
-              text("as1", "Higgs cites<br>Englert &amp; Brout.", 300, 400, 40, "aside", w=520, h=170)), cls="L-g")
+    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, K0), D_V("D = − 0.27<br>Bottom 0.1 %", COOL)), cls="L-g")
 
     # 31  the scissors cut that one citation (the colours still stand)
     net_b, Hb, Eb = hnet(CX0, CY0, K0, red=False, ghost=True, scissors=True, labels=True)
-    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), D_H(760),
-              text("as2", "Cut this one citation.", 1650, 690, 40, "aside", w=760, h=170)), cls="L-g")
+    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), D_V("D = − 0.27<br>Bottom 0.1 %", COOL)), cls="L-g")
 
     # 32  the citation is gone: the red papers turn blue, and D flips
     net_c, Hc, Ec = hnet(CX0, CY0, K0, red=False, cut=True, labels=True)
-    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0),
-              text("hd1b", "D = − 0.27<br>Bottom 0.1 %", 400, 1040, 44, "", COOL, weight=700, w=560, h=150, style="opacity:.3;"),
-              overlay_svg("dd_ar", [arrow_px(412, 665, 462, 665, MUTED, 5, 18)]),
-              text("hd2", "D = 0.28<br>Top 1.3 %", 960, 1040, 52, "", HOT, weight=700, w=560, h=150),
-              text("as3", "The three papers now<br>cite the focal paper only.", 1650, 690, 40, "aside", w=760, h=170)), cls="L-g")
+    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0), D_V("D = 0.28<br>Top 1.3 %", HOT, 52)), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
     nA, HA, EA = hnet(500, 720, 0.78, pre="sa")
