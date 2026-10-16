@@ -60,6 +60,12 @@
       if (msg.edits && msg.edits.length) {
         msg.edits.forEach(function (e) { if (e.mode === 'to') apply(N + 1, N, e.name, e.rect); else apply(N, N + 1, e.name, e.rect); });
       }
+      (msg.dels || []).forEach(function (d) {
+        var el = named(sec(d.side === 'a' ? N + 1 : N), d.name);
+        if (!el) return;
+        var prev = el.style.display; el.style.display = 'none';
+        cleanup.push(function () { el.style.display = prev; });
+      });
       (msg.cuts || []).forEach(function (n) { rename(N + 1, n, n + '__cut'); });
       (msg.links || []).forEach(function (l) {
         rename(N + 1, l.from, l.from + '__cut'); rename(N, l.to, l.to + '__cut');

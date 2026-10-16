@@ -68,6 +68,10 @@
   .mvbox:active { cursor: grabbing; }
   .mvbox .tag { position: absolute; left: -2px; top: -22px; background: var(--pen); color: #fff; font-size: 11px; line-height: 1; padding: 3px 6px; border-radius: 3px 3px 0 0; white-space: nowrap; pointer-events: none; }
   .mvbox .grip { position: absolute; right: -9px; bottom: -9px; width: 18px; height: 18px; border-radius: 50%; background: var(--pen); border: 2px solid var(--panel); cursor: nwse-resize; touch-action: none; }
+  .delmark { position: absolute; border: 2px dashed var(--pen); border-radius: 2px; pointer-events: none;
+    background: repeating-linear-gradient(45deg, var(--pen-soft) 0 6px, transparent 6px 12px); }
+  .delmark.dim { opacity: .6; }
+  .delmark .tag { position: absolute; left: -2px; top: -18px; background: var(--pen); color: #fff; font-size: 11px; line-height: 1; padding: 3px 6px; border-radius: 3px 3px 0 0; white-space: nowrap; }
   canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
   .pane.pen canvas { pointer-events: auto; cursor: crosshair; }
   .pane.pen .hit, .pane.pen .mvbox { pointer-events: none; }
@@ -138,7 +142,7 @@
     <span><i style="background:var(--pen-soft);border:2px solid var(--pen)"></i>置きたい場所（ドラッグで移動、右下の丸で大きさ）</span>
     <span><i style="border:1.5px dashed var(--muted)"></i>いまの位置</span>
     <span>斜線の部分はスライドの外です。ここに置くと、オブジェクトがスライドの外へ出ていきます。</span>
-    <span>「対応を切る」は、前後で同じものとして動かさず切り替えにします。</span>
+    <span>「対応を切る」は、前後で同じものとして動かさず切り替えにします。「削除する」は、そのスライドからオブジェクトを消します。</span>
   </div>
 
   <div class="cols">
@@ -240,6 +244,12 @@ function renderPanes() {
     // the instruction boxes
     st.items.forEach(it => {
       const act = it.id === active, kind = it.kind || "move";
+      if (kind === "del") {
+        if (it.side === side) it.names.forEach(n => { const o = objOf(n); if (!o || !o[side]) return;
+          const e = document.createElement("div"); e.className = "delmark" + (act ? "" : " dim"); e.style.cssText = pc(o[side], side);
+          e.innerHTML = '<span class="tag">削除</span>'; L.appendChild(e); });
+        return;
+      }
       if (kind !== "move") {
         if (act) {
           const nm = kind === "cut" ? it.names : [side === "b" ? it.from : it.to];
@@ -276,8 +286,9 @@ function renderSel() {
     <button type="button" class="primary" id="mk">行き先を指定（動かす）</button>
     <button type="button" id="mkcut"${both.length ? "" : " disabled"} title="前後で同じオブジェクトとして動かさず、切り替えにします">対応を切る${both.length ? "（" + both.length + "個）" : ""}</button>
     <button type="button" id="mklink"${one ? "" : " disabled"} title="遷移前のこのオブジェクトを、遷移後の別のオブジェクトへ動かします">別のものと対応づける</button>
+    <button type="button" id="mkdel" title="選んだオブジェクトを、スライドから消します">削除する</button>
     <button type="button" id="unsel">選択を外す</button>`;
-  $("mk").onclick = makeItem; $("mkcut").onclick = makeCut; $("mklink").onclick = () => { linkFrom = names[0]; sel.clear(); renderAll(); };
+  $("mkdel").onclick = makeDel; $("mk").onclick = makeItem; $("mkcut").onclick = makeCut; $("mklink").onclick = () => { linkFrom = names[0]; sel.clear(); renderAll(); };
   $("unsel").onclick = () => { sel.clear(); renderAll(); };
 }
 
@@ -288,6 +299,21 @@ function renderItems() {
   st.items.forEach((it, i) => {
     const el = document.createElement("div"); el.className = "item" + (it.id === active ? " active" : ""); el.dataset.id = it.id;
     const kind = it.kind || "move";
+    if (kind === "del") {
+      const sd = it.side === "a" ? "遷移後（スライド " + (cur + 1) + "）" : "遷移前（スライド " + cur + "）";
+      const can = s => it.names.some(n => objOf(n) && objOf(n)[s]);
+      el.innerHTML = `<div class="row"><b>指示 ${i + 1}</b><span class="badge mv">削除</span><span class="badge">${it.names.length} 個</span></div>
+        <div class="names">${esc(it.names.slice(0, 6).join(", "))}${it.names.length > 6 ? " …" : ""}</div>
+        <small>${sd} のスライドから消します。</small>
+        <div class="row">
+          <button type="button" data-a="side" data-s="a" aria-pressed="${it.side === "a"}"${can("a") ? "" : " disabled"}>遷移後から消す</button>
+          <button type="button" data-a="side" data-s="b" aria-pressed="${it.side === "b"}"${can("b") ? "" : " disabled"}>遷移前から消す</button>
+        </div>
+        <label class="filter"><input type="checkbox" data-a="onward"${it.onward ? " checked" : ""}> 以降のスライドからも消す</label>
+        <div class="row"><button type="button" data-a="del">この指示を消す</button></div>
+        <textarea data-a="note" aria-label="指示 ${i + 1} の補足" placeholder="補足（任意）">${esc(it.note || "")}</textarea>`;
+      box.appendChild(el); return;
+    }
     if (kind !== "move") {
       const head = kind === "cut" ? "対応を切る" : "対応づける";
       const body = kind === "cut"
@@ -372,6 +398,13 @@ function toggle(name) {
     st.items.push(it); active = it.id; linkFrom = null; touch(); renderAll(); return;
   }
   sel.has(name) ? sel.delete(name) : sel.add(name); renderPanes(); renderSel(); renderGroups(); }
+function makeDel() {
+  const order = objs().map(o => o.n), all = [...sel].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  const side = all.some(n => objOf(n).a) ? "a" : "b", names = all.filter(n => objOf(n)[side]);
+  if (!names.length) return;
+  const it = { id: Date.now().toString(36), kind: "del", names, side, onward: false, note: "" };
+  st.items.push(it); active = it.id; sel.clear(); touch(); renderAll();
+}
 function makeCut() {
   const names = [...sel].filter(n => { const o = objOf(n); return o && o.b && o.a; });
   if (!names.length) return;
@@ -395,9 +428,11 @@ $("items").addEventListener("click", e => {
   const a = b.dataset.a;
   if (a === "del") { st.items = st.items.filter(x => x !== it); if (active === it.id) active = st.items.length ? st.items[st.items.length - 1].id : null; }
   else if (a === "reset") it.box = it.cur.slice();
+  else if (a === "side") { it.side = b.dataset.s; it.names = it.names.filter(n => objOf(n) && objOf(n)[it.side]); }
   else if (a === "exit") { const d = b.dataset.d, [x, y, w, h] = it.box; it.box = d === "r" ? [1290, y, w, h] : d === "l" ? [-w - 10, y, w, h] : d === "u" ? [x, -h - 10, w, h] : [x, 730, w, h]; }
   active = it.id; touch(); renderAll();
 });
+$("items").addEventListener("change", e => { if (e.target.dataset.a !== "onward") return; const it = itemOf(e.target.closest(".item").dataset.id); if (it) { it.onward = e.target.checked; touch(); } });
 $("items").addEventListener("input", e => { if (e.target.dataset.a !== "note") return; const it = itemOf(e.target.closest(".item").dataset.id); if (it) { it.note = e.target.value; touch(); } });
 $("note").addEventListener("input", () => { st.note = $("note").value; touch(); });
 $("groups").addEventListener("click", e => {
@@ -496,7 +531,8 @@ function play(withEdits) {
   const edits = withEdits ? mv.flatMap(newRects) : [];
   const cuts = withEdits ? st.items.filter(i => i.kind === "cut").flatMap(i => i.names) : [];
   const links = withEdits ? st.items.filter(i => i.kind === "link").map(i => ({ from: i.from, to: i.to })) : [];
-  pv.contentWindow.postMessage({ type: "mm-play", from: cur, edits, cuts, links }, "*");
+  const dels = withEdits ? st.items.filter(i => i.kind === "del").flatMap(i => i.names.map(n => ({ name: n, side: i.side }))) : [];
+  pv.contentWindow.postMessage({ type: "mm-play", from: cur, edits, cuts, links, dels }, "*");
   pvSay("準備中…", false);
 }
 $("play0").onclick = () => play(false);
