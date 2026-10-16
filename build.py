@@ -21,7 +21,7 @@ SLIDES = []
 FRONT = """---
 marp: true
 theme: house
-paginate: true
+paginate: false
 math: katex
 html: true
 ---
