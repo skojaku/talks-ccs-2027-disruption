@@ -160,4 +160,4 @@ def build(add):
     add(stage(*atoms()), cls="L-g")
 
     # ---- 17  how do we quantify the disruptiveness: the same picture, now with its question (a build, nothing moves) -----------------
-    add(h2('How do we <span class="hot">quantify</span> disruptiveness?', style="margin-top:26px;") + stage(*atoms()), cls="L-b")
+    add(h2('How do we <span class="ul-hot">quantify</span> disruptiveness?', style="margin-top:26px;") + stage(*atoms()), cls="L-b")

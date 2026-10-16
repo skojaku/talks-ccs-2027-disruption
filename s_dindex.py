@@ -303,7 +303,7 @@ def build(add):
         add(stage(*papers(k)) + refl, cls="L-g")
 
     # ---- 25  ... but the D-index fails ------------------------------------------------------------------------------------------------------
-    add(h2('But the D-index <span class="hot">fails</span>', style="font-size:68px;") + '\n\n<p class="sub big">for some well-known disruptive discoveries</p>'
+    add(h2('But the D-index <span class="ul-hot">fails</span>', style="font-size:68px;") + '\n\n<p class="sub big">for some well-known disruptive discoveries</p>'
         + stage(*[x for i in range(3) for x in [img(PAP[i][0], PAP[i][1], XS[i] + (i - 1) * 40, 760, 900, 900 / mm.aspect(PAP[i][1]), "ph", GREY)]]) + refl,
         cls="L-b")
 
@@ -324,7 +324,7 @@ def build(add):
         overlay_svg("an1ar", [arrow_px(250, 330, px0 + 70, 305, HOT, 5, 20)])]
     ann2 = lambda: [
         text("an2", "Higgs, P.W.<br>(1964)", 1730, 610, 36, w=520, h=150),
-        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1730, 820, 42, color=COOL, weight=700, w=560, h=150),
+        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1730, 820, 42, color=COOL, weight=700, w=560, h=150, ul=True),
         text("an2e", "🫠", 1730, 990, 64, w=200),
         overlay_svg("an2ar", [arrow_px(1030, 330, px1 - 80, 300, COOL, 5, 20)])]
     add(stage(*base()), cls="L-g")
@@ -342,7 +342,7 @@ def build(add):
     # 30-32  the Higgs / Englert & Brout network, centred. The four citing papers carry the class colour, with a grey reminder of what each
     # colour means; one citation is cut and the four papers change colour (no decision tree, no moving citations).
     CX0, CY0, K0 = 930, 530, 1.15
-    D_V = lambda t, col, size=44: text("hd1", t, 1470, 1010, size, "", col, weight=700, w=640, h=150)
+    D_V = lambda t, col, size=44, ul=False: text("hd1", t, 1470, 1010, size, "", col, weight=700, w=640, h=150, ul=ul)
 
     # 30  Higgs cites Englert & Brout, so Englert & Brout is a reference of Higgs
     net_a, Ha, Ea = hnet(CX0, CY0, K0, labels=True)
@@ -354,7 +354,7 @@ def build(add):
 
     # 32  the citation is gone: the red papers turn blue, and D flips
     net_c, Hc, Ec = hnet(CX0, CY0, K0, red=False, cut=True, labels=True)
-    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0), D_V("D = 0.28<br>Top 1.3 %", HOT, 52)), cls="L-g")
+    add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0), D_V("D = 0.28<br>Top 1.3 %", HOT, 52, True)), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
     nA, HA, EA = hnet(500, 720, 0.78, pre="sa")
@@ -363,5 +363,5 @@ def build(add):
         text("sca", "with the citation", 540, 215, 40, "", MUTED, w=800),
         text("scb", "one citation cut", 1460, 215, 40, "", MUTED, w=800),
         text("sva", "D = − 0.27", 540, 330, 52, "", COOL, weight=700, w=800),
-        text("svb", "D = 0.28", 1460, 330, 52, "", HOT, weight=700, w=800),
+        text("svb", "D = 0.28", 1460, 330, 52, "", HOT, weight=700, w=800, ul=True),
         *nA, *nB,), cls="L-b")

@@ -62,4 +62,4 @@ def build(add):
                    "color:transparent;")), cls="L-b")
 
     # 5  the thesis, in words only
-    add(h2('We preserve <span class="hot">continuity</span> by abandoning class rounding.'), cls="L-f", header="")
+    add(h2('We preserve <span class="ul-hot">continuity</span> by abandoning class rounding.'), cls="L-f", header="")

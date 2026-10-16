@@ -66,14 +66,14 @@ def img(name, src, cx, cy, w, h=None, cls="", style=""):
 
 
 def text(name, html, cx, cy, size, cls="", color=None, w=1400, h=None, align="center", weight=None,
-         style="", family=None):
+         style="", family=None, ul=False):
     """Text centred on (cx, cy) (O units); `size` is the font size in slide px."""
     if size < FLOOR and "foot" not in cls:
         RAISED.append((name, size))
         size = FLOOR
     h = h or size / S * 1.5
-    if weight in (700, "700", "bold") and color in (HOT, COOL) and "ul-" not in html:
-        html = f'<span class="ul-{"hot" if color == HOT else "cool"}">{html}</span>'      # a coloured value is underlined
+    if ul and color in (HOT, COOL) and "ul-" not in html:
+        html = f'<span class="ul-{"hot" if color == HOT else "cool"}">{html}</span>'      # a value is underlined only when it is the one target of the slide (ul=True)
     st = f"font-size:{size}px;"
     if color:
         st += f"color:{color};"

@@ -102,7 +102,7 @@ def build(add):
         img("apsc", "assets/aps_news.png", 255, 1050, 440, None)), cls="L-b")
 
     # ---- simultaneous discoveries (before the summary): the question, the Higgs and J/psi cases, many more, the embedding, Merton ----
-    add(h2('What does <span class="hot">EDM</span> find<br>that the D-index <span class="hot">misses</span>?'), cls="L-f", header="")
+    add(h2('What does <span class="hot">EDM</span> find<br>that the D-index <span class="ul-hot">misses</span>?'), cls="L-f", header="")
 
     # the Higgs case: the two papers, their D-index and their EDM
     CL, CR = 760, 1560
@@ -126,7 +126,7 @@ def build(add):
         text("fig2c", "Percentiles of EDM (Δ) and the D-index for each pair of papers", 1000, 1070, 36, "", MUTED, w=1900)), cls="L-b")
 
     # the embedding space: the papers of one discovery sit side by side
-    add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
+    add(h2('Simultaneous discoveries <span class="ul-hot">sit side by side</span>') + stage(
         img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
         img("hphoto", "assets/higgs.jpg", 270, 905, 420, None, "ph"),
         text("as1", "Their papers sit<br>very close.", 270, 560, 44, "aside", w=480, h=190),
@@ -175,5 +175,5 @@ def build(add):
     def bullets(title, items):
         return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
 
-    add(bullets('Future work: the same <span class="hot">quantification</span> elsewhere',
+    add(bullets('Future work: the same <span class="ul-hot">quantification</span> elsewhere',
                 ["Legal documents and patents", "Mobility networks", "Other embeddings, such as text"]), cls="L-c")

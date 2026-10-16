@@ -86,8 +86,8 @@ section .take.dark {
 
 /* colour a word without making it a defined term (no brush underline). No gold: on white it
    has 2:1 contrast, so it is for routes and fills only (FIGURE_GUIDE, accent-3). */
-section .hot { color: #B14434; }
-section .cool { color: #3959A6; }
+section .hot, section .ul-hot { color: #B14434; }
+section .cool, section .ul-cool { color: #3959A6; }
 section .muted { color: #6b6b6b; }
 section .teal { color: #8FA3D6; }
 section .olive { color: #B14434; }
@@ -1105,7 +1105,7 @@ section .sub2 { display: block; font-size: 26px; font-weight: 400; margin-top: 6
 section { color: #000000; font-family: 'Libre Baskerville', Georgia, serif; }
 section h2 { font-family: 'Libre Baskerville', Georgia, serif; color: #000000; }
 section .hot { color: #B14434; }
-section .cool { color: #3959A6; }
+section .cool, section .ul-cool { color: #3959A6; }
 section h3 { color: #3959A6; }
 section .muted { color: #6b6b6b; }
 section.L-q blockquote, section.L-q .who, section .ref, section .take.dark { font-family: 'Libre Baskerville', Georgia, serif; }
@@ -1115,12 +1115,12 @@ section .tx.aside > span { font-size: 1.35em; line-height: 1; }
 
 /* What matters is underlined with the lecturer's brush (HOUSE_STYLE section 4): key terms, the coloured word of a title
    and the value of a winner. */
-section strong, section .hot, section .cool, section .ul-hot, section .ul-cool {
+section strong, section .ul-hot, section .ul-cool {
   background: url('figures/brush-hot.png') left bottom / 100% 0.28em no-repeat;
   padding-bottom: 0.1em;
   -webkit-box-decoration-break: clone; box-decoration-break: clone;
 }
-section strong.cool, section .cool, section .ul-cool { background-image: url('figures/brush-cool.png'); }
+section strong.cool, section .ul-cool { background-image: url('figures/brush-cool.png'); }
 
 /* Nodes as in the skill: a pencil outline drawn twice, slightly off each other, and a grainy fill when coloured
    (figlib.grain: +-7.5 % mottling of every coloured or grey pixel; white paper is left alone). */

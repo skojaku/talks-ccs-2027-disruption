@@ -93,8 +93,8 @@ def build(add):
         text("lf", "“favors”", 590, 586, 40, "", HOT, w=560),
         text("lf2", "“favors”", 1318, 586, 40, "", COOL, w=640, align="left"),
         text("lp", "“prepared”", 1318, 819, 40, "", COOL, w=640, align="left", style="opacity:.3;"),
-        text("bq", "Query", 215, 625, 64, "", HOT, weight=700, w=640),
-        text("bk", "Key", 1790, 625, 64, "", COOL, weight=700, w=640)), cls="L-b")
+        text("bq", "Query", 215, 625, 64, "", HOT, weight=700, w=640, ul=True),
+        text("bk", "Key", 1790, 625, 64, "", COOL, weight=700, w=640, ul=True)), cls="L-b")
 
     # ---- 50-55  trained by negation ----------------------------------------------------------------------------------
     TT = h2("Trained by negation.")
