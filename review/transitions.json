@@ -2298,7 +2298,7 @@
  },
  {
   "n": 87,
-  "title": "Open problems",
+  "title": "Open problem: simultaneous discovery",
   "content": [],
   "layout": "L-f",
   "moving": [],
@@ -2320,6 +2320,75 @@
  },
  {
   "n": 88,
+  "title": "Higgs (1964)",
+  "content": [
+   "era labels and notes",
+   "network labels",
+   "Higgs citation network",
+   "Higgs photo"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "era labels and notes",
+   "network labels",
+   "Higgs citation network",
+   "Higgs photo"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 89,
+  "title": "Simultaneous discoveries sit side by side",
+  "content": [
+   "era labels and notes",
+   "fig3",
+   "fig3c",
+   "Higgs photo"
+  ],
+  "layout": "L-b",
+  "moving": [
+   "era labels and notes",
+   "Higgs photo"
+  ],
+  "n_moving": 2,
+  "appear": [
+   "fig3",
+   "fig3c"
+  ],
+  "vanish": [
+   "era labels and notes",
+   "network labels",
+   "Higgs citation network"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "magic move"
+ },
+ {
+  "n": 90,
+  "title": "The environment is ripe",
+  "content": [],
+  "layout": "L-c",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
+   "era labels and notes",
+   "fig3",
+   "fig3c",
+   "Higgs photo"
+  ],
+  "grows": false,
+  "fragments": 3,
+  "transition": "cut"
+ },
+ {
+  "n": 91,
   "title": "",
   "content": [
    "portrait"
@@ -2336,57 +2405,22 @@
   "transition": "cut"
  },
  {
-  "n": 89,
-  "title": "Simultaneous discoveries sit side by side",
-  "content": [
-   "fig3",
-   "fig3c"
-  ],
-  "layout": "L-b",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "fig3",
-   "fig3c"
-  ],
-  "vanish": [
-   "portrait"
-  ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 90,
-  "title": "Simultaneous discovery looks environmental, not random",
-  "content": [],
-  "layout": "L-c",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [
-   "fig3",
-   "fig3c"
-  ],
-  "grows": false,
-  "fragments": 3,
-  "transition": "cut"
- },
- {
-  "n": 91,
+  "n": 92,
   "title": "The method applies to any directed network",
   "content": [],
   "layout": "L-c",
   "moving": [],
   "n_moving": 0,
   "appear": [],
-  "vanish": [],
+  "vanish": [
+   "portrait"
+  ],
   "grows": false,
   "fragments": 3,
   "transition": "cut"
  },
  {
-  "n": 92,
+  "n": 93,
   "title": "Do text embeddings have bottlenecks too?",
   "content": [],
   "layout": "L-f",
@@ -2399,7 +2433,7 @@
   "transition": "cut"
  },
  {
-  "n": 93,
+  "n": 94,
   "title": "Interested? Please get in touch.",
   "content": [],
   "layout": "L-f",
@@ -2412,7 +2446,7 @@
   "transition": "cut"
  },
  {
-  "n": 94,
+  "n": 95,
   "title": "CompleNet 2027",
   "content": [
    "contact and paper"

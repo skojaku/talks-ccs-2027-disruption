@@ -120,8 +120,28 @@ def build(add):
             objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
         add(stage(*objs), cls="L-g")
 
-    # ---- open problems: simultaneous discovery, where else this applies, and an invitation -------------------------------------
-    add(h2("Open problems"), cls="L-f", header="")
+    # ---- open problem: simultaneous discovery (Higgs and Englert again, then the embedding, then "the environment is ripe") -------
+    import s_dindex as _d
+    add(h2('Open problem: <span class="hot">simultaneous discovery</span>'), cls="L-f", header="")
+
+    net, Hn, En = _d.hnet(760, 600, 1.35)
+    add(stage(img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph"), *net, *_d.hlabels(Hn, En, 1.35),
+              text("as1", "Many other cases like this.", 1490, 760, 40, "aside", w=800, h=120),
+              text("as2", "Simultaneous discovery:<br>they shared the Nobel Prize.", 1490, 930, 40, "aside", w=900, h=170)), cls="L-g")
+
+    add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
+        img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
+        img("hphoto", "assets/higgs.jpg", 270, 905, 420, None, "ph"),
+        text("as1", "Their papers sit<br>very close.", 270, 560, 44, "aside", w=480, h=190),
+        text("fig3c", "Future vectors of 332,518 APS papers", 1160, 1075, 36, "", MUTED, w=1500)),
+        cls="L-b")
+
+    def bullets(title, items):
+        return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
+
+    add(bullets('The <span class="hot">environment is ripe</span>',
+                ["Simultaneous discoveries sit close together", "The D-index tends to overlook them",
+                 "Not luck: the time was ripe"]), cls="L-c")
 
     mm._names.append("merton")
     add("""<style scoped>section.L-q blockquote { font-size: 38px; }</style>
@@ -140,18 +160,6 @@ def build(add):
 
 </div>
 </div>""", cls="L-q")
-
-    add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
-        img("fig3", "assets/fig3_simul.png", 1000, 615, 1330, None, ""),
-        text("fig3c", "Future vectors of 332,518 APS papers (<em>Science Advances</em>, Fig. 3)", 1000, 1075, 36, "", MUTED, w=1900)),
-        cls="L-b")
-
-    def bullets(title, items):
-        return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
-
-    add(bullets('Simultaneous discovery looks <span class="hot">environmental</span>, not random',
-                ["Embeddings place the pairs in one neighbourhood", "The D-index tends to overlook them",
-                 "A ripe environment, rather than luck?"]), cls="L-c")
 
     add(bullets('The method applies to any <span class="hot">directed network</span>',
                 ["Legal documents", "Patents (partly done)", "Traffic networks: where are the bottlenecks?"]), cls="L-c")
