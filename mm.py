@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 S = 0.64                      # O units -> slide px
 
 INK, MUTED, PALE, FAINT = "#000000", "#6b6b6b", "#D9D9D9", "#EEEEEE"
-HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#B14434", "#3959A6", "#DAB167", "#8FA3D6", "#DAB167", "#22336b"
+HOT, COOL, GOLD, TEAL, OLIVE, DEEP = "#B14434", "#3959A6", "#B14434", "#8FA3D6", "#D98A7C", "#22336b"      # no orange: emphasis is the red of HOT, its light tint stands in for the old gold node
 
 FLOOR = 36                     # the type floor of the house style (px on the slide)
 RAISED: list = []

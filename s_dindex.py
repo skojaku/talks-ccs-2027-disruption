@@ -170,7 +170,7 @@ def higgs_net(red=True):
 B_J = [(20, -340), (165, -340), (310, -340)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
 B_I = (-250, -340)                                                  # cites the focal paper only (blue)
 B_F, B_E, B_X = (-5, 0), (335, 0), (-5, 340)
-B_KS = [(-470, 160), (-380, 262), (-290, 170)]                      # cite a reference only (grey)       # focal paper, its reference, another reference, a paper citing only references (grey)
+B_KS = [(-480, 140), (-350, 140), (-220, 140)]                      # cite a reference only (grey)       # focal paper, its reference, another reference, a paper citing only references (grey)
 
 
 def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, cut=False, labels=False):
@@ -219,7 +219,7 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
 def hlabels(H_, E_, k, pre="hl", notes=True):
     g = lambda t: f'<span style="font-weight:400;color:{MUTED}">{t}</span>'
     hl = "Higgs" + (f"<br>{g('focal paper')}" if notes else "")
-    return [text(f"{pre}1", hl, H_[0] - 72 * k - 95, H_[1] + (14 if notes else 0), 36, "", INK, weight=700, w=190, h=140 if notes else 100, align="center"),
+    return [text(f"{pre}1", hl, H_[0] - 60 * k, H_[1] + (14 if notes else 0), 36, "", INK, weight=700, w=420, h=140 if notes else 100, align="right"),
             text(f"{pre}2", "Englert &amp; Brout", E_[0] + 78 * k, E_[1], 36, "", GRAYC, weight=700, w=560, h=100, align="left")]
 
 

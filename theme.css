@@ -90,7 +90,7 @@ section .hot { color: #B14434; }
 section .cool { color: #3959A6; }
 section .muted { color: #6b6b6b; }
 section .teal { color: #8FA3D6; }
-section .olive { color: #DAB167; }
+section .olive { color: #B14434; }
 
 /* ---------- the breadcrumb: `<!-- header: Results -->` ----------
    A short line from the left edge, a dot, and the topic or source the run of slides
@@ -464,7 +464,7 @@ section .steps-list .i { font-size: 25px; color: #3959A6; flex: none; }
 
 /* secondary accents — use only where a contrast carries meaning */
 .accent-2 { color: #B14434; }
-.accent-3 { color: #DAB167; }
+.accent-3 { color: #B14434; }
 
 /* pagination */
 section::after {
