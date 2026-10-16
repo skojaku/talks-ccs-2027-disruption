@@ -29,8 +29,8 @@ def build(add):
         mathbox("edm", 300, 240, 1440, 220, "$$\\Delta_i := 1-\\cos(q_i,k_i)$$", 60),
         text("edmn", "How different the<br>two sides are.", 1545, 508, 32, "aside", w=900, h=170),
         img("hphoto", "assets/higgs.jpg", 935, 782, 620, None, "ph"),
-        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", HOT, w=620, h=170),
-        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", HOT, w=620, h=170),
+        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", COOL, w=620, h=170),
+        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", COOL, w=620, h=170),
         overlay_svg("e_ar", [curved_arrow(415 * S, 690 * S, 690 * S, 700 * S, -0.5, HOT, 6, 24),
                              curved_arrow(1430 * S, 790 * S, 1235 * S, 746 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
 
@@ -124,10 +124,10 @@ def build(add):
     import s_dindex as _d
     add(h2('Open problem: <span class="hot">simultaneous discovery</span>'), cls="L-f", header="")
 
-    net, Hn, En = _d.hnet(760, 600, 1.35)
-    add(stage(img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph"), *net, *_d.hlabels(Hn, En, 1.35),
-              text("as1", "Many other cases like this.", 1490, 760, 40, "aside", w=800, h=120),
-              text("as2", "Simultaneous discovery:<br>they shared the Nobel Prize.", 1490, 930, 40, "aside", w=900, h=170)), cls="L-g")
+    net, Hn, En = _d.hnet(720, 560, 1.0)
+    add(stage(img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph"), *net, *_d.hlabels(Hn, En, 1.0, notes=False),
+              text("as1", "Many other cases like this.", 1500, 780, 40, "aside", w=800, h=120),
+              text("as2", "Simultaneous discovery:<br>they shared the Nobel Prize.", 1500, 940, 40, "aside", w=900, h=170)), cls="L-g")
 
     add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
         img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
