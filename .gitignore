@@ -3,3 +3,5 @@ __pycache__/
 *.pyc
 ccs-2027-narrated.mp4
 narration/build/
+ccs-2027-narrated-kokoro.mp4
+narration/build_kokoro/
