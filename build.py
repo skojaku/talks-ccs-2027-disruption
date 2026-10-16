@@ -86,6 +86,12 @@ def modules():
             s_walk.build_a2, s_walk.focus, s_walk.build_b, s_end.build]
 
 
+CUTS_CSS = (
+    "::view-transition-group(*){animation-duration:max(.8s,var(--marp-bespoke-transition-animation-duration,0s));animation-timing-function:ease-in-out}"
+    "::view-transition-old(*),::view-transition-new(*){animation:none!important;mix-blend-mode:normal!important}"
+    "::view-transition-old(*){opacity:0!important}::view-transition-new(*){opacity:1!important}")
+
+
 def main():
     for m in modules():
         m(add)
@@ -151,6 +157,11 @@ def main():
     if "--html" in sys.argv:
         subprocess.run(["marp", "--no-stdin", "--html", "--theme-set", "theme.css", "--allow-local-files",
                         "ccs-2027.md", "-o", "ccs-2027.html"], check=True, cwd=ROOT)
+        # Marpit prefixes every theme rule with the slide selector, which cannot match the view-transition pseudo-elements
+        # (they hang off the page root), so the "cuts, not fades" rules go in an unscoped <style> after the build.
+        html = (ROOT / "ccs-2027.html").read_text()
+        html = html.replace("</head>", "<style id=\"mm-cuts\">" + CUTS_CSS + "</style></head>", 1)
+        (ROOT / "ccs-2027.html").write_text(html)
         print("wrote ccs-2027.html")
 
 
