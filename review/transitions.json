@@ -90,15 +90,11 @@
  {
   "n": 3,
   "title": "Your most memorable technology?",
-  "content": [
-   "technology pictures"
-  ],
+  "content": [],
   "layout": "L-b",
   "moving": [],
   "n_moving": 0,
-  "appear": [
-   "technology pictures"
-  ],
+  "appear": [],
   "vanish": [
    "bttf_phone",
    "bttf_poster"
@@ -160,6 +156,23 @@
  },
  {
   "n": 7,
+  "title": "Your most memorable technology?",
+  "content": [
+   "technology pictures"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "technology pictures"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 8,
   "title": "Light bulb",
   "content": [
    "technology pictures",
@@ -179,7 +192,7 @@
   "transition": "magic move"
  },
  {
-  "n": 8,
+  "n": 9,
   "title": "Light bulb changed human world",
   "content": [
    "technology pictures",
@@ -200,7 +213,7 @@
   "transition": "magic move"
  },
  {
-  "n": 9,
+  "n": 10,
   "title": "",
   "content": [
    "technology pictures",
@@ -219,7 +232,7 @@
   "transition": "magic move"
  },
  {
-  "n": 10,
+  "n": 11,
   "title": "",
   "content": [
    "portrait"
@@ -234,21 +247,6 @@
    "technology pictures",
    "Edison photo"
   ],
-  "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 11,
-  "title": "",
-  "content": [
-   "portrait"
-  ],
-  "layout": "L-q",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [],
-  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
@@ -270,6 +268,21 @@
  },
  {
   "n": 13,
+  "title": "",
+  "content": [
+   "portrait"
+  ],
+  "layout": "L-q",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 14,
   "title": "My age",
   "content": [
    "age labels",
@@ -290,7 +303,7 @@
   "transition": "cut"
  },
  {
-  "n": 14,
+  "n": 15,
   "title": "My age",
   "content": [
    "age labels",
@@ -311,7 +324,7 @@
   "transition": "cut"
  },
  {
-  "n": 15,
+  "n": 16,
   "title": "My age",
   "content": [
    "age labels",
@@ -324,7 +337,7 @@
    "era labels and notes",
    "phone pictures"
   ],
-  "n_moving": 0,
+  "n_moving": 4,
   "appear": [
    "era labels and notes",
    "phone pictures"
@@ -335,7 +348,7 @@
   "transition": "cut"
  },
  {
-  "n": 16,
+  "n": 17,
   "title": "My age",
   "content": [
    "age labels",
@@ -360,7 +373,7 @@
   "transition": "cut"
  },
  {
-  "n": 17,
+  "n": 18,
   "title": "My age",
   "content": [
    "age labels",
@@ -385,7 +398,7 @@
   "transition": "cut"
  },
  {
-  "n": 18,
+  "n": 19,
   "title": "",
   "content": [
    "phone pictures",
@@ -414,7 +427,7 @@
   "transition": "cut"
  },
  {
-  "n": 19,
+  "n": 20,
   "title": "Bohr’s model (1913)",
   "content": [
    "atomic-model pictures",
@@ -435,7 +448,7 @@
   "transition": "cut"
  },
  {
-  "n": 20,
+  "n": 21,
   "title": "How do we quantify disruptiveness?",
   "content": [
    "atomic-model pictures",
@@ -451,7 +464,7 @@
   "transition": "cut"
  },
  {
-  "n": 21,
+  "n": 22,
   "title": "Based on citation networks (Funk & Owen-Smith 2017)",
   "content": [
    "citation diagram",
@@ -473,7 +486,7 @@
   "transition": "cut"
  },
  {
-  "n": 22,
+  "n": 23,
   "title": "j",
   "content": [
    "citation diagram",
@@ -496,7 +509,7 @@
   "transition": "magic move"
  },
  {
-  "n": 23,
+  "n": 24,
   "title": "j",
   "content": [
    "citation diagram",
@@ -520,7 +533,7 @@
   "transition": "cut"
  },
  {
-  "n": 24,
+  "n": 25,
   "title": "j",
   "content": [
    "formula",
@@ -549,7 +562,7 @@
   "transition": "cut"
  },
  {
-  "n": 25,
+  "n": 26,
   "title": "Large teams develop, small teams disrupt",
   "content": [
    "the three papers",
@@ -575,7 +588,7 @@
   "transition": "cut"
  },
  {
-  "n": 26,
+  "n": 27,
   "title": "Papers are becoming less disruptive over time",
   "content": [
    "the three papers",
@@ -593,7 +606,7 @@
   "transition": "cut"
  },
  {
-  "n": 27,
+  "n": 28,
   "title": "Remote collaboration: fewer breakthrough ideas",
   "content": [
    "the three papers",
@@ -611,7 +624,7 @@
   "transition": "cut"
  },
  {
-  "n": 28,
+  "n": 29,
   "title": "But the D-index fails",
   "content": [
    "the three papers"
@@ -630,7 +643,7 @@
   "transition": "magic move"
  },
  {
-  "n": 29,
+  "n": 30,
   "title": "Discovery",
   "content": [
    "disc1",
@@ -653,27 +666,6 @@
    "the three papers"
   ],
   "grows": false,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 30,
-  "title": "Discovery",
-  "content": [
-   "annotations",
-   "disc1",
-   "disc2",
-   "Higgs photo",
-   "rec1"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "annotations"
-  ],
-  "vanish": [],
-  "grows": true,
   "fragments": 0,
   "transition": "cut"
  },
@@ -700,6 +692,27 @@
  },
  {
   "n": 32,
+  "title": "Discovery",
+  "content": [
+   "annotations",
+   "disc1",
+   "disc2",
+   "Higgs photo",
+   "rec1"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "annotations"
+  ],
+  "vanish": [],
+  "grows": true,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 33,
   "title": "What’s happening?",
   "content": [
    "Higgs photo"
@@ -720,7 +733,7 @@
   "transition": "cut"
  },
  {
-  "n": 33,
+  "n": 34,
   "title": "focal + refs",
   "content": [
    "network labels",
@@ -742,7 +755,7 @@
   "transition": "magic move"
  },
  {
-  "n": 34,
+  "n": 35,
   "title": "focal + refs",
   "content": [
    "network labels",
@@ -763,7 +776,7 @@
   "transition": "cut"
  },
  {
-  "n": 35,
+  "n": 36,
   "title": "focal only",
   "content": [
    "network labels",
@@ -785,7 +798,7 @@
   "transition": "magic move"
  },
  {
-  "n": 36,
+  "n": 37,
   "title": "Why is the D-index so sensitive?",
   "content": [
    "sa_E",
@@ -863,7 +876,7 @@
   "transition": "cut"
  },
  {
-  "n": 37,
+  "n": 38,
   "title": "D-index sorts the citing papers",
   "content": [
    "citation diagram",
@@ -941,7 +954,7 @@
   "transition": "cut"
  },
  {
-  "n": 38,
+  "n": 39,
   "title": "But papers do not sort so cleanly",
   "content": [
    "era labels and notes",
@@ -965,7 +978,7 @@
   "transition": "magic move"
  },
  {
-  "n": 39,
+  "n": 40,
   "title": "We preserve continuity by abandoning class rounding.",
   "content": [],
   "layout": "L-f",
@@ -981,7 +994,7 @@
   "transition": "cut"
  },
  {
-  "n": 40,
+  "n": 41,
   "title": "Simulate the flow of knowledge with random walks",
   "content": [
    "rwtitle",
@@ -1000,7 +1013,7 @@
   "transition": "cut"
  },
  {
-  "n": 41,
+  "n": 42,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1021,7 +1034,7 @@
   "transition": "cut"
  },
  {
-  "n": 42,
+  "n": 43,
   "title": "Random walks",
   "content": [
    "random-walk tree",
@@ -1040,7 +1053,7 @@
   "transition": "magic move"
  },
  {
-  "n": 43,
+  "n": 44,
   "title": "word2vec turns pairs into coordinates",
   "content": [
    "ia1",
@@ -1082,7 +1095,7 @@
   "transition": "cut"
  },
  {
-  "n": 44,
+  "n": 45,
   "title": "How word2vec works",
   "content": [
    "sentence and word labels",
@@ -1121,7 +1134,7 @@
   "transition": "cut"
  },
  {
-  "n": 45,
+  "n": 46,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "neural network drawing",
@@ -1137,24 +1150,6 @@
    "sentence and word labels"
   ],
   "grows": true,
-  "fragments": 0,
-  "transition": "cut"
- },
- {
-  "n": 46,
-  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-  "content": [
-   "sentence and word labels",
-   "neural network drawing"
-  ],
-  "layout": "L-g",
-  "moving": [],
-  "n_moving": 0,
-  "appear": [
-   "sentence and word labels"
-  ],
-  "vanish": [],
-  "grows": false,
   "fragments": 0,
   "transition": "cut"
  },
@@ -1186,6 +1181,24 @@
   "layout": "L-g",
   "moving": [],
   "n_moving": 0,
+  "appear": [
+   "sentence and word labels"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 49,
+  "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
+  "content": [
+   "sentence and word labels",
+   "neural network drawing"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
   "appear": [],
   "vanish": [
    "sentence and word labels"
@@ -1195,7 +1208,7 @@
   "transition": "cut"
  },
  {
-  "n": 49,
+  "n": 50,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "sentence and word labels",
@@ -1214,7 +1227,7 @@
   "transition": "cut"
  },
  {
-  "n": 50,
+  "n": 51,
   "title": "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
   "content": [
    "query and key vectors",
@@ -1233,7 +1246,7 @@
   "transition": "cut"
  },
  {
-  "n": 51,
+  "n": 52,
   "title": "A word has two vectors",
   "content": [
    "query and key vectors",
@@ -1258,7 +1271,7 @@
   "transition": "magic move"
  },
  {
-  "n": 52,
+  "n": 53,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1285,7 +1298,7 @@
   "transition": "magic move"
  },
  {
-  "n": 53,
+  "n": 54,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1307,7 +1320,7 @@
   "transition": "magic move"
  },
  {
-  "n": 54,
+  "n": 55,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1329,7 +1342,7 @@
   "transition": "magic move"
  },
  {
-  "n": 55,
+  "n": 56,
   "title": "Trained by negation.",
   "content": [
    "plot axes and curves",
@@ -1350,7 +1363,7 @@
   "transition": "cut"
  },
  {
-  "n": 56,
+  "n": 57,
   "title": "query",
   "content": [
    "r1k",
@@ -1394,7 +1407,7 @@
   "transition": "cut"
  },
  {
-  "n": 57,
+  "n": 58,
   "title": "query",
   "content": [
    "lg1",
@@ -1418,7 +1431,7 @@
   "transition": "cut"
  },
  {
-  "n": 58,
+  "n": 59,
   "title": "word2vec turns pairs into coordinates",
   "content": [
    "ia1",
@@ -1480,7 +1493,7 @@
   "transition": "cut"
  },
  {
-  "n": 59,
+  "n": 60,
   "title": "Random walks",
   "content": [
    "arcl1",
@@ -1526,7 +1539,7 @@
   "transition": "cut"
  },
  {
-  "n": 60,
+  "n": 61,
   "title": "Random walks",
   "content": [
    "arcl1",
@@ -1552,7 +1565,7 @@
   "transition": "magic move"
  },
  {
-  "n": 61,
+  "n": 62,
   "title": "Random walks",
   "content": [
    "arcl1",
@@ -1576,7 +1589,7 @@
   "transition": "magic move"
  },
  {
-  "n": 62,
+  "n": 63,
   "title": "Random walks",
   "content": [
    "arcl1",
@@ -1597,7 +1610,7 @@
   "transition": "cut"
  },
  {
-  "n": 63,
+  "n": 64,
   "title": "Random walks",
   "content": [
    "arcl1",
@@ -1623,7 +1636,7 @@
   "transition": "magic move"
  },
  {
-  "n": 64,
+  "n": 65,
   "title": "(ancestor, descendant)",
   "content": [
    "list heading and notes",
@@ -1651,7 +1664,7 @@
   "transition": "magic move"
  },
  {
-  "n": 65,
+  "n": 66,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1675,7 +1688,7 @@
   "transition": "magic move"
  },
  {
-  "n": 66,
+  "n": 67,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1705,7 +1718,7 @@
   "transition": "magic move"
  },
  {
-  "n": 67,
+  "n": 68,
   "title": "(query, key)",
   "content": [
    "era labels and notes",
@@ -1728,7 +1741,7 @@
   "transition": "cut"
  },
  {
-  "n": 68,
+  "n": 69,
   "title": "focal paper",
   "content": [
    "era labels and notes",
@@ -1753,7 +1766,7 @@
   "transition": "magic move"
  },
  {
-  "n": 69,
+  "n": 70,
   "title": "focal paper",
   "content": [
    "plot axes and curves",
@@ -1782,7 +1795,7 @@
   "transition": "magic move"
  },
  {
-  "n": 70,
+  "n": 71,
   "title": "Not mixed",
   "content": [
    "atomic-model pictures",
@@ -1831,7 +1844,7 @@
   "transition": "magic move"
  },
  {
-  "n": 71,
+  "n": 72,
   "title": "Embedding Disruptiveness Measure (EDM)",
   "content": [
    "e1",
@@ -1878,7 +1891,7 @@
   "transition": "cut"
  },
  {
-  "n": 72,
+  "n": 73,
   "title": "Does EDM beat the D-index? 🤔",
   "content": [
    "aps1",
@@ -1904,7 +1917,7 @@
   "transition": "cut"
  },
  {
-  "n": 73,
+  "n": 74,
   "title": "Conformal analysis",
   "content": [
    "Lb0",
@@ -1957,7 +1970,7 @@
   "transition": "cut"
  },
  {
-  "n": 74,
+  "n": 75,
   "title": "D-index of milestone works (APS)",
   "content": [
    "histD"
@@ -2005,7 +2018,7 @@
   "transition": "cut"
  },
  {
-  "n": 75,
+  "n": 76,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2025,7 +2038,7 @@
   "transition": "cut"
  },
  {
-  "n": 76,
+  "n": 77,
   "title": "D-index of milestone works (APS)",
   "content": [
    "a1",
@@ -2047,7 +2060,7 @@
   "transition": "cut"
  },
  {
-  "n": 77,
+  "n": 78,
   "title": "D-index",
   "content": [
    "hd",
@@ -2076,7 +2089,7 @@
   "transition": "magic move"
  },
  {
-  "n": 78,
+  "n": 79,
   "title": "D-index",
   "content": [
    "b1",
@@ -2098,7 +2111,7 @@
   "transition": "cut"
  },
  {
-  "n": 79,
+  "n": 80,
   "title": "D-index",
   "content": [
    "b1",
@@ -2120,7 +2133,7 @@
   "transition": "cut"
  },
  {
-  "n": 80,
+  "n": 81,
   "title": "EDM aligns better with human judgment",
   "content": [
    "apsc",
@@ -2157,7 +2170,7 @@
   "transition": "cut"
  },
  {
-  "n": 81,
+  "n": 82,
   "title": "What does EDM findthat the D-index misses?",
   "content": [],
   "layout": "L-f",
@@ -2179,7 +2192,7 @@
   "transition": "cut"
  },
  {
-  "n": 82,
+  "n": 83,
   "title": "Higgs mechanism (1964)",
   "content": [
    "hn1",
@@ -2208,7 +2221,7 @@
   "transition": "cut"
  },
  {
-  "n": 83,
+  "n": 84,
   "title": "J/ψ meson (1974)",
   "content": [
    "jr1",
@@ -2246,7 +2259,7 @@
   "transition": "cut"
  },
  {
-  "n": 84,
+  "n": 85,
   "title": "EDM finds many more simultaneous discoveries",
   "content": [
    "fig2c",
@@ -2274,7 +2287,7 @@
   "transition": "cut"
  },
  {
-  "n": 85,
+  "n": 86,
   "title": "Simultaneous discoveries sit side by side",
   "content": [
    "era labels and notes",
@@ -2303,7 +2316,7 @@
   "transition": "cut"
  },
  {
-  "n": 86,
+  "n": 87,
   "title": "",
   "content": [
    "portrait"
@@ -2327,7 +2340,7 @@
   "transition": "cut"
  },
  {
-  "n": 87,
+  "n": 88,
   "title": "Summary",
   "content": [],
   "layout": "L-f",
@@ -2342,7 +2355,7 @@
   "transition": "cut"
  },
  {
-  "n": 88,
+  "n": 89,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2363,7 +2376,7 @@
   "transition": "cut"
  },
  {
-  "n": 89,
+  "n": 90,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2385,7 +2398,7 @@
   "transition": "cut"
  },
  {
-  "n": 90,
+  "n": 91,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2408,7 +2421,7 @@
   "transition": "cut"
  },
  {
-  "n": 91,
+  "n": 92,
   "title": "The D-index  fails",
   "content": [
    "k1",
@@ -2431,7 +2444,7 @@
   "transition": "cut"
  },
  {
-  "n": 92,
+  "n": 93,
   "title": "Future work: the same quantification elsewhere",
   "content": [],
   "layout": "L-c",
@@ -2456,7 +2469,7 @@
   "transition": "cut"
  },
  {
-  "n": 93,
+  "n": 94,
   "title": "CompleNet 2027",
   "content": [
    "contact and paper"

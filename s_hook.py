@@ -59,7 +59,7 @@ def build(add):
     edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, None, "ph")
     TECH = h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>'
     order = ("globe", "phone", "printer", "chat")
-    for k in range(1, 5):
+    for k in range(0, 5):                      # k = 0: the question alone, no icon yet
         add(TECH + stage(*collage(P3, order[:k])), cls="L-b", header="")
     add(stage(*collage(P4), edison(), text("lbt", "Light bulb", 1690, 368, 48, weight=700)), cls="L-g")
     LB = "Light bulb changed human world"
