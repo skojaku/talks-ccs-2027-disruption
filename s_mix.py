@@ -5,18 +5,18 @@ import mm
 import s_dindex as D
 
 CX, CY, K = 1000, 690, 1.3                  # where the graph sits, on all four slides
-RED, BLUE = (177, 68, 52), (57, 89, 166)
+RED, BLUE = (57, 89, 166), (177, 68, 52)      # t = 0: cites focal + refs (blue), t = 1: cites focal only (red)
 
 
 def blend(t, white=0.0):
-    """t = 0 red ('cites the focal paper and its references') ... t = 1 blue ('cites the focal paper only'); white lightens."""
+    """t = 0 blue ('cites the focal paper and its references') ... t = 1 red ('cites the focal paper only'); white lightens."""
     c = [RED[i] + (BLUE[i] - RED[i]) * t for i in range(3)]
     c = [v + (255 - v) * white for v in c]
     return "#%02X%02X%02X" % tuple(round(v) for v in c)
 
 
-GRAD = "linear-gradient(135deg,#B14434,#3959A6)"
-GRAD_G = "linear-gradient(135deg,#4d4d4d,#B14434)"
+GRAD = "linear-gradient(135deg,#3959A6,#B14434)"
+GRAD_G = "linear-gradient(135deg,#4d4d4d,#3959A6)"
 PURPLE = "#754E6D"
 
 
@@ -43,8 +43,8 @@ def build(add):
         col = (lambda c: MUTED) if mute else (lambda c: c)
         sty = 'style="background:none;padding:0"'
         return [
-            text("rr", "build on prior + focal", N("j")[0] - 40, N("j")[1] - 42, 38, "", col(HOT), w=700, align="right", style="font-weight:700;"),
-            text("rb", "build on focal", N("i")[0] + 50, N("i")[1] - 42, 38, "", col(COOL), w=500, align="left", style="font-weight:700;"),
+            text("rr", "build on prior + focal", N("j")[0] - 40, N("j")[1] - 42, 38, "", col(COOL), w=700, align="right", style="font-weight:700;"),
+            text("rb", "build on focal", N("i")[0] + 50, N("i")[1] - 42, 38, "", col(HOT), w=500, align="left", style="font-weight:700;"),
             text("rg", "build on prior", N("k")[0] - 34, N("k")[1] + 6, 38, "", col(GRAYC), w=500, align="right", style="font-weight:700;")]
     graph = lambda fills=None, ecol=None: D.diagram("mix", "mix", CX, CY, K, labels=False, fills=fills, ecol=ecol)
 
@@ -54,11 +54,11 @@ def build(add):
 
     # 2  ... but papers do not sort so cleanly: the one sentence that matters, large, above the graph; nothing else
     mixed = {"p2": GRAD, "a": GRAD, "k": GRAD_G}
-    emix = {"p2": PURPLE, "a": PURPLE, "k": "#7A4A40"}
+    emix = {"p2": PURPLE, "a": PURPLE, "k": "#4F5A8A"}
     add(h2("But papers do not sort so cleanly") + stage(
         *graph(mixed, emix),
         text("as1", "Some belong to two groups at once.", 960, 270, 52, "aside", w=1500, h=120,
-             style="background:linear-gradient(90deg,#B14434,#3959A6);-webkit-background-clip:text;background-clip:text;"
+             style="background:linear-gradient(90deg,#3959A6,#B14434);-webkit-background-clip:text;background-clip:text;"
                    "color:transparent;")), cls="L-b")
 
     # 5  the thesis, in words only

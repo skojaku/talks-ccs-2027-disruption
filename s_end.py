@@ -29,8 +29,8 @@ def build(add):
         mathbox("edm", 300, 240, 1440, 220, "$$\\Delta_i := 1-\\cos(q_i,k_i)$$", 60),
         text("edmn", "How different the<br>two sides are.", 1545, 508, 32, "aside", w=900, h=170),
         img("hphoto", "assets/higgs.jpg", 935, 782, 620, None, "ph"),
-        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", COOL, w=620, h=170),
-        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", COOL, w=620, h=170),
+        text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", HOT, w=620, h=170),
+        text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", HOT, w=620, h=170),
         overlay_svg("e_ar", [curved_arrow(415 * S, 690 * S, 690 * S, 700 * S, -0.5, HOT, 6, 24),
                              curved_arrow(1430 * S, 790 * S, 1235 * S, 746 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
 

@@ -3,7 +3,7 @@ from mm import *  # noqa: F401,F403
 import mm
 
 PHOTO = (663, 173, 1199, 533)
-CLS = {"hot": HOT, "teal": COOL, "gray": GRAYC}
+CLS = {"hot": COOL, "teal": HOT, "gray": GRAYC}    # keys are legacy names: "hot" = cites focal + refs (now blue), "teal" = focal only (now red)
 
 
 def edge(name, p, q, ps, qs, color, w=2.2, hs=None, dashed=False):
@@ -27,7 +27,7 @@ DG = {
             [("j", "F", "hot"), ("j", "r0", "hot"), ("a", "F", "teal"), ("i", "F", "teal"), ("p2", "F", "hot"),
              ("p2", "r2", "hot"), ("k", "r0", "gray"), ("g2", "r2", "gray")]),
 }
-MIXLAB = {"j": (-150, -264, HOT), "i": (84, -260, COOL), "k": (-286, -129, GRAYC)}
+MIXLAB = {"j": (-150, -264, COOL), "i": (84, -260, HOT), "k": (-286, -129, GRAYC)}
 
 
 def node_pos(kind, cx, cy, k):
@@ -86,7 +86,7 @@ TREE = {
         labels=[("yes", -138, 64), ("no", 145, 80), ("yes", -243, 200), ("no", -26, 204), ("yes", 252, 212)],
         buckets=[(-230, 337), (-28, 342), (194, 327)], bsz=(125, 150), fs=46),
 }
-TINT = [("#F3DDD8", HOT), ("#DDE3F2", COOL), ("#E6E6E6", GRAYC)]
+TINT = [("#DDE3F2", COOL), ("#F3DDD8", HOT), ("#E6E6E6", GRAYC)]      # focal + refs, focal only, refs only
 
 
 def bucket(name, cx, cy, w, h, tint):
@@ -134,8 +134,8 @@ CITE_TOP = f"cite {ICD}"
 CITE_REF = f"cite {ICS}"
 CITE_BOTH = f'cite {ICS}<span class="amp">&amp;</span>{ICE}'
 
-SQ_CONCEPT = [("s0", 0, 5, -50, HOT, None), ("s1", 0, -5, 23, HOT, None), ("s2", 1, -3, -35, TEAL, None),
-              ("s3", 1, 20, 40, TEAL, None), ("s4", 2, 0, 3, GRAYC, None)]
+SQ_CONCEPT = [("s0", 0, 5, -50, COOL, None), ("s1", 0, -5, 23, COOL, None), ("s2", 1, -3, -35, HOT, None),
+              ("s3", 1, 20, 40, HOT, None), ("s4", 2, 0, 3, GRAYC, None)]
 SQF = "#FFFFFF"
 SQ_BEFORE = [("a", 0, 14, -53, SQF, DEEP), ("b", 0, -28, 0, SQF, DEEP), ("c", 0, 7, 45, SQF, DEEP),
              ("d", 1, 0, -23, SQF, DEEP), ("e", 2, 3, -17, SQF, DEEP)]
@@ -169,7 +169,8 @@ def higgs_net(red=True):
 # in the middle, one more reference of the focal paper at the bottom
 B_J = [(20, -340), (165, -340), (310, -340)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
 B_I = (-250, -340)                                                  # cites the focal paper only (blue)
-B_F, B_E, B_X, B_K = (-5, 0), (335, 0), (-5, 340), (-340, 340)       # focal paper, its reference, another reference, a paper citing only references (grey)
+B_F, B_E, B_X = (-5, 0), (335, 0), (-5, 340)
+B_KS = [(-470, 160), (-380, 262), (-290, 170)]                      # cite a reference only (grey)       # focal paper, its reference, another reference, a paper citing only references (grey)
 
 
 def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, cut=False, labels=False):
@@ -179,21 +180,23 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
     grey = cites a reference only. With `cut` the Higgs -> Englert & Brout citation is gone, so the red papers turn blue."""
     Pt = lambda p: (cx + p[0] * k, cy + p[1] * k)
     H_, E_, X_ = Pt(B_F), Pt(B_E), Pt(B_X)
-    js, i0, k0 = [Pt(q) for q in B_J], Pt(B_I), Pt(B_K)
-    w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 75 * k, 68 * k
+    js, i0, ks = [Pt(q) for q in B_J], Pt(B_I), [Pt(q) for q in B_KS]
+    w, hs, sqs, ds = max(2.0, 2.6 * k), 8 + 4 * k, 60 * k, 54 * k
     dsH, dsE = ds * 0.85, ds * 1.25
-    jc = COOL if cut else HOT
+    jc = HOT if cut else COOL
     o = []
     for n, t in enumerate(js):
         o.append(edge(f"{pre}_j{n}H", t, H_, sqs * .55, dsH * .8, MUTED, w, hs))
         o.append(edge(f"{pre}_j{n}E", t, E_, sqs * .55, dsE * .8, MUTED, w, hs))
     o.append(edge(f"{pre}_iH", i0, H_, sqs * .55, dsH * .8, MUTED, w, hs))
-    o.append(edge(f"{pre}_kX", k0, X_, sqs * .55, sqs * .55, MUTED, w, hs))
+    for n, t in enumerate(ks):
+        o.append(edge(f"{pre}_k{n}X", t, X_, sqs * .55, sqs * .55, MUTED, w, hs))
     o.append(edge(f"{pre}_HX", H_, X_, dsH * .8, sqs * .55, MUTED, w, hs))
     for n, t in enumerate(js):
         o.append(sq(f"{pre}_s{n}", *t, sqs, jc, None, 2))
-    o.append(sq(f"{pre}_si", *i0, sqs, COOL, None, 2))
-    o.append(sq(f"{pre}_sk", *k0, sqs, GRAYC, None, 2))
+    o.append(sq(f"{pre}_si", *i0, sqs, HOT, None, 2))
+    for n, t in enumerate(ks):
+        o.append(sq(f"{pre}_sk{n}", *t, sqs, GRAYC, None, 2))
     o.append(sq(f"{pre}_X", *X_, sqs * .96, FAINT))
     o.append(dia(f"{pre}_H", *H_, dsH, DEEP))
     o.append(dia(f"{pre}_E", *E_, dsE, GRAYC))
@@ -202,7 +205,7 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
         g = lambda name, t, cxx, cyy, al: text(f"{pre}_{name}", t, cxx, cyy, 38, "", MUTED, w=520, align=al)
         o.append(g("lnj", "focal only" if cut else "focal + refs", sum(t[0] for t in js) / len(js), js[0][1] - 88, "center"))
         o.append(g("lni", "focal only", i0[0] - sqs * 0.5 - 22, i0[1], "right"))
-        o.append(g("lnk", "refs only", k0[0] - sqs * 0.5 - 22, k0[1], "right"))
+        o.append(g("lnk", "refs only", ks[0][0] - sqs * 0.5 - 22, ks[0][1], "right"))
     x1, y1, x2, y2 = trim(*H_, *E_, dsH * .85, dsE * .85)
     if red:
         o.append(line(f"{pre}_red", x1, y1, x2, y2, INK, 7 * k ** .5, True, False, 22 * k ** .5))
@@ -215,9 +218,9 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
 
 def hlabels(H_, E_, k, pre="hl", notes=True):
     g = lambda t: f'<span style="font-weight:400;color:{MUTED}">{t}</span>'
-    hl = "Higgs<br>(1964)" + (f"<br>{g('focal paper')}" if notes else "")
-    return [text(f"{pre}1", hl, H_[0] - 72 * k - 95, H_[1] + (28 if notes else 0), 36, "", INK, weight=700, w=190, h=200 if notes else 130, align="center"),
-            text(f"{pre}2", "Englert &amp; Brout<br>(1964)", E_[0] + 78 * k, E_[1], 36, "", GRAYC, weight=700, w=560, h=130, align="left")]
+    hl = "Higgs" + (f"<br>{g('focal paper')}" if notes else "")
+    return [text(f"{pre}1", hl, H_[0] - 72 * k - 95, H_[1] + (14 if notes else 0), 36, "", INK, weight=700, w=190, h=140 if notes else 100, align="center"),
+            text(f"{pre}2", "Englert &amp; Brout", E_[0] + 78 * k, E_[1], 36, "", GRAYC, weight=700, w=560, h=100, align="left")]
 
 
 CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
@@ -260,17 +263,17 @@ def build(add):
         cls="L-g")
 
     # ---- 21  ... and counted: the figure stays at full strength, small, on the left; the formula comes next to it ----------------
-    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#3959A6}{n_i}-\\textcolor{#B14434}{n_j}}"
-          "{\\textcolor{#3959A6}{n_i}+\\textcolor{#B14434}{n_j}+\\textcolor{#4d4d4d}{n_k}}$$")
+    fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#B14434}{n_i}-\\textcolor{#3959A6}{n_j}}"
+          "{\\textcolor{#B14434}{n_i}+\\textcolor{#3959A6}{n_j}+\\textcolor{#4d4d4d}{n_k}}$$")
     CX = 1110
     add(stage(
         *diagram("mix", "mix", 250, 660, 0.75, labels=True),
         *tree("t", 800, 450, 0.75, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, labels=False),
         box("fcard", CX, 330, 850, 570, "", "", "background:#F7F4F1;"),
         mathbox("fml", CX, 350, 850, 300, fm, 56),
-        line("fu1", CX + 262, 672, CX + 342, 672, COOL, 3, False), line("fu2", CX + 482, 672, CX + 562, 672, HOT, 3, False),
+        line("fu1", CX + 262, 672, CX + 342, 672, HOT, 3, False), line("fu2", CX + 482, 672, CX + 562, 672, COOL, 3, False),
         line("fu3", CX + 690, 672, CX + 770, 672, GRAYC, 3, False),
-        sq("fk1", CX + 302, 730, 40, COOL), sq("fk2", CX + 522, 730, 40, HOT), sq("fk3", CX + 730, 730, 40, GRAYC),
+        sq("fk1", CX + 302, 730, 40, HOT), sq("fk2", CX + 522, 730, 40, COOL), sq("fk3", CX + 730, 730, 40, GRAYC),
         text("fx1", "focal<br>only", CX + 302, 845, 36, "", MUTED, w=230, h=130),
         text("fx2", "focal<br>+ refs", CX + 522, 845, 36, "", MUTED, w=230, h=130),
         text("fx3", "refs<br>only", CX + 730, 845, 36, "", MUTED, w=230, h=130)),
@@ -317,13 +320,13 @@ def build(add):
         text("rec2", "2013: Nobel Prize in Physics", 1000, 1030, 38, w=1500)]
     ann1 = lambda: [
         text("an1", "Englert, F.,<br>&amp; Brout, R.<br>(1964)", 200, 610, 36, w=520, h=180),
-        text("an1v", "D = 0.15<br>Top 2.8 %", 200, 820, 46, color=COOL, weight=700, w=520, h=150),
-        overlay_svg("an1ar", [arrow_px(250, 330, px0 + 70, 305, COOL, 5, 20)])]
+        text("an1v", "D = 0.15<br>Top 2.8 %", 200, 820, 46, color=HOT, weight=700, w=520, h=150),
+        overlay_svg("an1ar", [arrow_px(250, 330, px0 + 70, 305, HOT, 5, 20)])]
     ann2 = lambda: [
         text("an2", "Higgs, P.W.<br>(1964)", 1730, 610, 36, w=520, h=150),
-        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1730, 820, 42, color=HOT, weight=700, w=560, h=150),
+        text("an2v", "D = − 0.27<br>Bottom 0.1 %", 1730, 820, 42, color=COOL, weight=700, w=560, h=150),
         text("an2e", "🫠", 1730, 990, 64, w=200),
-        overlay_svg("an2ar", [arrow_px(1030, 330, px1 - 80, 300, HOT, 5, 20)])]
+        overlay_svg("an2ar", [arrow_px(1030, 330, px1 - 80, 300, COOL, 5, 20)])]
     add(stage(*base()), cls="L-g")
     add(stage(*base(), *ann1()), cls="L-g")
     add(stage(*base(), *ann1(), *ann2()), cls="L-g")
@@ -334,31 +337,29 @@ def build(add):
 
     # ---- 30-34  why the D-index fails, one change at a time (no title: the figure takes the whole slide) -----------------------------
     thumb = lambda: img("hphoto", "assets/higgs.jpg", 1831, 127, 307, None, "ph")
-    Dlab = lambda st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 44, "", HOT, weight=700, w=640, h=140, align="right", style=st)
+    Dlab = lambda st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", 480, 800, 44, "", COOL, weight=700, w=640, h=140, align="right", style=st)
 
     # 30-32  the Higgs / Englert & Brout network, centred. The four citing papers carry the class colour, with a grey reminder of what each
     # colour means; one citation is cut and the four papers change colour (no decision tree, no moving citations).
     CX0, CY0, K0 = 930, 530, 1.15
-    D_H = lambda cx, st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", cx, 1040, 44, "", HOT, weight=700, w=560, h=150, style=st)
-    D_E = lambda cx: text("ed1", "D = 0.15<br>Top 2.8 %", cx, 1040, 44, "", COOL, weight=700, w=560, h=150)
+    D_H = lambda cx, st="": text("hd1", "D = − 0.27<br>Bottom 0.1 %", cx, 1040, 44, "", COOL, weight=700, w=560, h=150, style=st)
 
     # 30  Higgs cites Englert & Brout, so Englert & Brout is a reference of Higgs
     net_a, Ha, Ea = hnet(CX0, CY0, K0, labels=True)
-    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, K0), D_H(760), D_E(1560),
-              text("as1", "Higgs cites<br>Englert &amp; Brout.", 330, 520, 40, "aside", w=560, h=170)), cls="L-g")
+    add(stage(thumb(), *net_a, *hlabels(Ha, Ea, K0), D_H(760),
+              text("as1", "Higgs cites<br>Englert &amp; Brout.", 300, 400, 40, "aside", w=520, h=170)), cls="L-g")
 
     # 31  the scissors cut that one citation (the colours still stand)
     net_b, Hb, Eb = hnet(CX0, CY0, K0, red=False, ghost=True, scissors=True, labels=True)
-    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), D_H(760), D_E(1560),
+    add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), D_H(760),
               text("as2", "Cut this one citation.", 1560, 800, 40, "aside", w=900, h=170)), cls="L-g")
 
     # 32  the citation is gone: the red papers turn blue, and D flips
     net_c, Hc, Ec = hnet(CX0, CY0, K0, red=False, cut=True, labels=True)
     add(stage(thumb(), *net_c, *hlabels(Hc, Ec, K0),
-              text("hd1b", "D = − 0.27<br>Bottom 0.1 %", 400, 1040, 44, "", HOT, weight=700, w=560, h=150, style="opacity:.3;"),
+              text("hd1b", "D = − 0.27<br>Bottom 0.1 %", 400, 1040, 44, "", COOL, weight=700, w=560, h=150, style="opacity:.3;"),
               overlay_svg("dd_ar", [arrow_px(412, 665, 462, 665, MUTED, 5, 18)]),
-              text("hd2", "D = 0.28<br>Top 1.3 %", 960, 1040, 52, "", COOL, weight=700, w=560, h=150),
-              D_E(1560),
+              text("hd2", "D = 0.28<br>Top 1.3 %", 960, 1040, 52, "", HOT, weight=700, w=560, h=150),
               text("as3", "The three papers now<br>cite the focal paper only.", 1570, 770, 40, "aside", w=760, h=170)), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
@@ -367,6 +368,6 @@ def build(add):
     add(h2("Why is the D-index so sensitive?") + stage(
         text("sca", "with the citation", 540, 215, 40, "", MUTED, w=800),
         text("scb", "one citation cut", 1460, 215, 40, "", MUTED, w=800),
-        text("sva", "D = − 0.27", 540, 330, 52, "", HOT, weight=700, w=800),
-        text("svb", "D = 0.28", 1460, 330, 52, "", COOL, weight=700, w=800),
+        text("sva", "D = − 0.27", 540, 330, 52, "", COOL, weight=700, w=800),
+        text("svb", "D = 0.28", 1460, 330, 52, "", HOT, weight=700, w=800),
         *nA, *nB,), cls="L-b")
