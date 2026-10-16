@@ -1,0 +1,487 @@
+<title>アニメーション添削</title>
+<style>
+  /* Layout: slide rail on top, before/after panes side by side (each with a margin so objects can be placed outside the slide),
+     then three columns: instructions, object list, live preview of the real deck. */
+  :root {
+    --bg: #f4f3ef; --panel: #ffffff; --ink: #22211e; --muted: #6b685f; --line: #d9d6cc; --chip: #ebe9e2;
+    --pen: #d6291e; --pen-soft: rgba(214, 41, 30, .14); --accent: #2f56a8; --accent-soft: rgba(47, 86, 168, .16);
+    --ok: #3a7a52; --gutter: #e4e2da; --hatch: #d3d0c6; --warn: #a9402f;
+    --font: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --bg: #1b1b1a; --panel: #262624; --ink: #ecebe6; --muted: #a29f96; --line: #3b3a36; --chip: #31302c;
+    --pen: #ff5a4d; --pen-soft: rgba(255, 90, 77, .18); --accent: #8fa9e6; --accent-soft: rgba(143, 169, 230, .22);
+    --ok: #7fc499; --gutter: #151514; --hatch: #2c2b28; --warn: #e58a78; color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --bg: #1b1b1a; --panel: #262624; --ink: #ecebe6; --muted: #a29f96; --line: #3b3a36; --chip: #31302c;
+    --pen: #ff5a4d; --pen-soft: rgba(255, 90, 77, .18); --accent: #8fa9e6; --accent-soft: rgba(143, 169, 230, .22);
+    --ok: #7fc499; --gutter: #151514; --hatch: #2c2b28; --warn: #e58a78; color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 15px; line-height: 1.6; padding-inline: 16px; padding-block: 16px 56px; }
+  .wrap { max-width: 1480px; margin-inline: auto; display: grid; gap: 14px; }
+  header { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; }
+  h1 { font-size: 20px; margin: 0; }
+  h2 { font-size: 15px; margin: 0; }
+  .sum, .hint { color: var(--muted); font-size: 13px; }
+  .warn { color: var(--warn); font-size: 13px; margin: 0; }
+  button { font: inherit; font-size: 13px; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--bg); color: var(--ink); cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: default; }
+  button[aria-pressed="true"] { background: var(--pen); border-color: var(--pen); color: #fff; font-weight: 700; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 700; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+  .railbox { display: grid; gap: 6px; }
+  .rail { display: flex; flex-wrap: wrap; gap: 4px; }
+  .chip { position: relative; min-width: 34px; padding: 3px 6px; font-size: 12px; text-align: center; border: 1px solid var(--line); border-radius: 5px; background: var(--panel); color: var(--ink); cursor: pointer; }
+  .chip.mv { border-bottom: 3px solid var(--accent); }
+  .chip[aria-current="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .chip.has::after { content: ""; position: absolute; top: 2px; right: 2px; width: 6px; height: 6px; border-radius: 50%; background: var(--pen); }
+  .filter { font-size: 13px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+
+  .bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .bar .ttl { flex: 1; min-width: 12em; font-size: 14px; }
+  .bar .ttl b { font-weight: 700; }
+  .badge { font-size: 12px; padding: 1px 8px; border-radius: 99px; background: var(--chip); color: var(--muted); }
+  .badge.mv { background: var(--accent-soft); color: var(--accent); }
+  .status { font-size: 12px; color: var(--muted); min-width: 9em; text-align: right; }
+  .status.ok { color: var(--ok); }
+
+  .panes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+  .panebox { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 8px; display: grid; gap: 6px; min-width: 0; }
+  .panebox h2 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+  .panebox h2 span { font-weight: 400; font-size: 12px; color: var(--muted); }
+  .pane { position: relative; width: 100%; aspect-ratio: 1600 / 920; overflow: hidden; border-radius: 4px; user-select: none; -webkit-user-select: none; touch-action: none;
+    background: repeating-linear-gradient(135deg, var(--gutter) 0 8px, var(--hatch) 8px 9px); }
+  .pane .sl { position: absolute; left: 10%; top: 10.87%; width: 80%; height: 78.26%; background: #fff; outline: 1px solid var(--line); }
+  .pane .sl img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; pointer-events: none; }
+  .layer { position: absolute; inset: 0; }
+  .hit { position: absolute; border: 1px solid transparent; border-radius: 2px; cursor: pointer; }
+  .pane.showall .hit { border-color: var(--accent-soft); background: rgba(47, 86, 168, .05); }
+  .pane.showall .hit.mv { border-color: var(--accent); }
+  .hit:hover { border-color: var(--accent); background: var(--accent-soft); }
+  .hit.sel { border: 2px solid var(--accent); background: var(--accent-soft); }
+  .src { position: absolute; border: 2px dashed var(--accent); border-radius: 3px; pointer-events: none; }
+  .orig { position: absolute; border: 1.5px dashed var(--muted); border-radius: 3px; pointer-events: none; }
+  .mvbox { position: absolute; border: 2.5px solid var(--pen); background: var(--pen-soft); border-radius: 3px; cursor: grab; touch-action: none; }
+  .mvbox.dim { border-width: 1.5px; border-style: dashed; background: transparent; }
+  .mvbox:active { cursor: grabbing; }
+  .mvbox .tag { position: absolute; left: -2px; top: -22px; background: var(--pen); color: #fff; font-size: 11px; line-height: 1; padding: 3px 6px; border-radius: 3px 3px 0 0; white-space: nowrap; pointer-events: none; }
+  .mvbox .grip { position: absolute; right: -9px; bottom: -9px; width: 18px; height: 18px; border-radius: 50%; background: var(--pen); border: 2px solid var(--panel); cursor: nwse-resize; touch-action: none; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+  .pane.pen canvas { pointer-events: auto; cursor: crosshair; }
+  .pane.pen .hit, .pane.pen .mvbox { pointer-events: none; }
+
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 12px; align-items: start; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; display: grid; gap: 10px; min-width: 0; }
+  .selbar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: 13px; }
+  .tag-n { font-size: 12px; padding: 1px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--accent); }
+  .item { border: 1px solid var(--line); border-radius: 8px; padding: 8px; display: grid; gap: 6px; background: var(--bg); }
+  .item.active { border-color: var(--pen); box-shadow: 0 0 0 1px var(--pen); }
+  .item .row { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+  .item .names { font-size: 12px; color: var(--muted); overflow-wrap: anywhere; }
+  .item small { color: var(--muted); }
+  textarea { width: 100%; min-height: 70px; resize: vertical; font: inherit; font-size: 14px; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); line-height: 1.5; }
+  .groups { display: grid; gap: 6px; max-height: 420px; overflow: auto; }
+  details { border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+  summary { cursor: pointer; font-size: 13px; display: flex; gap: 8px; align-items: center; }
+  .objs { display: flex; flex-wrap: wrap; gap: 4px; padding-block: 6px 2px; }
+  .ob { font-size: 12px; padding: 2px 7px; border-radius: 5px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; }
+  .ob.sel { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .ob.mv { border-left: 3px solid var(--accent); }
+  .ob.in { border-left: 3px solid var(--ok); }
+  .ob.out { border-left: 3px solid var(--warn); }
+  .pv { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: #fff; }
+  .pv iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .legend { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--muted); }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
+  @media (max-width: 760px) { .panes { grid-template-columns: minmax(0, 1fr); } }
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap">
+
+<div class="wrap">
+  <header><h1>アニメーション添削</h1><span class="sum" id="sum"></span></header>
+  <p class="warn" id="dbnote" hidden></p>
+
+  <div class="railbox">
+    <div class="rail" id="rail" role="group" aria-label="遷移の選択（遷移前のスライド番号）"></div>
+    <label class="filter"><input type="checkbox" id="onlymv"> 今、動いている遷移だけ表示（下線つき）</label>
+  </div>
+
+  <div class="bar">
+    <button type="button" id="prev">◀ 前の遷移</button>
+    <div class="ttl" id="ttl"></div>
+    <button type="button" id="next">次の遷移 ▶</button>
+  </div>
+
+  <div class="bar">
+    <button type="button" id="penbtn" aria-pressed="false" title="P キー">🖊 赤ペン</button>
+    <button type="button" id="undo" title="Ctrl/⌘+Z">1 本戻す</button>
+    <button type="button" id="clear">ペンを全部消す</button>
+    <label class="filter"><input type="checkbox" id="showall"> すべてのオブジェクトの枠を表示</label>
+    <span class="status" id="status" style="margin-left:auto"></span>
+  </div>
+
+  <div class="panes">
+    <div class="panebox">
+      <h2><span id="bl"></span></h2>
+      <div class="pane" id="pb"><div class="sl"><img id="ib" alt=""></div><div class="layer" id="lb"></div><canvas id="cb"></canvas></div>
+    </div>
+    <div class="panebox">
+      <h2><span id="al"></span></h2>
+      <div class="pane" id="pa"><div class="sl"><img id="ia" alt=""></div><div class="layer" id="la"></div><canvas id="ca"></canvas></div>
+    </div>
+  </div>
+  <div class="legend">
+    <span><i style="background:var(--accent-soft);border:2px solid var(--accent)"></i>選んだオブジェクト</span>
+    <span><i style="background:var(--pen-soft);border:2px solid var(--pen)"></i>置きたい場所（ドラッグで移動、右下の丸で大きさ）</span>
+    <span><i style="border:1.5px dashed var(--muted)"></i>いまの位置</span>
+    <span>斜線の部分はスライドの外です。ここに置くと、オブジェクトがスライドの外へ出ていきます。</span>
+  </div>
+
+  <div class="cols">
+    <section class="panel" aria-label="指示">
+      <h2>指示</h2>
+      <div class="selbar" id="selbar"></div>
+      <div id="items"></div>
+      <label for="note" class="hint">この遷移全体へのコメント（任意）</label>
+      <textarea id="note" placeholder="例: ノードは左から順に動かしたい。矢印は最後に出したい。"></textarea>
+    </section>
+
+    <section class="panel" aria-label="オブジェクト一覧">
+      <h2>オブジェクト一覧</h2>
+      <p class="hint" style="margin:0">絵の上でクリックするか、ここから選びます。細い線や重なったものは、ここからのほうが選びやすいです。左の色の線は、青が「動く」、緑が「後から登場」、赤が「消える」です。</p>
+      <div class="groups" id="groups"></div>
+    </section>
+
+    <section class="panel" aria-label="プレビュー">
+      <h2>プレビュー（実際のスライドを動かします）</h2>
+      <div class="pv"><iframe id="pv" src="deck/index.html" title="スライドのプレビュー" allow="fullscreen"></iframe></div>
+      <div class="bar">
+        <button type="button" id="play0">▶ いまの動き</button>
+        <button type="button" id="play1" class="primary">▶ 指定を反映した動き</button>
+        <span class="status" id="pvst" style="text-align:left"></span>
+      </div>
+      <p class="hint" style="margin:0">文字や図の見た目は、公開用のスライドと同じものを使っています。「いまの動き」に動きがなければ、切り替わるだけです。</p>
+    </section>
+  </div>
+</div>
+
+<script>
+const D = /*DATA*/;
+const NS = D.titles.length, NP = NS - 1;           // slides, transitions
+const GX = 160, GY = 100, LW = 1600, LH = 920;     // pane = slide 1280x720 plus a margin all around
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(3, "0");
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const r1 = v => Math.round(v * 10) / 10;
+
+let cur = 1, db = null, dirty = false, timer = null, tool = "pick";
+let st = { note: "", items: [], sb: [], sa: [] };
+let sel = new Set(), active = null, drawing = null;
+const docs = new Map();
+
+const objs = () => D.pairs[cur - 1];
+const objOf = n => objs().find(o => o.n === n);
+const hasAnnot = d => d && ((d.note && d.note.trim()) || parse(d.items).length || parse(d.sb).length || parse(d.sa).length);
+function parse(s) { try { const v = JSON.parse(s || "[]"); return Array.isArray(v) ? v : []; } catch (e) { return []; } }
+const isMoving = n => D.pairs[n - 1].some(o => o.mv);
+
+// ---------------------------------------------------------------- rail
+function buildRail() {
+  const r = $("rail"); r.innerHTML = "";
+  for (let n = 1; n <= NP; n++) {
+    const b = document.createElement("button"); b.type = "button"; b.className = "chip" + (isMoving(n) ? " mv" : ""); b.textContent = n; b.dataset.n = n;
+    b.setAttribute("aria-label", `スライド ${n} から ${n + 1} へ`);
+    r.appendChild(b);
+  }
+}
+function markRail() {
+  const only = $("onlymv").checked;
+  document.querySelectorAll(".chip").forEach(b => {
+    const n = +b.dataset.n, d = n === cur ? { note: st.note, items: JSON.stringify(st.items), sb: JSON.stringify(st.sb), sa: JSON.stringify(st.sa) } : docs.get(n);
+    b.classList.toggle("has", !!hasAnnot(d));
+    b.setAttribute("aria-current", n === cur ? "true" : "false");
+    b.hidden = only && !isMoving(n) && n !== cur;
+  });
+}
+$("onlymv").onchange = markRail;
+
+// ---------------------------------------------------------------- geometry helpers
+const union = rs => { const x0 = Math.min(...rs.map(r => r[0])), y0 = Math.min(...rs.map(r => r[1])), x1 = Math.max(...rs.map(r => r[0] + r[2])), y1 = Math.max(...rs.map(r => r[1] + r[3])); return [x0, y0, x1 - x0, y1 - y0]; };
+const pc = (r, side) => `left:${(r[0] + GX) / LW * 100}%;top:${(r[1] + GY) / LH * 100}%;width:${r[2] / LW * 100}%;height:${r[3] / LH * 100}%;`;
+function refRects(names, mode) {              // where the group sits today, in the pane being edited
+  return names.map(n => { const o = objOf(n); return mode === "to" ? (o.a || o.b) : (o.b || o.a); }).filter(Boolean);
+}
+function newRects(it) {
+  const s = it.box[2] / it.cur[2];
+  return it.names.map(n => {
+    const o = objOf(n); if (!o) return null;
+    const ref = it.mode === "to" ? (o.a || o.b) : (o.b || o.a);
+    return { name: n, mode: it.mode, rect: { x: it.box[0] + (ref[0] - it.cur[0]) * s, y: it.box[1] + (ref[1] - it.cur[1]) * s, w: ref[2] * s, h: ref[3] * s } };
+  }).filter(Boolean);
+}
+const editSide = it => it.mode === "to" ? "a" : "b";
+const label = n => { const o = objOf(n); return o ? (o.g ? o.g + " · " : "") + n : n; };
+
+// ---------------------------------------------------------------- render
+function renderPanes() {
+  ["b", "a"].forEach(side => {
+    const L = $("l" + side); L.innerHTML = "";
+    const list = objs().filter(o => o[side]).sort((p, q) => q[side][2] * q[side][3] - p[side][2] * p[side][3]);
+    list.forEach(o => {                      // large first, so small ones sit on top
+      const d = document.createElement("div");
+      d.className = "hit" + (o.mv ? " mv" : "") + (sel.has(o.n) ? " sel" : "");
+      d.style.cssText = pc(o[side], side); d.dataset.n = o.n; d.title = label(o.n) + (o.h ? "  (" + o.h + ")" : "");
+      L.appendChild(d);
+    });
+    // the instruction boxes
+    st.items.forEach(it => {
+      const act = it.id === active;
+      if (act) {                              // where the group is today: blue outline in the other pane, grey dashed in the edit pane
+        const other = editSide(it) === "a" ? "b" : "a";
+        if (side === other) { const rs = it.names.map(n => objOf(n)).filter(o => o && o[other]).map(o => o[other]); if (rs.length) { const e = document.createElement("div"); e.className = "src"; e.style.cssText = pc(union(rs), side); L.appendChild(e); } }
+        if (side === editSide(it)) { const e = document.createElement("div"); e.className = "orig"; e.style.cssText = pc(it.cur, side); L.appendChild(e); }
+      }
+      if (side === editSide(it)) {
+        const e = document.createElement("div"); e.className = "mvbox" + (act ? "" : " dim"); e.dataset.id = it.id; e.style.cssText = pc(it.box, side);
+        e.innerHTML = `<span class="tag">ここへ${it.names.length > 1 ? "（" + it.names.length + "個）" : ""}</span>` + (act ? '<span class="grip"></span>' : "");
+        L.appendChild(e);
+      }
+    });
+  });
+  redraw();
+}
+
+function renderSel() {
+  const bar = $("selbar");
+  if (!sel.size) { bar.innerHTML = '<span class="hint">動かしたいオブジェクトを、スライドの絵の上でクリックして選びます（複数選べます）。</span>'; return; }
+  const names = [...sel];
+  bar.innerHTML = `<span class="tag-n">選択中 ${names.length} 個</span><span class="hint" style="overflow-wrap:anywhere">${esc(names.slice(0, 5).join(", "))}${names.length > 5 ? " …" : ""}</span>
+    <button type="button" class="primary" id="mk">この選択の行き先を指定</button><button type="button" id="unsel">選択を外す</button>`;
+  $("mk").onclick = makeItem; $("unsel").onclick = () => { sel.clear(); renderAll(); };
+}
+
+function renderItems() {
+  const box = $("items");
+  if (!st.items.length) { box.innerHTML = '<p class="hint" style="margin:0">まだ指示がありません。オブジェクトを選んで「行き先を指定」を押すと、置きたい場所を示す赤い枠が出ます。</p>'; return; }
+  box.innerHTML = ""; box.style.display = "grid"; box.style.gap = "8px";
+  st.items.forEach((it, i) => {
+    const el = document.createElement("div"); el.className = "item" + (it.id === active ? " active" : ""); el.dataset.id = it.id;
+    const where = it.mode === "to" ? "動いたあとの位置を、右のスライド（遷移後）で指定" : "動き出す前の位置を、左のスライド（遷移前）で指定";
+    const outside = it.box[0] >= 1280 || it.box[0] + it.box[2] <= 0 || it.box[1] >= 720 || it.box[1] + it.box[3] <= 0;
+    el.innerHTML = `<div class="row"><b>指示 ${i + 1}</b><span class="badge">${it.names.length} 個</span>${outside ? '<span class="badge mv">スライドの外</span>' : ""}</div>
+      <div class="names">${esc(it.names.slice(0, 6).join(", "))}${it.names.length > 6 ? " …" : ""}</div>
+      <small>${where}</small>
+      <div class="row">
+        <button type="button" data-a="exit" data-d="r">右の外へ →</button><button type="button" data-a="exit" data-d="l">← 左の外へ</button>
+        <button type="button" data-a="exit" data-d="u">↑ 上の外へ</button><button type="button" data-a="exit" data-d="d">↓ 下の外へ</button>
+      </div>
+      <div class="row"><button type="button" data-a="reset">いまの位置に戻す</button><button type="button" data-a="del">この指示を消す</button></div>
+      <textarea data-a="note" aria-label="指示 ${i + 1} の補足" placeholder="補足（任意）。例: 0.5 秒遅れて動く、大きさは今のまま">${esc(it.note || "")}</textarea>`;
+    box.appendChild(el);
+  });
+}
+
+function renderGroups() {
+  const by = new Map();
+  objs().forEach(o => { const g = o.g || "その他"; if (!by.has(g)) by.set(g, []); by.get(g).push(o); });
+  const box = $("groups"); box.innerHTML = "";
+  by.forEach((list, g) => {
+    const d = document.createElement("details"); d.open = by.size <= 8 || list.some(o => o.mv);
+    const mv = list.filter(o => o.mv).length;
+    d.innerHTML = `<summary><span>${esc(g)}</span><span class="badge">${list.length}</span>${mv ? `<span class="badge mv">動く ${mv}</span>` : ""}<button type="button" data-g="${esc(g)}" style="margin-left:auto;padding:2px 8px">全部選ぶ</button></summary>
+      <div class="objs">${list.map(o => `<button type="button" class="ob ${o.b && o.a ? (o.mv ? "mv" : "") : (o.b ? "out" : "in")}${sel.has(o.n) ? " sel" : ""}" data-n="${esc(o.n)}" title="${esc(o.h || "")}">${esc(o.n)}</button>`).join("")}</div>`;
+    box.appendChild(d);
+  });
+}
+
+function renderHead() {
+  const n = cur, t1 = D.titles[n - 1] || "", t2 = D.titles[n] || "";
+  const mv = objs().filter(o => o.mv).length, ent = objs().filter(o => !o.b).length, ex = objs().filter(o => !o.a).length;
+  $("ttl").innerHTML = `<b>スライド ${n} → ${n + 1}</b> <span class="badge ${mv ? "mv" : ""}">${mv ? "動くもの " + mv : "動きなし（切り替えのみ）"}</span> <span class="badge">登場 ${ent}</span> <span class="badge">消える ${ex}</span>`;
+  $("bl").textContent = `遷移前（スライド ${n}）　${t1}`; $("al").textContent = `遷移後（スライド ${n + 1}）　${t2}`;
+  $("ib").src = "s/" + pad(n) + ".jpg"; $("ia").src = "s/" + pad(n + 1) + ".jpg";
+  $("prev").disabled = n <= 1; $("next").disabled = n >= NP;
+}
+function renderAll() { renderPanes(); renderSel(); renderItems(); renderGroups(); $("play1").disabled = !st.items.length; markRail(); }
+
+// ---------------------------------------------------------------- persistence
+function setStatus(t, ok) { const s = $("status"); s.textContent = t; s.className = "status" + (ok ? " ok" : ""); }
+const snapshot = () => ({ slide: cur, note: st.note, items: JSON.stringify(st.items), sb: JSON.stringify(st.sb), sa: JSON.stringify(st.sa), updated: Date.now() });
+async function flush() {
+  if (!dirty) return;
+  clearTimeout(timer);
+  const n = cur, d = snapshot();
+  docs.set(n, d); dirty = false; markRail();
+  if (!db) { setStatus("保存できません", false); return; }
+  try { await db.doc("anim/t" + pad(n)).set(d); setStatus("保存しました", true); }
+  catch (e) { dirty = true; setStatus("保存に失敗しました", false); }
+}
+function touch() { dirty = true; setStatus("入力中…", false); clearTimeout(timer); timer = setTimeout(flush, 700); markRail(); }
+
+function load(n) {
+  const d = docs.get(n);
+  st = d ? { note: d.note || "", items: parse(d.items), sb: parse(d.sb), sa: parse(d.sa) } : { note: "", items: [], sb: [], sa: [] };
+  active = st.items.length ? st.items[st.items.length - 1].id : null;
+}
+async function go(n) {
+  n = Math.min(NP, Math.max(1, n));
+  await flush();
+  cur = n; load(n); sel.clear(); $("note").value = st.note;
+  renderHead(); renderAll(); setStatus("", false);
+  try { history.replaceState(null, "", "#" + n); } catch (e) {}
+}
+
+// ---------------------------------------------------------------- selecting, making and editing instructions
+function toggle(name) { sel.has(name) ? sel.delete(name) : sel.add(name); renderPanes(); renderSel(); renderGroups(); }
+function makeItem() {
+  const order = objs().map(o => o.n), names = [...sel].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+  if (!names.length) return;
+  const mode = names.some(n => objOf(n).b) ? "to" : "from";
+  const cur0 = union(refRects(names, mode)).map(r1);
+  const it = { id: Date.now().toString(36), names, mode, cur: cur0, box: cur0.slice(), note: "" };
+  st.items.push(it); active = it.id; sel.clear(); touch(); renderAll();
+}
+function itemOf(id) { return st.items.find(i => i.id === id); }
+$("items").addEventListener("click", e => {
+  const card = e.target.closest(".item"); if (!card) return;
+  const it = itemOf(card.dataset.id); if (!it) return;
+  const b = e.target.closest("button");
+  if (!b) { if (active !== it.id) { active = it.id; renderPanes(); renderItems(); } return; }
+  const a = b.dataset.a;
+  if (a === "del") { st.items = st.items.filter(x => x !== it); if (active === it.id) active = st.items.length ? st.items[st.items.length - 1].id : null; }
+  else if (a === "reset") it.box = it.cur.slice();
+  else if (a === "exit") { const d = b.dataset.d, [x, y, w, h] = it.box; it.box = d === "r" ? [1290, y, w, h] : d === "l" ? [-w - 10, y, w, h] : d === "u" ? [x, -h - 10, w, h] : [x, 730, w, h]; }
+  active = it.id; touch(); renderAll();
+});
+$("items").addEventListener("input", e => { if (e.target.dataset.a !== "note") return; const it = itemOf(e.target.closest(".item").dataset.id); if (it) { it.note = e.target.value; touch(); } });
+$("note").addEventListener("input", () => { st.note = $("note").value; touch(); });
+$("groups").addEventListener("click", e => {
+  const g = e.target.closest("button[data-g]");
+  if (g) { e.preventDefault(); const gn = g.dataset.g; objs().filter(o => (o.g || "その他") === gn).forEach(o => sel.add(o.n)); renderPanes(); renderSel(); renderGroups(); return; }
+  const b = e.target.closest(".ob"); if (b) toggle(b.dataset.n);
+});
+
+// ---------------------------------------------------------------- pointer work on the panes
+const panes = { a: $("pa"), b: $("pb") };
+function toSlide(side, e) { const r = panes[side].getBoundingClientRect(); return [(e.clientX - r.left) / r.width * LW - GX, (e.clientY - r.top) / r.height * LH - GY]; }
+let drag = null;
+["a", "b"].forEach(side => {
+  const L = $("l" + side);
+  L.addEventListener("pointerdown", e => {
+    if (tool !== "pick") return;
+    const grip = e.target.closest(".grip"), mb = e.target.closest(".mvbox");
+    if (mb) {
+      const it = itemOf(mb.dataset.id); if (!it) return;
+      e.preventDefault();
+      if (active !== it.id) { active = it.id; renderPanes(); renderItems(); return; }
+      L.setPointerCapture(e.pointerId);
+      drag = { it, side, mode: grip ? "size" : "move", p0: toSlide(side, e), b0: it.box.slice(), el: L.querySelector(`.mvbox[data-id="${it.id}"]`) };
+      return;
+    }
+    const h = e.target.closest(".hit"); if (h) { e.preventDefault(); toggle(h.dataset.n); }
+  });
+  L.addEventListener("pointermove", e => {
+    if (!drag || drag.side !== side) return;
+    const p = toSlide(side, e), dx = p[0] - drag.p0[0], dy = p[1] - drag.p0[1], [x, y, w, h] = drag.b0;
+    let nb;
+    if (drag.mode === "move") nb = [Math.min(1280 + GX - 40, Math.max(-GX - w + 40, x + dx)), Math.min(720 + GY - 40, Math.max(-GY - h + 40, y + dy)), w, h];
+    else { const s = Math.max(0.1, (w + dx) / w); nb = [x, y, w * s, h * s]; }
+    drag.it.box = nb.map(r1); drag.el.style.cssText = pc(drag.it.box, side);
+  });
+  const end = () => { if (!drag) return; drag = null; touch(); renderItems(); };
+  L.addEventListener("pointerup", end); L.addEventListener("pointercancel", end);
+});
+
+// ---------------------------------------------------------------- red pen
+const cvs = { a: $("ca"), b: $("cb") };
+function redraw() {
+  const pen = getComputedStyle(document.documentElement).getPropertyValue("--pen").trim() || "#d6291e";
+  ["a", "b"].forEach(side => {
+    const c = cvs[side], r = c.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+    if (!r.width) return;
+    if (c.width !== Math.round(r.width * dpr)) { c.width = Math.round(r.width * dpr); c.height = Math.round(r.height * dpr); }
+    const g = c.getContext("2d"); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, c.width, c.height);
+    g.lineCap = "round"; g.lineJoin = "round"; g.strokeStyle = pen;
+    const all = (side === "a" ? st.sa : st.sb).concat(drawing && drawing.side === side ? [drawing] : []);
+    all.forEach(s => {
+      g.lineWidth = Math.max(1.5, s.w * c.width);
+      g.beginPath(); s.p.forEach((q, i) => { const x = q[0] * c.width, y = q[1] * c.height; i ? g.lineTo(x, y) : g.moveTo(x, y); });
+      if (s.p.length === 1) g.lineTo(s.p[0][0] * c.width + 0.1, s.p[0][1] * c.height);
+      g.stroke();
+    });
+  });
+}
+const npt = (side, e) => { const r = cvs[side].getBoundingClientRect(); return [Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (e.clientY - r.top) / r.height))].map(v => Math.round(v * 10000) / 10000); };
+["a", "b"].forEach(side => {
+  const c = cvs[side];
+  c.addEventListener("pointerdown", e => { if (tool !== "pen") return; e.preventDefault(); c.setPointerCapture(e.pointerId);
+    drawing = { side, w: e.pointerType === "pen" && e.pressure ? 0.002 + 0.003 * e.pressure : 0.003, p: [npt(side, e)] }; redraw(); });
+  c.addEventListener("pointermove", e => { if (!drawing || drawing.side !== side) return; const q = npt(side, e), l = drawing.p[drawing.p.length - 1];
+    if (Math.abs(q[0] - l[0]) + Math.abs(q[1] - l[1]) < 0.0008) return; drawing.p.push(q); redraw(); });
+  const end = () => { if (!drawing) return; (drawing.side === "a" ? st.sa : st.sb).push({ w: drawing.w, p: drawing.p }); drawing = null; redraw(); touch(); };
+  c.addEventListener("pointerup", end); c.addEventListener("pointercancel", end);
+});
+function setTool(t) { tool = t; $("penbtn").setAttribute("aria-pressed", t === "pen" ? "true" : "false"); ["pa", "pb"].forEach(id => $(id).classList.toggle("pen", t === "pen")); }
+$("penbtn").onclick = () => setTool(tool === "pen" ? "pick" : "pen");
+let lastSide = "a";
+["a", "b"].forEach(side => cvs[side].addEventListener("pointerdown", () => { lastSide = side; }));
+$("undo").onclick = () => {
+  const mine = lastSide === "a" ? st.sa : st.sb, other = lastSide === "a" ? st.sb : st.sa;
+  const arr = mine.length ? mine : other; if (!arr.length) return;
+  arr.pop(); redraw(); touch();
+};
+$("clear").onclick = () => { const b = $("clear"); if (!(st.sa.length + st.sb.length)) return;
+  if (b.dataset.arm === "1") { st.sa = []; st.sb = []; redraw(); touch(); b.textContent = "ペンを全部消す"; b.dataset.arm = ""; }
+  else { b.dataset.arm = "1"; b.textContent = "もう一度押すと消えます"; setTimeout(() => { b.dataset.arm = ""; b.textContent = "ペンを全部消す"; }, 2500); } };
+$("showall").onchange = e => ["pa", "pb"].forEach(id => $(id).classList.toggle("showall", e.target.checked));
+
+// ---------------------------------------------------------------- preview (the real deck in an iframe)
+let pvReady = false, pvTimer = null;
+const pv = $("pv");
+function pvSay(t, ok) { const s = $("pvst"); s.textContent = t; s.className = "status" + (ok ? " ok" : ""); }
+window.addEventListener("message", e => {
+  if (e.source !== pv.contentWindow || !e.data) return;
+  if (e.data.type === "mm-ready") { pvReady = true; clearTimeout(pvTimer); pvSay("準備できました", true); }
+  else if (e.data.type === "mm-state") pvSay({ before: "遷移前", playing: "再生中…", done: "再生しました", error: "再生に失敗しました" }[e.data.phase] || "", e.data.phase === "done");
+});
+pvTimer = setTimeout(() => { if (!pvReady) pvSay("プレビューを読み込めていません。少し待ってから押してみてください。", false); }, 8000);
+pvSay("読み込み中…", false);
+function play(withEdits) {
+  const edits = withEdits ? st.items.flatMap(newRects) : [];
+  pv.contentWindow.postMessage({ type: "mm-play", from: cur, edits }, "*");
+  pvSay("準備中…", false);
+}
+$("play0").onclick = () => play(false);
+$("play1").onclick = () => play(true);
+
+// ---------------------------------------------------------------- navigation and boot
+$("prev").onclick = () => go(cur - 1); $("next").onclick = () => go(cur + 1);
+$("rail").addEventListener("click", e => { const b = e.target.closest(".chip"); if (b) go(+b.dataset.n); });
+window.addEventListener("keydown", e => {
+  const inText = e.target.tagName === "TEXTAREA" || e.target.tagName === "INPUT";
+  if (inText || e.ctrlKey || e.metaKey || e.altKey) { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && !inText) { e.preventDefault(); $("undo").click(); } return; }
+  if (e.key === "ArrowLeft") go(cur - 1); else if (e.key === "ArrowRight") go(cur + 1);
+  else if (e.key.toLowerCase() === "p") setTool(tool === "pen" ? "pick" : "pen");
+  else if (e.key === "Escape") { sel.clear(); renderAll(); }
+});
+window.addEventListener("beforeunload", () => { if (dirty) flush(); });
+document.addEventListener("visibilitychange", () => { if (document.hidden) flush(); });
+new ResizeObserver(redraw).observe($("pa")); new ResizeObserver(redraw).observe($("pb"));
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", redraw);
+
+buildRail();
+const h0 = parseInt(location.hash.slice(1), 10);
+go(h0 >= 1 && h0 <= NP ? h0 : 1);
+(async () => {
+  try { db = await claude.use("db"); } catch (e) { db = null; }
+  if (!db) { const w = $("dbnote"); w.hidden = false; w.textContent = "この画面では保存できません。サインインして開き直してください。"; return; }
+  db.collection("anim").onSnapshot(snap => {
+    snap.docs.forEach(d => { if (!d.exists) return; const v = d.data(); docs.set(v.slide, v);
+      if (v.slide === cur && !dirty && !drag && !drawing && document.activeElement.tagName !== "TEXTAREA") { load(cur); $("note").value = st.note; renderAll(); } });
+    markRail();
+  }, () => {});
+})();
+</script>
