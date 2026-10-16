@@ -1,3 +1,5 @@
 review/*.png
 __pycache__/
 *.pyc
+ccs-2027-narrated.mp4
+narration/build/
