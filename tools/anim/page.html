@@ -138,6 +138,7 @@
     <span><i style="background:var(--pen-soft);border:2px solid var(--pen)"></i>置きたい場所（ドラッグで移動、右下の丸で大きさ）</span>
     <span><i style="border:1.5px dashed var(--muted)"></i>いまの位置</span>
     <span>斜線の部分はスライドの外です。ここに置くと、オブジェクトがスライドの外へ出ていきます。</span>
+    <span>「対応を切る」は、前後で同じものとして動かさず切り替えにします。</span>
   </div>
 
   <div class="cols">
@@ -179,7 +180,7 @@ const r1 = v => Math.round(v * 10) / 10;
 
 let cur = 1, db = null, dirty = false, timer = null, tool = "pick";
 let st = { note: "", items: [], sb: [], sa: [] };
-let sel = new Set(), active = null, drawing = null;
+let sel = new Set(), active = null, drawing = null, linkFrom = null;
 const docs = new Map();
 
 const objs = () => D.pairs[cur - 1];
@@ -238,7 +239,15 @@ function renderPanes() {
     });
     // the instruction boxes
     st.items.forEach(it => {
-      const act = it.id === active;
+      const act = it.id === active, kind = it.kind || "move";
+      if (kind !== "move") {
+        if (act) {
+          const nm = kind === "cut" ? it.names : [side === "b" ? it.from : it.to];
+          const rs = nm.map(n => objOf(n)).filter(o => o && o[side]).map(o => o[side]);
+          if (rs.length) { const e = document.createElement("div"); e.className = "src"; e.style.cssText = pc(union(rs), side); L.appendChild(e); }
+        }
+        return;
+      }
       if (act) {                              // where the group is today: blue outline in the other pane, grey dashed in the edit pane
         const other = editSide(it) === "a" ? "b" : "a";
         if (side === other) { const rs = it.names.map(n => objOf(n)).filter(o => o && o[other]).map(o => o[other]); if (rs.length) { const e = document.createElement("div"); e.className = "src"; e.style.cssText = pc(union(rs), side); L.appendChild(e); } }
@@ -256,11 +265,20 @@ function renderPanes() {
 
 function renderSel() {
   const bar = $("selbar");
-  if (!sel.size) { bar.innerHTML = '<span class="hint">動かしたいオブジェクトを、スライドの絵の上でクリックして選びます（複数選べます）。</span>'; return; }
-  const names = [...sel];
+  if (linkFrom) {
+    bar.innerHTML = `<span class="tag-n">対応づけ中</span><span class="hint" style="overflow-wrap:anywhere">「${esc(linkFrom)}」が変形して移っていく先を、右（遷移後）のスライドかリストからクリックしてください。</span><button type="button" id="nolink">やめる</button>`;
+    $("nolink").onclick = () => { linkFrom = null; renderAll(); };
+    return;
+  }
+  if (!sel.size) { bar.innerHTML = '<span class="hint">動かしたい、または対応を変えたいオブジェクトを、スライドの絵の上でクリックして選びます（複数選べます）。</span>'; return; }
+  const names = [...sel], both = names.filter(n => { const o = objOf(n); return o && o.b && o.a; }), one = names.length === 1 && objOf(names[0]).b;
   bar.innerHTML = `<span class="tag-n">選択中 ${names.length} 個</span><span class="hint" style="overflow-wrap:anywhere">${esc(names.slice(0, 5).join(", "))}${names.length > 5 ? " …" : ""}</span>
-    <button type="button" class="primary" id="mk">この選択の行き先を指定</button><button type="button" id="unsel">選択を外す</button>`;
-  $("mk").onclick = makeItem; $("unsel").onclick = () => { sel.clear(); renderAll(); };
+    <button type="button" class="primary" id="mk">行き先を指定（動かす）</button>
+    <button type="button" id="mkcut"${both.length ? "" : " disabled"} title="前後で同じオブジェクトとして動かさず、切り替えにします">対応を切る${both.length ? "（" + both.length + "個）" : ""}</button>
+    <button type="button" id="mklink"${one ? "" : " disabled"} title="遷移前のこのオブジェクトを、遷移後の別のオブジェクトへ動かします">別のものと対応づける</button>
+    <button type="button" id="unsel">選択を外す</button>`;
+  $("mk").onclick = makeItem; $("mkcut").onclick = makeCut; $("mklink").onclick = () => { linkFrom = names[0]; sel.clear(); renderAll(); };
+  $("unsel").onclick = () => { sel.clear(); renderAll(); };
 }
 
 function renderItems() {
@@ -269,6 +287,17 @@ function renderItems() {
   box.innerHTML = ""; box.style.display = "grid"; box.style.gap = "8px";
   st.items.forEach((it, i) => {
     const el = document.createElement("div"); el.className = "item" + (it.id === active ? " active" : ""); el.dataset.id = it.id;
+    const kind = it.kind || "move";
+    if (kind !== "move") {
+      const head = kind === "cut" ? "対応を切る" : "対応づける";
+      const body = kind === "cut"
+        ? `<div class="names">${esc(it.names.slice(0, 6).join(", "))}${it.names.length > 6 ? " …" : ""}</div><small>前後で同じものとして動かしません。遷移前のものは消え、遷移後のものが現れます。</small>`
+        : `<div class="names"><b>${esc(it.from)}</b>（遷移前） → <b>${esc(it.to)}</b>（遷移後）</div><small>遷移前のものが、遷移後のものの位置と形へ動きます。</small>`;
+      el.innerHTML = `<div class="row"><b>指示 ${i + 1}</b><span class="badge mv">${head}</span></div>${body}
+        <div class="row"><button type="button" data-a="del">この指示を消す</button></div>
+        <textarea data-a="note" aria-label="指示 ${i + 1} の補足" placeholder="補足（任意）">${esc(it.note || "")}</textarea>`;
+      box.appendChild(el); return;
+    }
     const where = it.mode === "to" ? "動いたあとの位置を、右のスライド（遷移後）で指定" : "動き出す前の位置を、左のスライド（遷移前）で指定";
     const outside = it.box[0] >= 1280 || it.box[0] + it.box[2] <= 0 || it.box[1] >= 720 || it.box[1] + it.box[3] <= 0;
     el.innerHTML = `<div class="row"><b>指示 ${i + 1}</b><span class="badge">${it.names.length} 個</span>${outside ? '<span class="badge mv">スライドの外</span>' : ""}</div>
@@ -329,19 +358,32 @@ function load(n) {
 async function go(n) {
   n = Math.min(NP, Math.max(1, n));
   await flush();
-  cur = n; load(n); sel.clear(); $("note").value = st.note;
+  cur = n; load(n); sel.clear(); linkFrom = null; $("note").value = st.note;
   renderHead(); renderAll(); setStatus("", false);
   try { history.replaceState(null, "", "#" + n); } catch (e) {}
 }
 
 // ---------------------------------------------------------------- selecting, making and editing instructions
-function toggle(name) { sel.has(name) ? sel.delete(name) : sel.add(name); renderPanes(); renderSel(); renderGroups(); }
+function toggle(name) {
+  if (linkFrom) {
+    const o = objOf(name);
+    if (!o || !o.a || name === linkFrom) return;
+    const it = { id: Date.now().toString(36), kind: "link", from: linkFrom, to: name, note: "" };
+    st.items.push(it); active = it.id; linkFrom = null; touch(); renderAll(); return;
+  }
+  sel.has(name) ? sel.delete(name) : sel.add(name); renderPanes(); renderSel(); renderGroups(); }
+function makeCut() {
+  const names = [...sel].filter(n => { const o = objOf(n); return o && o.b && o.a; });
+  if (!names.length) return;
+  const it = { id: Date.now().toString(36), kind: "cut", names, note: "" };
+  st.items.push(it); active = it.id; sel.clear(); touch(); renderAll();
+}
 function makeItem() {
   const order = objs().map(o => o.n), names = [...sel].sort((a, b) => order.indexOf(a) - order.indexOf(b));
   if (!names.length) return;
   const mode = names.some(n => objOf(n).b) ? "to" : "from";
   const cur0 = union(refRects(names, mode)).map(r1);
-  const it = { id: Date.now().toString(36), names, mode, cur: cur0, box: cur0.slice(), note: "" };
+  const it = { id: Date.now().toString(36), kind: "move", names, mode, cur: cur0, box: cur0.slice(), note: "" };
   st.items.push(it); active = it.id; sel.clear(); touch(); renderAll();
 }
 function itemOf(id) { return st.items.find(i => i.id === id); }
@@ -450,8 +492,11 @@ window.addEventListener("message", e => {
 pvTimer = setTimeout(() => { if (!pvReady) pvSay("プレビューを読み込めていません。少し待ってから押してみてください。", false); }, 8000);
 pvSay("読み込み中…", false);
 function play(withEdits) {
-  const edits = withEdits ? st.items.flatMap(newRects) : [];
-  pv.contentWindow.postMessage({ type: "mm-play", from: cur, edits }, "*");
+  const mv = st.items.filter(i => (i.kind || "move") === "move");
+  const edits = withEdits ? mv.flatMap(newRects) : [];
+  const cuts = withEdits ? st.items.filter(i => i.kind === "cut").flatMap(i => i.names) : [];
+  const links = withEdits ? st.items.filter(i => i.kind === "link").map(i => ({ from: i.from, to: i.to })) : [];
+  pv.contentWindow.postMessage({ type: "mm-play", from: cur, edits, cuts, links }, "*");
   pvSay("準備中…", false);
 }
 $("play0").onclick = () => play(false);
@@ -465,7 +510,7 @@ window.addEventListener("keydown", e => {
   if (inText || e.ctrlKey || e.metaKey || e.altKey) { if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "z" && !inText) { e.preventDefault(); $("undo").click(); } return; }
   if (e.key === "ArrowLeft") go(cur - 1); else if (e.key === "ArrowRight") go(cur + 1);
   else if (e.key.toLowerCase() === "p") setTool(tool === "pen" ? "pick" : "pen");
-  else if (e.key === "Escape") { sel.clear(); renderAll(); }
+  else if (e.key === "Escape") { sel.clear(); linkFrom = null; renderAll(); }
 });
 window.addEventListener("beforeunload", () => { if (dirty) flush(); });
 document.addEventListener("visibilitychange", () => { if (document.hidden) flush(); });

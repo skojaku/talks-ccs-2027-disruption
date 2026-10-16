@@ -34,6 +34,14 @@
     cleanup.push(function () { el.style.translate = prev.t; el.style.scale = prev.sc; el.style.transformOrigin = prev.o; });
     return true;
   }
+  function rename(slideNo, name, to) {
+    var el = named(sec(slideNo), name);
+    if (!el) return null;
+    var prev = el.getAttribute('style') || '';
+    el.setAttribute('style', prev.replace(/view-transition-name:\s*\w+/, 'view-transition-name:' + to));
+    cleanup.push(function () { el.setAttribute('style', prev); });
+    return el;
+  }
   function key(shift) {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', shiftKey: !!shift, bubbles: true, cancelable: true }));
   }
@@ -52,6 +60,11 @@
       if (msg.edits && msg.edits.length) {
         msg.edits.forEach(function (e) { if (e.mode === 'to') apply(N + 1, N, e.name, e.rect); else apply(N, N + 1, e.name, e.rect); });
       }
+      (msg.cuts || []).forEach(function (n) { rename(N + 1, n, n + '__cut'); });
+      (msg.links || []).forEach(function (l) {
+        rename(N + 1, l.from, l.from + '__cut'); rename(N, l.to, l.to + '__cut');
+        rename(N + 1, l.to, l.from);
+      });
       if (!sN.hasAttribute('data-transition')) sN.setAttribute('data-transition', TR);
       say({ type: 'mm-state', phase: 'before' });
       await sleep(700);
