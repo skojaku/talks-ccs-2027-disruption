@@ -170,7 +170,10 @@ def higgs_net(red=True):
 B_J = [(40, -310), (185, -250), (330, -320)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
 B_I = (-170, -240)                                                  # cites the focal paper only (blue)
 B_F, B_E, B_X = (-5, 0), (335, 0), (-5, 340)
-B_KS = [(-330, 265), (-190, 200), (180, 200), (320, 265)]    # cite a reference only (grey): two each side of the reference they cite, mirrored, at different heights       # focal paper, its reference, another reference, a paper citing only references (grey)
+B_KS = [(-215, 270), (-110, 215), (100, 215), (205, 270)]    # cite a reference only (grey): two each side of the reference they cite, mirrored, at different heights       # focal paper, its reference, another reference, a paper citing only references (grey)
+
+
+PALE_TXT, PALE_EDGE, PALE_NODE = "#C8C8C8", "#BDBDBD", "#ABABAB"      # review round 15: the network recedes, the colours carry the story
 
 
 def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, cut=False, labels=False):
@@ -186,12 +189,12 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
     jc = HOT if cut else COOL
     o = []
     for n, t in enumerate(js):
-        o.append(edge(f"{pre}_j{n}H", t, H_, sqs * .55, dsH * .8, MUTED, w, hs))
-        o.append(edge(f"{pre}_j{n}E", t, E_, sqs * .55, dsE * .8, MUTED, w, hs))
-    o.append(edge(f"{pre}_iH", i0, H_, sqs * .55, dsH * .8, MUTED, w, hs))
+        o.append(edge(f"{pre}_j{n}H", t, H_, sqs * .55, dsH * .8, PALE_EDGE, w, hs))
+        o.append(edge(f"{pre}_j{n}E", t, E_, sqs * .55, dsE * .8, PALE_EDGE, w, hs))
+    o.append(edge(f"{pre}_iH", i0, H_, sqs * .55, dsH * .8, PALE_EDGE, w, hs))
     for n, t in enumerate(ks):
-        o.append(edge(f"{pre}_k{n}X", t, X_, sqs * .55, sqs * .55, MUTED, w, hs))
-    o.append(edge(f"{pre}_HX", H_, X_, dsH * .8, sqs * .55, MUTED, w, hs))
+        o.append(edge(f"{pre}_k{n}X", t, X_, sqs * .55, sqs * .55, PALE_EDGE, w, hs))
+    o.append(edge(f"{pre}_HX", H_, X_, dsH * .8, sqs * .55, PALE_EDGE, w, hs))
     for n, t in enumerate(js):
         o.append(sq(f"{pre}_s{n}", *t, sqs, jc, None, 2))
     o.append(sq(f"{pre}_si", *i0, sqs, HOT, None, 2))
@@ -199,10 +202,10 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
         o.append(sq(f"{pre}_sk{n}", *t, sqs, GRAYC, None, 2))
     o.append(sq(f"{pre}_X", *X_, sqs * .96, FAINT))
     o.append(dia(f"{pre}_H", *H_, dsH, DEEP))
-    o.append(dia(f"{pre}_E", *E_, dsE, GRAYC))
+    o.append(dia(f"{pre}_E", *E_, dsE, PALE_NODE))
     o.append(disc(f"{pre}_Hring", *H_, dsH * 1.85, "none", DEEP, 3))            # a ring marks the focal paper
     if labels:                                                                  # grey reminders beside each colour
-        g = lambda name, t, cxx, cyy, al: text(f"{pre}_{name}", t, cxx, cyy, 38, "", MUTED, w=520, align=al)
+        g = lambda name, t, cxx, cyy, al: text(f"{pre}_{name}", t, cxx, cyy, 38, "", PALE_TXT, w=520, align=al)
         o.append(g("lnj", "focal only" if cut else "focal + refs", sum(t[0] for t in js) / len(js), min(t[1] for t in js) - 88, "center"))
         o.append(g("lni", "focal only", i0[0] - sqs * 0.5 - 22, i0[1], "right"))
         o.append(g("lnk", "refs only", ks[0][0] - sqs * 0.5 - 22, ks[0][1], "right"))
@@ -210,17 +213,17 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
     if red:
         o.append(line(f"{pre}_red", x1, y1, x2, y2, INK, 7 * k ** .5, True, False, 22 * k ** .5))
     if ghost:
-        o.append(line(f"{pre}_ghost", x1, y1, x2, y2, MUTED, 5 * k ** .5, True, True, 18 * k ** .5))
+        o.append(line(f"{pre}_ghost", x1, y1, x2, y2, PALE_EDGE, 5 * k ** .5, True, True, 18 * k ** .5))
         if scissors:
             o.append(text(f"{pre}_x", "✂️", (x1 + x2) / 2, y1 - 8, 96 * k ** .5, "", None, w=300))
     return o, H_, E_
 
 
 def hlabels(H_, E_, k, pre="hl", notes=True):
-    g = lambda t: f'<span style="font-weight:400;color:{MUTED}">{t}</span>'
+    g = lambda t: f'<span style="font-weight:400;color:{PALE_TXT}">{t}</span>'
     hl = "Higgs" + (f"<br>{g('focal paper')}" if notes else "")
-    return [text(f"{pre}1", hl, H_[0] - 60 * k, H_[1] + (14 if notes else 0), 36, "", INK, weight=700, w=420, h=140 if notes else 100, align="right"),
-            text(f"{pre}2", "Englert &amp; Brout", E_[0] + 78 * k, E_[1], 36, "", GRAYC, weight=700, w=560, h=100, align="left")]
+    return [text(f"{pre}1", hl, H_[0] - 60 * k, H_[1] + (14 if notes else 0), 36, "", PALE_TXT, weight=700, w=420, h=140 if notes else 100, align="right"),
+            text(f"{pre}2", "Englert &amp; Brout", E_[0] + 78 * k, E_[1], 36, "", PALE_TXT, weight=700, w=560, h=100, align="left")]
 
 
 CAP = ["focal<br>+ refs", "focal<br>only", "refs<br>only"]
