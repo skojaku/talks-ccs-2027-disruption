@@ -4,6 +4,11 @@ import mm
 
 GR = "#A6A6A6"          # the grey of an unnamed walk node
 RING = "#4d4d4d"
+
+
+def hatch(col):
+    """Key-vector points: a dashed outline and a diagonal-line (hatched) fill; query-vector points keep a plain outline and a plain fill."""
+    return f"repeating-linear-gradient(45deg,{col} 0 3px,transparent 3px 8px)"
 SEQ = [GR, TEAL, OLIVE, HOT, COOL, DEEP]
 TREE_POS = [(517, 48), (520, 182), (372, 400), (667, 400), (252, 576), (520, 550), (157, 737), (644, 721),
             (396, 808), (447, 994)]
@@ -125,10 +130,10 @@ def scatter(state, key_visible=False, faded=False):
     fo = 0.55 if state in ("split", "nm") else 1.0
     o.append(disc("st", *st["teal"], d, TEAL, RING, 3.5, opacity=fo))
     o.append(disc("so", *st["olive"], d, OLIVE, RING, 3.5, opacity=fo))
-    o.append(disc("sk", *st["fk"], d, HOT, RING, 3.5, dashed=True, opacity=1.0 if key_visible else 0.0))
+    o.append(disc("sk", *st["fk"], d, hatch(HOT), RING, 3.5, dashed=True, opacity=1.0 if key_visible else 0.0))
     o.append(disc("sq", *st["fq"], d, HOT, INK, 3.5))
-    o.append(disc("sb", *st["lb"], d, COOL, RING, 3.5, dashed=True, opacity=fo))
-    o.append(disc("sd", *st["db"], d, DEEP, RING, 3.5, dashed=True, opacity=fo))
+    o.append(disc("sb", *st["lb"], d, hatch(COOL), RING, 3.5, dashed=True, opacity=fo))
+    o.append(disc("sd", *st["db"], d, hatch(DEEP), RING, 3.5, dashed=True, opacity=fo))
     return o
 
 
@@ -235,8 +240,8 @@ def build_b(add):
     mixed = [disc(f"mg{i}", x, y, 56, FAINT, GRAYP, 3) for i, (x, y) in enumerate(
         [(1255, 340), (1930, 315), (1818, 458), (1678, 585), (1826, 725)])]
     mixed += [disc("mt", 1372, 240, 56, TEAL, RING, 3.5), disc("mo", 1497, 600, 56, OLIVE, RING, 3.5),
-              disc("mb", 1305, 474, 56, COOL, RING, 3.5, dashed=True), disc("md", 1755, 355, 56, DEEP, RING, 3.5, dashed=True),
-              disc("mk", 1545, 425, 56, HOT, RING, 3.5, dashed=True), disc("mq", 1523, 466, 56, HOT, INK, 3.5),
+              disc("mb", 1305, 474, 56, hatch(COOL), RING, 3.5, dashed=True), disc("md", 1755, 355, 56, hatch(DEEP), RING, 3.5, dashed=True),
+              disc("mk", 1545, 425, 56, hatch(HOT), RING, 3.5, dashed=True), disc("mq", 1523, 466, 56, HOT, INK, 3.5),
               aro("ma1", (1395, 270), (1437, 330), TEAL, w=4), aro("ma2", (1500, 570), (1520, 535), OLIVE, w=4),
               aro("ma3", (1498, 400), (1470, 378), HOT, True, 4), aro("ma4", (1500, 470), (1415, 474), HOT, False, 4),
               aro("ma5", (1555, 450), (1635, 420), HOT, False, 4), aro("ma6", (1525, 495), (1531, 525), HOT, False, 4),

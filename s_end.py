@@ -1,7 +1,7 @@
 """Slides 70-81: the measure, the test, the results, the summary and the contact slide."""
 from mm import *  # noqa: F401,F403
 import mm
-from s_walk import STATES, GRAYP, RING
+from s_walk import STATES, GRAYP, RING, hatch
 
 
 def stage_free(objs):
@@ -18,7 +18,7 @@ def scatter_thumb(cx, cy, k):
         o.append(disc(None, *P(p), d, FAINT, GRAYP, 2))
     for key, col, dash, op in (("teal", TEAL, False, .55), ("olive", OLIVE, False, .55), ("lb", COOL, True, .55),
                                ("db", DEEP, True, .55), ("fk", HOT, True, 1), ("fq", HOT, False, 1)):
-        o.append(disc(None, *P(st[key]), d, col, RING, 2.4, dashed=dash, opacity=op))
+        o.append(disc(None, *P(st[key]), d, hatch(col) if dash else col, RING, 2.4, dashed=dash, opacity=op))
     return o
 
 
