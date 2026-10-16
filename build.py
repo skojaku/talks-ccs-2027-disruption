@@ -100,6 +100,7 @@ def main():
     prev = set()
     prev_geo = {}
     report = []
+    heads, bodies = [], []
     for i, s in enumerate(SLIDES, 1):
         names = s["names"]
         dup = {n for n in names if names.count(n) > 1}
@@ -129,11 +130,14 @@ def main():
         if i in CUT:
             moving = set()
             s["shared"] = 0
-        if (moving or i in MORPH) and s["trans"] is not False:
-            head.append("<!-- _transition: fade 1.1s -->")
-        body = s["body"]
-        notes = f"\n\n<!--\n{s['notes']}\n-->" if s["notes"] else ""
-        out.append("\n".join(head) + "\n\n" + body + notes)
+        s["anim_in"] = bool((moving or i in MORPH) and s["trans"] is not False)      # slide i is entered with a glide
+        heads.append(head)
+        bodies.append(s["body"] + (f"\n\n<!--\n{s['notes']}\n-->" if s["notes"] else ""))
+    for k, (head, body) in enumerate(zip(heads, bodies)):
+        nxt = SLIDES[k + 1] if k + 1 < len(SLIDES) else None
+        if nxt is not None and nxt["anim_in"]:
+            head.append("<!-- _transition: fade 1.1s -->")          # Marp plays a slide's own transition when it is LEFT: the glide into k+1 is declared on k
+        out.append("\n".join(head) + "\n\n" + body)
     (ROOT / "ccs-2027.md").write_text(FRONT + "\n" + "\n\n---\n\n".join(out[1:]) + "\n")
     import json, re as _re2
     dump = []

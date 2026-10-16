@@ -56,7 +56,7 @@ def build(add):
 
     P3 = dict(globe=(520, 450, 620, 468), phone=(1480, 450, 230, 441), printer=(520, 900, 540, 360), chat=(1480, 900, 640, 360))
     P4 = dict(globe=(300, 826, 500, 378), phone=(380, 350, 235, 452), chat=(1040, 350, 600, 338), printer=(899, 825, 532, 355))
-    edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, 498, "ph")
+    edison = lambda: img("edison", "assets/edison.jpg", 1690, 694, 555, None, "ph")
     TECH = h2("Your most memorable technology?") + '\n\n<p class="sub">A shift, or a new technology, in your life.</p>'
     order = ("globe", "phone", "printer", "chat")
     for k in range(1, 5):
@@ -68,17 +68,20 @@ def build(add):
     # the photo morphs from the collage
     B = ["4–6 more hours a day", "The 24-hour economy", "Evening entertainment culture"]
     mm._names.append("edison")
-    add(h2(LB, "lbt") + '\n\n<p class="sub">more than you’d think</p>\n\n<div class="cols">\n<div>\n\n'
+    OUT = {k: (x - 1356, *rest) for k, (x, *rest) in P4.items()}          # the four pictures leave through the left edge
+    add(h2(LB) + '\n\n<p class="sub">more than you’d think</p>\n\n<div class="cols">\n<div>\n\n'
         + "".join(f"* {t}\n" for t in B)
-        + '\n</div>\n<div class="fig photo" style="view-transition-name:edison">\n\n![](assets/edison.jpg)\n\n</div>\n</div>',
+        + '\n</div>\n<div class="fig photo" style="view-transition-name:edison;width:355px;flex:none;margin-top:88px;line-height:0">\n\n![](assets/edison.jpg)\n\n</div>\n</div>'
+        + stage(*collage(OUT)),
         cls="L-c left")
     # the other technologies come back
     add(stage(*collage(P4), edison()), cls="L-g")
 
     # ---- 10-12  Douglas Adams (the portrait stays; the words change) ----------------------------------
-    def adams(quote, who='“The Salmon of Doubt”, Douglas Adams'):
+    def adams(quote, who='“The Salmon of Doubt”, Douglas Adams', click=False):
+        frag = ' data-marpit-fragment="1"' if click else ""
         return f"""<div class="cols">
-<div>
+<div{frag}>
 <blockquote>
 
 {quote}
@@ -95,7 +98,7 @@ def build(add):
 
     mm._names.append("adams")
     add(adams('<span class="hot">Anything that is in the world when you’re born is normal</span> and ordinary and is '
-              'just a natural part of the way the world works.'), cls="L-q")
+              'just a natural part of the way the world works.', click=True), cls="L-q")
     mm._names.append("adams")
     add(adams('<span class="hot">Anything that’s invented between when you’re fifteen and thirty-five is new and '
               'exciting</span> and revolutionary and you can probably get a career in it.'), cls="L-q")

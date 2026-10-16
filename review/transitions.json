@@ -182,16 +182,18 @@
   "n": 8,
   "title": "Light bulb changed human world",
   "content": [
+   "technology pictures",
    "Edison photo"
   ],
   "layout": "L-c left",
   "moving": [
+   "technology pictures",
    "Edison photo"
   ],
-  "n_moving": 2,
+  "n_moving": 5,
   "appear": [],
   "vanish": [
-   "technology pictures"
+   "Edison photo"
   ],
   "grows": false,
   "fragments": 3,
@@ -206,15 +208,12 @@
   ],
   "layout": "L-g",
   "moving": [
+   "technology pictures",
    "Edison photo"
   ],
-  "n_moving": 1,
-  "appear": [
-   "technology pictures"
-  ],
-  "vanish": [
-   "Edison photo"
-  ],
+  "n_moving": 5,
+  "appear": [],
+  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "magic move"
@@ -518,7 +517,7 @@
   ],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 24,
@@ -547,7 +546,7 @@
   ],
   "grows": true,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 25,
@@ -706,10 +705,8 @@
    "Higgs photo"
   ],
   "layout": "L-b",
-  "moving": [
-   "Higgs photo"
-  ],
-  "n_moving": 1,
+  "moving": [],
+  "n_moving": 0,
   "appear": [],
   "vanish": [
    "annotations",
@@ -720,7 +717,7 @@
   ],
   "grows": false,
   "fragments": 0,
-  "transition": "magic move"
+  "transition": "cut"
  },
  {
   "n": 33,
@@ -2421,6 +2418,23 @@
   ],
   "grows": false,
   "fragments": 3,
+  "transition": "cut"
+ },
+ {
+  "n": 92,
+  "title": "CompleNet 2027",
+  "content": [
+   "contact and paper"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "contact and paper"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
   "transition": "cut"
  }
 ]

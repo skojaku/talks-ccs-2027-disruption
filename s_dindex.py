@@ -260,7 +260,7 @@ def build(add):
     add(stage(
         *diagram("mix", "mix", 472, 594, 1.0, labels=True),
         *tree("t", 1466, 243, 1.0, "concept", (CITE_TOP, CITE_REF, CITE_REF), SQ_CONCEPT, captions=True)),
-        cls="L-g")
+        cls="L-g", trans=False)
 
     # ---- 21  ... and counted: the figure stays at full strength, small, on the left; the formula comes next to it ----------------
     fm = ("$$D_{\\blacklozenge}=\\frac{\\textcolor{#B14434}{n_i}-\\textcolor{#3959A6}{n_j}}"
@@ -277,7 +277,7 @@ def build(add):
         text("fx1", "focal<br>only", CX + 302, 845, 36, "", MUTED, w=230, h=130),
         text("fx2", "focal<br>+ refs", CX + 522, 845, 36, "", MUTED, w=230, h=130),
         text("fx3", "refs<br>only", CX + 730, 845, 36, "", MUTED, w=230, h=130)),
-        cls="L-g")
+        cls="L-g", trans=False)
 
     # ---- 22-24  trends found with the D-index: one paper per cut, the earlier ones greyed behind --------------------------------------
     PAP = [("p_team", "assets/paper_team_c.png", "Team size", "Large teams develop, small teams disrupt"),
@@ -304,7 +304,7 @@ def build(add):
 
     # ---- 25  ... but the D-index fails ------------------------------------------------------------------------------------------------------
     add(h2('But the D-index <span class="ul-hot">fails</span>', style="font-size:68px;") + '\n\n<p class="sub big">for some well-known disruptive discoveries</p>'
-        + stage(*[x for i in range(3) for x in [img(PAP[i][0], PAP[i][1], XS[i] + (i - 1) * 40, 760, 900, 900 / mm.aspect(PAP[i][1]), "ph", GREY)]]) + refl,
+        + stage(*[x for i in range(3) for x in [img(PAP[i][0], PAP[i][1], XS[i] + (i - 1) * 40, 660, 900, 900 / mm.aspect(PAP[i][1]), "ph", GREY)]]) + refl,
         cls="L-b")
 
     # ---- 26-28  Englert, Brout and Higgs: the photograph in the middle, the story around it -------------------------------------
@@ -332,7 +332,7 @@ def build(add):
     add(stage(*base(), *ann1(), *ann2()), cls="L-g")
 
     # ---- 29  what's happening? ----------------------------------------------------------------------------------------------------------
-    add(h2('<span class="muted">What’s happening?</span>') + stage(img("hphoto", "assets/higgs.jpg", 1029, 710, 977, None, "ph")),
+    add(h2('<span class="muted">What’s happening?</span>') + stage(img("hphoto", "assets/higgs.jpg", PX, PY, PW, None, "ph")),
         cls="L-b")
 
     # ---- 30-34  why the D-index fails, one change at a time (no title: the figure takes the whole slide) -----------------------------

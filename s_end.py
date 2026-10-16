@@ -177,3 +177,19 @@ def build(add):
 
     add(bullets('Future work: the same <span class="ul-hot">quantification</span> elsewhere',
                 ["Legal documents and patents", "Mobility networks", "Other embeddings, such as text"]), cls="L-c")
+
+    # ---- last: CompleNet 2027 announcement (poster on the right half), the paper and where to find me (left half) ----------------
+    add(stage(
+        img("poster", "assets/poster_complenet27.png", 1500, 562, 740, None, "ph"),
+        text("cn1", "CompleNet 2027", 70, 86, 52, weight=700, w=1000, align="left"),
+        text("cn2", "Rochester, NY · March 9–12, 2027", 70, 188, 36, w=1000, align="left"),
+        text("cn3", "<u>complenet.github.io</u>", 70, 270, 36, w=1000, align="left"),
+        img("qrpaper", "assets/qr_paper.png", 250, 520, 360),
+        text("paperlead", "Read the paper", 470, 440, 40, weight=700, w=640, align="left"),
+        text("papercap", "<em>Science Advances</em>", 470, 520, 36, "", MUTED, w=640, align="left"),
+        text("papercap2", "12, eadx3420 (2026)", 470, 600, 36, "", MUTED, w=640, align="left"),
+        img("av", "assets/avatar.jpg", 125, 905, 160),
+        text("c1", 'Web: <u>skojaku.github.io</u>', 235, 828, 36, "", INK, w=900, align="left"),
+        img("bf", "assets/butterfly.png", 262, 906, 56),
+        text("c2", "@skojaku.bsky.social", 310, 906, 36, "", INK, w=900, align="left"),
+        text("c3", '<u>skojaku@binghamton.edu</u>', 235, 984, 36, "", INK, w=900, align="left")), cls="L-g", header="")

@@ -1,4 +1,4 @@
-"""Narration for the 91 slides of ccs-2027 (one string per slide, in slide order). Spoken English, about 15 minutes."""
+"""Narration for the 92 slides of ccs-2027 (one string per slide, in slide order). Spoken English, about 15 minutes."""
 N = {
 1: "Hello everyone, I'm Sadamori Kojaku. Today I'll talk about a paper with Munjung Kim and Yong-Yeol Ahn, published in Science Advances. It is about how we measure whether a scientific paper is disruptive, and what happens when the standard measure breaks down. Before I begin, a quick note on what to expect. We will start with a question, how do we measure novelty, then see where a popular measure fails, then see how embeddings fix it, and finish with an open problem.",
 2: "Let me start with a movie. In 1989, Back to the Future Part Two imagined the year 2015. Smart glasses, video calls, flat screens. And today, we really do live in the future we once imagined.",
@@ -90,6 +90,7 @@ N = {
 88: "First, the D-index fails on well-known discoveries. Higgs has a D of minus zero point two seven. That was the starting point.",
 89: "Second, EDM keeps continuity. A large gap between query and key marks a discontinuity.",
 90: "And third, EDM matches human judgment. In the paper we also show results on patents, with the same message.",
-91: "As future work, we would like to quantify the same thing elsewhere: legal documents and patents, mobility networks, and other embeddings such as text. Anywhere items point to earlier items, we can ask where the discontinuities are. Thank you very much.",
+91: "As future work, we would like to quantify the same thing elsewhere: legal documents and patents, mobility networks, and other embeddings such as text. Anywhere items point to earlier items, we can ask where the discontinuities are.",
+92: "Finally, an announcement. CompleNet 2027 will be held in Rochester, New York, March ninth to twelfth. I am a program chair, so please join us. You can scan the QR code to read the paper, and reach me through my website, Bluesky, or email. Thank you very much.",
 }
-assert sorted(N) == list(range(1, 92))
+assert sorted(N) == list(range(1, 93))
