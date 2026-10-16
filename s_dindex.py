@@ -199,7 +199,7 @@ def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, 
         o.append(sq(f"{pre}_s{n}", *t, sqs, jc, None, 2))
     o.append(sq(f"{pre}_si", *i0, sqs, HOT, None, 2))
     for n, t in enumerate(ks):
-        o.append(sq(f"{pre}_sk{n}", *t, sqs, GRAYC, None, 2))
+        o.append(sq(f"{pre}_sk{n}", *t, sqs, PALE_NODE, None, 2))
     o.append(sq(f"{pre}_X", *X_, sqs * .96, FAINT))
     o.append(dia(f"{pre}_H", *H_, dsH, DEEP))
     o.append(dia(f"{pre}_E", *E_, dsE, PALE_NODE))

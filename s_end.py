@@ -158,20 +158,23 @@ def build(add):
     # ---- 78-81  summary: "Summary", then the three claims, one more at every cut -------------------------------------------------
     add(h2("Summary"), cls="L-f", header="")
     SUMM = [
-        ("k1", 230, lambda: img("sm1", "assets/higgs.jpg", 330, 230, 420, None, "ph"),
+        ("k1", 165, lambda: img("sm1", "assets/higgs.jpg", 330, 165, 300, None, "ph"),
          'The D-index <span class="hot">fails</span> on<br>well-known discoveries', "Higgs (1964): D = −0.27, Bottom 0.1 %"),
-        ("k2", 585, lambda: stage_free(scatter_thumb(330, 585, 0.24)),
+        ("k2", 410, lambda: stage_free(scatter_thumb(330, 410, 0.2)),
          'EDM keeps <span class="hot">continuity</span>', "A large query-key gap marks a discontinuity"),
-        ("k3", 940, lambda: img("sm3", "assets/odds_ratio.png", 330, 940, 420, None, ""),
+        ("k3", 655, lambda: img("sm3", "assets/odds_ratio.png", 330, 655, 300, None, ""),
          'EDM matches <span class="hot">human judgment</span>', "Odds ratio 1.23, against 1.03 for the D-index"),
+        ("k4", 905, lambda: img("sm4", "assets/fig3_simul.png", 330, 905, 300, None, ""),
+         'EDM finds<br><span class="hot">simultaneous discoveries</span>', "Their papers sit close in the embedding"),
     ]
-    for n in range(1, 4):
+    for n in range(1, 5):
         objs = []
         for key, y, pic, head, sub in SUMM[:n]:
             pics = pic()
             objs += pics if isinstance(pics, list) else [pics]
-            objs.append(text(key, head, 660, y - 50, 46, "", INK, weight=700, w=1280, h=190, align="left"))
-            objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
+            two = "<br>" in head
+            objs.append(text(key, head, 660, y - (45 if two else 28), 46, "", INK, weight=700, w=1280, h=190 if two else 80, align="left"))
+            objs.append(text(key + "s", sub, 660, y + (88 if two else 52), 38, "", MUTED, w=1280, align="left"))
         add(stage(*objs), cls="L-g")
 
 

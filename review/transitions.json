@@ -2409,6 +2409,29 @@
  },
  {
   "n": 91,
+  "title": "The D-index  fails",
+  "content": [
+   "k1",
+   "k1s",
+   "k2",
+   "k2s",
+   "k3"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "k4",
+   "k4s",
+   "sm4"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 92,
   "title": "Future work: the same quantification elsewhere",
   "content": [],
   "layout": "L-c",
@@ -2422,15 +2445,18 @@
    "k2s",
    "k3",
    "k3s",
+   "k4",
+   "k4s",
    "sm1",
-   "sm3"
+   "sm3",
+   "sm4"
   ],
   "grows": false,
   "fragments": 3,
   "transition": "cut"
  },
  {
-  "n": 92,
+  "n": 93,
   "title": "CompleNet 2027",
   "content": [
    "contact and paper"
