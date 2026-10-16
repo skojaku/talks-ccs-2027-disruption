@@ -45,7 +45,7 @@ def geometry(body):
 
 LABELS = [
     (r"^(edison|lbt|lbaside)$", "Edison photo"), (r"^(phone|chat|globe|printer)$", "technology pictures"),
-    (r"^(adams)$", "Douglas Adams portrait"), (r"^(tl|tl2|tl_[lmr])$", "timeline"), (r"^(age\d)$", "age labels"),
+    (r"^(adams|merton)$", "portrait"), (r"^(tl|tl2|tl_[lmr])$", "timeline"), (r"^(age\d)$", "age labels"),
     (r"^(era\d|as\d|ar\d)$", "era labels and notes"), (r"^(pager|nokia\w*|glasses|flip|iphone|docomo)$", "phone pictures"),
     (r"^(bohr|vegard|schrod|cap\d)$", "atomic-model pictures"), (r"^(dev|dis|mix)_", "citation diagram"),
     (r"^(tdev|tdis|dv\d)$", "diagram labels"), (r"^(see_[lr]|fulcrum)$", "seesaw"), (r"^t_", "decision tree"),
@@ -56,7 +56,7 @@ LABELS = [
     (r"^(qv|kv|kv2|qm|km|qn\d|kn\d|qu|ku|ql|kl|bq|bk)$", "query and key vectors"), (r"^d_", "embedding dots"), (r"^(kl\d|ql\d|wl\d|wl_ar|rj|ls|ls_ar)$", "dot labels"),
     (r"^(mv\d)$", "movement arrows"), (r"^(w_.*|wbrush|rw)$", "random-walk tree"), (r"^s\d$", "sequence discs"), (r"^(win|arcs|winl|qk|tdlab)$", "window and labels"),
     (r"^pr\d$", "training pairs"), (r"^(lh|as1.*|as2.*)$", "list heading and notes"), (r"^(sg\d|st|so|sk|sq|sb|sd|fp|tk)$", "embedding scatter"),
-    (r"^(ar\d|na\d|ma\d|nkl|nql|mkl|mql)$", "arrows"), (r"^(av|bf|qr2|c\d|paperimg|papercap|paperlead|qrpaper|qrcap)$", "contact and paper"),
+    (r"^(ar\d|na\d|ma\d|nkl|nql|mkl|mql)$", "arrows"), (r"^(av|bf|qr2|c\d|paperimg|papercap|paperlead|qrpaper|qrcap|poster|cn\d|papercap2)$", "contact and paper"),
 ]
 
 

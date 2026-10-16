@@ -120,15 +120,59 @@ def build(add):
             objs.append(text(key + "s", sub, 660, y + 92, 38, "", MUTED, w=1280, align="left"))
         add(stage(*objs), cls="L-g")
 
-    # ---- 82  the paper (screenshot, one QR code with its DOI) and where to find me ---------------------------------------------------
+    # ---- open problems: simultaneous discovery, where else this applies, and an invitation -------------------------------------
+    add(h2("Open problems"), cls="L-f", header="")
+
+    mm._names.append("merton")
+    add("""<style scoped>section.L-q blockquote { font-size: 38px; }</style>
+<div class="cols">
+<div>
+<blockquote>
+
+\u2026 the pattern of <span class="hot">independent multiple discoveries</span> in science is in principle <span class="hot">the dominant pattern</span>, rather than a subsidiary one. It is the singletons\u2014discoveries made only once in the history of science\u2014that are the residual cases, requiring special explanation.
+
+</blockquote>
+<p class="who">\u201cSingletons and Multiples in Scientific Discovery\u201d, Robert Merton</p>
+</div>
+<div class="fig" style="view-transition-name:merton">
+
+![](assets/merton.jpg)
+
+</div>
+</div>""", cls="L-q")
+
+    add(h2('Simultaneous discoveries <span class="hot">sit side by side</span>') + stage(
+        img("fig3", "assets/fig3_simul.png", 1000, 615, 1330, None, ""),
+        text("fig3c", "Future vectors of 332,518 APS papers (<em>Science Advances</em>, Fig. 3)", 1000, 1075, 36, "", MUTED, w=1900)),
+        cls="L-b")
+
+    def bullets(title, items):
+        return '<style scoped>section.L-c .cols { grid-template-columns: 1fr; } section.L-c .cols > div:not(.fig) { display: flex; justify-content: center; }</style>\n\n' + h2(title) + '\n\n<div class="cols">\n<div>\n\n' + "".join(f"* {t}\n" for t in items) + '\n</div>\n</div>'
+
+    add(bullets('Simultaneous discovery looks <span class="hot">environmental</span>, not random',
+                ["Pairs land in the same neighbourhood", "The D-index tends to overlook them",
+                 "Embeddings make local bursts visible", "A ripe environment, rather than luck?"]), cls="L-c")
+
+    add(bullets('The method applies to any <span class="hot">directed network</span>',
+                ["Legal documents", "Patents (partly done)", "Traffic networks: where are the bottlenecks?"]), cls="L-c")
+
+    add(h2('Do <span class="hot">text embeddings</span> have bottlenecks too?') + '\n\n<p>We are looking into it now.</p>',
+        cls="L-f", header="")
+
+    add(h2('Interested? <span class="hot">Please get in touch.</span>'), cls="L-f", header="")
+
+    # ---- last: CompleNet 2027 announcement (poster on the right half), the paper and where to find me (left half) ----------------
     add(stage(
-        img("paperimg", "assets/sciadv.png", 560, 395, 1000, None, "ph"),
-        text("papercap", "<em>Science Advances</em> 12, eadx3420 (2026)", 560, 770, 36, w=1500),
-        text("paperlead", "Read the paper", 1560, 170, 52, weight=700, w=800),
-        img("qrpaper", "assets/qr_paper.png", 1560, 520, 460),
-        text("qrcap", "doi.org/10.1126/<br>sciadv.adx3420", 1560, 830, 36, "", MUTED, w=800, h=150),
-        img("av", "assets/avatar.jpg", 160, 925, 150),
-        text("c1", 'Web: <u>skojaku.github.io</u>', 300, 880, 36, "", INK, w=1300, align="left"),
-        img("bf", "assets/butterfly.png", 334, 955, 56),
-        text("c2", "@skojaku.bsky.social", 400, 955, 36, "", INK, w=1300, align="left"),
-        text("c3", '<u>skojaku@binghamton.edu</u>', 300, 1030, 36, "", INK, w=1400, align="left")), cls="L-g", header="")
+        img("poster", "assets/poster_complenet27.png", 1500, 562, 740, None, "ph"),
+        text("cn1", "CompleNet 2027", 70, 86, 52, weight=700, w=1000, align="left"),
+        text("cn2", "Rochester, NY \u00b7 March 9\u201312, 2027", 70, 188, 36, w=1000, align="left"),
+        text("cn3", "<u>complenet.github.io</u>", 70, 270, 36, w=1000, align="left"),
+        img("qrpaper", "assets/qr_paper.png", 250, 520, 360),
+        text("paperlead", "Read the paper", 470, 440, 40, weight=700, w=640, align="left"),
+        text("papercap", "<em>Science Advances</em>", 470, 520, 36, "", MUTED, w=640, align="left"),
+        text("papercap2", "12, eadx3420 (2026)", 470, 600, 36, "", MUTED, w=640, align="left"),
+        img("av", "assets/avatar.jpg", 125, 905, 160),
+        text("c1", 'Web: <u>skojaku.github.io</u>', 235, 828, 36, "", INK, w=900, align="left"),
+        img("bf", "assets/butterfly.png", 262, 906, 56),
+        text("c2", "@skojaku.bsky.social", 310, 906, 36, "", INK, w=900, align="left"),
+        text("c3", '<u>skojaku@binghamton.edu</u>', 235, 984, 36, "", INK, w=900, align="left")), cls="L-g", header="")

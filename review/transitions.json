@@ -223,13 +223,13 @@
   "n": 10,
   "title": "",
   "content": [
-   "Douglas Adams portrait"
+   "portrait"
   ],
   "layout": "L-q",
   "moving": [],
   "n_moving": 0,
   "appear": [
-   "Douglas Adams portrait"
+   "portrait"
   ],
   "vanish": [
    "technology pictures",
@@ -243,7 +243,7 @@
   "n": 11,
   "title": "",
   "content": [
-   "Douglas Adams portrait"
+   "portrait"
   ],
   "layout": "L-q",
   "moving": [],
@@ -258,7 +258,7 @@
   "n": 12,
   "title": "",
   "content": [
-   "Douglas Adams portrait"
+   "portrait"
   ],
   "layout": "L-q",
   "moving": [],
@@ -284,7 +284,7 @@
    "timeline"
   ],
   "vanish": [
-   "Douglas Adams portrait"
+   "portrait"
   ],
   "grows": false,
   "fragments": 0,
@@ -2298,16 +2298,12 @@
  },
  {
   "n": 87,
-  "title": "Science Advances",
-  "content": [
-   "contact and paper"
-  ],
-  "layout": "L-g",
+  "title": "Open problems",
+  "content": [],
+  "layout": "L-f",
   "moving": [],
   "n_moving": 0,
-  "appear": [
-   "contact and paper"
-  ],
+  "appear": [],
   "vanish": [
    "k1",
    "k1s",
@@ -2318,6 +2314,116 @@
    "sm1",
    "sm3"
   ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 88,
+  "title": "",
+  "content": [
+   "portrait"
+  ],
+  "layout": "L-q",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "portrait"
+  ],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 89,
+  "title": "Simultaneous discoveries sit side by side",
+  "content": [
+   "fig3",
+   "fig3c"
+  ],
+  "layout": "L-b",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "fig3",
+   "fig3c"
+  ],
+  "vanish": [
+   "portrait"
+  ],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 90,
+  "title": "Simultaneous discovery looks environmental, not random",
+  "content": [],
+  "layout": "L-c",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [
+   "fig3",
+   "fig3c"
+  ],
+  "grows": false,
+  "fragments": 4,
+  "transition": "cut"
+ },
+ {
+  "n": 91,
+  "title": "The method applies to any directed network",
+  "content": [],
+  "layout": "L-c",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 3,
+  "transition": "cut"
+ },
+ {
+  "n": 92,
+  "title": "Do text embeddings have bottlenecks too?",
+  "content": [],
+  "layout": "L-f",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 93,
+  "title": "Interested? Please get in touch.",
+  "content": [],
+  "layout": "L-f",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [],
+  "vanish": [],
+  "grows": false,
+  "fragments": 0,
+  "transition": "cut"
+ },
+ {
+  "n": 94,
+  "title": "CompleNet 2027",
+  "content": [
+   "contact and paper"
+  ],
+  "layout": "L-g",
+  "moving": [],
+  "n_moving": 0,
+  "appear": [
+   "contact and paper"
+  ],
+  "vanish": [],
   "grows": false,
   "fragments": 0,
   "transition": "cut"
