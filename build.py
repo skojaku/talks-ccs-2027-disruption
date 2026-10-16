@@ -22,6 +22,7 @@ FRONT = """---
 marp: true
 theme: house
 paginate: false
+footer: "M. Kim, S. Kojaku, Y.-Y. Ahn. Uncovering simultaneous scientific breakthroughs with a robust measure of disruptiveness. Science Advances 12, eadx3420 (2026)."
 math: katex
 html: true
 ---
@@ -125,6 +126,8 @@ def main():
         if s["cls"]:
             head.append(f"<!-- _class: {s['cls']} -->")
         # (no breadcrumb header: the lecturer removed it from every slide)
+        if i == 1:
+            head.append('<!-- _footer: "" -->')          # the title slide already carries the reference
         if s["bg"]:
             head.append(f"<!-- _backgroundColor: {s['bg']} -->")
         if i in CUT:

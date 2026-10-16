@@ -342,7 +342,7 @@ def build(add):
     # 30-32  the Higgs / Englert & Brout network, centred. The four citing papers carry the class colour, with a grey reminder of what each
     # colour means; one citation is cut and the four papers change colour (no decision tree, no moving citations).
     CX0, CY0, K0 = 930, 530, 1.15
-    D_V = lambda t, col, size=44, ul=False: text("hd1", t, 1470, 1010, size, "", col, weight=700, w=640, h=150, ul=ul)
+    D_V = lambda t, col, size=44, ul=False: text("hd1", t, 1470, 960, size, "", col, weight=700, w=640, h=150, ul=ul)
 
     # 30  Higgs cites Englert & Brout, so Englert & Brout is a reference of Higgs
     net_a, Ha, Ea = hnet(CX0, CY0, K0, labels=True)

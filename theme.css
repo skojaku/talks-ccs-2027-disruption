@@ -135,7 +135,7 @@ section.lead > header, section.L-d > header { display: none; }
 
 /* a reference to someone else's work: bottom left, small, muted */
 section .ref {
-  position: absolute; left: 40px; bottom: 16px; max-width: 980px;
+  position: absolute; left: 40px; bottom: 40px; max-width: 980px;
   font-size: 15px; line-height: 1.3; color: #6b6b6b;
 }
 /* one's own paper behind the slide: "Kojaku et al. / Nat. Comm. 2023" (+ the venue's logo) */
@@ -1156,3 +1156,10 @@ section.L-c .cols { grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); }
 section.L-c .cols > div:not(.fig) ul { font-size: 42px; }
 section.L-q blockquote { font-size: 44px; }
 section.L-q .who { font-size: 28px; }
+
+/* paper reference bar: one line, small, white on black, at the foot of every slide */
+section > footer {
+  position: absolute; left: 0; right: 0; bottom: 0; width: auto; height: 26px; margin: 0; padding: 0 22px;
+  background: #000000; color: #ffffff; font-family: 'Libre Baskerville', Georgia, serif; font-size: 13.5px; line-height: 26px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: left; z-index: 50;
+}

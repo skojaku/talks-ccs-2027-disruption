@@ -39,8 +39,8 @@ def build(add):
 
     # ---- 2  we live in the future we once imagined (two stills of Back to the Future Part II) ---------------------------------
     add(PENCIL + h2("We live in the future we once imagined.")
-        + stage(img("bttf_poster", "assets/bttf2_poster.jpg", 620, 640, 560, None, "ph"),
-                img("bttf_phone", "assets/bttf2_phone.jpg", 1330, 640, 670, None, "ph"))
+        + stage(img("bttf_poster", "assets/bttf2_poster.jpg", 620, 610, 560, None, "ph"),
+                img("bttf_phone", "assets/bttf2_phone.jpg", 1330, 610, 670, None, "ph"))
         + '\n\n<div class="ref">Back to the Future Part II (Universal Pictures, 1989): theatrical poster and a still.</div>',
         cls="L-b", header="",
         notes="Opening: the 1989 film imagined 2015. Smart glasses, video calls and flat screens are now ordinary.")
@@ -120,8 +120,8 @@ def build(add):
              (840, 975, 870, 895, 0.25)),
             ("Smart phone", 1250, 480, ("phone", "assets/phone.png", 1246, 735, 198, 380), ("super cool!", 1210, 1015),
              (1237, 985, 1237, 937, 0)),
-            ("Smart glass", 1735, 480, ("visor", "assets/bttf2_phone.jpg", 1735, 725, 330, None),
-             ("Goes against<br>natural order", 1735, 1035), None),
+            ("Smart glass", 1735, 480, ("visor", "assets/bttf2_phone.jpg", 1735, 712, 330, None),
+             ("Goes against<br>natural order", 1735, 1005), None),
         ]
         for i in range(k):
             lab, lx, ly, im, (atxt, ax, ay), arrow = cols[i]

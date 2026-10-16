@@ -68,26 +68,26 @@ def build(add):
 
     # ---- 73-75  the D-index: milestone papers sit at the bottom -------------------------------------------------------
     T1 = h2("D-index of milestone works (APS)")
-    plot = lambda: img("histD", "assets/hist_dindex.png", 1020, 690, 1215)
-    a1 = lambda: [text("a1", "Milestone papers with<br>the bottom-level<br>D-index value.", 270, 975, 32, "aside", w=700, h=230),
-                  overlay_svg("a1ar", [curved_arrow(520 * S, 940 * S, 655 * S, 925 * S, -0.15, MUTED, 2.6, 15)])]
-    a2 = lambda: [text("a2", "Shuffling creates<br>more high<br>D-index works 🙈", 1000, 700, 32, "aside", w=700, h=300),
-                  overlay_svg("a2ar", [curved_arrow(1240 * S, 612 * S, 1490 * S, 578 * S, -0.2, MUTED, 2.6, 15)])]
+    plot = lambda: img("histD", "assets/hist_dindex.png", 1020, 640, 1215)
+    a1 = lambda: [text("a1", "Milestone papers with<br>the bottom-level<br>D-index value.", 270, 925, 32, "aside", w=700, h=230),
+                  overlay_svg("a1ar", [curved_arrow(520 * S, 890 * S, 655 * S, 875 * S, -0.15, MUTED, 2.6, 15)])]
+    a2 = lambda: [text("a2", "Shuffling creates<br>more high<br>D-index works 🙈", 1000, 650, 32, "aside", w=700, h=300),
+                  overlay_svg("a2ar", [curved_arrow(1240 * S, 562 * S, 1490 * S, 528 * S, -0.2, MUTED, 2.6, 15)])]
     add(T1 + stage(plot()), cls="L-b")
     add(T1 + stage(plot(), *a1()), cls="L-b")
     add(T1 + stage(plot(), *a1(), *a2()), cls="L-b")
 
     # ---- 76-78  the EDM: milestone papers sit at the top ----------------------------------------------------------------
     def both():
-        return [img("histD", "assets/hist_dindex.png", 400, 640, 490, None, "faded"),
+        return [img("histD", "assets/hist_dindex.png", 400, 600, 490, None, "faded"),
                 text("hd", "D-index", 390, 330, 40, "", MUTED, w=700),
-                img("histE", "assets/hist_edm.png", 1425, 600, 1125),
+                img("histE", "assets/hist_edm.png", 1425, 560, 1125),
                 text("he", "EDM", 1548, 100, 64, "", HOT, w=700)]
 
-    b1 = lambda: [text("b1", "Many milestone<br>papers have a high<br>EDM value", 1525, 490, 32, "aside", w=700, h=250),
-                  overlay_svg("b1ar", [curved_arrow(1700 * S, 388 * S, 1862 * S, 325 * S, -0.15, MUTED, 2.6, 15)])]
-    b2 = lambda: [text("b2", "Randomization<br>reduces the EDM-<br>score for most works", 615, 985, 32, "aside", w=800, h=250),
-                  overlay_svg("b2ar", [curved_arrow(875 * S, 905 * S, 1035 * S, 858 * S, -0.2, MUTED, 2.6, 15)])]
+    b1 = lambda: [text("b1", "Many milestone<br>papers have a high<br>EDM value", 1525, 450, 32, "aside", w=700, h=250),
+                  overlay_svg("b1ar", [curved_arrow(1700 * S, 348 * S, 1862 * S, 285 * S, -0.15, MUTED, 2.6, 15)])]
+    b2 = lambda: [text("b2", "Randomization<br>reduces the EDM-<br>score for most works", 615, 940, 32, "aside", w=800, h=250),
+                  overlay_svg("b2ar", [curved_arrow(875 * S, 860 * S, 1035 * S, 813 * S, -0.2, MUTED, 2.6, 15)])]
     add(stage(*both()), cls="L-g")
     add(stage(*both(), *b1()), cls="L-g")
     add(stage(*both(), *b1(), *b2()), cls="L-g")
@@ -96,10 +96,10 @@ def build(add):
     lab = lambda n, t, x, y, x2, y2: [text(n, t, x, y, 30, "", MUTED, w=700, style="font-style:italic;"),
                                        overlay_svg(n + "a", [curved_arrow(x2 * S - 120, y2 * S + 2, x2 * S, y2 * S, 0.05, MUTED, 2.6, 14)])]
     add(h2("EDM aligns better with human judgment") + stage(
-        img("odds", "assets/odds_ratio.png", 1275, 650, 1240, None, ""),
-        *lab("o1", "Control<br>variable", 180, 440, 655, 388), *lab("o2", "EDM<br>(proposed)", 290, 650, 672, 625),
-        *lab("o3", "D-index", 320, 840, 682, 840),
-        img("apsc", "assets/aps_news.png", 255, 1050, 440, None)), cls="L-b")
+        img("odds", "assets/odds_ratio.png", 1275, 620, 1240, None, ""),
+        *lab("o1", "Control<br>variable", 180, 410, 655, 358), *lab("o2", "EDM<br>(proposed)", 290, 620, 672, 595),
+        *lab("o3", "D-index", 320, 810, 682, 810),
+        img("apsc", "assets/aps_news.png", 255, 1000, 440, None)), cls="L-b")
 
     # ---- simultaneous discoveries (before the summary): the question, the Higgs and J/psi cases, many more, the embedding, Merton ----
     add(h2('What does <span class="hot">EDM</span> find<br>that the D-index <span class="ul-hot">misses</span>?'), cls="L-f", header="")
@@ -118,21 +118,23 @@ def build(add):
     # the J/psi case: two teams, the same day, citing each other
     add(h2("J/ψ meson (1974)") + '\n\n<p class="sub">Richter and Ting cited each other.</p>' + stage(
         img("nobel76", "assets/photo_1976.jpg", 1000, 525, 640, None, "ph"),
-        ROW("jr1", "D-index", 885), val("jv1", "− 0.11 · Bottom 1 %", CL, 885, COOL), val("jv2", "− 0.64 · Bottom 0 %", CR, 885, COOL),
-        ROW("jr2", "EDM", 1005), val("jv3", "0.99 · Top 5 %", CL, 1005, HOT), val("jv4", "0.97 · Top 7 %", CR, 1005, HOT)), cls="L-b")
+        text("nobel76c", "Burton Richter and Samuel C. C. Ting", 1000, 805, 38, "", MUTED, w=1500),
+        ROW("jr1", "D-index", 900), val("jv1", "− 0.11 · Bottom 1 %", CL, 900, COOL), val("jv2", "− 0.64 · Bottom 0 %", CR, 900, COOL),
+        ROW("jr2", "EDM", 1020), val("jv3", "0.99 · Top 5 %", CL, 1020, HOT), val("jv4", "0.97 · Top 7 %", CR, 1020, HOT)), cls="L-b")
 
     # many more cases
     add(h2('EDM finds many more <span class="hot">simultaneous discoveries</span>') + stage(
-        img("fig2e", "assets/fig2e_simul.png", 1000, 640, 1800, None, ""),
-        text("fig2c", "Percentiles of EDM (Δ) and the D-index for each pair of papers", 1000, 1070, 36, "", MUTED, w=1900)), cls="L-b")
+        img("fig2e", "assets/fig2e_simul.png", 1000, 590, 1800, None, ""),
+        text("fig2c", "Percentiles of EDM (Δ) and the D-index for each pair of papers", 1000, 1015, 36, "", MUTED, w=1900)), cls="L-b")
 
     # the embedding space: the papers of one discovery sit side by side
     add(h2('Simultaneous discoveries <span class="ul-hot">sit side by side</span>') + stage(
-        img("fig3", "assets/fig3_simul.png", 1160, 615, 1300, None, ""),
+        img("fig3", "assets/fig3_simul.png", 1160, 590, 1300, None, ""),
         img("nobel76", "assets/photo_1976.jpg", 270, 330, 420, None, "ph"),
+        text("nobel76c", "Richter &amp; Ting", 270, 535, 36, "", MUTED, w=520),
         img("hphoto", "assets/higgs.jpg", 270, 905, 420, None, "ph"),
-        text("as1", "Their papers sit<br>very close.", 270, 615, 44, "aside", w=480, h=190),
-        text("fig3c", "Future vectors of 332,518 APS papers", 1160, 1075, 36, "", MUTED, w=1500)),
+        text("as1", "Their papers sit<br>very close.", 270, 660, 44, "aside", w=480, h=190),
+        text("fig3c", "Future vectors of 332,518 APS papers", 1160, 1010, 36, "", MUTED, w=1500)),
         cls="L-b")
 
     mm._names.append("merton")

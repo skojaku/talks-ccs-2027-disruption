@@ -50,7 +50,7 @@ def NP(cx, cy, s):
 def build(add):
     # ---- 41-48  how word2vec works ---------------------------------------------------------------------------------
     foot = text("foot", "*word2vec has multiple variants. We focus on the skip-gram negative sampling word2vec.",
-                1000, 1085, 22, "foot", MUTED, w=2000)
+                1000, 1040, 22, "foot", MUTED, w=2000)
     NET = lambda color=INK, op=1.0: net("net", 1026, 730, 1.15, color, op)
     ttl = h2("How word2vec works")
     sent = lambda: [text("sent", '“Chance <span class="hot">favors</span> only the _____ mind.”', 980, 265, 48, w=1900),
