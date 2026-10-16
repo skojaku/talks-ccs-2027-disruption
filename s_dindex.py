@@ -170,7 +170,7 @@ def higgs_net(red=True):
 B_J = [(20, -340), (165, -340), (310, -340)]      # cite the focal paper AND a reference (red; blue once the citation is cut)
 B_I = (-250, -340)                                                  # cites the focal paper only (blue)
 B_F, B_E, B_X = (-5, 0), (335, 0), (-5, 340)
-B_KS = [(-480, 140), (-350, 140), (-220, 140)]                      # cite a reference only (grey)       # focal paper, its reference, another reference, a paper citing only references (grey)
+B_KS = [(-330, 265), (-190, 200), (180, 200), (320, 265)]    # cite a reference only (grey): two each side of the reference they cite, mirrored, at different heights       # focal paper, its reference, another reference, a paper citing only references (grey)
 
 
 def hnet(cx, cy, k, red=True, ghost=False, pre="hn", dims=None, scissors=False, cut=False, labels=False):
@@ -352,7 +352,7 @@ def build(add):
     # 31  the scissors cut that one citation (the colours still stand)
     net_b, Hb, Eb = hnet(CX0, CY0, K0, red=False, ghost=True, scissors=True, labels=True)
     add(stage(thumb(), *net_b, *hlabels(Hb, Eb, K0), D_H(760),
-              text("as2", "Cut this one citation.", 1560, 800, 40, "aside", w=900, h=170)), cls="L-g")
+              text("as2", "Cut this one citation.", 1650, 690, 40, "aside", w=760, h=170)), cls="L-g")
 
     # 32  the citation is gone: the red papers turn blue, and D flips
     net_c, Hc, Ec = hnet(CX0, CY0, K0, red=False, cut=True, labels=True)
@@ -360,7 +360,7 @@ def build(add):
               text("hd1b", "D = − 0.27<br>Bottom 0.1 %", 400, 1040, 44, "", COOL, weight=700, w=560, h=150, style="opacity:.3;"),
               overlay_svg("dd_ar", [arrow_px(412, 665, 462, 665, MUTED, 5, 18)]),
               text("hd2", "D = 0.28<br>Top 1.3 %", 960, 1040, 52, "", HOT, weight=700, w=560, h=150),
-              text("as3", "The three papers now<br>cite the focal paper only.", 1570, 770, 40, "aside", w=760, h=170)), cls="L-g")
+              text("as3", "The three papers now<br>cite the focal paper only.", 1650, 690, 40, "aside", w=760, h=170)), cls="L-g")
 
     # ---- 35  why is the D-index so sensitive? two networks side by side, one citation apart --------------------------------------
     nA, HA, EA = hnet(500, 720, 0.78, pre="sa")
