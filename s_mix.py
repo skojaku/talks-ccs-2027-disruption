@@ -52,19 +52,14 @@ def build(add):
     add(h2("D-index sorts the citing papers") + '\n\n<p class="sub">Does a paper build on the focal paper, the work before it, or both?</p>'
         + stage(*graph(), *roles()), cls="L-b")
 
-    # 2  ... but papers do not sort so cleanly: some belong to two groups at once
+    # 2  ... but papers do not sort so cleanly: the one sentence that matters, large, above the graph; nothing else
     mixed = {"p2": GRAD, "a": GRAD, "k": GRAD_G}
     emix = {"p2": PURPLE, "a": PURPLE, "k": "#7A4A40"}
     add(h2("But papers do not sort so cleanly") + stage(
-        *graph(mixed, emix), *roles(mute=True),
-        text("as1", "Some belong to<br>two groups at once.", 385, 810, 44, "aside", w=760, h=190,
+        *graph(mixed, emix),
+        text("as1", "Some belong to two groups at once.", 960, 270, 52, "aside", w=1500, h=120,
              style="background:linear-gradient(90deg,#B14434,#3959A6);-webkit-background-clip:text;background-clip:text;"
-                   "color:transparent;"),
-        overlay_svg("as1ar", [curved_arrow(520 * S, 715 * S, N("k")[0] * S - 12, N("k")[1] * S + 40, 0.25, MUTED, 3, 16)])), cls="L-b")
-
-    # 3  stop sorting: the colours change smoothly from one paper to the next, in the same place
-    fills, t = smooth(pos)
-    add(h2("Stop sorting. Let the colours mix.") + stage(*graph(fills, fills)), cls="L-b")
+                   "color:transparent;")), cls="L-b")
 
     # 5  the thesis, in words only
     add(h2('We preserve <span class="hot">continuity</span> by abandoning class rounding.'), cls="L-f", header="")

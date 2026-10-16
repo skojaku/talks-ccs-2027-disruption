@@ -31,7 +31,7 @@ def build(add):
         img("hphoto", "assets/higgs.jpg", 935, 782, 620, None, "ph"),
         text("e1", "Δ = 1.002<br>Top 4.3 %", 305, 800, 44, "", HOT, w=620, h=170),
         text("e2", "Δ = 1.005<br>Top 4.1 %", 1640, 870, 44, "", HOT, w=620, h=170),
-        overlay_svg("e_ar", [curved_arrow(465 * S, 680 * S, 715 * S, 728 * S, 0.3, HOT, 6, 24),
+        overlay_svg("e_ar", [curved_arrow(415 * S, 690 * S, 690 * S, 700 * S, -0.5, HOT, 6, 24),
                              curved_arrow(1430 * S, 790 * S, 1235 * S, 746 * S, -0.3, HOT, 6, 24)])), cls="L-b", header="")
 
     # ---- 71  the test ------------------------------------------------------------------------------------------------
@@ -71,8 +71,8 @@ def build(add):
     plot = lambda: img("histD", "assets/hist_dindex.png", 1020, 690, 1215)
     a1 = lambda: [text("a1", "Milestone papers with<br>the bottom-level<br>D-index value.", 270, 975, 32, "aside", w=700, h=230),
                   overlay_svg("a1ar", [curved_arrow(520 * S, 940 * S, 655 * S, 925 * S, -0.15, MUTED, 2.6, 15)])]
-    a2 = lambda: [text("a2", "Shuffling creates<br>more high<br>D-index works 🙈", 1135, 690, 32, "aside", w=700, h=300),
-                  overlay_svg("a2ar", [curved_arrow(1345 * S, 612 * S, 1490 * S, 578 * S, -0.2, MUTED, 2.6, 15)])]
+    a2 = lambda: [text("a2", "Shuffling creates<br>more high<br>D-index works 🙈", 1000, 700, 32, "aside", w=700, h=300),
+                  overlay_svg("a2ar", [curved_arrow(1240 * S, 612 * S, 1490 * S, 578 * S, -0.2, MUTED, 2.6, 15)])]
     add(T1 + stage(plot()), cls="L-b")
     add(T1 + stage(plot(), *a1()), cls="L-b")
     add(T1 + stage(plot(), *a1(), *a2()), cls="L-b")
