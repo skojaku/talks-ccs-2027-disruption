@@ -12,7 +12,7 @@ OUT.mkdir(exist_ok=True)
 MODEL, VOICES = sys.argv[1], sys.argv[2]
 VOICE = sys.argv[3] if len(sys.argv) > 3 else "af_heart"
 SPEED = float(sys.argv[4]) if len(sys.argv) > 4 else 1.0
-LONG = {1, 7, 19, 20, 28, 32, 40, 41, 60, 66, 72, 73, 83, 86, 87, 93}
+LONG = {1, 8, 20, 21, 29, 33, 41, 42, 61, 67, 73, 74, 84, 87, 88, 94}
 sh = lambda *a: subprocess.run(a, check=True, capture_output=True)
 dur = lambda f: float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(f)],
                                      capture_output=True, text=True).stdout)
